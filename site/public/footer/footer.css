@@ -1,0 +1,66 @@
+/* Tags globais */
+ul{
+    list-style-type: none;
+}
+
+.Footer{
+    display: flex;
+    justify-content: space-between;
+    background-color: #2C2C2C;
+}
+.innerFooter{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #2C2C2C;
+}
+.informacoes{
+    display: flex;
+    width: 80%;
+    justify-content: space-between;
+}
+.informacaoContatos{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;  
+    
+}
+.informacao{
+    display: flex;
+    flex-direction: column;
+    color: snow;
+    align-items: center;
+
+}
+.informacao span{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+.informacao ul{
+line-height: 25px;
+font-size: 10px;
+font-family: 'Times New Roman', Times, serif;
+}
+.contato{
+    color: snow;
+}
+.contato span{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+.endereco{
+    display: flex;
+    flex-direction: column;
+}
+.endereco span{
+    font-size: 15px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.emailTel{
+    display: flex;
+    flex-direction: column;
+}
+.social{
+    background-color: #2C2C2C;
+}
