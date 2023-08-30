@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro Main</title>
+  <link rel="stylesheet" href="./css/cadastro_main.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="titulo">T E S T</h1>
+      <ul class="navbar">
+        <li class="agora">
+          <a href="#">HOME</a>
+        </li>
+        <li>
+          <a href="simulador.html">CADASTRO</a>
+        </li>
+        <li>
+          <a href="login.html">LOGIN</a>
+        </li>
+        <li>
+          <a href="">CONTATO</a>
+        </li>
+        <li>
+          <a href="">FAQ</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+  <div class="titulo_login">
+    <h1>Tipo de Cadastro</h1>
+  </div>
+  <div class="container_login_main">
+      <div class="container_login">
+        <h1>Entrar como uma Instituição</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+          Debitis beatae magni minima optio veritatis officia soluta 
+        </p>
+        <a href="">VIEW MORE</a>
+      </div>
+      <div class="container_login">
+        <h1>Entrar como um funcionário</h1>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+          Debitis beatae magni minima optio veritatis officia soluta 
+        </p>
+        <a href="">VIEW MORE</a>
+      </div>
+  </div>
+  <div class="Footer">
+    <div class="innerFooter">
+        <div class="informacoes">
+            <div class="logoFooter">
+                <div class="logoGrande">
+                    <img src="imgs/logoGrande.png" alt="">
+                </div>
+                <div class="logoSigla">
+                    <img src="imgs/logoSigla.png" alt="">
+                </div>
+            </div>
+            <div class="informacaoContatos">
+                <div class="informacao">
+                    <span>Infomation</span>
+                    <ul>
+                        <li>HOME</li>
+                        <li>CADASTRO</li>
+                        <li>LOGIN</li>
+                        <li>CONTATO</li>
+                        <li>FAQ</li>
+                    </ul>
+                </div>
+                <div class="contato">
+                    <span>Contacts</span>
+                    <div class="iconsFooter">
+
+                    </div>
+                    <div class="endereco">
+                        <span>Rua Haddock Lobo 595</span>
+                        <span>São Paulo - SP, 01414-905</span>
+                    </div>
+                    <div class="emailTel">
+                    <span>(11) 3589-4043</span>
+                    <span>test@sptech.school</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="social">
+            <img src="imgs/Facebook.png" alt="">
+            <img src="imgs/Twitter.png" alt="">
+            <img src="imgs/Linkedin.png" alt="">
+            <img src="imgs/pinterest.png" alt="">
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+<script>
+  function cadastrar() {
+    aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var empresaVar = listaEmpresas.value
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      empresaVar == ""
+    ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML =
+        "(Mensagem de erro para todos os campos em branco)";
+
+      finalizarAguardar();
+      return false;
+    } else {
+      setInterval(sumirMensagem, 5000);
+    }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        empresaServer: empresaVar
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(() => {
+            window.location = "login.html";
+          }, "2000");
+
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
+
+  function listar() {
+    fetch("/empresas/listar", {
+      method: "GET",
+    })
+      .then(function (resposta) {
+        resposta.json().then((empresas) => {
+          empresas.forEach((empresa) => {
+            listaEmpresas.innerHTML += `<option value='${empresa.id}'>${empresa.cnpj}</option>`;
+          });
+        });
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>
