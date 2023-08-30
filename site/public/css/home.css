@@ -315,3 +315,21 @@ ul {
 .social {
   background-color: #2C2C2C;
 }
+
+#moco_pc {
+width: 24vw;
+  height: auto;
+  object-fit: cover;
+}
+
+#moca2 {
+
+  width: 40vw;
+  height:70vh ;
+  
+}
+
+#computador {
+  width: 450px;
+  height: 60vh;
+}
