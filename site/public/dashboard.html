@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+x   <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="dashboard_conteiner">
@@ -63,6 +64,61 @@
             </div>
         </div>
         <div class="line"></div>
+        <div class="escolha_grafico">
+            <span class="grafico_tipo grafico_selecionado">C P U</span>
+            <span class="grafico_tipo">M E M Ó R I A</span>
+            <span class="grafico_tipo">D I S C O</span>
+            <span class="grafico_tipo">R E D E</span>
+        </div>
+        <div class="conteiner_grafico">
+            <div class="div_grafico" id="div_grafico_cpu">
+                <canvas class="grafico_tamanho" id="grafico_cpu"></canvas>
+            </div>
+            <div class="div_grafico" id="div_grafico_memória">
+                <canvas class="grafico_tamanho" id="grafico_memória"></canvas>
+            </div>
+            <div class="div_grafico" id="div_grafico_disco">
+                <canvas class="grafico_tamanho" id="grafico_disco"></canvas>
+            </div>
+            <div class="div_grafico" id="div_grafico_rede">
+                <canvas class="grafico_tamanho" id="grafico_rede"></canvas>
+            </div>
+        </div>
     </div>
 </body>
 </html>
+<script>
+    div_grafico_memória.style.display = 'none';
+    div_grafico_disco.style.display = 'none';
+    div_grafico_rede.style.display = 'none';
+    const chart_cpu = new Chart('grafico_cpu', {
+            type: 'line',
+            data: {
+                labels: ["12:00","13:00","14:00","15:00","16:00","17:00"],
+                datasets: [{
+                    label: 'CPU 1',
+                    data: [33, 45, 19, 45, 35, 40],
+                    backgroundColor: '#075CAB',
+                    borderColor: '#075CAB',
+                    borderWidth: 1
+                },
+                {
+                    label: 'CPU 2',
+                    data: [13, 2, 30, 25, 10, 47],
+                    backgroundColor: '#D4A4FF',
+                    borderColor: '#D4A4FF',
+                    borderWidth: 1
+                }
+            ]
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        min: 0,
+                        max: 100
+                    }
+                }
+            }
+        });
+</script>
