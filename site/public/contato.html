@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contato</title>
     <link rel="stylesheet" href="contato.css">
-
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css">4
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 </head>
 <body>
     <div class="cotato_conteiner">
@@ -26,9 +27,7 @@
                 <span class="negrito cursor" onclick="Copiar_Email()" >test@sptech.school</span>
             </div>
         </div>
-        <div id="map" style="height: 500px;"></div>
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-        <script src="mapa.js"></script>
+        <div id="map"></div>
     </div>
 </body>
 </html>
@@ -45,4 +44,11 @@
         navigator.clipboard.writeText("test@sptech.school");
         alert("Email copiado!");
     }
+    var map = L.map('map').setView([-23.558101168408747, -46.66160636041288], 22);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([-23.558101168408747, -46.66160636041288]).addTo(map).bindPopup('Sptech | Instituição de estudos dos integrantes').openPopup();
 </script>
