@@ -1,27 +1,119 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LOGIN FACULDADE</title>
+    <link rel="stylesheet" href="../public/css/login_funcFacul.css">
 </head>
+
 <body>
+    <header class="header">
+        <div class="container">
+            <h1 class="titulo">T E S T</h1>
+            <ul class="navbar">
+                <li>
+                    <a href="home.html">HOME</a>
+                </li>
+                <li>
+                    <a href="cadastro_faculdade.html">CADASTRO</a>
+                </li>
+                <li class="agora">
+                    <a href="login.html">LOGIN</a>
+                </li>
+                <li>
+                    <a href="contato.html">CONTATO</a>
+                </li>
+                <li>
+                    <a href="#">FAQ</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
     <div class="main-login">
+        <h1>LOGIN FACULDADE</h1>
         <div class="right-login">
+            <div class="bar"></div>
             <div class="card-login">
-                <h1>LOGIN</h1>
                 <div class="text-field">
-                    <label for="email">EMAIL</label>
-                    <input type="text" id="input_email" placeholder="Insira seu e-mail">
+                    <label class="label" for="email">EMAIL</label><br>
+                    <input type="text" id="input_email"><br>
                 </div>
                 <div class="text-field">
-                    <label for="senha">SENHA</label>
-                    <input type="password" id="input_senha" placeholder="Insira sua senha">
+                    <label for="senha">SENHA</label><br>
+                    <input type="password" id="input_senha"><br>
                 </div>
-                <button onclick = 'verificar()' class="botao-login">LOGIN</button>
+                <div class="validacao">
+                    * CONFIRME SE A SENHA ESTÁ CORRETA <br>
+                    ESQUECEU A SENHA?</span>
+                </div><br>
+                <div class="container-button"><button onclick="verificar()" class="botao-login">LOGAR -&gt;</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="Footer">
+        <div class="innerFooter">
+            <div class="informacoes">
+                <div class="logoFooter">
+                    <div class="logoGrande">
+                        <img src="../public/footer/imgs/logoGrande.png" alt="">
+                    </div>
+
+                    <div class="logoSigla">
+                        <img src="../public/footer/imgs/logoSigla.png" alt="">
+                    </div>
+                </div>
+                <div class="informacaoContatos">
+                    <div class="informacao">
+                        <span>Infomation</span>
+                        <ul>
+                            <li>HOME</li>
+                            <li>CADASTRO</li>
+                            <li>LOGIN</li>
+                            <li>CONTATO</li>
+                            <li>FAQ</li>
+                        </ul>
+                    </div>
+                    <div class="iconContato">
+                        <div class="iconsEnderecoEmail">
+                            <div class="separador"></div>
+                            <img src="../public/footer/imgs/gpsIcon.png" alt="">
+                            <img src="../public/footer/imgs/telIcon.png" alt="">
+                            <img src="../public/footer/imgs/mailIcon.png" alt="">
+                        </div>
+                        <div class="contato">
+                            <span>Contacts</span>
+                            <div class="emailEndereco">
+                                <div class="endereco">
+                                    <span>Rua Haddock Lobo 595</span>
+                                    <span>São Paulo - SP, 01414-905</span>
+                                </div>
+                                <div class="emailTel">
+                                    <u><span>(11) 3589-4043</span></u>
+                                    <span>test@sptech.school</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="social">
+                <div class="spanSocial">
+                    <span>Social Media</span>
+                </div>
+                <div class="iconsSocial">
+                    <img src="../public/footer/imgs/git.png" alt="">
+                    <img src="../public/footer/imgs/outlook.png" alt="">
+                    <img src="../public/footer/imgs/Linkedin.png" alt="">
+                </div>
             </div>
         </div>
     </div>
 </body>
+
 </html>
