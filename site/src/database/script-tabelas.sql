@@ -47,7 +47,6 @@ CREATE TABLE computador (
     
 CREATE TABLE CPU (
 	idregistro_cpu INT PRIMARY KEY AUTO_INCREMENT,
-    CPU VARCHAR(45),
 	utilizacao FLOAT,
     velocidade FLOAT,
     data_hora DATETIME,
@@ -81,6 +80,8 @@ CREATE TABLE memoria (
     CREATE TABLE disco (
 	idregistro_disco INT PRIMARY KEY AUTO_INCREMENT,
     usado FLOAT,
+	velocidade_leitura FLOAT,
+    velocidade_gravacao FLOAT,
     disponivel FLOAT,
     data_hora DATETIME,
     fk_instituicao INT,

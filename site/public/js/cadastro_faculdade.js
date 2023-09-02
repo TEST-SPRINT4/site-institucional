@@ -56,7 +56,7 @@ function cadastrar() {
             input_confirmar_senha.className = "invalido"
 
         }
-        window.location = 'index.html'
+        window.location = 'gerenciamento_faculdade'
     }
 
     fetch("/usuarios/cadastrar", {
