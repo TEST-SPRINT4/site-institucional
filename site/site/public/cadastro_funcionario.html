@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CADASTRO FUNCIONÁRIO</title>
+</head>
+<body>
+    <div class="main-cadastro-user">
+                <div class="text-field">
+                    <label for="nome">NOME</label>
+                    <input type="text" id="nome_input" placeholder="Nome">
+                    <div id="erro_nome"></div>
+                </div>
+                <div class="text-field">
+                    <label for="email">EMAIL</label>
+                    <input type="text" id="email_input" placeholder="Email">
+                    <div id="erro_email"></div>
+                </div>
+                <div class="text-field">
+                    <label for="senha">SENHA</label>
+                    <input type="password" id="senha_input" placeholder="********">
+                    <div id="erro_senha"></div>
+                </div>
+                <div class="text-field">
+                    <label for="confirmar-senha">CONFIRMAR SENHA</label>
+                    <input type="password" id="confirmacao_senha_input" placeholder="********">
+                    <div id="erro_confirmar_senha"></div>
+                </div>
+                <div class="text-field">
+                    <label for="nivelAcesso">NÍVEL DE ACESSO</label>
+                    <input type="number" id="nivelAcesso_input" placeholder="0" min="1" max="4"> 
+                    <div id="erro_nivel"></div>
+                </div>
+                <button onclick="cadastrar()" class="botao-cadastro-user">REGISTRAR FUNCIONÁRIO</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
