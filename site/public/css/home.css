@@ -325,12 +325,36 @@ width: 24vw;
 
 #moca2 {
 
-  width: 40vw;
-  height:70vh ;
+  width: 50vw;
+  height:80vh ;
   
 }
 
 #computador {
   width: 450px;
   height: 60vh;
+}
+
+.contato1 {
+  align-items: center;
+  flex-direction: column;
+}
+
+.right_img{
+  display: flex;
+  align-items: center;
+}
+
+#moca_note2{
+ align-items: start;
+
+}
+
+.acima{
+  position: absolute;
+  z-index: 9;
+}
+
+.titulo_funcionamento{
+  background-color: #2c2c2c7e;
 }
