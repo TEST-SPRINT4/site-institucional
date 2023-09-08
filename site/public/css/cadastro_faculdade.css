@@ -1,8 +1,8 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: white;
+    background-color: rgba(255, 255, 255, 1);
+    font-family: 'Roboto', sans-serif;
 }
 
 @media only screen and (min-width: 1200px) {
@@ -50,30 +50,105 @@ body {
         align-items: center;
         flex-direction: column;
     }
-    
+    .titulo-cadastro{
+        position: relative;
+        right: 30%;
+        margin-bottom: 70px;
+        text-align: start;
+        font-family: 'Roboto', sans-serif;
+        font-size: 64px;
+    }
+    .titulo1{
+        font-weight: 700;
+
+    }
+    .titulo2{
+        font-weight: 300;
+        color: rgba(189, 189, 189, 1);
+    }
+    .titulo-cadastro span{
+        display: block;
+    }
     .card-cadastro {
         width: 50vw;
         height: fit-content;
         background: rgba(7, 92, 171, 0.2);
         padding: 1%;
         margin-bottom: 5%;
+        color: rgba(0, 0, 0, 0.5);
     }
-    .text-field {
+    .campo-texto {
         display: flex;
         flex-direction: column;
         margin-bottom: 15px;
         width: 50vw;
     }
-    .text-field label {
+
+    .campo-texto label {
         font-weight: bold;
+        letter-spacing: 2px;
         margin-bottom: 5px;
     }
-    .text-especial{
+
+    label {
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .texto-especial {
         display: flex;
         justify-content: space-between;
         margin-bottom: 15px;
     }
-   
+    .campo-texto input {
+        background-color: rgba(255, 255, 255, 0.67);
+        border: none;
+        height: 30px;
+        padding: 8px;
+        font-size: 15px;
+        font-family: 'Roboto', sans-serif;
+        letter-spacing: 2px;
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    .texto-especial input {
+        background-color: rgba(255, 255, 255, 0.67);
+        border: none;
+        height: 30px;
+        width: 23vw;
+        padding: 11px;
+        font-size: 15px;
+        letter-spacing: 2px;
+        font-family: 'Roboto', sans-serif;
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    .botao-cadastro {
+        color: white;
+        font-size: 15px;
+        letter-spacing: 3px;
+        width: 222px;
+        height: 70px;
+        padding: 10px;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        position: relative;
+        left: 50%;
+        transform: translate(-50%);
+        background-color: rgba(7, 92, 171, 0.67);
+        cursor: pointer;
+        border: none;
+        transition: transform 0.3s, background-color 0.3s;
+        
+    }
+    .botao-cadastro:hover {
+        background-color: rgba(7, 92, 171, 0.5);
+    }
+    .seta{
+        font-size: 24px; 
+        margin: 4px;
+        letter-spacing: 2px;
+    }
     .Footer {
         display: flex;
         justify-content: space-between;
