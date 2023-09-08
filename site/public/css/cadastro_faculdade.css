@@ -1,3 +1,11 @@
+:root {
+    --altura-header: 80px;
+    --comprimento-header: 100%;
+    --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+    --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+    --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+    --tamanho-footer: 100%;
+}
 body {
     margin: 0;
     padding: 0;
@@ -293,63 +301,171 @@ body {
     }
 }
 
-@media only screen and (max-width: 430px) {
-    ul {
+@media only screen and (max-width: 500px) {
+    body{
+        max-width: 360px;
+    }
+
+    .header {
+        height: var(--altura-header);
+        width: var(--comprimento-header);
+    }
+    
+    .container {
+        display: flex;
+        width: 80vw;
+        margin: auto;
+    }
+    
+    .header .container {
+        width: 80vw;
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+    }
+    
+    .header a {
+        text-decoration: none;
+        color: #000000;
+    }
+    
+    .agora {
+        font-weight: 800;
+    }
+    
+    .navbar {
+        width: 64vw;
+        font-size: 0.7em;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        list-style: none;
+        color: #e3b062;
+        padding-inline-start: 0em;
+    }
+
+    .titulo {
+        color: #000000;
+        width: fit-content;
+        font-weight: 700;
+        font-size: 20px;
+        margin: -20px;
+    }
+
+    .container-cadastro-faculdade{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container-cadastro-faculdade h1{
+        color: #333333;
+        font-size: 1.4em;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 64px;
+        margin-left: 60px;
+    }
+
+    .card-cadastro {
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        background: rgba(7, 92, 171, 0.2);
+        padding: 1%;
+        margin-bottom: 5%;
+    }
+
+    .card-cadastro button{ 
+        margin-left: 120px;
+        height: 6vh;
+        width: 120px;
+        border: 0;
+        background-color: rgba(201, 141, 255, 0.85);
+        color: white;
+        cursor: pointer;
+        border: 1px solid floralwhite;
+    }
+
+    .text-field {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+        width: 50vw;
+    }
+    .text-field label {
+        font-weight: bold;
+        width: max-content;
+        margin-bottom: 5px;
+    }
+    .text-especial{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 15px;
+    }
+
+    input{
+        border: 0.2em solid #000000;
+        margin-bottom: 2%;
+        margin-left: 5%;
+        margin-top: 2%;
+        width: 40vw;
+    }
+
+    .bar {
+        width: 91vw;
+        height: 1px;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #F2F2F2;
+        margin-bottom: 3%;
+        margin-left: 20px;
+    }
+
+     ul{
         list-style-type: none;
     }
-
-    .Footer {
+    
+    .Footer{
         display: flex;
         justify-content: space-between;
         background-color: #2C2C2C;
     }
-
-    .innerFooter {
+    .innerFooter{
         width: 100%;
         display: flex;
         justify-content: space-between;
         background-color: #2C2C2C;
     }
-
-    .logoFooter {
+    .logoFooter{
         display: flex;
         height: fit-content;
-        flex-direction: column;
+        flex-direction:column;
         align-items: center;
     }
-
-    .logoGrande {
-        height: fit-content;
+    .logoGrande{
+        height: fit-content ;
 
     }
-
-    .logoGrande img {
+    .logoGrande img{
         width: 31vw;
     }
-
-    .logoSigla {
+    .logoSigla{
         width: 66%;
     }
-
-    .logoSigla img {
-        width: 100%;
+    .logoSigla img{
+        width:100% ;
     }
-
-    .informacoes {
+    .informacoes{
         display: flex;
         width: fit-content;
         justify-content: space-between;
     }
-
-    .informacaoContatos {
+    .informacaoContatos{
         padding-top: 1vh;
         width: fit-content;
         display: flex;
-        justify-content: space-around;
-
+        justify-content: space-around;  
+        
     }
-
-    .informacao {
+    .informacao{
         height: 20vh;
         width: 20vw;
         display: flex;
@@ -357,86 +473,70 @@ body {
         color: snow;
         align-items: center;
     }
-
-    .informacao span {
-        font-family: Arial, Helvetica, sans-serif;
-        /* Roboto */
+    .informacao span{
+        font-family: Arial, Helvetica, sans-serif; /* Roboto */
         font-weight: bold;
         font-size: 2vh;
     }
-
-    .informacao ul {
+    .informacao ul{
         padding-inline-start: 0vh;
         line-height: 3vh;
         font-size: 1.5vh;
-        font-family: 'Times New Roman', Times, serif;
-        /* Roboto */
+        font-family: 'Times New Roman', Times, serif; /* Roboto */
     }
-
-    .iconContato {
+    .iconContato{
         display: flex;
         justify-content: space-between;
         /* max-height: 80vh; */
         width: 24vw;
     }
-
-    .contato {
+    .contato{
         color: snow;
     }
-
-    .contato span {
+    .contato span{
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
         font-size: 2vh;
     }
-
-    .separador {
-        display: none;
+    .separador{
+    display: none;
     }
-
-    .iconsEnderecoEmail {
+    .iconsEnderecoEmail{
         margin-top: 5vh;
         display: flex;
         width: fit-content;
         flex-direction: column;
         justify-content: space-around;
     }
-
-    .iconsEnderecoEmail img {
+    .iconsEnderecoEmail img{
         width: 2vh;
     }
-
-    .emailEndereco {
+    .emailEndereco{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         min-height: 15vh;
         margin-block-start: 0.5em;
     }
-
-    .endereco {
+    .endereco{
         display: flex;
         flex-direction: column;
         line-height: 2vh;
     }
-
-    .endereco span {
+    .endereco span{
         font-size: 1.5vh;
         font-family: 'Times New Roman', Times, serif;
     }
-
-    .emailTel {
+    .emailTel{
         display: flex;
         justify-content: space-between;
         flex-direction: column;
         min-height: 7.5vh;
     }
-
-    .emailTel span {
+    .emailTel span{
         font-size: 1.5vh;
     }
-
-    .social {
+    .social{
         width: 10vw;
         max-height: 8vh;
         padding: 2vw;
@@ -446,25 +546,21 @@ body {
         color: snow;
         background-color: #2C2C2C;
     }
-
-    .spanSocial {
+    .spanSocial{
         display: flex;
         justify-content: center;
         width: 12vw;
     }
-
-    .social span {
+    .social span{
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
         font-size: 2vh;
     }
-
-    .iconsSocial {
+    .iconsSocial{
         display: flex;
         justify-content: space-around
     }
-
-    .iconsSocial img {
+    .iconsSocial img{
         width: 2.1vh;
     }
 
