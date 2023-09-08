@@ -49,6 +49,14 @@ body {
         color: #e3b062;
     }
 
+    .dropdown-menu{
+        display: none;
+    }
+
+    .hiddenPc{
+        display: none;
+    }
+
     ul {
         list-style-type: none;
     }
@@ -58,6 +66,7 @@ body {
         align-items: center;
         flex-direction: column;
     }
+
     .titulo-cadastro{
         position: relative;
         right: 30%;
@@ -66,17 +75,21 @@ body {
         font-family: 'Roboto', sans-serif;
         font-size: 64px;
     }
+
     .titulo1{
         font-weight: 700;
 
     }
+
     .titulo2{
         font-weight: 300;
         color: rgba(189, 189, 189, 1);
     }
+
     .titulo-cadastro span{
         display: block;
     }
+
     .card-cadastro {
         width: 50vw;
         height: fit-content;
@@ -85,6 +98,7 @@ body {
         margin-bottom: 5%;
         color: rgba(0, 0, 0, 0.5);
     }
+
     .campo-texto {
         display: flex;
         flex-direction: column;
@@ -147,7 +161,6 @@ body {
         cursor: pointer;
         border: none;
         transition: transform 0.3s, background-color 0.3s;
-        
     }
     .botao-cadastro:hover {
         background-color: rgba(7, 92, 171, 0.5);
@@ -332,7 +345,34 @@ body {
     .agora {
         font-weight: 800;
     }
+
+    .hidden{
+        display: none;
+    }
+
+    .dropdown{
+        display: flex;
+        position: relative;
+        color: #000000;
+    }
+
+    .seta{
+      color: #4786c0;  
+    }
     
+    .dropdown-menu{
+        display: none;
+        color: #000000;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        background-color: white;
+        padding: 0.75rem;
+        border-radius: 0.25rem;
+        box-shadow: 0 2px 5px 0 black;
+        transition: opacity 150ms ease-in-out;
+    }
+
     .navbar {
         width: 64vw;
         font-size: 0.7em;
@@ -344,12 +384,21 @@ body {
         padding-inline-start: 0em;
     }
 
+    .titulo-cadastro{
+        font-family: 'Roboto', sans-serif;
+    }
+
     .titulo {
         color: #000000;
         width: fit-content;
         font-weight: 700;
         font-size: 20px;
         margin: -20px;
+    }
+
+    .titulo2{
+        font-weight: 300;
+        color: rgba(189, 189, 189, 1);
     }
 
     .container-cadastro-faculdade{
@@ -371,19 +420,30 @@ body {
         flex-direction: column;
         height: fit-content;
         background: rgba(7, 92, 171, 0.2);
-        padding: 1%;
-        margin-bottom: 5%;
+        margin-bottom: 2%;
+        color: rgba(0, 0, 0, 0.5);
+    }
+   
+    .botao-cadastro{ 
+        margin-left: 50vw;
+        height: 6vh;
+        width: 50vw;
+        color: white;
+        font-size: 0.9em;
+        letter-spacing: 3px;
+        padding: 10px;
+        margin-bottom: 30px;
+        margin-top: 30px;
+        position: relative;
+        transform: translate(-50%);
+        background-color: rgba(7, 92, 171, 0.67);
+        cursor: pointer;
+        border: none;
+        transition: transform 0.3s, background-color 0.3s;
     }
 
-    .card-cadastro button{ 
-        margin-left: 120px;
-        height: 6vh;
-        width: 120px;
-        border: 0;
-        background-color: rgba(201, 141, 255, 0.85);
-        color: white;
-        cursor: pointer;
-        border: 1px solid floralwhite;
+    .botao-cadastro:hover {
+        background-color: rgba(7, 92, 171, 0.5);
     }
 
     .text-field {
@@ -392,23 +452,34 @@ body {
         margin-bottom: 15px;
         width: 50vw;
     }
-    .text-field label {
+
+    .campo-texto label {
         font-weight: bold;
-        width: max-content;
-        margin-bottom: 5px;
     }
-    .text-especial{
+
+    label {
+        font-size: 1em;
+        font-weight: bold;
+    }
+
+    .texto-especial {
         display: flex;
         justify-content: space-between;
         margin-bottom: 15px;
     }
 
     input{
-        border: 0.2em solid #000000;
         margin-bottom: 2%;
         margin-left: 5%;
         margin-top: 2%;
         width: 40vw;
+        background-color: rgba(255, 255, 255, 0.67);
+        border: none;
+        height: 1.5vh;
+        padding: 0.4em;
+        font-size: 0.8em;
+        font-family: 'Roboto', sans-serif;
+        color: rgba(0, 0, 0, 0.5);
     }
 
     .bar {
