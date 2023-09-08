@@ -8,6 +8,7 @@
     <script src="js/cadastro_faculdade.js"></script>
     <link rel="stylesheet" href="css/cadastro_faculdade.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <script src="js/dropdown.js"></script>
     <title>CADASTRO FACULDADE</title>
 </head>
 
@@ -17,19 +18,36 @@
             <h1 class="titulo">T E S T</h1>
             <ul class="navbar">
                 <li>
+                    <div class="hidden">
                     <a href="#">HOME</a>
+                </div>
                 </li>
                 <li class="agora">
-                    <a href="cadastro_faculdade.html">CADASTRO</a>
+                    <div class="dropdown" id="dropdown">
+                    <a>CADASTRO</a>
+                    <div class="hiddenPc"><span class="seta">&#x25BC</span></div>
+                    <div class="dropdown-menu" id="dropdown-menu">
+                        <a href="#">HOME</a>
+                        <a href="login_funcionario.html">LOGIN</a>
+                        <a href="contato.html">CONTATO</a>
+                        <a href="">FAQ</a>
+                    </div>
+                </div>
                 </li>
                 <li>
+                    <div class="hidden">
                     <a href="login_funcionario.html">LOGIN</a>
+                </div>
                 </li>
                 <li>
+                    <div class="hidden">
                     <a href="contato.html">CONTATO</a>
+                </div>
                 </li>
                 <li>
+                    <div class="hidden">
                     <a href="">FAQ</a>
+                </div>
                 </li>
             </ul>
         </div>
