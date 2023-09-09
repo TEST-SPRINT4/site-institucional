@@ -74,11 +74,12 @@ body {
         text-align: start;
         font-family: 'Roboto', sans-serif;
         font-size: 64px;
+        
     }
 
     .titulo1{
         font-weight: 700;
-
+        
     }
 
     .titulo2{
@@ -88,6 +89,7 @@ body {
 
     .titulo-cadastro span{
         display: block;
+        border-bottom: 3px solid rgba(242, 242, 242, 1);
     }
 
     .card-cadastro {

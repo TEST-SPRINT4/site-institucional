@@ -12,6 +12,7 @@ body {
     padding: 0;
     background-color: rgba(255, 255, 255, 1);
     font-family: 'Roboto', sans-serif;
+    
 }
 
 @media only screen and (min-width: 1200px) {
@@ -54,11 +55,23 @@ body {
         list-style-type: none;
     }
 
+    .titulo-faq {
+        position: relative;
+        left: 12%;
+        width: 10vw;
+    }
+    .titulo-faq h1{
+        color: rgba(94, 94, 94, 1);
+        font-weight: 300;
+        line-height: 64px;
+        font-size: 64px;
+       
+    }
     .container-main-faq {
         display: flex;
         align-items: center;
         flex-direction: column;
-        width: 100vw;
+        width: 98vw;
         margin: auto;
         margin-bottom: 50px;
         margin-top: 50px;
