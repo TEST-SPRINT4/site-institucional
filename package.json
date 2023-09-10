@@ -6,5 +6,8 @@
     "start": "node ./site/app.js",
     "dev": "cd site && npm run dev",
     "postinstall": "cd site && npm install"
+  },
+  "dependencies": {
+    "ejs": "^3.1.9"
   }
 }
