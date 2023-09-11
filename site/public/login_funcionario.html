@@ -8,6 +8,7 @@
     <title>LOGIN FUNCIONÁRIO</title>
     <link rel="stylesheet" href="../public/css/login_funcFacul.css">
     <link rel="icon" href="./assets/icon/Icone.png">
+    <script src="js/dropdown.js"></script>
 
 </head>
 
@@ -17,18 +18,35 @@
             <h1 class="titulo">T E S T</h1>
             <ul class="navbar">
                 <li>
+                    <div class="hidden">
                     <a href="index.html">HOME</a>
+                </div>
                 <li>
+                    <div class="hidden">
                     <a href="cadastro_faculdade.html">CADASTRO</a>
+                </div>
                 </li>
                 <li class="agora">
-                    <a href="login.html">LOGIN</a>
+                    <div class="dropdown" id="dropdown">
+                    <a>LOGIN</a>
+                    <div class="hiddenPc"><span class="seta2">&#x25BC</span></div>
+                    <div class="dropdown-menu" id="dropdown-menu">
+                        <a href="index.html">HOME</a>
+                        <a href="cadastro_faculdade.html">CADASTRO</a>
+                        <a href="contato.html">CONTATO</a>
+                        <a href="faq.html">FAQ</a>
+                    </div>
+                </div>
                 </li>
                 <li>
+                    <div class="hidden">
                     <a href="contato.html">CONTATO</a>
+                </div>
                 </li>
                 <li>
+                    <div class="hidden">
                     <a href="faq.html">FAQ</a>
+                </div>
                 </li>
             </ul>
         </div>

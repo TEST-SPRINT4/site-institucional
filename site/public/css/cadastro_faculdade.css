@@ -258,10 +258,6 @@ body {
         justify-content: space-between;
     }
 
-    /* .separador{
-        height: 12px;
-    } */
-
     .emailEndereco {
         display: flex;
         flex-direction: column;
@@ -358,7 +354,17 @@ body {
         color: #000000;
     }
 
+    button #text{
+        margin: 0.5em;
+    }
+
     .seta{
+        margin: 0.25em;
+        font-size:  1.6em; 
+        letter-spacing: 2px;
+    }
+
+    .seta2{
       color: #4786c0;  
     }
     
@@ -380,7 +386,7 @@ body {
         font-size: 0.7em;
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content: flex-end;
         list-style: none;
         color: #e3b062;
         padding-inline-start: 0em;
