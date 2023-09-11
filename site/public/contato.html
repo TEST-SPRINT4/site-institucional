@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
     <link rel="icon" href="./assets/icon/Icone.png">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="js/dropdown.js"></script>
 </head>
 <body>
     <header class="header">
@@ -16,19 +17,36 @@
           <h1 class="titulo">T E S T</h1>
           <ul class="navbar">
             <li>
+                <div class="hidden">
               <a href="index.html">HOME</a>
+            </div>
             </li>
             <li>
+                <div class="hidden">
               <a href="cadastro_faculdade.html">CADASTRO</a>
+            </div>
             </li>
             <li>
+                <div class="hidden">
               <a href="login_funcionario.html">LOGIN</a>
+            </div>
             </li>
             <li class="agora">
-              <a href="contato.html">CONTATO</a>
+                <div class="dropdown" id="dropdown">
+              <a>CONTATO</a>
+              <div class="hiddenPc"><span class="seta2">&#x25BC</span></div>
+              <div class="dropdown-menu" id="dropdown-menu">
+                <a href="index.html">HOME</a><br>
+                <a href="cadastro_faculdade.html">CADASTRO</a><br>
+                <a href="login_funcionario.html">LOGIN</a><br>
+                <a href="faq.html">FAQ</a>
+            </div>
+            </div>
             </li>
             <li>
+                <div class="hidden">
               <a href="faq.html">FAQ</a>
+            </div>
             </li>
           </ul>
         </div>
