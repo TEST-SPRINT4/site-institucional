@@ -479,7 +479,6 @@ input{
   width: 100%;
 }
 }
-
 @media only screen and (max-width: 500px) {
   :root {
     --altura-header: 80px;
@@ -563,6 +562,7 @@ input{
 }
   
   #main_home {
+    margin: 0 5%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -623,7 +623,7 @@ input{
     align-items: center;
     justify-content: center;
     color: #000;
-    font-size: 12px;
+    font-size: 12px;  
     font-style: normal;
     font-weight: 400;
     line-height: 12px;
@@ -775,14 +775,26 @@ input{
     font-style: normal;
     text-align: justify;
   }
+
   .container_funcionamento{
     display: flex;
     flex-direction: row;
     width: 80vw;
-    height: 800px;
-    margin: 10px auto 0;
+    margin: 0 0 7vh;
     padding-top: 20px;
   }
+  
+  #funciona_titulo{
+    font-size: 1em;
+  }
+
+  .divImage{
+    background-size: contain !important; 
+    background: no-repeat;
+    height: fit-content !important;
+    font-size: 0.6em;
+  }
+
   ul {
     list-style-type: none;
   }
@@ -928,21 +940,59 @@ display: none;
 }
   
   #moca2 {
-  
     width: 45vw;
-    height:70vh ;
-    
+    height:40vh ;
   }
   
+  #entenda{
+    width: 30vh;
+  }
+
   #computador {
-    width: 450px;
-    height: 60vh;
+    width: 50vw;
+    height: 30vh;
   }
   
   .contato1 {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    height: 45vh;
     flex-direction: column;
+    margin: 0 0 5vh;
+  }
+
+  .contato1 h1{
+   color: #bdbdbd; 
+   font-weight: 400;
+  }
+
+  .contato1 input{
+    color: #000000;
+    font-weight: 700;
+    height: 4vh;
+    width: 60vw;
+    font-size: 0.7em;
+  }
+
+  #mensagem_input{
+    height: 10vh;
+    text-align: start;
+  }
+
+  .contato1 button{
+    border: none;
+    background-color: #333333;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    width: 45vw;
+    height: 7vh;
+    letter-spacing: 0.2em;
+    padding: 2%;
+  }
+
+  .contato1 button span{
+    font-weight: bold;
   }
   
   .right_img{
@@ -952,7 +1002,6 @@ display: none;
   
   #moca_note2{
    align-items: start;
-  
   }
   
   .acima{
@@ -970,3 +1019,4 @@ display: none;
     width: 100%;
   }
 }
+
