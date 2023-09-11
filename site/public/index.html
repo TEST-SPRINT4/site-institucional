@@ -13,6 +13,7 @@
   <link rel="icon" href="./assets/icon/Icone.png">
   <link rel="stylesheet" href="./css/home.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
+  <script src="js/dropdown.js"></script>
 </head>
 
 <body>
@@ -21,19 +22,36 @@
       <h1 class="titulo">T E S T</h1>
       <ul class="navbar">
         <li class="agora">
-          <a href="index.html">HOME</a>
+          <div class="dropdown" id="dropdown">
+          <a >HOME</a>
+          <div class="hiddenPc"><span class="seta2">&#x25BC</span></div>
+          <div class="dropdown-menu" id="dropdown-menu">
+            <a href="cadastro_faculdade.html">CADASTRO</a>
+            <a href="login_funcionario.html">LOGIN</a>
+            <a href="contato.html">CONTATO</a>
+            <a href="faq.html">FAQ</a>
+        </div>
+        </div>
         </li>
         <li>
+          <div class="hidden">
           <a href="cadastro_faculdade.html">CADASTRO</a>
+        </div>
         </li>
         <li>
+          <div class="hidden">
           <a href="login_funcionario.html">LOGIN</a>
+        </div>
         </li>
         <li>
+          <div class="hidden">
           <a href="contato.html">CONTATO</a>
+        </div>
         </li>
         <li>
+          <div class="hidden">
           <a href="faq.html">FAQ</a>
+        </div>
         </li>
       </ul>
     </div>
