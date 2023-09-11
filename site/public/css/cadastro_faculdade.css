@@ -85,11 +85,12 @@ body {
     .titulo2{
         font-weight: 300;
         color: rgba(189, 189, 189, 1);
+        border-bottom: 3px solid rgba(242, 242, 242, 1);
     }
 
     .titulo-cadastro span{
         display: block;
-        border-bottom: 3px solid rgba(242, 242, 242, 1);
+       
     }
 
     .card-cadastro {
@@ -394,6 +395,8 @@ body {
 
     .titulo-cadastro{
         font-family: 'Roboto', sans-serif;
+        margin: auto;
+        
     }
 
     .titulo {
@@ -402,16 +405,23 @@ body {
         font-weight: 700;
         font-size: 20px;
         margin: -20px;
+       
     }
-
+    .titulo1 {
+        font-weight: 700;
+       
+    }
     .titulo2{
         font-weight: 300;
         color: rgba(189, 189, 189, 1);
+      
     }
 
     .container-cadastro-faculdade{
         display: flex;
         flex-direction: column;
+        width: 100vw;
+        margin-bottom: 10%;
     }
 
     .container-cadastro-faculdade h1{
@@ -427,13 +437,16 @@ body {
         display: flex;
         flex-direction: column;
         height: fit-content;
+        align-items: baseline;
         background: rgba(7, 92, 171, 0.2);
-        margin-bottom: 2%;
         color: rgba(0, 0, 0, 0.5);
+        width: 80vw;
+        margin: auto;
+        padding: 15px;
     }
    
     .botao-cadastro{ 
-        margin-left: 50vw;
+        margin-left: 40vw;
         height: 6vh;
         width: 50vw;
         color: white;
@@ -453,10 +466,10 @@ body {
         background-color: rgba(7, 92, 171, 0.5);
     }
 
-    .text-field {
+    .campo-texto {
         display: flex;
         flex-direction: column;
-        margin-bottom: 15px;
+        margin: auto;
         width: 50vw;
     }
 
@@ -465,20 +478,29 @@ body {
     }
 
     label {
-        font-size: 1em;
+        font-size: 0.9em;
         font-weight: bold;
+        margin-left: 5%;
+        margin-bottom: 3%;
     }
-
+    .texto-especial label{
+        margin-left: 8%;
+    }
     .texto-especial {
         display: flex;
-        justify-content: space-between;
-        margin-bottom: 15px;
+        flex-direction: column;
+        margin: auto;
+    }
+    .texto-especial input {
+        margin-left: 8%;
+        margin-bottom: 3%;
+        margin-top: 3%;
     }
 
     input{
-        margin-bottom: 2%;
+        margin-bottom: 3%;
         margin-left: 5%;
-        margin-top: 2%;
+        margin-top: 3%;
         width: 40vw;
         background-color: rgba(255, 255, 255, 0.67);
         border: none;
