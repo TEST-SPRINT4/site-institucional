@@ -1,27 +1,34 @@
 create database test;
 use test;
-
+drop database test;
 CREATE TABLE instituicao (
 	idinstituicao INT PRIMARY KEY AUTO_INCREMENT,
-	nome VARCHAR(45),
-	email VARCHAR(45),
-	senha VARCHAR(45),
-    CNPJ char(14),
+	nome_instituicao VARCHAR(45),
+	responsavel VARCHAR(45),
+	email_instituicao VARCHAR(45),
+    CNPJ char(18),
     CEP char(9),
-    telefone char(11)
+    telefone char(14)
 );
 
+CREATE TABLE nivelAcesso (
+	nivel_acesso INT PRIMARY KEY AUTO_INCREMENT,
+	descricao VARCHAR(200)
+	);
+    
 CREATE TABLE funcionario (
 	idfuncionario INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(45),
+    nome_funcionario VARCHAR(45),
     email VARCHAR(45),
 	senha VARCHAR(45),
-    nivelAcesso INT,
+    fk_nivelAcesso INT,
+	CONSTRAINT fknivelAcesso FOREIGN KEY (fk_nivelAcesso)
+	REFERENCES nivelAcesso(nivel_acesso),
     fk_instituicao INT,
 	CONSTRAINT fkinstituicao FOREIGN KEY (fk_instituicao)
 	REFERENCES instituicao(idinstituicao)
     );
-    
+
 CREATE TABLE curso (
 	idCurso INT PRIMARY KEY AUTO_INCREMENT,
     disciplina VARCHAR(45),
@@ -32,7 +39,7 @@ CREATE TABLE curso (
     );
     
 CREATE TABLE computador (
-	idHardware INT PRIMARY KEY AUTO_INCREMENT,
+	idcomputador INT PRIMARY KEY AUTO_INCREMENT,
     CPU VARCHAR(45),
 	memoria VARCHAR(45),
     disco VARCHAR(45),
@@ -45,66 +52,38 @@ CREATE TABLE computador (
 	REFERENCES curso(idcurso)    
     );
     
-CREATE TABLE CPU (
-	idregistro_cpu INT PRIMARY KEY AUTO_INCREMENT,
-	utilizacao FLOAT,
-    velocidade FLOAT,
+CREATE TABLE dadosHardware (
+	idregistro INT PRIMARY KEY AUTO_INCREMENT,
+	cpu_utilizacao FLOAT,
+    cpu_velocidade FLOAT,
+	memoria_usada FLOAT,
+	memoria_disponivel FLOAT,
+	disco_velocidadeLeitura FLOAT,
+	disco_velocidadeGravacao FLOAT,
+	disco_usado FLOAT,
+	disco_disponivel FLOAT,
+	rede_upload FLOAT,
+	rede_dowload FLOAT,
+	rede_latencia FLOAT,
+	rede_packetLoss FLOAT,
     data_hora DATETIME,
     fk_instituicao INT,
-	CONSTRAINT fk_instituicao_cpu FOREIGN KEY (fk_instituicao)
+	CONSTRAINT fk_instituicao_dados FOREIGN KEY (fk_instituicao)
 	REFERENCES instituicao(idinstituicao),
     fk_curso INT,
-	CONSTRAINT fk_curso_cpu FOREIGN KEY (fk_curso)
+	CONSTRAINT fk_curso_dados FOREIGN KEY (fk_curso)
 	REFERENCES curso(idcurso),   
     fk_computador INT,
-	CONSTRAINT fk_computador_cpu FOREIGN KEY (fk_computador)
-	REFERENCES computador(idhardware)
+	CONSTRAINT fk_computador_dados FOREIGN KEY (fk_computador)
+	REFERENCES computador(idcomputador)
     );
     
-CREATE TABLE memoria (
-	idregistro_memoria INT PRIMARY KEY AUTO_INCREMENT,
-	usada FLOAT,
-    disponivel FLOAT,
-    data_hora DATETIME,
-    fk_instituicao INT,
-	CONSTRAINT fk_instituicao_memoria FOREIGN KEY (fk_instituicao)
-	REFERENCES instituicao(idinstituicao),
-    fk_curso INT,
-	CONSTRAINT fk_curso_memoria FOREIGN KEY (fk_curso)
-	REFERENCES curso(idcurso),   
-    fk_computador INT,
-	CONSTRAINT fk_computador_memoria FOREIGN KEY (fk_computador)
-	REFERENCES computador(idhardware)
-    );
-    
-    CREATE TABLE disco (
-	idregistro_disco INT PRIMARY KEY AUTO_INCREMENT,
-    usado FLOAT,
-	velocidade_leitura FLOAT,
-    velocidade_gravacao FLOAT,
-    disponivel FLOAT,
-    data_hora DATETIME,
-    fk_instituicao INT,
-	CONSTRAINT fk_instituicao_disco FOREIGN KEY (fk_instituicao)
-	REFERENCES instituicao(idinstituicao),
-    fk_curso INT,
-	CONSTRAINT fk_curso_disco FOREIGN KEY (fk_curso)
-	REFERENCES curso(idcurso),   
-    fk_computador INT,
-	CONSTRAINT fk_computador_disco FOREIGN KEY (fk_computador)
-	REFERENCES computador(idhardware)
-    );
-    
-	CREATE TABLE rede (
-	idregistro_rede INT PRIMARY KEY AUTO_INCREMENT,
-    data_hora DATETIME,
-    fk_instituicao INT,
-	CONSTRAINT fk_instituicao_rede FOREIGN KEY (fk_instituicao)
-	REFERENCES instituicao(idinstituicao),
-    fk_curso INT,
-	CONSTRAINT fk_curso_rede FOREIGN KEY (fk_curso)
-	REFERENCES curso(idcurso),   
-    fk_computador INT,
-	CONSTRAINT fk_computador_rede FOREIGN KEY (fk_computador)
-	REFERENCES computador(idhardware)
-    );
+	INSERT INTO nivelAcesso (descricao) VALUES
+('Acesso somente leitura para visualizar informações monitoradas.'),
+('Acesso para gerenciar recursos e relatórios.'),
+('Acesso para supervisionar equipes e atividades.'),
+('Acesso total ao sistema, incluindo administração de usuários e configurações de monitoramento.');
+	
+    select * from nivelAcesso;
+    select * from funcionario;
+    select * from instituicao;
