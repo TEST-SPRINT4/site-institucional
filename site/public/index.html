@@ -10,7 +10,7 @@
 
   <script src="./js/sessao.js"></script>
 
-  <link rel="icon" href="./assets/icon/favicon2.ico">
+  <link rel="icon" href="./assets/icon/Icone.png">
   <link rel="stylesheet" href="./css/home.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
 </head>
@@ -21,7 +21,7 @@
       <h1 class="titulo">T E S T</h1>
       <ul class="navbar">
         <li class="agora">
-          <a href="#">HOME</a>
+          <a href="index.html">HOME</a>
         </li>
         <li>
           <a href="cadastro_faculdade.html">CADASTRO</a>
@@ -33,44 +33,49 @@
           <a href="contato.html">CONTATO</a>
         </li>
         <li>
-          <a href="">FAQ</a>
+          <a href="faq.html">FAQ</a>
         </li>
       </ul>
     </div>
   </header>
 
   <main id="main_home">
-    <div id="container1_home">
-      <h2 class="h2_home"><span id="title_home">T.E.S.T</span></h2>
-      <h2 class="h2_home"><span id="text_home">Technology for a<br>better education</span></h2>
+    <div class="container1_home">
+      <h2 class="h2_home">
+        <!-- <span id="title_home">T.E.S.T</span> -->
+      <img src="assets/icon/LogoSemFundo.png" alt="Logo TEST">
+      </h2>
+      <h2 class="h2_home">
+        <span id="text_home">Technology for a better education</span>
+      </h2>
     </div>
     <div id="home_imagem">
-      <img src="assets/imgsFigma/moco2.jpg" alt="Homem olhando graficos" id="img_monitoramento">
-      <a id="button_project" href="">VIEW PROJECT &#8594;</a>
+      <img src="assets/imgsFigma/moco2Cortado.png" alt="Homem olhando graficos" id="img_monitoramento">
+      <a id="button_project" href="projeto.html">VIEW PROJECT &#8594;</a>
     </div>
   </main>
 
   <div class="container_sobre">
     <div class="container_imagem">
-      <div style="display: flex;justify-content: space-evenly;">
-        <div style="display: flex; flex-direction: column; justify-content: center;">
+      <!-- <div style="display: flex;justify-content: space-evenly;"> -->
+        <div class="imgEstudo">
           <img style="margin-bottom: 2%;" id="livros_img" src="assets/imgsFigma/study.jpg"
             alt="caderno, café e computador">
-          <img style="margin-top: 2%;" id="moco_pc" src="../public/assets/imgsFigma/moco.jpeg" alt="">
         </div>
-        <div style="display: flex; align-items: center; justify-content: center;">
+        <div class="imgMulher">
           <img id="moca_note" src="assets/imgsFigma/moca3.png" alt="mulher utilizando um notebook">
         </div>
-      </div>
+        <div class="imgFlutuando">
+          <img style="margin-top: 2%;" id="moco_pc" src="../public/assets/imgsFigma/moco.jpeg" alt="Homem olhando várias telas">
+        </div>
+      <!-- </div> -->
     </div>
     <div class="container_texto">
 
       <h2>Sobre Nós</h2>
-      <span>&nbsp;&nbsp;&nbsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero eius assumenda enim,
-        doloribus odit,
-        magnam accusantium architecto incidunt temporibus
-        nesciunt totam a est explicabo, iure eveniet alias ex veniam quis!</span>
+      <span>&nbsp;&nbsp;&nbsp;Somos um grupo de estudantes com a intenção de ajudar as faculdades que utilizam o Moodle, fazendo o monitoramento dos componentes de hardware e software nos servidores e computadores. Nossa intenção é fazer com que as universidades diminuam falhas em seu site, prevendo estatísticas para não haver abertura para erros.</span>
     </div>
+    
   </div>
 
   <h1 id="titulo_objetivos">Objetivos do projeto</h1>
