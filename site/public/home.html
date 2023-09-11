@@ -52,14 +52,22 @@
 
   <div class="container_sobre">
     <div class="container_imagem">
-      <img id="moca_note" src="assets/imgsFigma/moca3.png" alt="mulher utilizando um notebook">
-      <img id="livros_img" src="assets/imgsFigma/study.jpg" alt="caderno, café e computador">
-      <img id="moco_pc" src="../public/assets/imgsFigma/moco.jpeg" alt="">
-      <img src="" alt="">
+      <div style="display: flex;justify-content: space-evenly;">
+        <div style="display: flex; flex-direction: column; justify-content: center;">
+          <img style="margin-bottom: 2%;" id="livros_img" src="assets/imgsFigma/study.jpg"
+            alt="caderno, café e computador">
+          <img style="margin-top: 2%;" id="moco_pc" src="../public/assets/imgsFigma/moco.jpeg" alt="">
+        </div>
+        <div style="display: flex; align-items: center; justify-content: center;">
+          <img id="moca_note" src="assets/imgsFigma/moca3.png" alt="mulher utilizando um notebook">
+        </div>
+      </div>
     </div>
     <div class="container_texto">
+
       <h2>Sobre Nós</h2>
-      <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero eius assumenda enim, doloribus odit,
+      <span>&nbsp;&nbsp;&nbsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero eius assumenda enim,
+        doloribus odit,
         magnam accusantium architecto incidunt temporibus
         nesciunt totam a est explicabo, iure eveniet alias ex veniam quis!</span>
     </div>
@@ -82,33 +90,44 @@
 
   <h1 id="funciona_titulo">COMO FUNCIONA</h1>
   <div class="container_funcionamento">
-    <div class="left_img">
-      <h1 id="titulo_funcionamento acima">Entenda Nosso Projeto</h1>
-        <div id="entenda">
-        <img id="moca_note2" src="assets/imgsFigma/moca_pc2.png" alt="desenho_moca">
+    <div>
+      <div style="  background-image:
+      linear-gradient(to bottom, rgba(0, 0, 0, 0.52), rgba(0, 0, 0, 0.52)),
+      url('./assets/imgsFigma/mocaCocandoACabeca.png');height: 25%;display: flex;
+      align-items: center; background-size: cover;flex-direction: column;">
+        <h1 style="color: white" id="titulo_funcionamento acima">Entenda<br>
+          Nosso Projeto</h1>
+        <h4 style="color: white;">VIEW MORE -></h4>
+      </div>
+
+
+      <div id="entenda">
         <img id="computador" src="assets/imgsFigma/moldura.png" alt="computador_monitorando">
       </div>
     </div>
-  <div class="right_img" >
-  </div class="imagem_mulher" >
-  <img id="moca2" src="../public/assets/moca2.png" alt="">
+    <div class="right_img">
+    </div class="imagem_mulher">
+    <img id="moca2" src="../public/assets/moca2.png" alt="">
   </div>
   <a id="button_more" href="">VIEW MORE &#8594;</a>
-  
-      
-    </div>
-    </div>
-   
+
+
+  </div>
+  </div>
+
   </div>
   <div class="contato1">
-  <H1>ENTRAR EM CONTATO</H1>
- 
-    <input id="nome_input" placeholder="NAME">
-    <br>
-    <input id="email_input" placeholder="EMAIL">
-    <br>
-    <input id="mensagem_input" placeholder="MENSAGEM">
-    <br>
+    <H1>ENTRAR EM CONTATO</H1>
+
+    <div>
+      <input id="nome_input" placeholder="NAME">
+    </div>
+    <div>
+      <input id="email_input" placeholder="EMAIL">
+    </div>
+    <div>
+      <input id="mensagem_input" placeholder="MENSAGEM">
+    </div>
     <button onclick="sendEmail()">SEND EMAIL</button>
   </div>
 

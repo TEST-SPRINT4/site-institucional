@@ -124,9 +124,10 @@ body {
 .container_sobre {
   background-color: rgba(212, 164, 255, 0.26);
   width: 80vw;
-  height: 400px;
+  height: 478px;
   display: flex;
   margin: 30px auto 0;
+  justify-content: end;
 }
 
 .container_imagem,
@@ -169,6 +170,8 @@ body {
   width: 24vw;
   height: auto;
   object-fit: cover;
+  
+
 }
 
 .container_objetivos {
@@ -318,7 +321,7 @@ ul {
 }
 
 #moco_pc {
-width: 24vw;
+width: 17vw;
   height: auto;
   object-fit: cover;
 }
@@ -336,6 +339,7 @@ width: 24vw;
 }
 
 .contato1 {
+  display: flex;
   align-items: center;
   flex-direction: column;
 }
@@ -357,4 +361,10 @@ width: 24vw;
 
 .titulo_funcionamento{
   background-color: #2c2c2c7e;
+}
+
+input{
+  background: #075CAB4A;
+  border: none;
+  width: 100%;
 }
