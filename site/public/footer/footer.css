@@ -127,7 +127,6 @@
         ul{
             list-style-type: none;
         }
-        
         .Footer{
             display: flex;
             justify-content: space-between;
@@ -138,6 +137,8 @@
             display: flex;
             justify-content: space-between;
             background-color: #2C2C2C;
+            flex-direction: column;
+            align-items: center;
         }
         .logoFooter{
             display: flex;
@@ -162,13 +163,13 @@
             display: flex;
             width: fit-content;
             justify-content: space-between;
+            flex-direction: column;
         }
         .informacaoContatos{
             padding-top: 1vh;
             width: fit-content;
             display: flex;
-            justify-content: space-around;  
-            
+            justify-content: space-between;
         }
         .informacao{
             height: 20vh;
@@ -188,12 +189,14 @@
             line-height: 3vh;
             font-size: 1.5vh;
             font-family: 'Times New Roman', Times, serif; /* Roboto */
+            margin-right: 5%;
         }
         .iconContato{
             display: flex;
             justify-content: space-between;
             /* max-height: 80vh; */
             width: 24vw;
+            margin-left: 10%;
         }
         .contato{
             color: snow;
