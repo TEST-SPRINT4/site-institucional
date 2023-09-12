@@ -723,9 +723,9 @@ body {
 
   .container_sobre {
     background-color: rgba(212, 164, 255, 0.26);
-    height: 40vh;
+    height: 50vh;
     display: flex;
-    margin: 3vh;
+    margin: 4vh;
     justify-content: end;
   }
 
@@ -767,7 +767,7 @@ body {
   }
 
   .container_texto {
-    padding-right: 1rem;
+    /* padding-right: 1rem; */
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -776,7 +776,7 @@ body {
 
   .container_texto span {
     color: #000;
-    font-size: 0.6em;
+    font-size: 2vh;
     font-style: normal;
     font-weight: 400;
     line-height: 25px;
@@ -812,11 +812,7 @@ body {
   .container_objetivos {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
-    /* width: 100vw; */
-    /* height: 100px; */
-    margin: 2vh 2vh 0;
-    /* padding-top: 20px; */
+    margin: 2vh;
   }
 
 
@@ -848,7 +844,7 @@ body {
   .objetivo_1 h1 {
     color: #D4A4FF;
     font-family: 'Roboto', sans-serif;
-    font-size: 7em;
+    font-size: 20vh;
     font-style: normal;
     line-height: normal;
     margin-right: 10px;
@@ -857,7 +853,7 @@ body {
   .objetivo_2 h1 {
     color: #075CAB;
     font-family: 'Roboto', sans-serif;
-    font-size: 4em;
+    font-size: 20vh;
     font-style: normal;
     line-height: normal;
     margin-right: 10px;
@@ -866,7 +862,7 @@ body {
   .objetivo_1,
   .objetivo_2 p {
     color: #333;
-    font-size: 0.6em;
+    font-size: 2vh;
     font-style: normal;
     text-align: justify;
   }
