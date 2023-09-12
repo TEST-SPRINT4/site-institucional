@@ -1,0 +1,532 @@
+:root {
+    --altura-header: 80px;
+    --comprimento-header: 100%;
+    --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+    --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+    --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+    --tamanho-footer: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 1);
+    font-family: 'Roboto', sans-serif;
+}
+
+@media only screen and (min-width: 1200px) {
+    .header {
+        height: var(--altura-header);
+        width: var(--comprimento-header);
+    }
+
+    .dropdown-menu {
+        display: none;
+    }
+
+    .hiddenPc {
+        display: none;
+    }
+
+    .container {
+        display: flex;
+        width: 80vw;
+        margin: auto;
+    }
+
+    .header .container {
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+    }
+
+    .header a {
+        text-decoration: none;
+        color: #000000;
+    }
+
+    .agora {
+        font-weight: 800;
+    }
+
+    .navbar {
+        width: 40vw;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        list-style: none;
+        color: #e3b062;
+    }
+
+    .titulo {
+        color: #000000;
+        width: fit-content;
+        font-weight: 700;
+        font-size: 40px;
+        margin: -80px;
+    }
+
+    .container-titulo {
+        display: flex;
+        width: 75vw;
+        margin-left: 10%;
+        flex-direction: column;
+        border-bottom: 3px solid rgba(242, 242, 242, 1);
+    }
+    .container-titulo span{
+        text-align: start;
+        font-family: 'Roboto', sans-serif;
+        font-size: 64px;
+        color: rgba(170, 170, 170, 1);
+        font-weight: 300;
+        margin-top: 50px;
+        padding: 0;
+    }
+    .container-titulo img{
+        width: 243px;
+        margin: 0;
+    }
+
+    .container-main {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        width: 70%;
+        margin: auto;
+    }
+
+    .container-conteudo {
+        display: flex;
+        margin-bottom: 50px;
+        margin-top: 30px;
+    }
+
+    .container-conteudo img {
+        width: 400px;
+        height: auto;
+    }
+
+    .container-conteudo:nth-child(odd) {
+        flex-direction: row-reverse;
+    }
+
+    .container-conteudo:nth-child(odd) img {
+        order: 1;
+    }
+
+    .container-conteudo:nth-child(even) {
+        flex-direction: row;
+    }
+
+    .container-conteudo:nth-child(even) img {
+        order: 2;
+    }
+
+    .texto {
+        flex: 1;
+        padding: 40px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 25px;
+        text-align: justify;
+    }
+ 
+    .Footer {
+        display: flex;
+        justify-content: space-between;
+        background-color: #2C2C2C;
+    }
+
+    .innerFooter {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        background-color: #2C2C2C;
+    }
+
+    .logoFooter {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logoGrande {
+        width: 100%;
+        height: 110px;
+    }
+
+    .logoSigla {
+        width: 66%;
+    }
+
+    .informacoes {
+        display: flex;
+        width: 90%;
+        justify-content: space-between;
+    }
+
+    .informacaoContatos {
+        padding-top: 10px;
+        width: 70%;
+        display: flex;
+        justify-content: space-around;
+
+    }
+
+    .informacao {
+        display: flex;
+        flex-direction: column;
+        color: snow;
+        align-items: center;
+
+    }
+
+    .informacao span {
+        font-family: 'Roboto', sans-serif;
+        /* Roboto */
+        font-weight: bold;
+    }
+
+    .informacao ul {
+        padding-inline-start: 0px;
+        line-height: 27px;
+        font-size: 15px;
+        font-family: 'Roboto', sans-serif;
+        /* Roboto */
+    }
+
+    .iconContato {
+        display: flex;
+        justify-content: space-between;
+        max-height: 130px;
+        width: 23%;
+    }
+
+    .contato {
+        color: snow;
+    }
+
+    .contato span {
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+    }
+
+    .iconsEnderecoEmail {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    /* .separador{
+        height: 12px;
+    } */
+
+    .emailEndereco {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 100px;
+        margin-block-start: 1em;
+    }
+
+    .endereco {
+        display: flex;
+        flex-direction: column;
+        line-height: 17px;
+    }
+
+    .endereco span {
+        font-size: 15px;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .emailTel {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        min-height: 50px;
+    }
+
+    .social {
+        width: 10%;
+        max-height: 60px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: snow;
+        background-color: #2C2C2C;
+    }
+
+    .spanSocial {
+        display: flex;
+        justify-content: center;
+        width: 88%;
+    }
+
+    .social span {
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+    }
+
+    .iconsSocial {
+        display: flex;
+        justify-content: space-around
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .header {
+        height: var(--altura-header);
+        width: var(--comprimento-header);
+    }
+
+    .container {
+        display: flex;
+        width: 80vw;
+        margin: auto;
+    }
+
+    .header .container {
+        justify-content: space-between;
+        align-items: center;
+        height: 80px;
+    }
+
+    .header a {
+        text-decoration: none;
+        color: #000000;
+    }
+
+    .agora {
+        font-weight: 800;
+    }
+
+    .navbar {
+        width: 64vw;
+        font-size: 0.7em;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        list-style: none;
+        color: #e3b062;
+        padding-inline-start: 0em;
+    }
+
+    .dropdown-menu {
+        display: none;
+        color: #000000;
+        position: absolute;
+        left: 0;
+        top: 100%;
+        background-color: white;
+        padding: 0.75rem;
+        border-radius: 0.25rem;
+        box-shadow: 0 2px 5px 0 black;
+        transition: opacity 150ms ease-in-out;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .dropdown {
+        display: flex;
+        position: relative;
+        color: #000000;
+    }
+
+    .seta2 {
+        color: #4786c0;
+    }
+
+    .titulo {
+        color: #000000;
+        width: fit-content;
+        font-weight: 700;
+        font-size: 20px;
+        margin: -20px;
+    }
+
+    
+
+
+    /* FOOTER  CELULAR*/
+    ul {
+        list-style-type: none;
+    }
+
+    .Footer {
+        display: flex;
+        justify-content: space-between;
+        background-color: #2C2C2C;
+    }
+
+    .innerFooter {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        background-color: #2C2C2C;
+    }
+
+    .logoFooter {
+        display: flex;
+        height: fit-content;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .logoGrande {
+        height: fit-content;
+
+    }
+
+    .logoGrande img {
+        width: 31vw;
+    }
+
+    .logoSigla {
+        width: 66%;
+    }
+
+    .logoSigla img {
+        width: 100%;
+    }
+
+    .informacoes {
+        display: flex;
+        width: fit-content;
+        justify-content: space-between;
+    }
+
+    .informacaoContatos {
+        padding-top: 1vh;
+        width: fit-content;
+        display: flex;
+        justify-content: space-around;
+
+    }
+
+    .informacao {
+        height: 20vh;
+        width: 20vw;
+        display: flex;
+        flex-direction: column;
+        color: snow;
+        align-items: center;
+    }
+
+    .informacao span {
+        font-family: 'Roboto', sans-serif;
+        /* Roboto */
+        font-weight: bold;
+        font-size: 2vh;
+    }
+
+    .informacao ul {
+        padding-inline-start: 0vh;
+        line-height: 3vh;
+        font-size: 1.5vh;
+        font-family: 'Roboto', sans-serif;
+        /* Roboto */
+    }
+
+    .iconContato {
+        display: flex;
+        justify-content: space-between;
+        /* max-height: 80vh; */
+        width: 24vw;
+    }
+
+    .contato {
+        color: snow;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contato span {
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        font-size: 2vh;
+    }
+
+    .separador {
+        display: none;
+    }
+
+    .iconsEnderecoEmail {
+        margin-top: 5vh;
+        display: flex;
+        width: fit-content;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .iconsEnderecoEmail img {
+        width: 2vh;
+    }
+
+    .emailEndereco {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 15vh;
+        margin-block-start: 0.5em;
+    }
+
+    .endereco {
+        display: flex;
+        flex-direction: column;
+        line-height: 2vh;
+    }
+
+    .endereco span {
+        font-size: 1.5vh;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .emailTel {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+        min-height: 7.5vh;
+    }
+
+    .emailTel span {
+        font-size: 1.5vh;
+    }
+
+    .social {
+        width: 10vw;
+        max-height: 8vh;
+        padding: 2vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        color: snow;
+        background-color: #2C2C2C;
+    }
+
+    .spanSocial {
+        display: flex;
+        justify-content: center;
+        width: 12vw;
+    }
+
+    .social span {
+        font-family: 'Roboto', sans-serif;
+        font-weight: bold;
+        font-size: 2vh;
+    }
+
+    .iconsSocial {
+        display: flex;
+        justify-content: space-around
+    }
+
+    .iconsSocial img {
+        width: 2.1vh;
+    }
+
+}
