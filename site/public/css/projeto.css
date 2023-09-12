@@ -23,7 +23,8 @@ body {
         flex-direction: column;
         border-bottom: 3px solid rgba(242, 242, 242, 1);
     }
-    .container-titulo span{
+
+    .container-titulo span {
         text-align: start;
         font-family: 'Roboto', sans-serif;
         font-size: 64px;
@@ -32,7 +33,8 @@ body {
         margin-top: 50px;
         padding: 0;
     }
-    .container-titulo img{
+
+    .container-titulo img {
         width: 243px;
         margin: 0;
     }
@@ -63,7 +65,7 @@ body {
     .container-conteudo:nth-child(odd) img {
         order: 1;
     }
-
+            /*Odd e even = impar e par*/
     .container-conteudo:nth-child(even) {
         flex-direction: row;
     }
@@ -71,7 +73,7 @@ body {
     .container-conteudo:nth-child(even) img {
         order: 2;
     }
-
+    
     .texto {
         flex: 1;
         padding: 40px;
@@ -81,10 +83,81 @@ body {
         line-height: 25px;
         text-align: justify;
     }
- 
+
 }
 
 @media only screen and (max-width: 500px) {
 
-    
+    .container-titulo {
+        display: flex;
+        width: 90%;
+        margin: 0 auto;
+        flex-direction: column;
+        border-bottom: 3px solid rgba(242, 242, 242, 1);
+    }
+
+    .container-titulo span {
+        text-align: center;
+        font-family: 'Roboto', sans-serif;
+        font-size: 36px;
+        color: rgba(170, 170, 170, 1);
+        font-weight: 300;
+        margin-top: 30px;
+        padding: 0;
+    }
+
+    .container-titulo img {
+        width: 180px;
+        margin: 0 auto;
+    }
+
+    .container-main {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: auto;
+    }
+
+    .container-conteudo {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 30px;
+        margin-top: 20px;
+    }
+
+    .container-conteudo img {
+        width: 100%;
+        height: auto;
+    }
+
+    .texto {
+        padding: 20px;
+        font-family: 'Roboto', sans-serif;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        text-align: justify;
+    }
+
+    .container-titulo span {
+        font-size: 24px;
+        margin-top: 20px;
+    }
+
+    .container-titulo img {
+        width: 120px;
+    }
+
+    .container-conteudo img {
+        width: 100%;
+        height: auto;
+    }
+
+    .texto {
+        padding: 10px;
+        font-size: 14px;
+        line-height: 18px;
+    }
+
+
 }
