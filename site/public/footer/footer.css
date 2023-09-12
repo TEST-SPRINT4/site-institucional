@@ -217,7 +217,7 @@
         display: none;
         color: #000000;
         position: absolute;
-        left: 0;
+        left: -5vw;
         top: 100%;
         background-color: white;
         padding: 0.75rem;

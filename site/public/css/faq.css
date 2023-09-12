@@ -130,4 +130,8 @@ body {
         font-size: 0.7em;
         padding: 1%;
     }
+
+    .dropdown-menu {
+        left: -8.5vw !important;
+    }
 }
