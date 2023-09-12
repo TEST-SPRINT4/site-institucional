@@ -224,7 +224,7 @@ body {
     }
 
     .informacao span {
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Roboto', sans-serif;
         /* Roboto */
         font-weight: bold;
     }
@@ -233,7 +233,7 @@ body {
         padding-inline-start: 0px;
         line-height: 27px;
         font-size: 15px;
-        font-family: 'Times New Roman', Times, serif;
+        font-family: 'Roboto', sans-serif;
         /* Roboto */
     }
 
@@ -249,7 +249,7 @@ body {
     }
 
     .contato span {
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-weight: bold;
     }
 
@@ -275,7 +275,7 @@ body {
 
     .endereco span {
         font-size: 15px;
-        font-family: 'Times New Roman', Times, serif;
+        font-family: 'Roboto', sans-serif;
     }
 
     .emailTel {
@@ -303,7 +303,7 @@ body {
     }
 
     .social span {
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-weight: bold;
     }
 
@@ -574,7 +574,7 @@ body {
         align-items: center;
     }
     .informacao span{
-        font-family: Arial, Helvetica, sans-serif; /* Roboto */
+        font-family: 'Roboto', sans-serif;
         font-weight: bold;
         font-size: 2vh;
     }
@@ -582,7 +582,7 @@ body {
         padding-inline-start: 0vh;
         line-height: 3vh;
         font-size: 1.5vh;
-        font-family: 'Times New Roman', Times, serif; /* Roboto */
+        font-family: 'Roboto', sans-serif;
     }
     .iconContato{
         display: flex;
@@ -594,7 +594,7 @@ body {
         color: snow;
     }
     .contato span{
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-weight: bold;
         font-size: 2vh;
     }
@@ -625,7 +625,7 @@ body {
     }
     .endereco span{
         font-size: 1.5vh;
-        font-family: 'Times New Roman', Times, serif;
+        font-family: 'Roboto', sans-serif;
     }
     .emailTel{
         display: flex;
@@ -652,7 +652,7 @@ body {
         width: 12vw;
     }
     .social span{
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-weight: bold;
         font-size: 2vh;
     }

@@ -160,7 +160,7 @@ ul {
 }
 
 .informacao span {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
     /* Roboto */
     font-weight: bold;
 }
@@ -169,7 +169,7 @@ ul {
     padding-inline-start: 0px;
     line-height: 27px;
     font-size: 15px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Roboto', sans-serif;
     /* Roboto */
 }
 
@@ -185,7 +185,7 @@ ul {
 }
 
 .contato span {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
 }
 
@@ -210,7 +210,7 @@ ul {
 
 .endereco span {
     font-size: 15px;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 .emailTel {
@@ -238,7 +238,7 @@ ul {
 }
 
 .social span {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Roboto', sans-serif;
     font-weight: bold;
 }
 
@@ -438,7 +438,7 @@ ul {
         align-items: center;
     }
     .informacao span{
-        font-family: Arial, Helvetica, sans-serif; /* Roboto */
+        font-family: 'Roboto', sans-serif;
         font-weight: bold;
         font-size: 2vh;
     }
@@ -446,7 +446,7 @@ ul {
         padding-inline-start: 0vh;
         line-height: 3vh;
         font-size: 1.5vh;
-        font-family: 'Times New Roman', Times, serif; /* Roboto */
+        font-family: 'Roboto', sans-serif;
     }
     .iconContato{
         display: flex;
@@ -458,7 +458,7 @@ ul {
         color: snow;
     }
     .contato span{
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-weight: bold;
         font-size: 2vh;
     }
@@ -489,7 +489,7 @@ ul {
     }
     .endereco span{
         font-size: 1.5vh;
-        font-family: 'Times New Roman', Times, serif;
+        font-family: 'Roboto', sans-serif;
     }
     .emailTel{
         display: flex;
@@ -516,7 +516,7 @@ ul {
         width: 12vw;
     }
     .social span{
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: 'Roboto', sans-serif;
         font-weight: bold;
         font-size: 2vh;
     }
