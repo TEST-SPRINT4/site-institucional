@@ -1,5 +1,8 @@
-*{
-    font-family: Arial, Helvetica, sans-serif;
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 1);
+    font-family: 'Roboto', sans-serif;
 }
 a{
     text-decoration: none;
