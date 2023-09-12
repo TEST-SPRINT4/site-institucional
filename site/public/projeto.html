@@ -14,31 +14,52 @@
   <link rel="stylesheet" href="css/projeto.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+  <script src="js/dropdown.js"></script>
 </head>
 
 <body>
   <header class="header">
     <div class="container">
-      <h1 class="titulo">T E S T</h1>
-      <ul class="navbar">
-        <li>
-          <a href="index.html">HOME</a>
-        </li>
-        <li>
-          <a href="cadastro_faculdade.html">CADASTRO</a>
-        </li>
-        <li>
-          <a href="login.html">LOGIN</a>
-        </li>
-        <li>
-          <a href="contato.html">CONTATO</a>
-        </li>
-        <li>
-          <a href="faq.html">FAQ</a>
-        </li>
-      </ul>
+        <h1 class="titulo">T E S T</h1>
+        <ul class="navbar">
+            <li>
+                <div class="hidden">
+                    <a href="index.html">HOME</a>
+                </div>
+            </li>
+            <li>
+                <div class="hidden">
+                    <a href="cadastro_faculdade.html">CADASTRO</a>
+                </div>
+            </li>
+            <li>
+                <a href="login.html">LOGIN</a>
+                <div class="dropdown" id="dropdown">
+                    <div class="hiddenPc"><span class="seta2">▼</span></div>
+                    <div class="dropdown-menu" id="dropdown-menu">
+                        <a href="index.html">HOME</a> 
+                        <a href="cadastro_faculdade.html">CADASTRO</a>
+                        <a href="contato.html">CONTATO</a>
+                        <a href="faq.html">FAQ</a>
+                    </div>
+                </div>
+            </li>
+
+            <li>
+                <div class="hidden">
+                    <a href="contato.html">CONTATO</a>
+                </div>
+            </li>
+            <li>
+                <div class="hidden">
+                    <a href="faq.html">FAQ</a>
+                </div>
+            </li>
+        </ul>
     </div>
-  </header>
+</header>
+
+
   <div class="container-titulo">
     <span>Como funciona</span>
     <img src="assets/icon/Logo.png" alt="">
