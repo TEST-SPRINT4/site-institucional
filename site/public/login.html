@@ -10,6 +10,7 @@
     <link rel="icon" href="./assets/icon/Icone.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <script src="js/dropdown.js"></script>
+    <script src="js/login.js"></script>
 
 </head>
 
@@ -62,17 +63,15 @@
             <div class="card-login">
                 <div class="text-field">
                     <label class="label" for="email">EMAIL</label><br>
-                    <input type="text" id="input_email" placeholder="Digite seu endereço de email"><br>
-                </div>
-                <div class="validacao">
-                    * EXEMPLO: seunome@email.com
+                    <input type="text" id="input_email" placeholder="seunome@email.com"><br>
                 </div>
                 <div class="text-field">
                     <label for="senha">SENHA</label><br>
-                    <input type="password" id="input_senha" placeholder="Digite sua senha"><br>
+                    <input type="password" id="input_senha" placeholder="********"><br>
                 </div>
                 <div class="validacao">
-                    * CONFIRME SE A SENHA ESTÁ CORRETA <br>
+                     *SENHA DE 8 CARACTERES <br>
+                    * NECESSITA 1 OU MAIS CARACTERES ESPECIAIS
                 </div><br>
                 <div class="container-button"><button onclick="verificar()" class="botao-login">LOGAR <span
                             class="seta">→</span></button>
