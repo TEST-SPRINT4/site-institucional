@@ -138,6 +138,8 @@ body {
   text-transform: uppercase;
 }
 
+/* sobre nós */
+
 .container_sobre {
   background-color: rgba(212, 164, 255, 0.26);
   width: 80vw;
@@ -150,7 +152,6 @@ body {
 .container_imagem,
 .container_texto {
   flex: 1;
-  /* padding: 20px; */
 }
 
 .container_imagem {
@@ -196,7 +197,7 @@ body {
 }
 
 .container_texto h2 {
-  color: #D9D9D9;
+  color: #575757;
   font-size: 64px;
   font-style: normal;
   font-weight: 300;
@@ -220,6 +221,8 @@ body {
     height: auto;
     object-fit: cover;
   }
+
+  /* objetivos */
 
 .container_objetivos {
   display: flex;
@@ -276,32 +279,159 @@ body {
 .objetivo_1,
 .objetivo_2 p {
   color: #333;
-  font-size: 14px;
-  font-style: normal;
+  font-size: 3vh;
   line-height: 36px;
   text-align: justify;
 }
+
+/* como funciona */
+
+.tituloComoFunciona {
+  height: 3vh;
+  padding: 4rem;
+}
+
+#funciona_titulo {
+  color: #575757;
+  font-size: 8vh;
+  padding-left: 5rem;
+  font-family: Roboto;
+}
+
 .container_funcionamento{
   display: flex;
   flex-direction: row;
   width: 80vw;
-  height: 800px;
+  height: 110vh;
   margin: 10px auto 0;
   padding-top: 20px;
-}
-ul {
-  list-style-type: none;
+  justify-content: center;
 }
 
-ul {
-  list-style-type: none;
+.container_funcionamento a {
+  text-decoration: none;
+  transition: transform 1s ease;
 }
+
+.container_funcionamento a :hover {
+  transform: scale(1.1);
+}
+
+.container_funcionamento h4 {
+  color: white;
+  font-size: 3vh;
+}
+
+.right_img {
+  padding: 1rem;
+}
+
+#moca2 {
+  width: 40vw;
+  height:80vh ;
+}
+
+#entenda {
+  padding-top: 3rem;
+}
+
+.contato1 {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.right_img{
+  display: flex;
+  align-items: center;
+}
+
+#moca_note2{
+ align-items: start;
+
+}
+
+.acima{
+  position: absolute;
+  z-index: 9;
+}
+
+.titulo_funcionamento{
+  background-color: #2c2c2c7e;
+}
+
+/* contato */
+
+.containerContato {
+  display: flex;
+  justify-content: center;
+  height: 60vh;
+  padding-bottom: 3rem;
+}
+
+.contato1 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  width: 70vw;
+}
+
+.contato1 h1{
+ color: #bdbdbd; 
+ font-size: 8vh;
+ font-weight: 400;
+}
+
+.contato1 input{
+  text-decoration: none;
+  border: none;
+  color: #000000;
+  font-weight: 700;
+  height: 7vh;
+  width: 40vw;
+  font-size: 0.7em;
+  background-color: #075cab4b;
+}
+
+.contatoInputs {
+  padding: 1rem;
+}
+
+#mensagem_input{
+  height: 10vh;
+  text-align: start;
+}
+
+.contato1 button{
+  border: none;
+  background-color: #333333;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+  width: 20vw;
+  height: 7vh;
+  letter-spacing: 0.2em;
+  padding: 2%;
+}
+
+.contato1 button span{
+  font-weight: bold;
+}
+
+.right_img{
+  display: flex;
+  align-items: center;
+}
+
+/* footer */
 
 .Footer {
   display: flex;
   justify-content: space-between;
   background-color: #2C2C2C;
   width: 100%;
+  margin-top: 2rem;
 }
 
 .innerFooter {
@@ -399,7 +529,7 @@ ul {
 
 .endereco span {
   font-size: 15px;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: Roboto;
 }
 
 .emailTel {
@@ -436,49 +566,9 @@ ul {
   justify-content: space-around
 }
 
-#moca2 {
-
-  width: 45vw;
-  height:70vh ;
-  
 }
 
-#computador {
-  width: 450px;
-  height: 60vh;
-}
-
-.contato1 {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
-
-.right_img{
-  display: flex;
-  align-items: center;
-}
-
-#moca_note2{
- align-items: start;
-
-}
-
-.acima{
-  position: absolute;
-  z-index: 9;
-}
-
-.titulo_funcionamento{
-  background-color: #2c2c2c7e;
-}
-
-input{
-  background: #075CAB4A;
-  border: none;
-  width: 100%;
-}
-}
+/* celular */
 @media only screen and (max-width: 500px) {
   :root {
     --altura-header: 80px;
@@ -540,6 +630,7 @@ input{
     border-radius: 0.25rem;
     box-shadow: 0 2px 5px 0 black;
     transition: opacity 150ms ease-in-out;
+    z-index: 1;
 }
 
 .navbar {
@@ -633,9 +724,9 @@ input{
   
   .container_sobre {
     background-color: rgba(212, 164, 255, 0.26);
-    height: 478px;
+    height: 40vh;
     display: flex;
-    margin: 3vh auto 0;
+    margin: 3vh;
     justify-content: end;
   }
   
@@ -646,39 +737,42 @@ input{
   }
   
   .container_imagem {
-    flex-basis: 5%;
-    display: flex;
-    flex-wrap: wrap;
+    /* flex-basis: 5%; */
+    display: none;
+    /* flex-wrap: wrap;
     padding-left: 1rem;
-    justify-content: center;
+    justify-content: center; */
   }
   
   .imgEstudo {
-    display: flex;
-    flex-direction: column;
+    display: none;
+    /* flex-direction: column;
     justify-content: center;
     height: 25vh;
-    padding-top: 7rem;
+    padding-top: 7rem; */
   }
   
   .imgMulher {
-    display: flex;
-    align-items: center;
+    display: none;
+    /* align-items: center;
     justify-content: center;
     padding-top: 5rem;
-    padding-bottom: 2rem;
+    padding-bottom: 1rem; */
   }
   
   .imgFlutuando {
-    position: relative;
-    display: flex;
+    display: none;
+    /* position: relative;
     z-index: 1;
-    justify-content: center;
-   
+    justify-content: center; */
   }
   
   .container_texto {
     padding-right: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
   }
   
   .container_texto span {
@@ -687,10 +781,11 @@ input{
     font-style: normal;
     font-weight: 400;
     line-height: 25px;
+    padding: 1rem;
   }
   
   .container_texto h2 {
-    color: #D9D9D9;
+    color: #575757;
     font-size: 2em;
     font-style: normal;
     font-weight: 300;
@@ -717,13 +812,14 @@ input{
   
   .container_objetivos {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 100vw;
-    height: 100px;
+    flex-direction: column;
+    /* justify-content: space-between; */
+    /* width: 100vw; */
+    /* height: 100px; */
     margin: 2vh 2vh 0;
-    padding-top: 20px;
+    /* padding-top: 20px; */
   }
+
   
   #titulo_objetivos {
     color: #D9D9D9;
@@ -785,19 +881,85 @@ input{
   }
   
   #funciona_titulo{
-    font-size: 1em;
+    font-size: 2em;
+    font-family: Roboto;
+    padding-left: 2rem;
   }
+  
 
   .divImage{
     background-size: contain !important; 
     background: no-repeat;
     height: fit-content !important;
     font-size: 0.6em;
+    width: 85vw;
   }
 
   ul {
     list-style-type: none;
   }
+
+  .container_funcionamento{
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    /* height: 110vh; */
+    margin: 10px auto 0;
+    padding-top: 20px;
+    justify-content: center;
+  }
+  
+  .container_funcionamento a {
+    text-decoration: none;
+    transition: transform 1s ease;
+  }
+  
+  .container_funcionamento a :hover {
+    transform: scale(1.1);
+  }
+  
+  .container_funcionamento h4 {
+    color: white;
+    font-size: 3vh;
+  }
+  
+  .right_img {
+    display: none;
+  }
+    
+  #entenda {
+    display: none;
+  }
+  
+  .contato1 {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .right_img{
+    display: none;
+    align-items: center;
+  }
+  
+  #moca_note2{
+    display: none;
+   align-items: start;
+  
+  }
+  
+  .acima{
+    position: absolute;
+    z-index: 9;
+  }
+  
+  .titulo_funcionamento{
+    background-color: #2c2c2c7e;
+  }
+  
+
+  /* footer */
+
   .Footer{
     display: flex;
     justify-content: space-between;
@@ -940,6 +1102,7 @@ display: none;
 }
   
   #moca2 {
+    display: none;
     width: 45vw;
     height:40vh ;
   }
