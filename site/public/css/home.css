@@ -400,7 +400,6 @@ body {
   }
 
   #mensagem_input {
-    height: 10vh;
     text-align: start;
   }
 
@@ -410,7 +409,6 @@ body {
     color: white;
     font-family: 'Roboto', sans-serif;
     width: 20vw;
-    height: 7vh;
     letter-spacing: 0.2em;
     padding: 2%;
   }
