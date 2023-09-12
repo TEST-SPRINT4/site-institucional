@@ -5,9 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOGIN FACULDADE</title>
-    <link rel="stylesheet" href="../public/css/login_funcFacul.css">
+    <title>TEST - Login</title>
+    <link rel="stylesheet" href="../public/css/login.css">
     <link rel="icon" href="./assets/icon/Icone.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <script src="js/dropdown.js"></script>
 
 </head>
 
@@ -17,42 +19,63 @@
             <h1 class="titulo">T E S T</h1>
             <ul class="navbar">
                 <li>
-                    <a href="index.html">HOME</a>
+                    <div class="hidden">
+                        <a href="index.html">HOME</a>
+                    </div>
                 </li>
                 <li>
-                    <a href="cadastro_faculdade.html">CADASTRO</a>
+                    <div class="hidden">
+                        <a href="cadastro_faculdade.html">CADASTRO</a>
+                    </div>
                 </li>
                 <li class="agora">
                     <a href="login.html">LOGIN</a>
+                    <div class="dropdown" id="dropdown">
+                        <div class="hiddenPc"><span class="seta2">▼</span></div>
+                        <div class="dropdown-menu" id="dropdown-menu">
+                            <a href="index.html">HOME</a>
+                            <a href="cadastro_faculdade.html">CADASTRO</a>
+                            <a href="contato.html">CONTATO</a>
+                            <a href="faq.html">FAQ</a>
+                        </div>
+                    </div>
+                </li>
+
+                <li>
+                    <div class="hidden">
+                        <a href="contato.html">CONTATO</a>
+                    </div>
                 </li>
                 <li>
-                    <a href="contato.html">CONTATO</a>
-                </li>
-                <li>
-                    <a href="faq.html">FAQ</a>
+                    <div class="hidden">
+                        <a href="faq.html">FAQ</a>
+                    </div>
                 </li>
             </ul>
         </div>
     </header>
 
     <div class="main-login">
-        <h1>LOGIN FACULDADE</h1>
+        <h1>Login</h1>
         <div class="right-login">
             <div class="bar"></div>
             <div class="card-login">
                 <div class="text-field">
                     <label class="label" for="email">EMAIL</label><br>
-                    <input type="text" id="input_email"><br>
+                    <input type="text" id="input_email" placeholder="Digite seu endereço de email"><br>
+                </div>
+                <div class="validacao">
+                    * EXEMPLO: seunome@email.com
                 </div>
                 <div class="text-field">
                     <label for="senha">SENHA</label><br>
-                    <input type="password" id="input_senha"><br>
+                    <input type="password" id="input_senha" placeholder="Digite sua senha"><br>
                 </div>
                 <div class="validacao">
                     * CONFIRME SE A SENHA ESTÁ CORRETA <br>
-                    ESQUECEU A SENHA?</span>
                 </div><br>
-                <div class="container-button"><button onclick="verificar()" class="botao-login">LOGAR -&gt;</button>
+                <div class="container-button"><button onclick="verificar()" class="botao-login">LOGAR <span
+                            class="seta">→</span></button>
                 </div>
             </div>
         </div>
@@ -72,7 +95,7 @@
                 </div>
                 <div class="informacaoContatos">
                     <div class="informacao">
-                        <span>Infomation</span>
+                        <span>Information</span>
                         <ul>
                             <li>HOME</li>
                             <li>CADASTRO</li>
