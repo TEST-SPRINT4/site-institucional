@@ -49,127 +49,107 @@
 
 
     /* Inicio Footer */
-    ul {
+    ul{
         list-style-type: none;
     }
-
-    .Footer {
+    
+    .Footer{
         display: flex;
         justify-content: space-between;
         background-color: #2C2C2C;
     }
-
-    .innerFooter {
+    .innerFooter{
         width: 100%;
         display: flex;
         justify-content: space-between;
         background-color: #2C2C2C;
     }
-
-    .logoFooter {
+    .logoFooter{
         display: flex;
-        flex-direction: column;
+        flex-direction:column;
         align-items: center;
     }
-
-    .logoGrande {
+    .logoGrande{
         width: 100%;
         height: 110px;
     }
-
-    .logoSigla {
+    .logoSigla{
         width: 66%;
     }
-
-    .informacoes {
+    .informacoes{
         display: flex;
         width: 90%;
         justify-content: space-between;
     }
-
-    .informacaoContatos {
+    .informacaoContatos{
         padding-top: 10px;
         width: 70%;
         display: flex;
-        justify-content: space-around;
-
+        justify-content: space-around;  
+        
     }
-
-    .informacao {
+    .informacao{
         display: flex;
         flex-direction: column;
         color: snow;
         align-items: center;
-
+    
     }
-
-    .informacao span {
+    .informacao span{
         font-family: 'Roboto', sans-serif;
-        /* Roboto */
         font-weight: bold;
     }
-
-    .informacao ul {
+    .informacao ul{
         padding-inline-start: 0px;
         line-height: 27px;
         font-size: 15px;
         font-family: 'Roboto', sans-serif;
-        /* Roboto */
     }
-
-    .iconContato {
+    .iconContato{
         display: flex;
         justify-content: space-between;
         max-height: 130px;
         width: 23%;
     }
-
-    .contato {
+    .contato{
         color: snow;
     }
-
-    .contato span {
+    .contato span{
         font-family: 'Roboto', sans-serif;
         font-weight: bold;
     }
-
-    .iconsEnderecoEmail {
+    .iconsEnderecoEmail{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
     }
-
     /* .separador{
         height: 12px;
     } */
-
-    .emailEndereco {
+    
+    .emailEndereco{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         min-height: 100px;
         margin-block-start: 1em;
     }
-
-    .endereco {
+    .endereco{
         display: flex;
         flex-direction: column;
         line-height: 17px;
     }
-
-    .endereco span {
+    .endereco span{
         font-size: 15px;
         font-family: 'Roboto', sans-serif;
     }
-
-    .emailTel {
+    .emailTel{
         display: flex;
         justify-content: space-between;
         flex-direction: column;
         min-height: 50px;
     }
-
-    .social {
+    .social{
         width: 10%;
         max-height: 60px;
         padding: 10px;
@@ -179,22 +159,20 @@
         color: snow;
         background-color: #2C2C2C;
     }
-
-    .spanSocial {
+    .spanSocial{
         display: flex;
         justify-content: center;
         width: 88%;
     }
-
-    .social span {
+    .social span{
         font-family: 'Roboto', sans-serif;
         font-weight: bold;
     }
-
-    .iconsSocial {
+    .iconsSocial{
         display: flex;
         justify-content: space-around
     }
+
 }
 
 @media only screen and (max-width: 500px) {
@@ -274,62 +252,54 @@
 
 
     /* FOOTER  CELULAR*/
-    ul {
+    ul{
         list-style-type: none;
     }
-
-    .Footer {
+    .Footer{
         display: flex;
         justify-content: space-between;
         background-color: #2C2C2C;
     }
-
-    .innerFooter {
+    .innerFooter{
         width: 100%;
         display: flex;
         justify-content: space-between;
         background-color: #2C2C2C;
-    }
-
-    .logoFooter {
-        display: flex;
-        height: fit-content;
         flex-direction: column;
         align-items: center;
     }
-
-    .logoGrande {
+    .logoFooter{
+        display: flex;
         height: fit-content;
+        flex-direction:column;
+        align-items: center;
+    }
+    .logoGrande{
+        height: fit-content ;
 
     }
-
-    .logoGrande img {
+    .logoGrande img{
         width: 31vw;
     }
-
-    .logoSigla {
+    .logoSigla{
         width: 66%;
     }
-
-    .logoSigla img {
-        width: 100%;
+    .logoSigla img{
+        width:100% ;
     }
-
-    .informacoes {
+    .informacoes{
         display: flex;
         width: fit-content;
         justify-content: space-between;
+        flex-direction: column;
     }
-
-    .informacaoContatos {
+    .informacaoContatos{
         padding-top: 1vh;
         width: fit-content;
         display: flex;
-        justify-content: space-around;
-
+        justify-content: space-between;
     }
-
-    .informacao {
+    .informacao{
         height: 20vh;
         width: 20vw;
         display: flex;
@@ -337,88 +307,72 @@
         color: snow;
         align-items: center;
     }
-
-    .informacao span {
+    .informacao span{
         font-family: 'Roboto', sans-serif;
-        /* Roboto */
         font-weight: bold;
         font-size: 2vh;
     }
-
-    .informacao ul {
+    .informacao ul{
         padding-inline-start: 0vh;
         line-height: 3vh;
         font-size: 1.5vh;
         font-family: 'Roboto', sans-serif;
-        /* Roboto */
+        margin-right: 5%;
     }
-
-    .iconContato {
+    .iconContato{
         display: flex;
         justify-content: space-between;
         /* max-height: 80vh; */
         width: 24vw;
+        margin-left: 10%;
     }
-
-    .contato {
+    .contato{
         color: snow;
-        display: flex;
-        flex-direction: column;
     }
-
-    .contato span {
+    .contato span{
         font-family: 'Roboto', sans-serif;
         font-weight: bold;
         font-size: 2vh;
     }
-
-    .separador {
-        display: none;
+    .separador{
+    display: none;
     }
-
-    .iconsEnderecoEmail {
+    .iconsEnderecoEmail{
         margin-top: 5vh;
         display: flex;
         width: fit-content;
         flex-direction: column;
         justify-content: space-around;
     }
-
-    .iconsEnderecoEmail img {
+    .iconsEnderecoEmail img{
         width: 2vh;
     }
-
-    .emailEndereco {
+    .emailEndereco{
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         min-height: 15vh;
         margin-block-start: 0.5em;
     }
-
-    .endereco {
+    .endereco{
         display: flex;
         flex-direction: column;
         line-height: 2vh;
     }
-
-    .endereco span {
+    .endereco span{
         font-size: 1.5vh;
         font-family: 'Roboto', sans-serif;
     }
-
-    .emailTel {
+    .emailTel{
         display: flex;
         justify-content: space-between;
         flex-direction: column;
         min-height: 7.5vh;
     }
-
-    .emailTel span {
+    .emailTel span{
         font-size: 1.5vh;
     }
-
-    .social {
+    .social{
         width: 10vw;
         max-height: 8vh;
         padding: 2vw;
@@ -428,27 +382,22 @@
         color: snow;
         background-color: #2C2C2C;
     }
-
-    .spanSocial {
+    .spanSocial{
         display: flex;
         justify-content: center;
         width: 12vw;
     }
-
-    .social span {
+    .social span{
         font-family: 'Roboto', sans-serif;
         font-weight: bold;
         font-size: 2vh;
     }
-
-    .iconsSocial {
+    .iconsSocial{
         display: flex;
         justify-content: space-around
     }
-
-    .iconsSocial img {
+    .iconsSocial img{
         width: 2.1vh;
     }
-
 
 }
