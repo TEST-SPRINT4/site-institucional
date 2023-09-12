@@ -346,6 +346,7 @@
     }
     .iconsEnderecoEmail img{
         width: 2vh;
+        margin-right: 5px;
     }
     .emailEndereco{
         display: flex;
