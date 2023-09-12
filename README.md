@@ -33,6 +33,6 @@ Ficaremos felizes em revisar sua contribuição e incorporá-la ao nosso código
 
 Se você tiver alguma dúvida, sugestão ou apenas quiser dizer olá, sinta-se à vontade para entrar em contato conosco:
 
-- Suporte https://app.pipefy.com/public/form/5kRoQ2dC
+- Suporte: https://app.pipefy.com/public/form/sWqYd_OM
 
 Estamos ansiosos para ouvir de você!
