@@ -109,6 +109,12 @@ body {
     display: inline-block;
   }
 
+#home_imagem img{
+  width: 820px;
+  height: 550px;
+  margin-left: 15%;
+}
+
   #img_monitoramento {
     width: 770px;
     height: 829px;
@@ -230,7 +236,8 @@ body {
     width: 80vw;
     height: 100px;
     margin: 10px auto 0;
-    padding-top: 20px;
+    margin-top: 12%;
+
   }
 
   #titulo_objetivos {
