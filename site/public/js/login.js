@@ -1,3 +1,7 @@
+
+
+
+
 function entrar() {
 
     var emailVar = input_email.value;
@@ -11,7 +15,7 @@ function entrar() {
     console.log("FORM LOGIN: ", emailVar);
     console.log("FORM SENHA: ", senhaVar);
 
-    fetch("/usuarios/autenticar", {
+    fetch("../src/routes/usuarios/autenticar", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -55,6 +59,3 @@ function entrar() {
 
     return false;
 }
-
-
-
