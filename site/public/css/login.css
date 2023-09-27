@@ -14,7 +14,7 @@ body {
     background-color: white;
 }
 
-@media only screen and (min-width: 1200px) {
+/* @media only screen and (min-width: 1200px) { */
     .right-login {
         display: flex;
         align-items: center;
@@ -94,7 +94,7 @@ body {
         margin-top: -2%;
     }
 
-}
+/* } */
 
 @media only screen and (max-width: 500px) {
 

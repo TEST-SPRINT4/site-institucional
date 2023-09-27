@@ -6,7 +6,7 @@ body {
   background-color: white
 }
 
-@media only screen and (min-width: 1200px) {
+/* @media only screen and (min-width: 1200px) { */
   :root {
     --altura-header: 80px;
     --comprimento-header: 100vw;
@@ -422,7 +422,7 @@ body {
     align-items: center;
   }
 
-}
+/* } */
 
 /* celular */
 @media only screen and (max-width: 500px) {
