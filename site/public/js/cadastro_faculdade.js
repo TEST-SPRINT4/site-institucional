@@ -5,6 +5,11 @@ function cadastrar() {
     var emailInstituicaoVar = emailInstituicao_input.value;
     var cnpjVar = cnpj_input.value;
     var cepVar = cep_input.value;
+    var estadoVar = estado_input.value;
+    var cidadeVar = cidade_input.value;
+    var bairroVar = bairro_input.value;
+    var ruaVar = rua_input.value;
+    var numeroVar = numero_input.value;
     var telefoneVar = telefone_input.value;
     var senhaVar = senha_input.value;
     var confirmacao_senhaVar = confirmacao_senha_input.value
@@ -14,11 +19,21 @@ function cadastrar() {
     erro_confirmar_senha.innerHTML = "";
     erro_cnpj.innerHTML = "";
     erro_cep.innerHTML = "";
+    erro_estado.innerHTML = "";
+    erro_cidade.innerHTML = "";
+    erro_bairro.innerHTML = "";
+    erro_rua.innerHTML = "";
+    erro_numero.innerHTML = "";
     erro_telefone.innerHTML = "";
 
 
-    if (instituicaoVar == "" || responsavelVar == "" || emailInstituicaoVar == "" || cnpjVar == "" || cnpjVar == "" || cepVar == "" || telefoneVar == "" || senhaVar == ""
-        || confirmacao_senhaVar == "") {
+    if (instituicaoVar == "" || responsavelVar == "" ||
+     emailInstituicaoVar == "" || cnpjVar == "" ||
+      cnpjVar == "" || cepVar == "" ||
+       estadoVar == "" || cidadeVar == "" ||
+        bairroVar == "" || ruaVar == ""||
+         telefoneVar == "" || senhaVar == "" ||
+          confirmacao_senhaVar == "" || numeroVar == "") {
         alert("Preencha os campos vazios");
     } else {
         if (emailInstituicaoVar.indexOf("@") == -1 || emailInstituicaoVar.indexOf(".") == -1) {
@@ -36,7 +51,7 @@ function cadastrar() {
                     return cadastrarFuncionario(fkInstituicaoVar[0].fkInstituicao);
                 })
                 .then(() => {
-                    window.location = 'public\index.html';
+                    window.location = 'login.html';
                 })
                 .catch((error) => {
                     console.error(error);
@@ -51,6 +66,11 @@ function cadastrarInstituicao() {
     var emailInstituicaoVar = emailInstituicao_input.value;
     var cnpjVar = cnpj_input.value;
     var cepVar = cep_input.value;
+    var estadoVar = estado_input.value;
+    var cidadeVar = cidade_input.value;
+    var bairroVar = bairro_input.value;
+    var ruaVar = rua_input.value;
+    var numeroVar = numero_input.value;
     var telefoneVar = telefone_input.value;
 
 
@@ -65,6 +85,11 @@ function cadastrarInstituicao() {
             emailInstituicaoServer: emailInstituicaoVar,
             cnpjServer: cnpjVar,
             cepServer: cepVar,
+            estadoServer: estadoVar,
+            cidadeServer: cidadeVar,
+            bairroServer: bairroVar,
+            ruaServer: ruaVar,
+            numeroServer: numeroVar,
             telefoneServer: telefoneVar,
         })
     });
@@ -112,4 +137,47 @@ function cadastrarFuncionario(fkInstituicaoVar) {
             fkInstituicaoServer: fkInstituicaoVar,
         })
     });
+}
+
+function buscarCep() {
+    var cep = cep_input.value;
+    var url = `https://viacep.com.br/ws/${cep}/json/`;
+
+    if (cep.length >= 8) {
+
+        console.log(
+            fetch(url)
+        )
+
+        fetch(url)
+            .then(
+                function (resposta) {
+                    console.log("DEU CERTO!");
+                    console.log("Resposta: ", resposta);
+
+                    resposta.json()
+                        .then(
+                            function (respostaJson) {
+                                console.log("JSON: ", respostaJson);
+                                console.log("Logradouro: " + respostaJson.logradouro);
+
+                    rua_input.value = respostaJson.logradouro;
+                    estado_input.value = respostaJson.uf;
+                    bairro_input.value = respostaJson.bairro;
+                    cidade_input.value = respostaJson.localidade;
+
+                    
+
+
+                            }
+                        )
+                }
+            )
+            .catch(
+                function (erro) {
+                    console.log("DEU ERRO!");
+                    console.log(erro)
+                }
+            )
+    }
 }

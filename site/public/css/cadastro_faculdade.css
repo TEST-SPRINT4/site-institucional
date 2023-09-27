@@ -13,9 +13,8 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-@media only screen and (min-width: 1200px) {
+/* @media only screen and (min-width: 1200px) { */
     
-
     .container-cadastro-faculdade {
         display: flex;
         align-items: center;
@@ -129,9 +128,10 @@ body {
         letter-spacing: 2px;
     }
     
-}
+
 
 @media only screen and (max-width: 500px) {
+    
     body{
         max-width: 360px;
     }

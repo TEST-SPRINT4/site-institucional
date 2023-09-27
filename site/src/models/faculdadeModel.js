@@ -10,11 +10,11 @@ function autenticar(email, senha) {
 }
 
 // Coloque os mesmos parâmetros aqui. Vá para a var instrucao
-function cadastrarInstituicao(nomeInstituicao, responsavel, emailInstituicao, cnpj, cep, telefone) {
-    console.log("ACESSEI O FACULDADE MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarInstituicao():", nomeInstituicao, responsavel, emailInstituicao, cnpj, cep, telefone);
+function cadastrarInstituicao(nomeInstituicao, responsavel, emailInstituicao, cnpj, cep, estado, cidade, bairro, rua, numero,telefone) {
+    console.log("ACESSEI O FACULDADE MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarInstituicao():", nomeInstituicao, responsavel, emailInstituicao, cnpj, cep, estado, cidade, bairro, rua, numero, telefone);
 
     var instrucao1 = `
-        INSERT INTO instituicao (nome_instituicao, responsavel, email_instituicao, CNPJ, CEP, telefone) VALUES ('${nomeInstituicao}', '${responsavel}', '${emailInstituicao}', '${cnpj}','${cep}','${telefone}');
+        INSERT INTO instituicao (nome_instituicao, responsavel, email_instituicao, CNPJ, CEP, estado, cidade, bairro, rua, numero,telefone) VALUES ('${nomeInstituicao}', '${responsavel}', '${emailInstituicao}', '${cnpj}','${cep}','${estado}','${cidade}', '${bairro}', '${rua}','${numero}', '${telefone}');
     `;
     console.log("Executando a instrução1 SQL: \n" + instrucao1);
     return database.executar(instrucao1);
