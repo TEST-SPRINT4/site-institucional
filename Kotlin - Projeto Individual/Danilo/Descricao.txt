@@ -1,0 +1,1 @@
+Atualmente o aplicativo solicita login e senha, e exibe uma tela de bem vindo com o login do usuario

@@ -1,0 +1,5 @@
+Code by brudneyuk
+
+-O usuário consegue realizar um cadastro;
+-E após o cadastro ele consegue fazer um login;
+-Após o login ele consegue consegue escolher o que ele quer monitorar (DISCO, CPU, RAM e DetecçãoUSB);

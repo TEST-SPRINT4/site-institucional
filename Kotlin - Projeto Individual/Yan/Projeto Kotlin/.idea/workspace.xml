@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="7a1c0c26-a847-4351-a906-b0f4492ad6eb" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../Site/public/cadastro.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Site/public/cadastro.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Site/public/css/cadastro.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Site/public/css/cadastro.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Site/public/css/login.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Site/public/css/login.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Site/public/css/responsividade.css" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Site/public/css/responsividade.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Site/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Site/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Site/public/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Site/public/login.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="2VKcoaovSptuIfaTkHnIchp2ULe" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/VkSenes/OneDrive/Documentos/kaick temporario/6tracker/PI Kotlin/Simone/Projeto-individual"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="7a1c0c26-a847-4351-a906-b0f4492ad6eb" name="Changes" comment="" />
+      <created>1694588399686</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1694588399686</updated>
+    </task>
+    <servers />
+  </component>
+</project>
