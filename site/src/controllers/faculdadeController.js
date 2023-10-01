@@ -70,12 +70,6 @@ function cadastrarInstituicao(req, res) {
     var responsavel = req.body.responsavelServer;
     var emailInstituicao = req.body.emailInstituicaoServer;
     var cnpj = req.body.cnpjServer;
-    var cep = req.body.cepServer;
-    var estado = req.body.cepServer;
-    var cidade = req.body.cidadeServer;
-    var bairro = req.body.bairroServer;
-    var rua = req.body.ruaServer;
-    var numero = req.body.numeroServer;
     var telefone = req.body.telefoneServer;
 
     // Faça as validações dos valores
@@ -85,26 +79,12 @@ function cadastrarInstituicao(req, res) {
         res.status(400).send("Seu responsavel está undefined!");
     } else if (emailInstituicao == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } else if (cnpj == undefined) {
-        res.status(400).send("Seu cnpj está undefined!");
-    } else if (cep == undefined) {
-        res.status(400).send("Seu cep está undefined!");
-    } else if (estado == undefined) {
-        res.status(400).send("Seu estado está undefined!");
-    } else if (cidade == undefined) {
-        res.status(400).send("Sua cidade está undefined!");
-    } else if (bairro == undefined) {
-        res.status(400).send("Seu bairro está undefined!");
-    } else if (rua == undefined) {
-        res.status(400).send("Sua rua está undefined!");
-    } else if (numero == undefined) {
-        res.status(400).send("Seu numero está undefined!");
-    } else if (telefone == undefined) {
+    }  else if (telefone == undefined) {
         res.status(400).send("Seu telefone está undefined!");
     } else {
 
         // Passando os valores como parâmetro e enviando para o arquivo faculdadeModel.js
-        faculdadeModel.cadastrarInstituicao(nomeInstituicao, responsavel, emailInstituicao, cnpj, cep, estado, cidade, bairro, rua, numero, telefone)
+        faculdadeModel.cadastrarInstituicao(nomeInstituicao, responsavel, emailInstituicao, cnpj, telefone)
             .then(
                 function (resultado) {
                     res.json(resultado);
@@ -121,6 +101,62 @@ function cadastrarInstituicao(req, res) {
             );
     }
 }
+
+function cadastrarEndereco(req, res) {
+    // recuperando os valores do arquivo cadastro_faculdade.html
+
+    // cepServer: cepVar,
+    // estadoServer: estadoVar,
+    // cidadeServer: cidadeVar,
+    // bairroServer: bairroVar,
+    // ruaServer: ruaVar,
+    // numeroServer: numeroVar,
+    // fkInstituicaoServer: fkInstituicaoVar,
+
+    var cep = req.body.cepServer;
+    var estado = req.body.estadoServer;
+    var cidade = req.body.cidadeServer;
+    var bairro = req.body.bairroServer;
+    var rua = req.body.ruaServer;
+    var numero = req.body.numeroServer;
+    var fkInstituicao = req.body.fkInstituicaoServer;
+
+    // Faça as validações dos valores
+    if (cep == undefined) {
+        res.status(400).send("Seu cep está undefined!");
+    } else if (estado == undefined) {
+        res.status(400).send("Seu estado está undefined!");
+    } else if (cidade == undefined) {
+        res.status(400).send("Sua cidade está undefined!");
+    } else if (bairro == undefined) {
+        res.status(400).send("Seu bairro está undefined!");
+    } else if (rua == undefined) {
+        res.status(400).send("Sua rua está undefined!");
+    } else if (numero == undefined) {
+        res.status(400).send("Seu numero está undefined!");
+    } else if (fkInstituicao == undefined) {
+        res.status(400).send("Seu fkInstituicao está undefined!");
+    } else {
+
+        // Passando os valores como parâmetro e enviando para o arquivo faculdadeModel.js
+        faculdadeModel.cadastrarEndereco(cep, estado, cidade, bairro, rua, numero, fkInstituicao)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar o cadastro! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 function buscarFk(req, res) {
 
     var cnpj = req.body.cnpjServer;
@@ -186,6 +222,7 @@ function cadastrarFuncionario(req, res) {
 module.exports = {
     autenticar,
     cadastrarInstituicao,
+    cadastrarEndereco,
     buscarFk,
     cadastrarFuncionario
 }

@@ -8,6 +8,10 @@ router.post("/cadastrarInstituicao", function (req, res) {
     faculdadeController.cadastrarInstituicao(req, res);
 })
 
+router.post("/cadastrarEndereco", function (req, res) {
+    faculdadeController.cadastrarEndereco(req, res);
+})
+
 router.post("/buscarFk", function (req, res) {
     faculdadeController.buscarFk(req, res);
 });

@@ -48,10 +48,20 @@ function cadastrar() {
             cadastrarInstituicao()
                 .then(() => buscarFk(cnpjVar))
                 .then((fkInstituicaoVar) => {
-                    return cadastrarFuncionario(fkInstituicaoVar[0].fkInstituicao);
+                    return cadastrarEndereco(fkInstituicaoVar[0].fkInstituicao);
                 })
                 .then(() => {
                     window.location = 'login.html';
+                })
+                .catch((error) => {
+                    console.error(error);
+                });
+
+
+            cadastrarEndereco()
+                .then(() => buscarFk(cnpjVar))
+                .then((fkInstituicaoVar) => {
+                    return cadastrarFuncionario(fkInstituicaoVar[0].fkInstituicao);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -65,12 +75,6 @@ function cadastrarInstituicao() {
     var responsavelVar = responsavel_input.value;
     var emailInstituicaoVar = emailInstituicao_input.value;
     var cnpjVar = cnpj_input.value;
-    var cepVar = cep_input.value;
-    var estadoVar = estado_input.value;
-    var cidadeVar = cidade_input.value;
-    var bairroVar = bairro_input.value;
-    var ruaVar = rua_input.value;
-    var numeroVar = numero_input.value;
     var telefoneVar = telefone_input.value;
 
 
@@ -84,12 +88,6 @@ function cadastrarInstituicao() {
             responsavelServer: responsavelVar,
             emailInstituicaoServer: emailInstituicaoVar,
             cnpjServer: cnpjVar,
-            cepServer: cepVar,
-            estadoServer: estadoVar,
-            cidadeServer: cidadeVar,
-            bairroServer: bairroVar,
-            ruaServer: ruaVar,
-            numeroServer: numeroVar,
             telefoneServer: telefoneVar,
         })
     });
@@ -118,6 +116,33 @@ function buscarFk(cnpjVar) {
         .catch(function (error) {
             console.error(`Erro na obtenção dos dados: ${error.message}`);
         });
+}
+
+function cadastrarEndereco(fkInstituicaoVar) {
+
+    var cepVar = cep_input.value;
+    var estadoVar = estado_input.value;
+    var cidadeVar = cidade_input.value;
+    var bairroVar = bairro_input.value;
+    var ruaVar = rua_input.value;
+    var numeroVar = numero_input.value;
+
+
+    return fetch("/faculdade/cadastrarEndereco", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            cepServer: cepVar,
+            estadoServer: estadoVar,
+            cidadeServer: cidadeVar,
+            bairroServer: bairroVar,
+            ruaServer: ruaVar,
+            numeroServer: numeroVar,
+            fkInstituicaoServer: fkInstituicaoVar,
+        })
+    });
 }
 
 function cadastrarFuncionario(fkInstituicaoVar) {
