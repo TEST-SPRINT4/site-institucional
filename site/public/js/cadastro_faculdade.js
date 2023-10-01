@@ -50,6 +50,10 @@ function cadastrar() {
                 .then((fkInstituicaoVar) => {
                     return cadastrarEndereco(fkInstituicaoVar[0].fkInstituicao);
                 })
+                .then(() => buscarFk(cnpjVar))
+                .then((fkInstituicaoVar) => {
+                    return cadastrarFuncionario(fkInstituicaoVar[0].fkInstituicao);
+                })
                 .then(() => {
                     window.location = 'login.html';
                 })
@@ -57,15 +61,6 @@ function cadastrar() {
                     console.error(error);
                 });
 
-
-            cadastrarEndereco()
-                .then(() => buscarFk(cnpjVar))
-                .then((fkInstituicaoVar) => {
-                    return cadastrarFuncionario(fkInstituicaoVar[0].fkInstituicao);
-                })
-                .catch((error) => {
-                    console.error(error);
-                });
         }
     }
 }
