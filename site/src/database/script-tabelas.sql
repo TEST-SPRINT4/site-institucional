@@ -1,19 +1,41 @@
 create database test;
 use test;
-drop database test;
+-- drop database test;
 CREATE TABLE instituicao (
 	idinstituicao INT PRIMARY KEY AUTO_INCREMENT,
 	nome_instituicao VARCHAR(45),
 	responsavel VARCHAR(45),
 	email_instituicao VARCHAR(45),
     CNPJ char(18),
-    CEP char(9),
     telefone char(14)
+);
+
+CREATE TABLE enderecoInstituicao (
+	idEndereco int primary key auto_increment,
+	CEP char(10),
+    estado char(2),
+    cidade varchar(45),
+    bairro varchar(45),
+    rua varchar(45),
+    numero varchar(45),
+    fkInstituicao int,
+    foreign key (fkInstituicao) references instituicao (idinstituicao)
+	);
+
+create table permicoes (
+idPermicoes int primary key auto_increment,
+visualizar tinyint,
+editar tinyint,
+cadastrar tinyint,
+deletar tinyint
 );
 
 CREATE TABLE nivelAcesso (
 	nivel_acesso INT PRIMARY KEY AUTO_INCREMENT,
-	descricao VARCHAR(200)
+	descricao VARCHAR(200),
+    fkPermicoes int,
+    constraint fkPermicoes_nivel_de_acesso foreign key (fkPermicoes)
+    references permicoes (idPermicoes)
 	);
     
 CREATE TABLE funcionario (
@@ -83,7 +105,19 @@ CREATE TABLE dadosHardware (
 ('Acesso para gerenciar recursos e relatórios.'),
 ('Acesso para supervisionar equipes e atividades.'),
 ('Acesso total ao sistema, incluindo administração de usuários e configurações de monitoramento.');
+
+insert into permicoes values
+	(null, 1,1,1,1),
+    (null, 1,1,1,0),
+    (null, 1,1,0,0),
+    (null, 1,0,0,0);
+    
+update nivelAcesso set fkPermicoes = 1 where nivel_acesso = 4;
+update nivelAcesso set fkPermicoes = 2 where nivel_acesso = 3;
+update nivelAcesso set fkPermicoes = 3 where nivel_acesso = 2;
+update nivelAcesso set fkPermicoes = 4 where nivel_acesso = 1;
 	
     select * from nivelAcesso;
     select * from funcionario;
     select * from instituicao;
+    select * from enderecoInstituicao;

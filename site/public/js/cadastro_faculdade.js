@@ -201,3 +201,69 @@ function buscarCep() {
             )
     }
 }
+
+function formatarCEP(input) {
+    // Check if the input value is empty
+    if (input.value === "") {
+      return;
+    }
+  
+    var value = input.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+  
+    if (value.length > 8) {
+      // Se o CEP tem mais de 8 dígitos, remove os dígitos adicionais
+      value = value.substring(0, 8);
+    } else {
+      if (value.length > 5) {
+        value = value.substring(0, 5) + '-' + value.substring(5);
+      }
+    }
+  
+    input.value = value;
+  }
+
+function formatarTELEFONE(input) {
+    var value = input.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+
+    if (value.length > 11) {
+        // Se o número de telefone tem mais de 11 dígitos, remove os dígitos adicionais
+        value = value.substring(0, 11);
+    } else {
+        if (value.length > 0) {
+            value = '(' + value;
+        }
+        if (value.length > 3) {
+            value = value.substring(0, 3) + ')' + value.substring(3);
+        }
+        if (value.length > 8) {
+            value = value.substring(0, 8) + '-' + value.substring(8);
+        }
+    }
+
+    input.value = value;
+}
+
+function formatarCNPJ(input) {
+    var value = input.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+
+
+    if (value.length > 18) {
+        // Se o CNPJ tem mais de 18 dígitos, mantém apenas os primeiros 18
+        value = value.substring(0, 18);
+    } else {
+        if (value.length > 2) {
+            value = value.substring(0, 2) + '.' + value.substring(2);
+        }
+        if (value.length > 6) {
+            value = value.substring(0, 6) + '.' + value.substring(6);
+        }
+        if (value.length > 10) {
+            value = value.substring(0, 10) + '/' + value.substring(10);
+        }
+        if (value.length > 15) {
+            value = value.substring(0, 15) + '-' + value.substring(15);
+        }
+    }
+
+    input.value = value;
+}
