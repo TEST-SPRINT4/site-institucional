@@ -47,7 +47,7 @@ body {
 }
 
 .card-welcome{
-    background-image:url(../footer/imgs/bg-login.jpg);
+    background-image:url(../assets/imgsFigma/bg-login.jpg);
     background-size: cover;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
@@ -70,14 +70,14 @@ body {
 
 .card-login label {
     font-weight: bold;
-    color: #00025c;
+    color: #075CAB;
     font-size: large;
     letter-spacing: 3px;
     margin-top: 10px;
 }
 
 .title{
-    color: #00025c;
+    color: #075CAB;
     font-weight: bold;
     letter-spacing: 2px;
 }
@@ -109,7 +109,7 @@ body {
     height: 8vh;
     width: 15vw;
     border: 0;
-    background: -webkit-linear-gradient(rgba(136, 0, 255, 0.85), #00025c);
+    background: -webkit-linear-gradient(#a033ff, #075CAB);
     color: white;
     font-weight: 600;
     cursor: pointer;
