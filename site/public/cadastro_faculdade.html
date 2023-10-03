@@ -79,19 +79,19 @@
             <div class="texto-especial">
                 <div class="campo-texto-metade">
                     <label for="cnpj">CNPJ</label>
-                    <input type="text" id="cnpj_input" placeholder="XX.XXX.XXX/XXXX-XX" size="52">
+                    <input type="text" id="cnpj_input" placeholder="XX.XXX.XXX/XXXX-XX" size="52" oninput="formatarCNPJ(this)" maxlength="18">
                     <div id="erro_cnpj"></div>
                 </div>
                 <div class="campo-texto-metade">
                     <label for="cep">CEP</label>
-                    <input type="text" id="cep_input" oninput="buscarCep()" placeholder="XXXXX-XXX" size="52">
+                    <input type="text" id="cep_input" oninput="buscarCep(); formatarCEP(this)" placeholder="XXXXX-XXX" maxlength="9">
                     <div id="erro_cep"></div>
                 </div>
             </div>
             <div class="texto-especial">
                 <div class="campo-texto-metade">
                     <label for="estado">ESTADO</label>
-                    <input type="text" oninput="buscarCep()" id="estado_input" placeholder="UF" size="52">
+                    <input type="text" oninput="buscarCep()" id="estado_input" placeholder="UF" maxlength="2">
                     <div id="erro_estado"></div>
                 </div>
                 <div class="campo-texto-metade">
@@ -119,7 +119,7 @@
             </div>
             <div class="campo-texto">
                 <label for="telefone">TELEFONE</label>
-                <input type="text" id="telefone_input" placeholder="(XX)XXXXX-XXXX">
+                <input type="text" id="telefone_input"  placeholder="(XX)XXXXX-XXXX" oninput="formatarTELEFONE(this)" maxlength="14">
                 <div id="erro_telefone"></div>
             </div>
             <div class="campo-texto">
