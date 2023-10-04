@@ -178,7 +178,7 @@
 @media only screen and (max-width: 500px) {
     .header {
         height: var(--altura-header);
-        width: var(--comprimento-header);
+        width: 100%;
     }
 
     .container {
