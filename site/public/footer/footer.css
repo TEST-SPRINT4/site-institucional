@@ -1,4 +1,4 @@
-/* @media only screen and (min-width: 1200px) { */
+    /* @media only screen and (min-width: 1200px) { */
 
     /* inicio navbar */
     .container {
@@ -178,7 +178,7 @@
 @media only screen and (max-width: 500px) {
     .header {
         height: var(--altura-header);
-        width: var(--comprimento-header);
+        width: 100%;
     }
 
     .container {
@@ -207,7 +207,7 @@
         font-size: 0.7em;
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: space-evenly;
         list-style: none;
         color: #e3b062;
         padding-inline-start: 0em;
@@ -283,6 +283,7 @@
     }
     .logoSigla{
         width: 66%;
+        
     }
     .logoSigla img{
         width:100% ;
@@ -295,9 +296,9 @@
     }
     .informacaoContatos{
         padding-top: 1vh;
-        width: fit-content;
+        width: 10vw;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
     }
     .informacao{
         height: 20vh;
