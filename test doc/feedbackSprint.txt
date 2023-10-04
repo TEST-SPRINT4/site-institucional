@@ -1,0 +1,19 @@
+- Kotlin opção capturar dados
+- Integrar mais a lean ux com as user story
+- Proto persona ter mais de uma?
+- Colocar mais funcionalidades na lean ux
+- User story, o Marcio não é proto persona (não entendi o porque disso ser um problema, mas ok)
+- Muita user pra pouco lean ux
+- Sobre banco de dados:
+  Tabela endereço
+  Computador é ligado na instituição
+  Resolver o problema de por exemplo ter mais de um disco
+  Histórico?
+  Email da instituição e talz n ser da instituição ent tirar
+  Curso n faz sentido ter só a quantidade de cursos, só a variação dela n resolve, tem por exemplo um curso precisar de mais recursos doq outros
+  Log de alerta tem q estar no banco
+- Alterar slide do gráfico, no caso o título e por pontos principais para ajudar na apresentação - titulo já foi alterado
+- Arrumar o "agora" do último slide - já foi arrumado
+- Site:
+  Página "Projeto" (clicando no view more na home), os textos estão muito grandes, precisa destacar palavras/frases principais
+  Cadastro, colocar os campos do endereço

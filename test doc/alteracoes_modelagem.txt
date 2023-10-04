@@ -1,0 +1,11 @@
+computador por sala ao invés de por curso
+tabela de alertas
+criar tabela endereço
+rename nivel_acesso to id_nivel_acesso
+criar tabela servidor
+tabela computador é pra ser SERVIDOR
+email instituição tirar
+revisar parte de curso
+
+
+
