@@ -11,6 +11,7 @@
     <link rel="icon" href="./assets/icon/Icone.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <script src="js/dropdown.js"></script>
+    
 
 </head>
 
@@ -199,8 +200,8 @@
                     console.log(JSON.stringify(json));
 
                     sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.NOME_USUARIO = json.nome_funcionario;
+                    sessionStorage.ID_USUARIO = json.idfuncionario;
 
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";

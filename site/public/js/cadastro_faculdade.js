@@ -14,6 +14,7 @@ function cadastrar() {
     var senhaVar = senha_input.value;
     var confirmacao_senhaVar = confirmacao_senha_input.value
 
+
     erro_email.innerHTML = "";
     erro_senha.innerHTML = "";
     erro_confirmar_senha.innerHTML = "";
