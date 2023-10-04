@@ -223,7 +223,7 @@ body {
     .card-login input {
         border: 0;
         height: 7vh;
-        width: 35vw;
+        width:45vw;
         background: rgba(255, 255, 255, 0.67);
         border-radius: 5px;
         margin-bottom: 5%;
@@ -240,7 +240,7 @@ body {
     
     .card-login button {
         height: 8vh;
-        width: 25vw;
+        width: 35vw;
         border: 0;
         background: -webkit-linear-gradient(#a033ff, #075CAB);
         color: white;
