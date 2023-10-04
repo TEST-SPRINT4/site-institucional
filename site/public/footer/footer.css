@@ -1,4 +1,4 @@
-/* @media only screen and (min-width: 1200px) { */
+    /* @media only screen and (min-width: 1200px) { */
 
     /* inicio navbar */
     .container {
@@ -207,7 +207,7 @@
         font-size: 0.7em;
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: space-evenly;
         list-style: none;
         color: #e3b062;
         padding-inline-start: 0em;
