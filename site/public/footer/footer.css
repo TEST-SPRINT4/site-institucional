@@ -283,6 +283,7 @@
     }
     .logoSigla{
         width: 66%;
+        
     }
     .logoSigla img{
         width:100% ;
@@ -295,9 +296,9 @@
     }
     .informacaoContatos{
         padding-top: 1vh;
-        width: fit-content;
+        width: 10vw;
         display: flex;
-        justify-content: space-between;
+        justify-content: center;
     }
     .informacao{
         height: 20vh;
