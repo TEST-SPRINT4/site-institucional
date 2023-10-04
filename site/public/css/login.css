@@ -34,6 +34,7 @@ body {
     margin-bottom: 5%;
     display: flex;
     border-radius: 15px;
+    box-shadow: 1px 1px 15px rgb(143, 143, 143);
 }
 
 .card-form, .card-welcome{
@@ -70,7 +71,7 @@ body {
 
 .card-login label {
     font-weight: bold;
-    color: #075CAB;
+    color: #777777;
     font-size: large;
     letter-spacing: 3px;
     margin-top: 10px;
@@ -98,6 +99,10 @@ body {
     background: rgba(255, 255, 255, 0.67);
     border-radius: 5px;
     margin-bottom: 5%;
+    font-size: 15px;
+    letter-spacing: 2px;
+    font-family: 'Roboto', sans-serif;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .card-login .container-button {
@@ -114,6 +119,10 @@ body {
     font-weight: 600;
     cursor: pointer;
     border-radius: 5px;
+}
+
+.card-login button:hover {
+    background: #a033ff;
 }
 
 .seta {
