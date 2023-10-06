@@ -29,15 +29,18 @@ body {
 
 .card-login {
     width: 70vw;
-    height: 70vh;
+    height: 90vh;
     background: rgba(212, 164, 255, 0.40);
     margin-bottom: 5%;
     display: flex;
     border-radius: 15px;
+    box-shadow: 1px 1px 15px rgb(143, 143, 143);
+    flex-direction: column;
+    
 }
 
 .card-form, .card-welcome{
-    width: 50%;
+    width: 98%;
     height: auto;
     display: flex;
     flex-direction: column;
@@ -47,10 +50,10 @@ body {
 }
 
 .card-welcome{
-    background-image:url(../footer/imgs/bg-login.jpg);
+    background-image:url(../assets/imgsFigma/bg-login.jpg);
     background-size: cover;
     border-top-left-radius: 15px;
-    border-bottom-left-radius: 15px;
+    border-top-right-radius: 15px;
     display: flex;
     flex-direction: column;
 }
@@ -70,14 +73,14 @@ body {
 
 .card-login label {
     font-weight: bold;
-    color: #00025c;
+    color: #777777;
     font-size: large;
     letter-spacing: 3px;
     margin-top: 10px;
 }
 
 .title{
-    color: #00025c;
+    color: #075CAB;
     font-weight: bold;
     letter-spacing: 2px;
 }
@@ -98,6 +101,10 @@ body {
     background: rgba(255, 255, 255, 0.67);
     border-radius: 5px;
     margin-bottom: 5%;
+    font-size: 15px;
+    letter-spacing: 2px;
+    font-family: 'Roboto', sans-serif;
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .card-login .container-button {
@@ -109,11 +116,15 @@ body {
     height: 8vh;
     width: 15vw;
     border: 0;
-    background: -webkit-linear-gradient(rgba(136, 0, 255, 0.85), #00025c);
+    background: -webkit-linear-gradient(#a033ff, #075CAB);
     color: white;
     font-weight: 600;
     cursor: pointer;
     border-radius: 5px;
+}
+
+.card-login button:hover {
+    background: #a033ff;
 }
 
 .seta {
@@ -122,76 +133,131 @@ body {
 
 @media only screen and (max-width: 500px) {
 
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto', sans-serif;
+        background-color: white;
+    }
+    
+    .bar {
+        width: 100%;
+        height: 1px;
+        background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #F2F2F2;
+        margin-bottom: 3%;
+    }
+    .navbar{
+        width: 100%;
+        display: flex;
+    }
+    
     .right-login {
         display: flex;
         align-items: center;
         flex-direction: column;
     }
-
+    
     .card-login {
         width: 80vw;
-        height: fit-content;
-        flex-shrink: 0;
+        height: 70vh;
         background: rgba(212, 164, 255, 0.40);
-        padding: 1%;
         margin-bottom: 5%;
+        display: flex;
+        border-radius: 15px;
+        box-shadow: 1px 1px 15px rgb(143, 143, 143);
+        flex-direction: column;
+        
     }
-
+    
+    .card-form, .card-welcome{
+        width: 98%;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: 1%;
+    }
+    
+    .card-welcome{
+        background-image:url(../assets/imgsFigma/bg-login.jpg);
+        background-size: cover;
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .card-welcome h1{
+        color: #ffffff;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 64px;
+        margin: 1%;
+    }
+    
+    .card-welcome p, a{
+        margin: 0%;
+        color: #F2F2F2;
+    }
+    
     .card-login label {
-        padding: 5%;
         font-weight: bold;
-        color: #333333;
+        color: #777777;
+        font-size: large;
+        letter-spacing: 3px;
+        margin-top: 10px;
     }
-
-    .card-login .validacao {
+    
+    .title{
+        color: #075CAB;
+        font-weight: bold;
+        letter-spacing: 2px;
+    }
+    
+    .validacao {
+        color: #777777;
         display: flex;
         justify-content: center;
         padding: 2%;
         text-align: center;
-        font-weight: bold;
         font-size: small;
-        line-height: 1.5em;
     }
-
+    
     .card-login input {
         border: 0;
-        margin-bottom: 2%;
-        margin-left: 5%;
-        margin-top: 2%;
-        height: 8vh;
-        width: 70vw;
-        font-size: x-large;
+        height: 7vh;
+        width:45vw;
+        background: rgba(255, 255, 255, 0.67);
+        border-radius: 5px;
+        margin-bottom: 5%;
+        font-size: 15px;
+        letter-spacing: 2px;
+        font-family: 'Roboto', sans-serif;
+        color: rgba(0, 0, 0, 0.5);
     }
-
+    
     .card-login .container-button {
         display: flex;
         justify-content: center;
     }
-
+    
     .card-login button {
-        height: 7vh;
-        width: 26vw;
+        height: 8vh;
+        width: 35vw;
         border: 0;
-        background-color: rgba(201, 141, 255, 0.85);
+        background: -webkit-linear-gradient(#a033ff, #075CAB);
         color: white;
+        font-weight: 600;
         cursor: pointer;
+        border-radius: 5px;
     }
-
-    .main-login h1 {
-        color: #333333;
-        font-size: 1.4em;
-        font-style: normal;
-        font-weight: 700;
-        line-height: 64px;
-        margin-left: 4%;
-        /* 100% */
+    
+    .card-login button:hover {
+        background: #a033ff;
     }
-
-    .bar {
-        width: 91vw;
-        height: 1px;
-        background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #F2F2F2;
-        margin-bottom: 3%;
+    
+    .seta {
+        font-size: x-large;
     }
-
 }
