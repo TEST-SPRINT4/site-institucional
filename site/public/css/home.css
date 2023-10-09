@@ -505,6 +505,14 @@ body {
 
   
 }
+.container-conteudo{
+  width: 90vw;
+  height: 70vh;
+  display: flex;
+  /* justify-content: space-around; */
+  flex-direction: column;
+}
+
 
 .header .container {
   justify-content: space-between;
@@ -545,12 +553,14 @@ body {
 #main_home{
   background: rgb(255,255,255);
   background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(7,92,171,1) 100%);
-  height: 480px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
+
 
 .iconeHome img{
   width: 550px;
@@ -567,18 +577,19 @@ body {
 } */
 
 .container1_home {
-  /* display: flex;
+  display: flex;
   align-items: center;
-  justify-content: space-between; */
+  justify-content: space-between;
   margin-left: 6%;
   padding: 4%;
   height: 30vh;
+  align-content: center;
 }
 
 .container1_home img{
   width: 100%; 
-  line-height: 10px;
-  width: 20vw;
+  /* line-height: 10px; */
+  width: 40vw;
 }
 
 
