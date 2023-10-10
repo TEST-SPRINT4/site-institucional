@@ -6,12 +6,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TEST | Dashboards</title>
+    <title>AquaTech | Dashboards</title>
 
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/dashboards.css">
-    <script src="../js/sessao.js"></script>
-    <script src="./../js/alerta.js"></script>
+    <link rel="stylesheet" href="dashboards.css">
+    <script src="../js/funcoes.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -25,9 +24,7 @@
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 </head>
 
-<!-- <body onload=" atualizarFeed()"> -->
-
-<body>
+<body onload=" atualizarFeed()">
 
     <div class="janela">
         <div class="header-left">
@@ -62,13 +59,61 @@
         </div>
 
         <div class="dash">
-            <div id="alerta">
-            </div>
-
-            <div class="btns-dash" id="btnAquario">
+            <div class="btns-dash">
                 <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
+                <button class="btn-chart btn-pink" onclick="exibirAquario(1)" id="btnAquario1">Aquario 1</button>
+                <button class="btn-chart btn-white" onclick="exibirAquario(2)" id="btnAquario2">Aquario 2</button>
+                <button class="btn-chart btn-white" onclick="exibirAquario(3)" id="btnAquario3">Aquario 3</button>
+                <button class="btn-chart btn-white" onclick="exibirAquario(4)" id="btnAquario4">Aquario 4</button>
             </div>
             <div id="graficos">
+                <div id="grafico1" class="display-block">
+                    <h3 class="tituloGraficos">
+                        <span id="tituloAquario1">123</span>
+                    </h3>
+                    <div class="graph">
+                        <canvas id="myChartCanvas1"></canvas>
+                    </div>
+                    <div class="label-captura">
+                        <p id="avisoCaptura1" style="color: white"></p>
+                    </div>
+                </div>
+
+                <div id="grafico2" class="display-none">
+                    <h3 class="tituloGraficos">
+                        <span id="tituloAquario2"></span>
+                    </h3>
+                    <div class="graph">
+                        <canvas id="myChartCanvas2"></canvas>
+                    </div>
+                    <div class="label-captura">
+                        <p id="avisoCaptura2" style="color: white"></p>
+                    </div>
+                </div>
+
+                <div id="grafico3" class="display-none">
+                    <h3 class="tituloGraficos">
+                        <span id="tituloAquario3"></span>
+                    </h3>
+                    <div class="graph">
+                        <canvas id="myChartCanvas3"></canvas>
+                    </div>
+                    <div class="label-captura">
+                        <p id="avisoCaptura3" style="color: white"></p>
+                    </div>
+                </div>
+
+                <div id="grafico4" class="display-none">
+                    <h3 class="tituloGraficos">
+                        <span id="tituloAquario4"></span>
+                    </h3>
+                    <div class="graph">
+                        <canvas id="myChartCanvas4"></canvas>
+                    </div>
+                    <div class="label-captura">
+                        <p id="avisoCaptura4" style="color: white"></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -80,75 +125,51 @@
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    console("socorro")
 
     let proximaAtualizacao;
 
-    window.onload = exibirAquariosDoUsuario();
+    window.onload = obterDadosGraficos();
 
-    function exibirAquariosDoUsuario() {
-        var aquarios = JSON.parse(sessionStorage.AQUARIOS);
-        aquarios.forEach(item => {
-            document.getElementById("btnAquario").innerHTML += `
-            <button class="btn-chart" onclick="exibirAquario(${item.id})" id="btnAquario${item.id}">${item.descricao}</button>
-            `
-
-            document.getElementById("graficos").innerHTML += `
-                <div id="grafico${item.id}" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario${item.id}">${item.descricao}</span>
-                    </h3>
-                    <div class="graph">
-                        <canvas id="myChartCanvas${item.id}"></canvas>
-                    </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura${item.id}" style="color: white"></p>
-                    </div>
-                </div>
-            `
-
-            obterDadosGrafico(item.id)
-        });
-
-        if (aquarios.length > 0) {
-            exibirAquario(aquarios[0].id)
-        }
+    function obterDadosGraficos() {
+        obterDadosGrafico(1)
+        obterDadosGrafico(2)
+        obterDadosGrafico(3)
+        obterDadosGrafico(4)
     }
 
-    function alterarTitulo(idRegistros) {
-        var tituloAquario = document.getElementById(`tituloAquario${idRegistros}`)
-        var descricao = JSON.parse(sessionStorage.AQUARIOS).find(item => item.id == idRegistros).descricao;
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>" + descricao + "</span>"
+    verificar_autenticacao();
+
+    function alterarTitulo(idAquario) {
+        var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
+        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idAquario + "</span>"
     }
 
-    function exibirAquario(idRegistros) {
-        let todosOsGraficos = JSON.parse(sessionStorage.AQUARIOS);
+    function exibirAquario(idAquario) {
+        let todosOsGraficos = document.getElementById("graficos")
 
-        for (i = 0; i < todosOsGraficos.length; i++) {
+        for (i = 1; i <= todosOsGraficos.childElementCount; i++) {
             // exibindo - ou não - o gráfico
-            if (todosOsGraficos[i].id != idRegistros) {
-                let elementoAtual = document.getElementById(`grafico${todosOsGraficos[i].id}`)
-                if (elementoAtual.classList.contains("display-block")) {
-                    elementoAtual.classList.remove("display-block")
-                }
-                elementoAtual.classList.add("display-none")
-
-                // alterando estilo do botão
-                let btnAtual = document.getElementById(`btnAquario${todosOsGraficos[i].id}`)
-                if (btnAtual.classList.contains("btn-pink")) {
-                    btnAtual.classList.remove("btn-pink")
-                }
-                btnAtual.classList.add("btn-white")
+            let elementoAtual = document.getElementById(`grafico${i}`)
+            if (elementoAtual.classList.contains("display-block")) {
+                elementoAtual.classList.remove("display-block")
             }
+            elementoAtual.classList.add("display-none")
+            
+            // alterando estilo do botão
+            let btnAtual = document.getElementById(`btnAquario${i}`)
+            if (btnAtual.classList.contains("btn-pink")) {
+                btnAtual.classList.remove("btn-pink")
+            }
+            btnAtual.classList.add("btn-white")
         }
-
+        
         // exibindo - ou não - o gráfico
-        let graficoExibir = document.getElementById(`grafico${idRegistros}`)
+        let graficoExibir = document.getElementById(`grafico${idAquario}`)
         graficoExibir.classList.remove("display-none")
         graficoExibir.classList.add("display-block")
-
+        
         // alterando estilo do botão
-        let btnExibir = document.getElementById(`btnAquario${idRegistros}`)
+        let btnExibir = document.getElementById(`btnAquario${idAquario}`)
         btnExibir.classList.remove("btn-white")
         btnExibir.classList.add("btn-pink")
     }
@@ -164,22 +185,21 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function obterDadosGrafico(idRegistros) {
+    function obterDadosGrafico(idAquario) {
 
-        alterarTitulo(idRegistros)
+        alterarTitulo(idAquario)
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimas/${idRegistros}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/ultimas/${idAquario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGrafico(resposta, idRegistros);
-
+                    plotarGrafico(resposta, idAquario);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -193,7 +213,7 @@
     // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
     // Configura o gráfico (cores, tipo, etc), materializa-o na página e, 
     // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-    function plotarGrafico(resposta, idRegistros) {
+    function plotarGrafico(resposta, idAquario) {
 
         console.log('iniciando plotagem do gráfico...');
 
@@ -247,11 +267,11 @@
 
         // Adicionando gráfico criado em div na tela
         let myChart = new Chart(
-            document.getElementById(`myChartCanvas${idRegistros}`),
+            document.getElementById(`myChartCanvas${idAquario}`),
             config
         );
 
-        setTimeout(() => atualizarGrafico(idRegistros, dados, myChart), 2000);
+        setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
     }
 
 
@@ -260,21 +280,19 @@
 
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
-    function atualizarGrafico(idRegistros, dados, myChart) {
+    function atualizarGrafico(idAquario, dados, myChart) {
 
 
 
-        fetch(`/medidas/tempo-real/${idRegistros}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
-                    obterdados(idRegistros);
-                    // alertar(novoRegistro, idRegistros);
                     console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
 
-                    let avisoCaptura = document.getElementById(`avisoCaptura${idRegistros}`)
+                    let avisoCaptura = document.getElementById(`avisoCaptura${idAquario}`)
                     avisoCaptura.innerHTML = ""
 
 
@@ -302,12 +320,12 @@
                     }
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idRegistros, dados, myChart), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico(idRegistros, dados, myChart), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
             }
         })
             .catch(function (error) {
