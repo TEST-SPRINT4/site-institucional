@@ -55,16 +55,32 @@ while True:
     tamanho_disco = info_disco.total
     disco_em_uso = info_disco.used
     tamanho_em_GB = tamanho_disco / (1024 ** 3)
-    uso_em_GB = disco_em_uso / (1024 ** 3)
+    uso_em_GB = disco_em_uso / (1024 ** 3) # Tratamento enviando o uso do DISCO em GB
     mem = psutil.virtual_memory()
-    used_memory_mb = mem.used / (1024 * 1024)
+    used_memory_mb = mem.used / (1024 * 1024) # Tratamento enviando o uso da RAM em MB
     dia = datetime.now()
     dataHora = 'Um dispositivo de dado foi conectado as ' + dia.strftime('%d/%m/%Y %H:%M:%S')
     info = psutil.disk_partitions()
 
+
+    def tratar_uso_da_cpu(uso_da_cpu): # Função de tratamento do uso da CPU, não deixando enviar dados menor que 0 e maior que 100
+        if uso_da_cpu < 0 or uso_da_cpu > 100:
+            return None
+        else:
+            return uso_da_cpu
+
+
+    def tratar_uso_de_memoria_ram(used_memory_mb): # Função de tratamento do uso da memória RAM, não deixando enviar dados menor que 0 e dados maior que tamanho da memoria
+        if used_memory_mb < 0 or used_memory_mb > mem.total:
+            return None
+        else:
+            return used_memory_mb
+
+
+
 # Valores obtidos das métricas do sistema
-    processador = (uso_da_cpu)
-    memoriaRAM = (used_memory_mb)
+    processador = tratar_uso_da_cpu(uso_da_cpu)
+    memoriaRAM = tratar_uso_de_memoria_ram(used_memory_mb)
     armazenamento = (uso_em_GB)
 
     # SQL para inserir na tabela RegistrosRAW (CPU)
