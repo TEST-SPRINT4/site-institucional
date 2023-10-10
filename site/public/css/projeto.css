@@ -51,6 +51,10 @@ body {
         display: flex;
         margin-bottom: 50px;
         margin-top: 30px;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+
     }
 
     .container-conteudo img {
@@ -59,7 +63,7 @@ body {
     }
 
     .container-conteudo:nth-child(odd) {
-        flex-direction: row-reverse;
+        /* flex-direction: row-reverse; */
     }
 
     .container-conteudo:nth-child(odd) img {
@@ -67,7 +71,7 @@ body {
     }
             /*Odd e even = impar e par*/
     .container-conteudo:nth-child(even) {
-        flex-direction: row;
+        /* flex-direction: row; */
     }
 
     .container-conteudo:nth-child(even) img {
