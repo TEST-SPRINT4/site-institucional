@@ -658,27 +658,27 @@ body {
 
 /* objetivos */
 .container_objetivos{
-  display: flexbox;
+  display: flex;
   justify-content: flex-end;
   align-items: center;
-  width: 80vw;
+  width: 100%;
   height: 100px;
-  margin-top: 12%;
-  margin-bottom: 33%;
+  /* margin-top: 12%;
+  margin-bottom: 33%; */
+  
 }
 
 #imagemObjetivos img{
-  margin-left: 5%;
-  margin-top: -2%;
+  width:100% ;
+  height: 100%;
+ 
 }
 
 
 #objetivoUm {
-  width: 450px;
-  font-size: 30px;
-  margin-left: 73%;
-  margin-top: -28%;
-  list-style: circle;
+  width: 100%;
+  font-size: 12px;
+  
 }
 
 /* .container_objetivos p{
@@ -691,11 +691,11 @@ body {
 #titulo_objetivos {
   color: #075CAB;
   font-family: 'Roboto', sans-serif;
-  font-size: 64px;
-  font-weight: 300;
-  margin-left: 38%;
-  margin-top: 10%;
-  /* margin-bottom: 3%; */
+  font-size: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
 }
 
 /* .objetivo_1,
