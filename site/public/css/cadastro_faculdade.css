@@ -152,6 +152,14 @@ label {
         background-color: rgba(255, 255, 255, 1);
         font-family: 'Roboto', sans-serif;
     }
+    :root {
+        --altura-header: 80px;
+        --comprimento-header: 100vw;
+        --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+        --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+        --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+        --tamanho-footer: 65px;
+      }
     
     .container-cadastro-faculdade {
         display: flex;
