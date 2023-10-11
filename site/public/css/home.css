@@ -182,7 +182,7 @@ body {
   width: 80vw;
   height: 100px;
   margin-top: 12%;
-  margin-bottom: 33%;
+  margin-bottom: 43%;
 }
 
 #imagemObjetivos img{
@@ -195,8 +195,8 @@ body {
   width: 450px;
   font-size: 30px;
   margin-left: 73%;
-  margin-top: -28%;
-  list-style: circle;
+  margin-top: -35%;
+  /* list-style: circle; */
 }
 
 /* .container_objetivos p{
@@ -209,7 +209,7 @@ body {
 #titulo_objetivos {
   color: #075CAB;
   font-family: 'Roboto', sans-serif;
-  font-size: 64px;
+  font-size: 56px;
   font-weight: 300;
   margin-left: 38%;
   margin-top: 10%;
@@ -428,7 +428,7 @@ margin-left: 5%;
 }
 
 .content-cards h1{
-  margin-left: 33%;
+  margin-left: 25%;
   font-size: 60px;
   color: #D4A4FF;
 
@@ -691,10 +691,11 @@ body {
 #titulo_objetivos {
   color: #075CAB;
   font-family: 'Roboto', sans-serif;
-  font-size: 56px;
+  font-size: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: 15%;
  
 }
 
@@ -910,10 +911,8 @@ margin-left: 5%;
 }
 
 .content-cards h1{
-  margin-left: 33%;
   font-size: 60px;
   color: #D4A4FF;
-
 }
 
 .card{
