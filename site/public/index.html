@@ -2,26 +2,26 @@
 <html lang="pt-br">
 
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>TEST | Página Inicial</title>
-
-  <script src="./js/sessao.js"></script>
-
-  <link rel="icon" href="./assets/icon/Icone.png">
-  <link rel="stylesheet" href="./css/home.css">
-  <link rel="stylesheet" href="css/projeto.css">
-  <link rel="stylesheet" href="footer/footer.css">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/cadastro_faculdade.js"></script>
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="footer/footer.css">
+    <link rel="icon" href="./assets/icon/Icone.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <script src="js/dropdown.js"></script>
+    <script src="cadastro_faculdade.js"></script>
+    <title>T E S T | Home</title>
+</head>
   <script src="js/dropdown.js"></script>
 </head>
 
 <body>
   <header class="header">
     <div class="container">
-      <h1 class="TEST">T E S T</h1>
+      <h1 class="titulo">T E S T</h1>
       <ul class="navbar">
         <li class="agora">
           <a href="index.html">HOME</a>
@@ -59,6 +59,9 @@
 </div>
 </header>
 
+<div class="sobreBar">
+  <div class="bar"></div>
+</div>
   <main id="main_home">
     <div class="container1_home">
       <img id="logo" src="assets/icon/LogoSemFundo.png">
@@ -68,7 +71,7 @@
       </div>
     </div>
   </main>
-
+  
   <!-- <div class="container_sobre">
     <div class="container_texto">
       <h2>Monitore seus servidores mais facilmente</h2>
@@ -90,14 +93,14 @@
     </div>
 
   </div> -->
-
-  <div class="container-titulo">
+  
+  <div class="titulo-conteudo">
     <span>Nosso trabalho</span>
-    <img src="assets/icon/Logo.png" alt="">
+    <!-- <img src="assets/icon/Logo.png" alt=""> -->
   </div>
   <div class="container-main">
-    <div class="container-conteudo">
-      <img class=imagem-sentada  src="assets/imgsFigma/moca4.png" alt="">
+    <div class="card-conteudo">
+      <!-- <img class=imagem-sentada  src="assets/imgsFigma/moca4.png" alt=""> -->
       <div class="texto">
         <p>Nos dias atuais, as instituições educacionais enfrentam uma crescente complexidade no gerenciamento de
           sistemas
@@ -107,8 +110,8 @@
           interrupções indesejadas.</p>
       </div>
     </div>
-    <div class="container-conteudo">
-      <img src="assets/imgsFigma/moco4.jfif" alt="">
+    <div class="card-conteudo">
+      <!-- <img src="assets/imgsFigma/moco4.jfif" alt=""> -->
       <div class="texto">
         <p>Com o aumento da complexidade das infraestruturas de TI e a crescente dependência de sistemas computacionais,
           a
@@ -119,8 +122,8 @@
           de maneira ágil para garantir um ambiente de aprendizado eficaz.</p>
       </div>
     </div>
-    <div class="container-conteudo">
-      <img src="assets/imgsFigma/dashCpu.png" alt="">
+    <div class="card-conteudo">
+      <!-- <img src="assets/imgsFigma/dashCpu.png" alt=""> -->
       <div class="texto">
         <p>Com o aumento da complexidade das infraestruturas de TI e a crescente dependência de sistemas computacionais,
           a
@@ -136,10 +139,10 @@
 
   <h1 id="titulo_objetivos">Nossos Objetivos</h1>
   <div class="container_objetivos">
-
+    
     <div id="imagemObjetivos">
       <img
-        src="https://media.istockphoto.com/id/1432827713/photo/computer-programmer-working-on-new-software-program.jpg?s=612x612&w=0&k=20&c=g_dsmqD-CGMQThJUjZguMiVdYkl2Fi2v9lYhRCAIY8c=">
+      src="https://media.istockphoto.com/id/1432827713/photo/computer-programmer-working-on-new-software-program.jpg?s=612x612&w=0&k=20&c=g_dsmqD-CGMQThJUjZguMiVdYkl2Fi2v9lYhRCAIY8c=">
     </div>
 
     <div id="objetivoUm">
@@ -151,13 +154,13 @@
           gráficos, que conta com um sistema de alerta.</li>
       </ul>
     </div>
-
+    
   </div>
   
  <!--COMEÇO DO DESENVOLVEDORES-->
  <div class="banner-desenvolvedores">
   <div class="content-cards">
-     <h1>Conheça a nossa equipe!</h1>
+    <h1>Conheça a nossa equipe!</h1>
 
       <div class="part01">
 
@@ -204,14 +207,14 @@
               <a href="https://github.com/Simone-Lopes">Saiba mais!</a>
           </div>
 
-
+          
           <!-- Card Yan -->
           <div class="card">
             <img src="Imagens/Fotos da equipe/IMG_20231004_155103.jpg" alt="foto do dev">
               <h2>Yan Coutinho</h2>
               <p>RA: 03231067</p>
               <a href="https://github.com/YanCesario">Saiba mais!</a>
-          </div>
+            </div>
       </div>
   </div>
 </div>
@@ -219,8 +222,8 @@
 <!-- FIM DO DESENVOLVEDORES -->
 
 
-  <div class="containerContato">
-    <div class="contato1">
+<div class="containerContato">
+  <div class="contato1">
       <H1>Fale Conosco</H1>
       <div class="contatoInputs">
         <input id="nome_input" placeholder="NOME">
