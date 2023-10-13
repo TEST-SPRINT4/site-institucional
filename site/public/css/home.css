@@ -55,7 +55,7 @@ body {
 .header .container {
   justify-content: space-between;
   align-items: center;
-  height: 80px;
+  height: 80vh;
 }
 
 .header a {
@@ -64,7 +64,7 @@ body {
 }
 
 .agora {
-  font-weight: 800;
+  font-weight: 800px;
 }
 
 .navbar {
@@ -79,9 +79,9 @@ body {
 .titulo {
   color: #000000;
   width: fit-content;
-  font-weight: 700;
+  font-weight: 700px;
   font-size: 40px;
-  margin: -80px;
+  /* margin: -80px; */
 }
 
 #main_home {
@@ -89,12 +89,12 @@ body {
   background: url("https://img.freepik.com/vetores-premium/fundo-de-linhas-abstratas-linhas-pretas-finas-em-bg-branco_760443-211.jpg?w=2000");
   background-size: cover;
   background-attachment: fixed;
-  height: 480px;
+  height: 85vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 100vw;
 }
 .container-main{
   display: flex;
@@ -105,12 +105,10 @@ body {
   color: #D4A4FF;
   font-family: 'Roboto', sans-serif;
   font-size: 56px;
-  font-weight: 300;
-  margin-left: 38%;
- 
+  font-weight: 300px;
   margin-bottom: 3%;
   display: flex;
-justify-content: start;  
+justify-content: center;  
 }
 .card-conteudo {
   width: 25vw;
@@ -128,61 +126,33 @@ justify-content: start;
   
 }
 .imagem-card1{
-  height: 70%;
+  height: 38vh;
 }
 .imagem-card2{
-  height: 70%;
+  height: 38vh;
 }
 .imagem-card3{
-  height: 70%;
+  height: 38vh;
 }
 
-
-
-
-/* .iconeHome img{
-  width: 550px;
-  height: 550px;
-  background-color: red;
-} */
-
-
-/* #main_home {
-  display: flex;
-  flex-direction: row;
-  margin-top: 50px;
-  justify-content: center;
-  align-items: center;
-} */
-
 .container1_home {
-  /* display: flex;
-  align-items: center;
-  justify-content: space-between; */
-  margin-left: 8%;
+
   padding: 4%;
 }
 
 .container1_home img {
-  width: 100%;
-  /* line-height: 10px; */
+  width: 100vw;
+ 
   width: 20vw;
   margin-left: 8%;
 }
 
 
 
-/* #title_home {
-  color: var(--gray-1, #333);
-  font-size: 96px;
-  font-weight: 700;
-  line-height: 64px;
-} */
-
 #text_home {
   font-size: 36px;
-  font-weight: 400;
-  /* line-height: normal; */
+  font-weight: 400vw;
+
   margin-left: -8%;
 }
 
@@ -191,72 +161,17 @@ justify-content: start;
   display: inline-block;
 }
 
-#home_imagem img {
-  width: 820px;
-  height: 550px;
-  margin-left: 15%;
-}
-
-#img_monitoramento {
-  width: 770px;
-  height: 829px;
-  margin-left: 160px;
-  margin-top: -30px;
-}
-
-
-
 /* sobre nós */
-
-.container_sobre {
-  width: 80vw;
-  height: 478px;
-  margin: 30px auto 0;
-}
-
-
-/* .container_texto {
-  /* padding-right: 1rem; 
-}*/
-
-.container_texto span {
-  color: #000;
-  font-size: 26px;
-  font-weight: 400;
-}
-
-.container_texto h2 {
-  color: #575757;
-  font-size: 64px;
-  font-style: normal;
-  font-weight: 300;
-  line-height: 64px;
-}
-
 
 /* objetivos */
 .container_objetivos {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height:100%;
+  width: 100vw;
+  height:120vh;
   flex-direction: column;
   align-content: center;
-}
-
-#imagemObjetivos img {
-  /* margin-left: 5%;
-  margin-top: -2%; */
-}
-D
-
-#objetivoUm {
-  width: 450px;
-  font-size: 30px;
-  margin-left: 73%;
-  margin-top: -35%;
-  /* list-style: circle; */
 }
 
 /* .container_objetivos p{
@@ -276,6 +191,10 @@ D
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
   width: 50%;
+}
+.imagemObjetivos .img{
+  width: 100vw;
+  height: 30vh;
 }
 
 /* como funciona */
@@ -451,33 +370,32 @@ margin-left: 5%;
 } */
 
 /*Cards da equipe*/
-.banner-desenvolvedores {
-  margin-bottom: 250px;
-}
 
 .content-cards h1 {
-  margin-left: 25%;
+display: flex;
   font-size: 60px;
   color: #D4A4FF;
-
+justify-content: space-evenly;
+align-items: center;
+width: 100vw;
 }
 
 .card {
   background-color: rgb(255, 255, 255);
-  margin: 30px;
-  width: 18%;
+  /* margin: 30px; */
+  width: 15vw;
   height: 45vh;
   border-radius: 50%;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-between;
+  align-items:center ;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  
 }
 
 .card img {
-  width: 200px;
-  height: 200px;
+  width: 7vw;
+  height: 20vh;
   border-radius: 50%;
 }
 
@@ -487,9 +405,9 @@ margin-left: 5%;
 
 .card h2,
 p {
-  color: #3B3538;
+  /* color: #3B3538;
   margin-top: 25px;
-  margin-bottom: 5px;
+  margin-bottom: 5px; */
 }
 
 .card p {
@@ -499,7 +417,7 @@ p {
 .part02,
 .part01 {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 /* FIM DOS DESENVOLVEDORES */
@@ -514,338 +432,210 @@ p {
 /* celular */
 @media only screen and (max-width: 500px) {
   body {
+    background-color: #F2F2F2;
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
   }
-
+  
+ 
   :root {
     --altura-header: 80px;
-    --comprimento-header: 100vw;
+    --comprimento-header: 100%;
     --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
     --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
     --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
-    --tamanho-footer: 65px;
+    --tamanho-footer: 100%;
   }
-
+  
+  /* 
   .header {
-    height: 100%;
-  }
-
-
-  .container {
+    height: var(--altura-header);
+    width: var(--comprimento-header);
+  } */
+  
+  /* .dropdown-menu {
+    display: none;
+  } */
+  
+  .sobreBar {
     display: flex;
-    width: 80vw;
-
-
+    align-items: center;
+    flex-direction: column;
   }
-
- 
+  
+  .bar {
+    width: 91vw;
+    height: 1px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #F2F2F2;
+    margin-bottom: 1%;
+  }
+  
+  .hiddenPc {
+    display: none;
+  }
 
   .header .container {
     justify-content: space-between;
     align-items: center;
-    height: 80px;
-
-    width: 100vw;
+    height: 80vh;
   }
-
+  
   .header a {
-    justify-content: space-evenly;
     text-decoration: none;
     color: #000000;
-
-  }
-
-  .agora {
-    font-weight: 800;
-  }
-
-  .navbar {
-    width: 100%;
     display: flex;
-    /* align-items: center;
-  justify-content: space-evenly;
-  list-style: none;
-  text-decoration: none; */
+    justify-content: center;
   }
-
+  
+  .agora {
+    font-weight: 800px;
+  }
+  
+  .navbar {
+    width: 40vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    list-style: none;
+    text-decoration: none;
+  }
+  
   .titulo {
     color: #000000;
     width: fit-content;
-    font-weight: 700;
+    font-weight: 700px;
     font-size: 40px;
-    margin: -80px;
+    /* margin: -80px; */
   }
-
+  
   #main_home {
-    background: rgb(255, 255, 255);
-    background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(7, 92, 171, 1) 100%);
-    height: 100%;
+  
+    background: url("https://img.freepik.com/vetores-premium/fundo-de-linhas-abstratas-linhas-pretas-finas-em-bg-branco_760443-211.jpg?w=2000");
+    background-size: cover;
+    background-attachment: fixed;
+    height: 65vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100vw;
   }
-
-
-
-  .iconeHome img {
-    width: 550px;
-    height: 550px;
-  }
-
-
-  /* #main_home {
-  display: flex;
-  flex-direction: row;
-  margin-top: 50px;
-  justify-content: center;
-  align-items: center;
-} */
-
-  .container1_home {
+  .container-main{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-left: 6%;
+    justify-content: space-evenly;
+    flex-direction: column;
+  }
+  .titulo-conteudo{
+    color: #D4A4FF;
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+   
+  }
+  .card-conteudo {
+    width: 80vw;
+    height: 70vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #D4A4FF;
+    border-radius: 9px;
+  }
+  .card-conteudo:hover{
+    -xpedu-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+    
+  }
+  .imagem-card1{
+    height: 38vh;
+  }
+  .imagem-card2{
+    height: 38vh;
+  }
+  .imagem-card3{
+    height: 38vh;
+  }
+  
+  .container1_home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 4%;
-    height: 30vh;
-    align-content: center;
   }
-
+  
   .container1_home img {
-    width: 100%;
-    /* line-height: 10px; */
-    width: 40vw;
+    width: 100vw;
+    display: flex;
+    /* flex-direction: column; */
+    align-items: center;
+    width: 20vw;
+ 
   }
-
-
-
-  /* #title_home {
-  color: var(--gray-1, #333);
-  font-size: 96px;
-  font-weight: 700;
-  line-height: 64px;
-} */
-
+  
+  
+  
   #text_home {
-    font-size: 36px;
-    font-weight: 400;
-    /* line-height: normal; */
-    margin-left: -8%;
+    font-size: 20px;
+    /* font-weight: 4vw; */
+    justify-content: center;
+    display: flex;
+    
   }
-
+  
   #home_imagem {
     position: relative;
     display: inline-block;
   }
-
-  #home_imagem img {
-    width: 820px;
-    height: 550px;
-    margin-left: 15%;
-  }
-
-  #img_monitoramento {
-    width: 770px;
-    height: 829px;
-    margin-left: 160px;
-    margin-top: -30px;
-  }
-
-
-
+  
   /* sobre nós */
-
-  .container_sobre {
-    width: 80vw;
-    height: 478px;
-    margin: 30px auto 0;
-  }
-
-
-  /* .container_texto {
-  /* padding-right: 1rem; 
-}*/
-
-  .container_texto span {
-    color: #000;
-    font-size: 26px;
-    font-weight: 400;
-  }
-
-  .container_texto h2 {
-    color: #575757;
-    font-size: 64px;
-    font-style: normal;
-    font-weight: 300;
-    line-height: 64px;
-  }
-
-
+  
   /* objetivos */
   .container_objetivos {
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    width: 100%;
-    height: 100px;
-    /* margin-top: 12%;
-  margin-bottom: 33%; */
-
+    width: 100vw;
+    height:120vh;
+    flex-direction: column;
+    align-content: center;
   }
-
-  #imagemObjetivos img {
-    width: 100%;
-    height: 100%;
-
-  }
-
-
-  #objetivoUm {
-    width: 100%;
-    font-size: 12px;
-
-  }
-
-  /* .container_objetivos p{
-  width: 555px;
   
-} */
-
-
-
+ .container_objetivos img{
+  width: 100vw;
+  height: 30vh;
+ }
+  
+  
+  
   #titulo_objetivos {
     color: #075CAB;
     font-family: 'Roboto', sans-serif;
-    font-size: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 15%;
-
+    font-size: 30px;
+   
   }
-
-  /* .objetivo_1,
-  .objetivo_2 {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  } */
-
-  /* .objetivo_1 h1 {
-    color: #D4A4FF;
+  .texto-objetivos{
+    font-size: 15px;
     font-family: 'Roboto', sans-serif;
-    font-size: 200px;
-    font-style: normal;
-    line-height: normal;
-    margin-right: 10px;
-  } */
-
-  /* .objetivo_2 h1 {
-    color: #075CAB;
-    font-family: 'Roboto', sans-serif;
-    font-size: 200px;
-    font-style: normal;
-    line-height: normal;
-    margin-right: 10px;
-  } */
-
-  /* .objetivo_1,
-  .objetivo_2 p {
-    color: #333;
-    font-size: 3vh;
-    line-height: 36px;
-    text-align: justify;
-  } */
-
-  /* como funciona */
-
-  .tituloComoFunciona {
-    height: 3vh;
-    padding: 4rem;
-    margin-top: -12%;
+    width: 90vw;
   }
 
-  #funciona_titulo {
-    color: #D4A4FF;
-    font-size: 8vh;
-    padding-left: 5rem;
-    font-family: 'Roboto', sans-serif;
-  }
-
-  .container_funcionamento {
-    display: flex;
-    align-items: center;
-    width: 80vw;
-    height: 110vh;
-    margin: 10px auto 0;
-    justify-content: space-between;
-    margin-top: -12%;
-  }
-
-  .container_funcionamento {
-    padding: 3%;
-  }
-
-  .divImagem {
-    height: 350px;
-    margin-top: 25px;
-  }
-
-  .divImage h1,
-  a {
-    text-align: center;
-  }
-
-
-
-
-  .container_funcionamento a {
-    text-decoration: none;
-    transition: transform 1s ease;
-  }
-
-  .container_funcionamento a :hover {
-    transform: scale(1.1);
-  }
-
-  .container_funcionamento h4 {
-    font-size: 3vh;
-  }
-
-
-  #entenda {
-    padding-top: 3rem;
-  }
-
-  .right_img {
-    display: flex;
-    align-items: center;
-  }
-
-
-  .acima {
-    position: absolute;
-    z-index: 9;
-  }
-
-  .titulo_funcionamento {
-    background-color: #2c2c2c7e;
-  }
-
+  
   /* contato */
-
+  
   .containerContato {
     display: flex;
     justify-content: center;
-    height: 60vh;
-    padding-bottom: 3rem;
+    height: 80vh;
+    padding-bottom: 35px;
+   width: 100vw;
   }
-
+  
   .contato1 {
     background-color: rgb(7, 92, 171, 0.433);
     display: flex;
@@ -853,15 +643,19 @@ p {
     justify-content: space-between;
     flex-direction: column;
     margin-bottom: 1rem;
-    width: 70vw;
+    width: 100vw;
   }
-
+  
   .contato1 h1 {
     color: white;
-    font-size: 8vh;
+    font-size: 5vh;
     font-weight: 400;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-
+  
   .contato1 input {
     text-decoration: none;
     border: none;
@@ -873,25 +667,25 @@ p {
     background-color: #075cab4b;
     text-align: center;
   }
-
+  
   .contatoInputs {
     padding: 1rem;
-
+  
   }
-
+  
   .contatoInputs input::placeholder {
     color: whitesmoke;
   }
-
+  
   #mensagem_input {
     text-align: start;
   }
-
+  
   #mensagem_input::placeholder {
     text-align: center;
     color: whitesmoke;
   }
-
+  
   .contato1 button {
     border: none;
     background-color: #333333;
@@ -901,87 +695,76 @@ p {
     letter-spacing: 0.2em;
     padding: 2%;
   }
-
+  
   .contato1 button span {
     font-weight: bold;
   }
-
+  
   /* Div do Nosso Time */
   #nossaEquipe {
-    margin-left: 5%;
+    /* margin-left: 5%; */
     width: 56%;
-    margin-bottom: 250px;
+    /* margin-bottom: 250px; */
     display: inline;
     justify-content: space-evenly;
     align-items: center;
     /* margin-top: -25%; */
   }
+  
 
-  /* #equipeTitulo{
-font-family: 'Roboto', sans-serif;
-color: rgba(170, 170, 170, 1);
-font-weight: 300px;
-margin-top: 50px;
-padding: 0;
-margin-left: 5%;
-
-}
-
-#nossaEquipe img{
-  border-radius: 100%;
-  width: 350px;
-  height: 450px;
-} */
-
+  
   /*Cards da equipe*/
-  .banner-desenvolvedores {
-    margin-bottom: 250px;
-  }
-
+  
   .content-cards h1 {
-    font-size: 60px;
-    color: #D4A4FF;
+  display: flex;
+  font-size: 30px;
+  color: #D4A4FF;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100vw;
   }
-
+  
   .card {
     background-color: rgb(255, 255, 255);
-    margin: 30px;
-    width: 18%;
+
+    width: 65vw;
     height: 45vh;
     border-radius: 50%;
-    justify-content: center;
-    align-items: center;
+    justify-content: space-between;
+    align-items:center ;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    
   }
-
+  
   .card img {
-    width: 200px;
-    height: 200px;
+    width: 38vw;
+    height: 20vh;
     border-radius: 50%;
   }
-
+  
   .card a {
     color: #009EA3;
   }
-
+  
   .card h2,
   p {
     color: #3B3538;
     margin-top: 25px;
     margin-bottom: 5px;
   }
-
+  
   .card p {
     font-size: 20px;
   }
-
+  
   .part02,
   .part01 {
     display: flex;
-    justify-content: center;
-  }
-
+    align-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+}
+  
   /* FIM DOS DESENVOLVEDORES */
 }
