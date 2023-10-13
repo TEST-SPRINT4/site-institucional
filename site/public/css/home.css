@@ -99,7 +99,7 @@ body {
 .container-main{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .titulo-conteudo {
   color: #D4A4FF;
@@ -107,18 +107,36 @@ body {
   font-size: 56px;
   font-weight: 300;
   margin-left: 38%;
-  margin-top: 10%;
-  /* margin-bottom: 3%; */
+ 
+  margin-bottom: 3%;
+  display: flex;
+justify-content: start;  
 }
 .card-conteudo {
-  width: 20vw;
+  width: 25vw;
   height: 60vh;
   display: flex;
-  /* justify-content: space-around; */
+  
   flex-direction: column;
   background-color: #D4A4FF;
-  border-radius: 7px;
+  border-radius: 9px;
 }
+.card-conteudo:hover{
+  -xpedu-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  
+}
+.imagem-card1{
+  height: 70%;
+}
+.imagem-card2{
+  height: 70%;
+}
+.imagem-card3{
+  height: 70%;
+}
+
 
 
 
@@ -218,20 +236,20 @@ body {
 
 /* objetivos */
 .container_objetivos {
-  display: flexbox;
-  justify-content: flex-end;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  width: 80vw;
-  height: 100px;
-  margin-top: 12%;
-  margin-bottom: 43%;
+  width: 100%;
+  height:100%;
+  flex-direction: column;
+  align-content: center;
 }
 
 #imagemObjetivos img {
-  margin-left: 5%;
-  margin-top: -2%;
+  /* margin-left: 5%;
+  margin-top: -2%; */
 }
-
+D
 
 #objetivoUm {
   width: 450px;
@@ -253,45 +271,12 @@ body {
   font-family: 'Roboto', sans-serif;
   font-size: 56px;
   font-weight: 300;
-  margin-left: 38%;
-  margin-top: 10%;
-  /* margin-bottom: 3%; */
 }
-
-/* .objetivo_1,
-  .objetivo_2 {
-    flex: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  } */
-
-/* .objetivo_1 h1 {
-    color: #D4A4FF;
-    font-family: 'Roboto', sans-serif;
-    font-size: 200px;
-    font-style: normal;
-    line-height: normal;
-    margin-right: 10px;
-  } */
-
-/* .objetivo_2 h1 {
-    color: #075CAB;
-    font-family: 'Roboto', sans-serif;
-    font-size: 200px;
-    font-style: normal;
-    line-height: normal;
-    margin-right: 10px;
-  } */
-
-/* .objetivo_1,
-  .objetivo_2 p {
-    color: #333;
-    font-size: 3vh;
-    line-height: 36px;
-    text-align: justify;
-  } */
+.texto-objetivos{
+  font-size: 20px;
+  font-family: 'Roboto', sans-serif;
+  width: 50%;
+}
 
 /* como funciona */
 
