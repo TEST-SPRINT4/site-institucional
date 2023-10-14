@@ -83,15 +83,27 @@ Create table Parametros_Alertas (
     references Componente (idComponente)
     );
     
-Create table RegistrosRAW (
+Create table RegistrosTRUSTED (
 	idRegistros int primary key auto_increment,
+    dadosCapturados decimal(10,2),
+    dataHora datetime,
+    fkComponente int,
+    constraint fkComponente_RegistrosTRUSTED foreign key (fkComponente)
+    references Componente (idComponente),
+    fkIpservidor varchar(15),
+    constraint fkIpservidor_Registros foreign key (fkIpservidor)
+    references Servidor (enderecoIP)
+    );
+    
+    Create table RegistrosRAW (
+	idRegistrosRAW int primary key auto_increment,
     dadosCapturados double,
     dataHora datetime,
     fkComponente int,
     constraint fkComponente_RegistrosRAW foreign key (fkComponente)
     references Componente (idComponente),
     fkIpservidor varchar(15),
-    constraint fkIpservidor_Registros foreign key (fkIpservidor)
+    constraint fkIpservidor_RegistrosRAW foreign key (fkIpservidor)
     references Servidor (enderecoIP)
     );
  
@@ -108,11 +120,8 @@ create table Alertas (
     constraint fkImportancia_Alertas foreign key (fkImportancia)
     references imporntacia_Alerta (idImportancia_Alerta),
     constraint fkRegistros_Alertas foreign key (fkRegistros)
-    references RegistrosRAW (idRegistros)
+    references RegistrosTRUSTED (idRegistros)
     );
-    
-    
-    
     
 	INSERT INTO nivelAcesso (descricao) VALUES
 ('Acesso somente leitura para visualizar informações monitoradas.'),
@@ -133,13 +142,14 @@ update nivelAcesso set fkPermicoes = 3 where nivel_acesso = 1;
     select * from instituicao;
     select * from enderecoInstituicao;
     select * from RegistrosRAW;
+    select * from RegistrosTRUSTED;
     select * from Servidor;
     select * from Componente;
     
-    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 1; -- CPU
-    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 2; -- RAM
-    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 3; -- DISCO
-    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 4; -- REDEUPLOAD
+    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 1; -- CPU
+    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 2; -- RAM
+    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 3; -- DISCO
+    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 4; -- REDEUPLOAD
     select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 5; -- REDEDOWNLOAD
 
 INSERT INTO imporntacia_Alerta (apelido)
@@ -147,6 +157,8 @@ VALUES
 ('Crítico'),
 ('Grave'),
 ('Leve');
+
+-- ALERTAS (NORMALIZADO, ATENÇÃO E CRÍTICO)
 
 -- INSERT INTO Alertas (descricao, fkImportancia, fkRegistros)
 -- VALUES

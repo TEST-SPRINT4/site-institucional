@@ -21,6 +21,43 @@ body {
     margin-bottom: 3%;
 }
 
+.card_erro {
+    display: none;
+    backdrop-filter: blur(5px);/* Cor de fundo mais atraente */
+    color: #000000; /* Texto em branco para contraste */
+    width: 230px;
+    position: fixed;
+    border-radius: 10px;
+    border: 2px solid #ff150093; /* Borda ligeiramente mais fina */
+    padding: 20px; /* Maior espaçamento interno */
+    margin-left: 50%; /* Centralize horizontalmente */
+    transform: translateX(-50%); /* Centralize horizontalmente */
+    right: -250px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra suave */
+    transition: right 0.5s ease-in-out; 
+    animation: slideInFromRight 1s ease-in-out forwards;
+    animation: slideInFromRight 1s ease-in-out forwards, slideOutToRight 2s ease-in-out 2s forwards;
+  }
+  
+  @keyframes slideOutToRight {
+    0% {
+      right: 10%; /* Inicialmente, na posição desejada */
+    }
+    100% {
+      right: -500px; /* Volta para a direita após 5 segundos */
+    }
+  }
+  
+  @keyframes slideInFromRight {
+    0% {
+      right: -500px; /* Inicialmente, fora da tela à direita */
+    }
+    100% {
+      right: 10%; /* Desliza para a esquerda para uma posição desejada */
+    }
+  }
+
 .right-login {
     display: flex;
     align-items: center;

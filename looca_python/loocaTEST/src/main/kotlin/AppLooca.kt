@@ -2,18 +2,21 @@ import com.github.britooo.looca.api.group.memoria.Memoria
 
 
 fun main() {
-    val looca = LoocaAPI()
     val repository = repository()
     repository.iniciar()
-
-
     while (true){
-//        repository.RegistroREDEUPLOAD(looca)
-//        repository.RegistroREDEDOWNLOAD(looca)
-        println("rede Upload: ${looca.redeUpload}")
-        println("rede Download: ${looca.redeDowload}")
+        val looca = LoocaAPI()
+
+        repository.RegistroREDEUPLOAD(looca)
+        repository.RegistroREDEDOWNLOAD(looca)
+        repository.RegistroREDEDOWNLOADRAW(looca)
+        repository.RegistroREDEUPLOADRAW(looca)
+        println("rede Upload S/ TRATAMENTO: ${looca.redeUploadRAW}")
+        println("rede Upload TRATADO: ${looca.redeUpload}")
+        println("rede Download S/ TRATAMENTO: ${looca.redeDownloadRAW}")
+        println("rede Download TRATADO: ${looca.redeDownload}")
         println("data Hora: ${looca.dataHora}")
-        Thread.sleep(1000)
+        Thread.sleep(5000) // milissegundos
     }
 
 
