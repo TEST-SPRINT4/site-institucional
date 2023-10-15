@@ -8,8 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AquaTech | Dashboards</title>
 
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="dashboards.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
     <script src="../js/funcoes.js"></script>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -26,93 +25,165 @@
 
 <body onload=" atualizarFeed()">
 
+    <!-- INICIANDO NAVBAR SUPERIOR -->
+    <div class="nav-bar">
+        <div class="container-nav-bar">
+            <img src="../assets/icon/LogoSemFundo.png" alt="">
+
+            <ul class="navbar">
+                <li class="agora">
+                    <a href="index.html">DASHBOARD</a>
+                </li>
+                <li>
+                    <div class="">
+                        <a onclick="limparSessao()">SAIR</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
     <div class="janela">
+
+        <!-- INICIANDO NAV-BAR LATERAL -->
         <div class="header-left">
-            <h1>AquaTech</h1>
 
+            <!-- DADOS DO USUÁRIO -->
             <div class="hello">
-                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+                <img src="../Imagens/icon_user.png" alt="">
+                <div class="text-hello">
+                    <h3><span id="b_usuario">usuário</span>!</h3>
+                    <h4>Nível de permissão</h4>
+                </div>
             </div>
 
-            <div class="btn-nav-white">
-                <a href="./cards.html">
-                    <h3>Aquários</h3>
-                </a>
+            <!-- SERVIDORES CADASTRADOS -->
+            <div class="container-server">
+
+                <div class="btn-nav-current">
+                    <img class="img_icon" src="../Imagens/icon-lupa-preta.png" alt="">
+                    <a href="./dashboard.html">
+                        <h3>Monitorando</h3>
+                    </a>
+                </div>
+
+                <div class="btns-dash">
+                    <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
+                    <button class="btn-chart btn-server-select" onclick="exibirAquario(1)" id="btnAquario1">Servidor
+                        1</button>
+                    <button class="btn-chart btn-server" onclick="exibirAquario(2)" id="btnAquario2">Servidor 2</button>
+                    <button class="btn-chart btn-server" onclick="exibirAquario(3)" id="btnAquario3">Servidor 3</button>
+                    <button class="btn-chart btn-server" onclick="exibirAquario(4)" id="btnAquario4">Servidor 4</button>
+                </div>
             </div>
 
-            <div class="btn-nav">
+            <a href="./equipe.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../Imagens/icon-equipe-cinza.png" alt="">
+                    <h3>Equipe</h3>
+                </div>
+            </a>
 
-                <h3>Gráficos</h3>
+            <a href="./dashboard.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../Imagens/icon-servidor-cinza.png" alt="">
 
-            </div>
+                    <h3>Servidores</h3>
+                </div>
+            </a>
 
-            <div class="btn-nav-white">
-                <a href="./mural.html">
-                    <h3>Mural de Avisos</h3>
-                </a>
-            </div>
-
-            <div class="btn-logout" onclick="limparSessao()">
-                <h3>Sair</h3>
-            </div>
+            <a href="./dashboard.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../Imagens/icon-suporte-cinza.png" alt="">
+                    <h3>Suporte</h3>
+                </div>
+            </a>
 
         </div>
 
+        <!-- INICIANDO DASHBOARD -->
+
         <div class="dash">
-            <div class="btns-dash">
-                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-                <button class="btn-chart btn-pink" onclick="exibirAquario(1)" id="btnAquario1">Aquario 1</button>
-                <button class="btn-chart btn-white" onclick="exibirAquario(2)" id="btnAquario2">Aquario 2</button>
-                <button class="btn-chart btn-white" onclick="exibirAquario(3)" id="btnAquario3">Aquario 3</button>
-                <button class="btn-chart btn-white" onclick="exibirAquario(4)" id="btnAquario4">Aquario 4</button>
+
+            <!-- CARDS MÉDIAS -->
+            <div class="container-card">
+
+                <div class="card-media" style=" background-color: #075cab;">
+                    <h3>CPU</h3>
+                    <h1>40%</h1>
+                </div>
+
+                <div class="card-media" style=" background-color: #3280c9;">
+                    <h3>RAM</h3>
+                    <h1>09%</h1>
+                </div>
+
+                <div class="card-media" style=" background-color: #4d92d3;">
+                    <h3>DISCO</h3>
+                    <h1>01%</h1>
+                </div>
+
+                <div class="card-media" style=" background-color: #7fbcf5;">
+                    <h3>REDE</h3>
+                    <h1>30ms</h1>
+                </div>
             </div>
+
+            <!-- INICIANDO GRÁFICOS -->
             <div id="graficos">
+
                 <div id="grafico1" class="display-block">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario1">123</span>
-                    </h3>
+
                     <div class="graph">
+                        <h3 class="tituloGraficos">
+                            <span id="tituloAquario1">123</span>
+                        </h3>
                         <canvas id="myChartCanvas1"></canvas>
+                        <div class="label-captura">
+                            <p id="avisoCaptura1" style="color: rgb(206, 206, 206)"></p>
+                        </div>
                     </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura1" style="color: white"></p>
-                    </div>
+
                 </div>
 
                 <div id="grafico2" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario2"></span>
-                    </h3>
                     <div class="graph">
+                        <h3 class="tituloGraficos">
+                            <span id="tituloAquario2"></span>
+                        </h3>
                         <canvas id="myChartCanvas2"></canvas>
+                        <div class="label-captura">
+                            <p id="avisoCaptura2" style="color: white"></p>
+                        </div>
                     </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura2" style="color: white"></p>
-                    </div>
+
                 </div>
 
                 <div id="grafico3" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario3"></span>
-                    </h3>
                     <div class="graph">
+                        <h3 class="tituloGraficos">
+                            <span id="tituloAquario3"></span>
+                        </h3>
                         <canvas id="myChartCanvas3"></canvas>
+                        <div class="label-captura">
+                            <p id="avisoCaptura3" style="color: white"></p>
+                        </div>
                     </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura3" style="color: white"></p>
-                    </div>
+
                 </div>
 
                 <div id="grafico4" class="display-none">
-                    <h3 class="tituloGraficos">
-                        <span id="tituloAquario4"></span>
-                    </h3>
+
                     <div class="graph">
+                        <h3 class="tituloGraficos">
+                            <span id="tituloAquario4"></span>
+                        </h3>
                         <canvas id="myChartCanvas4"></canvas>
+                        <div class="label-captura">
+                            <p id="avisoCaptura4" style="color: white"></p>
+                        </div>
                     </div>
-                    <div class="label-captura">
-                        <p id="avisoCaptura4" style="color: white"></p>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -141,7 +212,7 @@
 
     function alterarTitulo(idAquario) {
         var tituloAquario = document.getElementById(`tituloAquario${idAquario}`)
-        tituloAquario.innerHTML = "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Aquário " + idAquario + "</span>"
+        tituloAquario.innerHTML = "Últimas medidas de hardware do <span style='color: #075cab'>servidor " + idAquario + "</span>"
     }
 
     function exibirAquario(idAquario) {
@@ -154,24 +225,24 @@
                 elementoAtual.classList.remove("display-block")
             }
             elementoAtual.classList.add("display-none")
-            
+
             // alterando estilo do botão
             let btnAtual = document.getElementById(`btnAquario${i}`)
-            if (btnAtual.classList.contains("btn-pink")) {
-                btnAtual.classList.remove("btn-pink")
+            if (btnAtual.classList.contains("btn-server-select")) {
+                btnAtual.classList.remove("btn-server-select")
             }
-            btnAtual.classList.add("btn-white")
+            btnAtual.classList.add("btn-server")
         }
-        
+
         // exibindo - ou não - o gráfico
         let graficoExibir = document.getElementById(`grafico${idAquario}`)
         graficoExibir.classList.remove("display-none")
         graficoExibir.classList.add("display-block")
-        
+
         // alterando estilo do botão
         let btnExibir = document.getElementById(`btnAquario${idAquario}`)
-        btnExibir.classList.remove("btn-white")
-        btnExibir.classList.add("btn-pink")
+        btnExibir.classList.remove("btn-server")
+        btnExibir.classList.add("btn-server-select")
     }
 
     // O gráfico é construído com três funções:
@@ -227,14 +298,14 @@
                 label: 'Umidade',
                 data: [],
                 fill: false,
-                borderColor: 'rgb(75, 192, 192)',
+                borderColor: '#075cab',
                 tension: 0.1
             },
             {
                 label: 'Temperatura',
                 data: [],
                 fill: false,
-                borderColor: 'rgb(199, 52, 52)',
+                borderColor: '#D4A4FF',
                 tension: 0.1
             }]
         };
