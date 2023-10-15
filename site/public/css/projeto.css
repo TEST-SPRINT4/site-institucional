@@ -63,15 +63,15 @@ body {
     }
 
     .container-conteudo:nth-child(odd) {
-        /* flex-direction: row-reverse; */
+        flex-direction: row-reverse;
     }
 
     .container-conteudo:nth-child(odd) img {
         order: 1;
     }
-            /*Odd e even = impar e par*/
+           /* Odd e even = impar e par */
     .container-conteudo:nth-child(even) {
-        /* flex-direction: row; */
+        flex-direction: row;
     }
 
     .container-conteudo:nth-child(even) img {

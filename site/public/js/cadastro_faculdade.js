@@ -35,17 +35,70 @@ function cadastrar() {
         bairroVar == "" || ruaVar == ""||
          telefoneVar == "" || senhaVar == "" ||
           confirmacao_senhaVar == "" || numeroVar == "") {
-        alert("Preencha os campos vazios");
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Todos os campos são obrigatórios";
+            setTimeout(function () {
+                cardErro.style.display = "none";
+                    }, 4000);
+            finalizarAguardar();
+            return false;
     } else {
         if (emailInstituicaoVar.indexOf("@") == -1 || emailInstituicaoVar.indexOf(".") == -1) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Email inválido, insira um email válido!";
+            setTimeout(function () {
+                cardErro.style.display = "none";
+                    }, 4000);
+            finalizarAguardar();
+            return false;
 
         } else if (!/[!@#\$%\^&\*\(\)\-_\+=\[\]{};':"\\|,.<>\/?]/.test(senhaVar)) {
-
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "A senha deve conter 8 caracteres e 1 especial (ex: @ ! %)";
+            setTimeout(function () {
+                cardErro.style.display = "none";
+                    }, 4000);
+            finalizarAguardar();
+            return false;
         } else if (senhaVar.length < 8) {
-
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "A senha deve conter 8 caracteres e 1 especial (ex: @ ! %)";
+            setTimeout(function () {
+                cardErro.style.display = "none";
+                    }, 4000);
+            finalizarAguardar();
+            return false;
         } else if (confirmacao_senhaVar != senhaVar) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Senhas não se coincidem";
+            setTimeout(function () {
+                cardErro.style.display = "none";
+                    }, 4000);
+            finalizarAguardar();
+            return false;
 
-        } else {
+        } else if (cepVar.length != 9 || estadoVar == "undefined" || cidadeVar == "undefined" || bairroVar == "undefined" || ruaVar == "undefined"){
+            // Obtém a input
+            const cep_input = document.querySelector("#cep_input");
+            cep_input.value = "";
+            const estado_input = document.querySelector("#estado_input");
+            estado_input.value = "";
+            const cidade_input = document.querySelector("#cidade_input");
+            cidade_input.value = "";
+            const bairro_input = document.querySelector("#bairro_input");
+            bairro_input.value = "";
+            const rua_input = document.querySelector("#rua_input");
+            rua_input.value = "";
+    
+            cardErro.style.display = "block"
+        mensagem_erro.innerHTML = "CEP inválido, insira um CEP válido!";
+        setTimeout(function () {
+            cardErro.style.display = "none";
+        }, 4000);
+        finalizarAguardar();
+        return false;         
+}
+        else {
             cadastrarInstituicao()
                 .then(() => buscarFk(cnpjVar))
                 .then((fkInstituicaoVar) => {
@@ -56,7 +109,14 @@ function cadastrar() {
                     return cadastrarFuncionario(fkInstituicaoVar[0].fkInstituicao);
                 })
                 .then(() => {
-                    window.location = 'login.html';
+
+                    cardErro.style.display = "block"
+                    mensagem_erro.innerHTML = `Cadastro Realizado com Sucesso, Bem-vindo a TEST`;
+                    cardErro.style.borderColor = "green";
+                    setTimeout(function () {
+                        cardErro.style.display = "none";
+                        window.location = 'login.html';
+                    }, 4000);
                 })
                 .catch((error) => {
                     console.error(error);
@@ -72,7 +132,6 @@ function cadastrarInstituicao() {
     var emailInstituicaoVar = emailInstituicao_input.value;
     var cnpjVar = cnpj_input.value;
     var telefoneVar = telefone_input.value;
-
 
     return fetch("/faculdade/cadastrarInstituicao", {
         method: "POST",
