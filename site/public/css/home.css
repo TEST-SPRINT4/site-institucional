@@ -112,38 +112,38 @@ justify-content: center;
 }
 .card-conteudo {
   width: 25vw;
-  height: 60vh;
+  height: 75vh;
   display: flex;
-  
+  padding: 1%;
   flex-direction: column;
   background-color: #D4A4FF;
+  text-align: justify;
   border-radius: 9px;
+  transition-duration: 0.5s;
 }
 .card-conteudo:hover{
   -xpedu-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
-  
+  box-shadow: #6B5480 4px 25px 45px;
 }
 .imagem-card1{
-  height: 38vh;
+  height: 40vh;
 }
 .imagem-card2{
-  height: 38vh;
+  height: 40vh;
 }
 .imagem-card3{
-  height: 38vh;
+  height: 40vh;
 }
 
-.container1_home {
-
+.container1_home{
   padding: 4%;
 }
 
 .container1_home img {
-  width: 100vw;
- 
-  width: 20vw;
+  /* width: 100vw; */
+  /* width: 20vw; */
   margin-left: 8%;
 }
 
@@ -152,7 +152,6 @@ justify-content: center;
 #text_home {
   font-size: 36px;
   font-weight: 400vw;
-
   margin-left: -8%;
 }
 
@@ -172,6 +171,8 @@ justify-content: center;
   height:120vh;
   flex-direction: column;
   align-content: center;
+  list-style: none;
+  text-decoration: none;
 }
 
 /* .container_objetivos p{
@@ -280,6 +281,7 @@ a {
   height: 60vh;
   padding-bottom: 35px;
   height: 50%;
+  margin-top: 17%;
 }
 
 .contato1 {
@@ -403,12 +405,12 @@ width: 100vw;
   color: #009EA3;
 }
 
-.card h2,
+/* .card h2,
 p {
   /* color: #3B3538;
   margin-top: 25px;
-  margin-bottom: 5px; */
-}
+  margin-bottom: 5px; 
+} */
 
 .card p {
   font-size: 20px;
