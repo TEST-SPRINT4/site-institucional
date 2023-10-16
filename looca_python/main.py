@@ -2,10 +2,14 @@ import mysql.connector #biblioteca responsável pela conexão com o mysql
 import psutil
 import time
 from datetime import datetime
-import ipaddress
 import socket
 import requests
+import json
 
+mensagem = {"text": "Olá, bem vindo. O sistema da TEST foi iniciado!"}
+webhook = "https://hooks.slack.com/services/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"
+
+requests.post(webhook, data=json.dumps(mensagem))
 
 connection = mysql.connector.connect(
     host='localhost',
@@ -57,10 +61,40 @@ while True:
     tamanho_em_GB = tamanho_disco / (1024 ** 3)
     uso_em_GB = disco_em_uso / (1024 ** 3) # Tratamento enviando o uso do DISCO em GB
     mem = psutil.virtual_memory()
-    used_memory_mb = mem.used / (1024 * 1024) # Tratamento enviando o uso da RAM em MB
+
+    #---------------------------------------------------------------
+
+    # Pega o tamanho total da memória
+    total_memory = psutil.virtual_memory().total
+
+    # Pega a memória usada em bytes
+    used_memory_bytes = psutil.virtual_memory().used
+
+    # Converte a memória usada para MB
+    used_memory_mb = used_memory_bytes
+
+    # Calcula a porcentagem de uso da memória
+    memory_usage_percent = used_memory_mb / total_memory * 100
+
+    #----------------------------------------------------------------
+
     dia = datetime.now()
     dataHora = 'Um dispositivo de dado foi conectado as ' + dia.strftime('%d/%m/%Y %H:%M:%S')
     info = psutil.disk_partitions()
+
+    if (uso_da_cpu >= 90):
+        uso_da_cpu_formatado = "{:.2f}".format(uso_da_cpu)
+        mensagem = {"text": f"O uso da CPU está em {uso_da_cpu_formatado}% (CRÍTICO)"}
+        requests.post(webhook, data=json.dumps(mensagem))
+
+    if (uso_do_disco >= 90):
+        mensagem = {"text": f"O uso do DISCO está em {uso_do_disco}% (CRÍTICO)"}
+        requests.post(webhook, data=json.dumps(mensagem))
+
+    if (memory_usage_percent >= 90):
+        memoria_formatado = "{:.2f}".format(memory_usage_percent)
+        mensagem = {"text": f"O uso da MEMÓRIA RAM está em {memoria_formatado}% (CRÍTICO)"}
+        requests.post(webhook, data=json.dumps(mensagem))
 
 
     def tratar_uso_da_cpu(uso_da_cpu): # Função de tratamento do uso da CPU, não deixando enviar dados menor que 0 e maior que 100
