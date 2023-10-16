@@ -1,0 +1,5 @@
+1- python e kotlin insere dados n tratados no raw
+2- no mysql exportar arquivo csv da tabela raw 
+3- R - importar o csv 
+4- Tratamento (exluir valores nulos, transformar megabytes em giga, cruzamento de informações)
+5- plotar gráfico no R e fazer análise do cruzamento de info
