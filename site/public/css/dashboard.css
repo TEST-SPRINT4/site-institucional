@@ -270,6 +270,7 @@ canvas {
 
 
 /* pagina extra - simulador */
+
 /* .simulador {
   color: white;
 
@@ -337,7 +338,8 @@ canvas {
   }
 } */
 
-
+/* TELA DE CARDS
+Simone: Provavelmente não vamos utiliza-la, mas mant */
 .regua {
   display: flex;
   flex-wrap: wrap;

@@ -36,7 +36,7 @@
                 </li>
                 <li>
                     <div class="">
-                        <a onclick="limparSessao()">SAIR</a>
+                        <a href="../index.html">SAIR</a>
                     </div>
                 </li>
             </ul>
@@ -127,8 +127,14 @@
                 </div>
 
                 <div class="card-media" style=" background-color: #7fbcf5;">
-                    <h3>REDE</h3>
-                    <h1>30ms</h1>
+                    <h3>UPLOAD REDE</h3>
+                    <h1>30mb
+                    </h1>
+                </div>
+
+                <div class="card-media" style=" background-color: #b7dcff;">
+                    <h3>DOWNLOAD REDE</h3>
+                    <h1>20mb</h1>
                 </div>
             </div>
 
@@ -143,7 +149,7 @@
                         </h3>
                         <canvas id="myChartCanvas1"></canvas>
                         <div class="label-captura">
-                            <p id="avisoCaptura1" style="color: rgb(206, 206, 206)"></p>
+                            <p id="avisoCaptura1" style="color: rgb(206, 206, 206); text-align: center;"></p>
                         </div>
                     </div>
 
@@ -156,7 +162,7 @@
                         </h3>
                         <canvas id="myChartCanvas2"></canvas>
                         <div class="label-captura">
-                            <p id="avisoCaptura2" style="color: white"></p>
+                            <p id="avisoCaptura2" style="color: white; text-align: center;"></p>
                         </div>
                     </div>
 
@@ -169,7 +175,7 @@
                         </h3>
                         <canvas id="myChartCanvas3"></canvas>
                         <div class="label-captura">
-                            <p id="avisoCaptura3" style="color: white"></p>
+                            <p id="avisoCaptura3" style="color: white ; text-align: center;"></p>
                         </div>
                     </div>
 
@@ -183,7 +189,7 @@
                         </h3>
                         <canvas id="myChartCanvas4"></canvas>
                         <div class="label-captura">
-                            <p id="avisoCaptura4" style="color: white"></p>
+                            <p id="avisoCaptura4" style="color: white ; text-align: center;"></p>
                         </div>
                     </div>
 
@@ -373,7 +379,7 @@
                     if (novoRegistro[0].momento_grafico == dados.labels[dados.labels.length - 1]) {
                         console.log("---------------------------------------------------------------")
                         console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará."
+                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Último dado capturado está inserido.<br> Como não há dados novos a exibir, o gráfico não atualizará."
                         console.log("Horário do novo dado capturado:")
                         console.log(novoRegistro[0].momento_grafico)
                         console.log("Horário do último dado capturado:")
