@@ -1,0 +1,25 @@
+Necessidades PROTO-PERSONA:
+
+alicia PPS001 - disponibilidade do sistema, acesso remoto ao sistema.
+
+monica PPS002- controle de acesso dos funcionários, clareza na exibição do problema.
+
+yoshizo PPS003- clareza na exibição do problema, notificação direta p/ equipe técnica, análise sucinta e útil do problema.
+
+Necessidades USER STORIES:
+
+UST001: monitoramento CPU
+UST002: alerta que mostre onde ocorreu o erro
+UST003: levantamento de dados (insights)
+UST004: Latência e desempenho da REDE
+UST005: Uso de disco
+UST006: Acesso rápido à dashboard e monitoramento em tempo real
+UST007: alerta fora do site (sem necessidade de ficar c/ a dash aberta
+UST008: responsividade p/ celular e computador
+UST009: hierarquia de acesso 
+UST010: segurança dos dados capturados     
+
+
+Necessidades LEAN UX CANVA:
+
+LUX001: Comunicação da equipe, captura de dados hardware, dashboard visual, sistema de acessos hierárquico, gerenciamento de acessos, notificações e alertas.
