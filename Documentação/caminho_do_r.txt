@@ -3,3 +3,6 @@
 3- R - importar o csv 
 4- Tratamento (exluir valores nulos, transformar megabytes em giga, cruzamento de informações)
 5- plotar gráfico no R e fazer análise do cruzamento de info
+
+metricas -
+é medida como o total de unidades de CPU em uso pelas tarefas que pertencem ao serviço, dividido pelo número total de unidades de CPU reservadas para as tarefas que pertencem ao serviço.	
