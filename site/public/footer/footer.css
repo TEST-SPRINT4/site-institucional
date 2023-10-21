@@ -276,6 +276,8 @@
     }
     .logoGrande{
         height: fit-content ;
+        display: flex;
+        justify-content: center;
 
     }
     .logoGrande img{
@@ -283,22 +285,25 @@
     }
     .logoSigla{
         width: 66%;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5%;
         
     }
     .logoSigla img{
-        width:100% ;
+        width:30% ;
     }
     .informacoes{
         display: flex;
-        width: fit-content;
+        width: 90%;
         justify-content: space-between;
         flex-direction: column;
     }
     .informacaoContatos{
         padding-top: 1vh;
-        width: 10vw;
+        width: 100%;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
     }
     .informacao{
         height: 20vh;

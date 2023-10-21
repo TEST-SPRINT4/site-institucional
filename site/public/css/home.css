@@ -16,16 +16,6 @@ body {
   --tamanho-footer: 100%;
 }
 
-/* 
-.header {
-  height: var(--altura-header);
-  width: var(--comprimento-header);
-} */
-
-/* .dropdown-menu {
-  display: none;
-} */
-
 .sobreBar {
   display: flex;
   align-items: center;
@@ -36,8 +26,9 @@ body {
   width: 91vw;
   height: 1px;
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #F2F2F2;
-  margin-bottom: 1%;
+  cursor: pointer;
 }
+
 
 .hiddenPc {
   display: none;
@@ -85,79 +76,83 @@ body {
 }
 
 #main_home {
-
   background: url("https://img.freepik.com/vetores-premium/fundo-de-linhas-abstratas-linhas-pretas-finas-em-bg-branco_760443-211.jpg?w=2000");
   background-size: cover;
   background-attachment: fixed;
-  height: 85vh;
+  height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 100vw;
+  width: 100%;
 }
-.container-main{
+
+
+.container1_home {
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-.titulo-conteudo {
-  color: #D4A4FF;
-  font-family: 'Roboto', sans-serif;
-  font-size: 56px;
-  font-weight: 300px;
-  margin-bottom: 3%;
-  display: flex;
-justify-content: center;  
-}
-.card-conteudo {
-  width: 25vw;
-  height: 75vh;
-  display: flex;
-  padding: 1%;
   flex-direction: column;
-  background-color: #D4A4FF;
-  text-align: justify;
-  border-radius: 9px;
-  transition-duration: 0.5s;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
-.card-conteudo:hover{
-  -xpedu-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
-  box-shadow: #6B5480 4px 25px 45px;
-}
-.imagem-card1{
-  height: 40vh;
-}
-.imagem-card2{
-  height: 40vh;
-}
-.imagem-card3{
-  height: 40vh;
-}
-
-.container1_home{
-  padding: 4%;
-}
-
-.container1_home img {
-  /* width: 100vw; */
-  /* width: 20vw; */
-  margin-left: 8%;
-}
-
 
 
 #text_home {
   font-size: 36px;
   font-weight: 400vw;
-  margin-left: -8%;
 }
 
 #home_imagem {
   position: relative;
   display: inline-block;
+}
+
+.container-main {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.titulo-conteudo {
+  color: #D4A4FF;
+  font-weight: 700;
+  font-size: 55px;
+  margin-bottom: 3%;
+  margin-top: 3%;
+  display: flex;
+  justify-content: center;
+}
+
+.card-conteudo {
+  width: 25vw;
+  height: 70vh;
+  display: flex;
+  padding: 1%;
+  flex-direction: column;
+  background-color: #D4A4FF;
+  text-align: center;
+  border-radius: 9px;
+  transition-duration: 0.5s;
+}
+
+.card-conteudo:hover {
+  -xpedu-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  box-shadow: #8d8c8c 4px 25px 45px;
+}
+
+.imagem-card1 {
+  height: 40vh;
+}
+
+.imagem-card2 {
+  height: 40vh;
+}
+
+.imagem-card3 {
+  height: 40vh;
 }
 
 /* sobre nós */
@@ -167,8 +162,8 @@ justify-content: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  height:120vh;
+  width: 100%;
+  height: 120vh;
   flex-direction: column;
   align-content: center;
   list-style: none;
@@ -184,17 +179,18 @@ justify-content: center;
 
 #titulo_objetivos {
   color: #075CAB;
-  font-family: 'Roboto', sans-serif;
-  font-size: 56px;
-  font-weight: 300;
+  font-weight: 700px;
+  font-size: 55px;
 }
-.texto-objetivos{
+
+.texto-objetivos {
   font-size: 20px;
   font-family: 'Roboto', sans-serif;
   width: 50%;
 }
-.imagemObjetivos .img{
-  width: 100vw;
+
+.imagemObjetivos .img {
+  width: 100%;
   height: 30vh;
 }
 
@@ -202,15 +198,14 @@ justify-content: center;
 
 .tituloComoFunciona {
   height: 3vh;
-  padding: 4rem;
-  margin-top: -12%;
+  margin-top: 10%;
 }
 
 #funciona_titulo {
   color: #D4A4FF;
-  font-size: 8vh;
   padding-left: 5rem;
-  font-family: 'Roboto', sans-serif;
+  font-weight: 700px;
+  font-size: 55px;
 }
 
 .container_funcionamento {
@@ -236,8 +231,6 @@ justify-content: center;
 a {
   text-align: center;
 }
-
-
 
 
 .container_funcionamento a {
@@ -278,10 +271,9 @@ a {
 .containerContato {
   display: flex;
   justify-content: center;
-  height: 60vh;
-  padding-bottom: 35px;
-  height: 50%;
-  margin-top: 17%;
+  height: 75vh;
+  margin-bottom: 8%;
+  margin-top: 8%;
 }
 
 .contato1 {
@@ -290,8 +282,9 @@ a {
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  margin-bottom: 1rem;
   width: 70vw;
+  height: fit-content;
+  margin-bottom: 5%;
 }
 
 .contato1 h1 {
@@ -338,6 +331,7 @@ a {
   width: 20vw;
   letter-spacing: 0.2em;
   padding: 2%;
+  margin-bottom: 5%;
 }
 
 .contato1 button span {
@@ -374,12 +368,13 @@ margin-left: 5%;
 /*Cards da equipe*/
 
 .content-cards h1 {
-display: flex;
-  font-size: 60px;
+  display: flex;
   color: #D4A4FF;
-justify-content: space-evenly;
-align-items: center;
-width: 100vw;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  font-weight: 700px;
+  font-size: 55px;
 }
 
 .card {
@@ -387,18 +382,18 @@ width: 100vw;
   /* margin: 30px; */
   width: 15vw;
   height: 45vh;
-  border-radius: 50%;
+  border-radius: 15px;
   justify-content: space-between;
-  align-items:center ;
+  align-items: center;
   display: flex;
   flex-direction: column;
-  
+  padding: 2%;
+
 }
 
 .card img {
-  width: 7vw;
   height: 20vh;
-  border-radius: 50%;
+  border-radius: 15px;
 }
 
 .card a {
@@ -420,6 +415,7 @@ p {
 .part01 {
   display: flex;
   justify-content: space-around;
+  margin-bottom: 3%;
 }
 
 /* FIM DOS DESENVOLVEDORES */
@@ -439,8 +435,8 @@ p {
     padding: 0;
     font-family: 'Roboto', sans-serif;
   }
-  
- 
+
+
   :root {
     --altura-header: 80px;
     --comprimento-header: 100%;
@@ -449,30 +445,29 @@ p {
     --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
     --tamanho-footer: 100%;
   }
-  
+
   /* 
   .header {
     height: var(--altura-header);
     width: var(--comprimento-header);
   } */
-  
+
   /* .dropdown-menu {
     display: none;
   } */
-  
+
   .sobreBar {
     display: flex;
     align-items: center;
     flex-direction: column;
   }
-  
+
   .bar {
     width: 91vw;
     height: 1px;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), #F2F2F2;
-    margin-bottom: 1%;
   }
-  
+
   .hiddenPc {
     display: none;
   }
@@ -482,18 +477,18 @@ p {
     align-items: center;
     height: 80vh;
   }
-  
+
   .header a {
     text-decoration: none;
     color: #000000;
     display: flex;
     justify-content: center;
   }
-  
+
   .agora {
     font-weight: 800px;
   }
-  
+
   .navbar {
     width: 40vw;
     display: flex;
@@ -502,7 +497,7 @@ p {
     list-style: none;
     text-decoration: none;
   }
-  
+
   .titulo {
     color: #000000;
     width: fit-content;
@@ -510,198 +505,207 @@ p {
     font-size: 40px;
     /* margin: -80px; */
   }
-  
+
   #main_home {
-  
     background: url("https://img.freepik.com/vetores-premium/fundo-de-linhas-abstratas-linhas-pretas-finas-em-bg-branco_760443-211.jpg?w=2000");
     background-size: cover;
     background-attachment: fixed;
-    height: 65vh;
+    height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 100vw;
+    width: 100%;
+    margin-bottom: 5%;
   }
-  .container-main{
+
+  .container-main {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: column;
+    height: fit-content;
   }
-  .titulo-conteudo{
+
+  .titulo-conteudo {
     color: #D4A4FF;
     font-family: 'Roboto', sans-serif;
     font-size: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-   
+    width: 100%;
+
   }
+
   .card-conteudo {
     width: 80vw;
-    height: 70vh;
+    height: fit-content;
     display: flex;
     justify-content: center;
     flex-direction: column;
     background-color: #D4A4FF;
     border-radius: 9px;
+    margin-bottom: 4%;
   }
-  .card-conteudo:hover{
+
+  /* .card-conteudo:hover {
     -xpedu-transform: scale(1.1);
     -ms-transform: scale(1.1);
     transform: scale(1.1);
-    
-  }
-  .imagem-card1{
+
+  } */
+
+  .imagem-card1 {
     height: 38vh;
   }
-  .imagem-card2{
+
+  .imagem-card2 {
     height: 38vh;
   }
-  .imagem-card3{
+
+  .imagem-card3 {
     height: 38vh;
   }
-  
+
   .container1_home {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 4%;
   }
-  
+
   .container1_home img {
-    width: 100vw;
+    width: 70%;
     display: flex;
     /* flex-direction: column; */
     align-items: center;
-    width: 20vw;
- 
+
   }
-  
-  
-  
+
+
+
   #text_home {
     font-size: 20px;
     /* font-weight: 4vw; */
     justify-content: center;
     display: flex;
-    
+
   }
-  
+
   #home_imagem {
     position: relative;
     display: inline-block;
   }
-  
+
   /* sobre nós */
-  
+
   /* objetivos */
   .container_objetivos {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 100vw;
-    height:120vh;
+    width: 100%;
+    height: 100vh;
     flex-direction: column;
     align-content: center;
   }
-  
- .container_objetivos img{
-  width: 100vw;
-  height: 30vh;
- }
-  
-  
-  
+
+  .container_objetivos img {
+    width: 100%;
+    height: 30vh;
+  }
+
+
+
   #titulo_objetivos {
     color: #075CAB;
     font-family: 'Roboto', sans-serif;
     font-size: 30px;
-   
+
   }
-  .texto-objetivos{
+
+  .texto-objetivos {
     font-size: 15px;
     font-family: 'Roboto', sans-serif;
     width: 90vw;
+    margin-top: 5%;
   }
 
-  
+
   /* contato */
-  
+
   .containerContato {
     display: flex;
     justify-content: center;
-    height: 80vh;
-    padding-bottom: 35px;
-   width: 100vw;
+    align-items: center;
+    height: 70vh;
+    width: 100%;
   }
-  
+
   .contato1 {
     background-color: rgb(7, 92, 171, 0.433);
     display: flex;
     align-items: center;
     justify-content: space-between;
     flex-direction: column;
-    margin-bottom: 1rem;
-    width: 100vw;
+    width: 100%;
   }
-  
+
   .contato1 h1 {
     color: white;
     font-size: 5vh;
     font-weight: 400;
-    width: 100vw;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
   }
-  
+
   .contato1 input {
     text-decoration: none;
     border: none;
     color: #000000;
     font-weight: 700;
     height: 7vh;
-    width: 40vw;
+    width: 60vw;
     font-size: 0.7em;
     background-color: #075cab4b;
     text-align: center;
   }
-  
+
   .contatoInputs {
     padding: 1rem;
-  
+
   }
-  
+
   .contatoInputs input::placeholder {
     color: whitesmoke;
   }
-  
+
   #mensagem_input {
     text-align: start;
   }
-  
+
   #mensagem_input::placeholder {
     text-align: center;
     color: whitesmoke;
   }
-  
+
   .contato1 button {
     border: none;
     background-color: #333333;
     color: white;
     font-family: 'Roboto', sans-serif;
-    width: 20vw;
+    width: 60vw;
     letter-spacing: 0.2em;
     padding: 2%;
   }
-  
+
   .contato1 button span {
     font-weight: bold;
   }
-  
+
   /* Div do Nosso Time */
   #nossaEquipe {
     /* margin-left: 5%; */
@@ -712,61 +716,63 @@ p {
     align-items: center;
     /* margin-top: -25%; */
   }
-  
 
-  
+
+
   /*Cards da equipe*/
-  
+
   .content-cards h1 {
-  display: flex;
-  font-size: 30px;
-  color: #D4A4FF;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 100vw;
+    display: flex;
+    font-size: 30px;
+    color: #D4A4FF;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100vw;
   }
-  
+
   .card {
     background-color: rgb(255, 255, 255);
-
-    width: 65vw;
+    width: 55vw;
     height: 45vh;
-    border-radius: 50%;
+    border-radius: 15px;
     justify-content: space-between;
-    align-items:center ;
+    align-items: center;
     display: flex;
     flex-direction: column;
-    
+    padding: 2%;
+    margin-bottom: 5%;
   }
-  
+
   .card img {
-    width: 38vw;
     height: 20vh;
-    border-radius: 50%;
+    border-radius: 15px;
   }
-  
+
   .card a {
     color: #009EA3;
   }
-  
+
   .card h2,
   p {
     color: #3B3538;
     margin-top: 25px;
     margin-bottom: 5px;
+    text-align: center;
   }
-  
+
   .card p {
     font-size: 20px;
   }
-  
+
   .part02,
   .part01 {
     display: flex;
     align-content: space-around;
     flex-wrap: wrap;
     flex-direction: column-reverse;
-}
-  
+    margin-bottom: 0;
+
+  }
+
   /* FIM DOS DESENVOLVEDORES */
 }
