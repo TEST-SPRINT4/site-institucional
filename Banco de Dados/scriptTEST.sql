@@ -25,11 +25,11 @@ CREATE TABLE enderecoInstituicao (
 	);
 
 create table permicoes (
-idPermicoes int primary key auto_increment,
-visualizar tinyint,
-editar tinyint,
-cadastrar tinyint,
-deletar tinyint
+	idPermicoes int primary key auto_increment,
+	visualizar tinyint,
+	editar tinyint,
+	cadastrar tinyint,
+	deletar tinyint
 );
 
 CREATE TABLE nivelAcesso (
@@ -107,7 +107,7 @@ Create table RegistrosTRUSTED (
     references Servidor (enderecoIP)
     );
  
- Create table imporntacia_Alerta (
+ Create table importancia_Alerta (
 	idImportancia_Alerta int primary key auto_increment,
     apelido varchar(45)
     );
@@ -118,7 +118,7 @@ create table Alertas (
     fkImportancia int,
     fkRegistros int,
     constraint fkImportancia_Alertas foreign key (fkImportancia)
-    references imporntacia_Alerta (idImportancia_Alerta),
+    references importancia_Alerta (idImportancia_Alerta),
     constraint fkRegistros_Alertas foreign key (fkRegistros)
     references RegistrosTRUSTED (idRegistros)
     );
@@ -152,7 +152,7 @@ update nivelAcesso set fkPermicoes = 3 where nivel_acesso = 1;
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 4; -- REDEUPLOAD
     select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 5; -- REDEDOWNLOAD
 
-INSERT INTO imporntacia_Alerta (apelido)
+INSERT INTO importancia_Alerta (apelido)
 VALUES
 ('Crítico'),
 ('Grave'),
