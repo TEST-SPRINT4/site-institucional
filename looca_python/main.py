@@ -2,12 +2,16 @@ import mysql.connector #biblioteca responsável pela conexão com o mysql
 import psutil
 import time
 from datetime import datetime
-import socket
-import requests
-import json
+import socket #Biblioteca responsável pela captura do ip da maquina
+import requests #Biblioteca responsável por conectar o SLACK com o pyhton
+import json #Slack também.
+import speedtest #Biblioteca responsável pela captura da latência
+import hashlib #Biblioteca responsável por criptografar o ip
 
 mensagem = {"text": "Olá, bem vindo. O sistema da TEST foi iniciado!"}
-webhook = "https://hooks.slack.com/services/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"
+webhook = "https://hooks.slack.com/services/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"
+
+print(mensagem)
 
 requests.post(webhook, data=json.dumps(mensagem))
 
@@ -31,6 +35,14 @@ def get_ip(): # Função responsável por capturar o ip da maquina
 # Isso significa que, se você copiar e colar o código em um editor de texto e executá-lo,
 # o código específico será executado. No entanto, se você importar o código como um módulo
 # em outro programa Python, o código específico não será executado.
+
+def hash_ip(ip):
+    sha256 = hashlib.sha256()
+    sha256.update(ip.encode('utf-8'))
+    return sha256.hexdigest()
+
+
+
 if __name__ == "__main__":
     ip = get_ip()
     print(ip)
@@ -61,6 +73,21 @@ while True:
     tamanho_em_GB = tamanho_disco / (1024 ** 3)
     uso_em_GB = disco_em_uso / (1024 ** 3) # Tratamento enviando o uso do DISCO em GB
     mem = psutil.virtual_memory()
+    mem_used = mem.used
+    uso_memoria_gb = round(mem.used / (1024 ** 3), 2)
+
+#-------------------------------------------------------------------------------------
+
+    #Parte do código responsável por capturar a latência da internet que a maquina/servidor está conectado
+    st = speedtest.Speedtest()
+
+    # Medir a latência (ping)
+    ping_result = st.get_best_server()
+    ping_latency = ping_result["latency"]
+
+    print(f"Latência da Internet: {ping_latency} ms")
+
+# -------------------------------------------------------------------------------------
 
     #---------------------------------------------------------------
 
@@ -104,43 +131,57 @@ while True:
             return uso_da_cpu
 
 
-    def tratar_uso_de_memoria_ram(used_memory_mb): # Função de tratamento do uso da memória RAM, não deixando enviar dados menor que 0 e dados maior que tamanho da memoria
-        if used_memory_mb < 0 or used_memory_mb > mem.total:
+    def tratar_uso_de_memoria_ram(uso_memoria_gb): # Função de tratamento do uso da memória RAM, não deixando enviar dados menor que 0 e dados maior que tamanho da memoria
+        if uso_memoria_gb < 0 or uso_memoria_gb > mem.total:
             return None
         else:
-            return used_memory_mb
+            return uso_memoria_gb
 
 
 
 # Valores obtidos das métricas do sistema
     processador = tratar_uso_da_cpu(uso_da_cpu)
-    memoriaRAM = tratar_uso_de_memoria_ram(used_memory_mb)
+    memoriaRAM = tratar_uso_de_memoria_ram(uso_memoria_gb)
     armazenamento = (uso_em_GB)
+    armazenamento_arredondado = round(float(armazenamento), 2)
+    memoriaRAM_arredondado = round(float(memoriaRAM), 2)
+    processador_arredondo = round(float(processador), 2)
+
+    # SQL para inserir na tabela RegistrosTRUSTED (CPU)
+    sql22 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
+    values22 = (processador_arredondo, dia.strftime('%Y-%m-%d %H:%M:%S'), 1, ip)
+
+    sql33 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
+    values33 = (memoriaRAM_arredondado, dia.strftime('%Y-%m-%d %H:%M:%S'), 2, ip)
+
+    sql44 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
+    values44 = (armazenamento_arredondado, dia.strftime('%Y-%m-%d %H:%M:%S'), 3, ip)
+
+    sql55 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
+    values55 = (round(ping_latency, 2), dia.strftime('%Y-%m-%d %H:%M:%S'), 4, ip)
 
     # SQL para inserir na tabela RegistrosRAW (CPU)
     sql2 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
-    values2 = (processador, dia.strftime('%Y-%m-%d %H:%M:%S'), 1, ip)
+    values2 = (ping_latency, dia.strftime('%Y-%m-%d %H:%M:%S'), 4, ip)
 
     sql3 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
-    values3 = (memoriaRAM, dia.strftime('%Y-%m-%d %H:%M:%S'), 2, ip)
-
-    sql4 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
-    values4 = (armazenamento, dia.strftime('%Y-%m-%d %H:%M:%S'), 3, ip)
-
-
+    values3 = (disco_em_uso, dia.strftime('%Y-%m-%d %H:%M:%S'), 3, ip)
 
 #Aqui, independente do valor e dos alertas os dados serão inseridos
     try:
         # Executa a inserção
         cursor.execute(sql2, values2)
         cursor.execute(sql3, values3)
-        cursor.execute(sql4, values4)
+        cursor.execute(sql22, values22)
+        cursor.execute(sql33, values33)
+        cursor.execute(sql44, values44)
+        cursor.execute(sql55, values55)
 
         # Confirma as alterações no banco de dados
         connection.commit()
         print("Inserção de dados realizada com sucesso!")
 
     except mysql.connector.Error as err:
-        print("Erro ao inserir na tabela RegistrosRAW:", err)
+        print("Erro ao inserir nas tabelas Registros:", err)
 
-    time.sleep(5)
+    time.sleep(1)

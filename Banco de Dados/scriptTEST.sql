@@ -12,6 +12,9 @@ CREATE TABLE instituicao (
     telefone char(14)
 );
 
+insert into instituicao values
+	(null, 'sptech', 'alessandro', 'asdasdasdasd@gmail.com', '123456789123456789', 12345678912345);
+
 CREATE TABLE enderecoInstituicao (
 	idEndereco int primary key auto_increment,
 	CEP char(10),
@@ -69,8 +72,7 @@ insert into Componente values
 	(null, "CPU"),
     (null, "RAM"),
     (null, "DISCO"),
-    (null, "REDE-UPLOAD"),
-    (null, "REDE-DOWNLOAD");
+    (null, "LATÊNCIA-REDE");
     
     
 Create table Parametros_Alertas (
@@ -85,7 +87,7 @@ Create table Parametros_Alertas (
     
 Create table RegistrosTRUSTED (
 	idRegistros int primary key auto_increment,
-    dadosCapturados decimal(10,2),
+    dadosCapturados double,
     dataHora datetime,
     fkComponente int,
     constraint fkComponente_RegistrosTRUSTED foreign key (fkComponente)
@@ -149,8 +151,20 @@ update nivelAcesso set fkPermicoes = 3 where nivel_acesso = 1;
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 1; -- CPU
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 2; -- RAM
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 3; -- DISCO
-    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 4; -- REDEUPLOAD
-    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 5; -- REDEDOWNLOAD
+    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 4; -- LATÊNCIA
+    
+    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 1; -- CPU
+    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 2; -- RAM
+    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 3; -- DISCO
+    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 4; -- LATÊNCIA
+    
+    select dadoscapturados, dataHora from RegistrosTRUSTED join Servidor on fkIpservidor = 'coloque_o_IP';
+    
+    SELECT dadoscapturados, dataHora
+FROM RegistrosTRUSTED
+JOIN Servidor ON RegistrosTRUSTED.fkIpservidor = Servidor.enderecoIP
+JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+WHERE Servidor.enderecoIP = '26.74.155.225' AND Componente.modelo = 'CPU';
 
 INSERT INTO importancia_Alerta (apelido)
 VALUES
