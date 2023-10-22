@@ -172,10 +172,10 @@ body {
 
 /* CADASTRO DA EQUIPE */
 
-.card-cadastro-equipe {
+.card-cadastro-servidor {
   width: 70vw;
   height: 80vh;
-  background: rgba(120, 174, 255, 0.4);
+  background: rgba(212, 164, 255, 0.40);
   margin-bottom: 5%;
   display: flex;
   border-radius: 15px;
@@ -193,7 +193,7 @@ body {
 }
 
 .card-equipe{
-  background-image:url(../assets/imgsFigma/bg-blue.jpg);
+  background-image:url(../assets/imgsFigma/bg-login.jpg);
   background-size: cover;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
@@ -275,12 +275,12 @@ body {
   font-size: x-large;
 }
 
-/* EDITAR EQUIPE */
+/* EDITAR SERVIDOR */
 
-.card-editar-equipe {
+.card-editar-servidor {
   width: 70vw;
   height: 80vh;
-  background: rgba(120, 174, 255, 0.4);
+  background: rgba(212, 164, 255, 0.40);
   margin-bottom: 5%;
   display: none;
   border-radius: 15px;
@@ -288,12 +288,12 @@ body {
   
 }
 
-/* EXCLUIR EQUIPE */
+/* EXCLUIR SERVIDOR */
 
-.card-excluir-equipe {
+.card-excluir-servidor {
   width: 70vw;
   height: 80vh;
-  background: rgba(120, 174, 255, 0.4);
+  background: rgba(212, 164, 255, 0.40);
   margin-bottom: 5%;
   display: none;
   border-radius: 15px;

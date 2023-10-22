@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TEST | Dashboards</title>
 
-    <link rel="stylesheet" href="../css/equipe.css">
+    <link rel="stylesheet" href="../css/servidores.css">
     <!-- <script src="../js/funcoes.js"></script> -->
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -78,16 +78,16 @@
 
             <!-- botão equipe -->
             <a href="./equipe.html">
-                <div class="btn-nav-current">
-                    <img class="img_icon" src="../Imagens/icon-equipe-preta.png" alt="">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../Imagens/icon-equipe-cinza.png" alt="">
                     <h3>Equipe</h3>
                 </div>
             </a>
 
             <!-- Botão servidores -->
             <a href="./servidores.html">
-                <div class="btn-nav">
-                    <img class="img_icon" src="../Imagens/icon-servidor-cinza.png" alt="">
+                <div class="btn-nav-current">
+                    <img class="img_icon" src="../Imagens/icon-servidor-preto.png" alt="">
 
                     <h3>Servidores</h3>
                 </div>
@@ -107,33 +107,40 @@
 
         <div class="dash">
             <!-- INICIANDO CARDS FORMULARIO -->
-            <div class="card-cadastro-equipe" id="cadastrarFun">
+            <div class="card-cadastro-servidor" id="cadastrarSer">
 
 
                 <div class="card-form">
                     <!-- INICIANDO CAMPOS DO FORMULARIO -->
                     <div class="text-field">
 
-                        <label class="label" for="nome">NOME</label><br>
-                        <input type="text" id="input_nome" placeholder=" Digite o nome do funcionário"><br>
+                        <label class="label" for="ip">IP DO SERVIDOR</label><br>
+                        <input type="text" id="input_ip" placeholder=" Digite o endereço de IP do servidor"><br>
 
-                        <label class="label" for="permissão">PERMISSÃO</label><br>
+                        <label class="label" for="nome">SISTEMA OPERACIONAL</label><br>
                         <select id="input_permissao">
                             <option value="" disabled selected>Selecione...</option>
-                            <option value="1">Visualizar</option>
-                            <option value="2">Visualizar e editar</option>
-                            <option value="3">Visualizar, editar, cadastrar, e excluir</option>
+                            <option value="Windows Server">Windows Server</option>
+                            <option value="Ubuntu Server">Ubuntu Server</option>
+                            <option value="Debian">Debian</option>
+                            <option value="CentOS">CentOS</option>
+                            <option value="Alpine Linux">Alpine Linux</option>
+                            <option value="Red Hat Enterprise Linux">Red Hat Enterprise Linux (RHEL)</option>
+                            <option value="Unix">Unix</option>
+                            <option value="Mandriva">Mandriva</option>
+                            <option value="Solaris">Solaris</option>
+                            <option value="FreeBSD">FreeBSD</option>
+                            <option value="VMware vSphere">VMware vSphere</option>
+                            <option value="Mware ESXi">VMware ESXi</option>
+                            <option value="AIX">AIX</option>
+                            <option value="HP-UX">HP-UX</option>
+                            <option value="Docker">Docker</option>
+                            
                         </select><br>
 
-                        <label class="label" for="email">E-MAIL</label><br>
-                        <input type="email" id="input_email" placeholder=" Digite o e-mail do funcionário"><br>
-
-                        <label for="senha">SENHA</label><br>
-                        <input type="password" id="input_senha" placeholder=" Digite uma senha para o funcionário"><br>
-
-
-                        <label for="senha">CONFIRMAR SENHA</label><br>
-                        <input type="password" id="input_confirmar_senha" placeholder=" Digite a senha novamente"><br>
+                        <label class="label" for="localização">LOCALIZAÇÃO </label><br>
+                        <input type="text" id="input_localizacao" placeholder=" Digite uma breve localização (prédio, andar, sala...)"><br>
+                        
                     </div>
 
 
@@ -143,37 +150,50 @@
                 </div>
 
                 <div class="card-equipe">
-                    <button class="btn-equipe" onclick="editarFuncionario()">
-                        <h4>EDITAR FUNCIONÁRIO</h4>
+                    <button class="btn-equipe" onclick="editarServidor()">
+                        <h4>EDITAR SERVIDOR</h4>
                     </button>
-                    <button class="btn-select" onclick="cadastrarFuncionario()">
-                        <h2> ▷ CADASTRO DE FUNCIONÁRIO</h2>
+                    <button class="btn-select" onclick="cadastrarServidor()">
+                        <h2> ▷ CADASTRAR SERVIDOR</h2>
                     </button>
-                    <button class="btn-equipe" onclick="excluirFuncionario()">
-                        <h4>EXCLUIR FUNCIONÁRIO</h4>
+                    <button class="btn-equipe" onclick="excluirServidor()">
+                        <h4>EXCLUIR SERVIDOR</h4>
                     </button>
                 </div>
             </div>
 
-            <div class="card-editar-equipe" id="editarFun">
+            <div class="card-editar-servidor" id="editarSer">
 
                 <div class="card-form">
                     <!-- INICIANDO CAMPOS DO FORMULARIO -->
                     <div class="text-field">
 
-                        <label class="label" for="email">E-MAIL DO FUNCIONÁRIO</label><br>
-                        <input type="text" id="input_email" placeholder="Digite o e-mail do funcionário que terá alteração"><br>
+                        <label class="label" for="nome">IP DO SERVIDOR</label><br>
+                        <input type="text" id="input_email" placeholder="Digite o IP do servidor"><br>
 
-                        <!-- <label class="label" for="nome">NOME</label><br>
-                        <input type="text" id="input_email" placeholder=" Digite o nome do funcionário"><br> -->
-
-                        <label class="label" for="nome">NOVA PERMISSÃO</label><br>
+                        <label class="label" for="nome">NOVO SISTEMA OPERACIONAL</label><br>
                         <select id="input_permissao">
                             <option value="" disabled selected>Selecione...</option>
-                            <option value="1">Visualizar</option>
-                            <option value="2">Visualizar e editar</option>
-                            <option value="3">Visualizar, editar, cadastrar e excluir</option>
+                            <option value="Windows Server">Windows Server</option>
+                            <option value="Ubuntu Server">Ubuntu Server</option>
+                            <option value="Debian">Debian</option>
+                            <option value="CentOS">CentOS</option>
+                            <option value="Alpine Linux">Alpine Linux</option>
+                            <option value="Red Hat Enterprise Linux">Red Hat Enterprise Linux (RHEL)</option>
+                            <option value="Unix">Unix</option>
+                            <option value="Mandriva">Mandriva</option>
+                            <option value="Solaris">Solaris</option>
+                            <option value="FreeBSD">FreeBSD</option>
+                            <option value="VMware vSphere">VMware vSphere</option>
+                            <option value="Mware ESXi">VMware ESXi</option>
+                            <option value="AIX">AIX</option>
+                            <option value="HP-UX">HP-UX</option>
+                            <option value="Docker">Docker</option>
+                            
                         </select><br>
+
+                        <label class="label" for="nome">NOVA LOCALIZAÇÃO</label><br>
+                        <input type="text" id="input_email" placeholder=" Digite a nova localização"><br>
 
                     </div>
 
@@ -184,27 +204,29 @@
                 </div>
 
                 <div class="card-equipe">
-                    <button class="btn-select" onclick="editarFuncionario()">
-                        <h2> ▷ EDITAR FUNCIONÁRIO</h2>
+                    <button class="btn-select" onclick="editarServidor()">
+                        <h2> ▷ EDITAR SERVIDOR</h2>
                     </button>
-                    <button class="btn-equipe" onclick="cadastrarFuncionario()">
-                        <h4>CADASTRAR FUNCIONÁRIO</h4>
+                    <button class="btn-equipe" onclick="cadastrarServidor()">
+                        <h4>CADASTRAR SERVIDOR</h4>
                     </button>
-                    <button class="btn-equipe"  onclick="excluirFuncionario()">
-                        <h4>EXCLUIR FUNCIONÁRIO</h4>
+                    <button class="btn-equipe"  onclick="excluirServidor()">
+                        <h4>EXCLUIR SERVIDOR</h4>
                     </button>
                 </div>
             </div>
 
-            <div class="card-excluir-equipe" id="excluirFun">
+            <div class="card-excluir-servidor" id="excluirSer">
 
                 <div class="card-form">
                     <!-- INICIANDO CAMPOS DO FORMULARIO -->
                     <div class="text-field">
 
-                        <label class="label" for="email">E-MAIL DO FUNCIONÁRIO</label><br>
-                        <input type="text" id="input_email" placeholder=" Digite o e-mail do funcionário que será excluido"><br>
+                        <label class="label" for="ip">IP DO SERVIDOR</label><br>
+                        <input type="text" id="input_ip" placeholder="Digite o IP do servidor que será excluido"><br>
+
                     </div>
+
 
                     <div class="container-button">
                         <button onclick="entrar()" class="botao-login">EXCLUIR <span class="seta">→</span></button>
@@ -212,17 +234,19 @@
                 </div>
 
                 <div class="card-equipe">
-                    <button class="btn-equipe" onclick="editarFuncionario()">
-                        <h4>EDITAR FUNCIONÁRIO</h4>
+                    <button class="btn-equipe" onclick="editarServidor()">
+                        <h4>EDITAR SERVIDOR</h4>
                     </button>
-                    <button class="btn-equipe" onclick="cadastrarFuncionario()">
-                        <h4>CADASTRAR FUNCIONÁRIO</h4>
+                    <button class="btn-equipe" onclick="cadastrarServidor()">
+                        <h4>CADASTRAR SERVIDOR</h4>
                     </button>
-                    <button class="btn-select" onclick="excluirFuncionario()">
-                        <h2> ▷ EXCLUIR FUNCIONÁRIO</h2>
+                    <button class="btn-select" onclick="excluirServidor()">
+                        <h2> ▷ EXCLUIR SERVIDOR</h2>
                     </button>
                 </div>
             </div>
+
+            
         </div>
     </div>
 
@@ -234,22 +258,22 @@
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    function cadastrarFuncionario() {
-        cadastrarFun.style.display = 'flex';
-        editarFun.style.display = 'none';
-        excluirFun.style.display = 'none';
+    function cadastrarServidor() {
+        cadastrarSer.style.display = 'flex';
+        editarSer.style.display = 'none';
+        excluirSer.style.display = 'none';
     }
 
-    function editarFuncionario() {
-        cadastrarFun.style.display = 'none';
-        editarFun.style.display = 'flex';
-        excluirFun.style.display = 'none';
+    function editarServidor() {
+        cadastrarSer.style.display = 'none';
+        editarSer.style.display = 'flex';
+        excluirSer.style.display = 'none';
     }
 
-    function excluirFuncionario() {
-        excluirFun.style.display = 'flex';
-        cadastrarFun.style.display = 'none';
-        editarFun.style.display = 'none';
+    function excluirServidor() {
+        excluirSer.style.display = 'flex';
+        cadastrarSer.style.display = 'none';
+        editarSer.style.display = 'none';
         
     }
 </script>
