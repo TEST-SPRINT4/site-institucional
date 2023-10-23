@@ -1,7 +1,7 @@
 create database test;
 use test;
 
--- drop database test;
+drop database test;
 
 CREATE TABLE instituicao (
 	idinstituicao INT PRIMARY KEY AUTO_INCREMENT,
@@ -13,7 +13,7 @@ CREATE TABLE instituicao (
 );
 
 insert into instituicao values
-	(null, 'sptech', 'alessandro', 'asdasdasdasd@gmail.com', '123456789123456789', 12345678912345);
+	(null, 'sptech', 'Simone', 's@gmail.com', '123456789123456789', 12345678912345);
 
 CREATE TABLE enderecoInstituicao (
 	idEndereco int primary key auto_increment,
@@ -57,11 +57,18 @@ CREATE TABLE funcionario (
     );
     
 CREATE TABLE Servidor (
-	enderecoIP varchar(15) primary key,
+	idServidor int primary key auto_increment,
+	enderecoIP varchar(15),
+    sistemaOperacional varchar(45),
+    localizacao varchar(45),
     fkInstituicao int,
     constraint fkInstituicao_servidor foreign key (fkInstituicao)
     references instituicao (idInstituicao)
     );
+    
+    insert into Servidor values
+    (null, '12345', 'linux', '5° andar sala 12', 1);
+    
     
 CREATE TABLE Componente (
 	idComponente int primary key auto_increment,
@@ -92,10 +99,24 @@ Create table RegistrosTRUSTED (
     fkComponente int,
     constraint fkComponente_RegistrosTRUSTED foreign key (fkComponente)
     references Componente (idComponente),
-    fkIpservidor varchar(15),
-    constraint fkIpservidor_Registros foreign key (fkIpservidor)
-    references Servidor (enderecoIP)
+    fkIdServidor int,
+    constraint fkIdServidor_Registros foreign key (fkIdServidor)
+    references Servidor (idServidor)
     );
+    
+    insert into RegistrosTRUSTED values
+    (null, 22.5, '2023-10-11 23:23:23', 1, 1),
+	(null, 25.5, '2023-10-11 23:26:23', 1, 1),
+	(null, 23.5, '2023-10-11 23:29:23', 1, 1),
+	(null, 20.5, '2023-10-11 23:32:23', 1, 1),
+	(null, 28.5, '2023-10-11 23:35:23', 1, 1);
+    
+        insert into RegistrosTRUSTED values
+    (null, 22.5, '2023-10-11 23:23:23', 1, 2),
+	(null, 25.5, '2023-10-11 23:26:23', 1, 2),
+	(null, 23.5, '2023-10-11 23:29:23', 1, 2),
+	(null, 20.5, '2023-10-11 23:32:23', 1, 2),
+	(null, 28.5, '2023-10-11 23:35:23', 1, 2);
     
     Create table RegistrosRAW (
 	idRegistrosRAW int primary key auto_increment,
@@ -104,9 +125,9 @@ Create table RegistrosTRUSTED (
     fkComponente int,
     constraint fkComponente_RegistrosRAW foreign key (fkComponente)
     references Componente (idComponente),
-    fkIpservidor varchar(15),
-    constraint fkIpservidor_RegistrosRAW foreign key (fkIpservidor)
-    references Servidor (enderecoIP)
+    fkIdServidor int,
+    constraint fkIdServidor_RegistrosRAW foreign key (fkIdServidor)
+    references Servidor (idServidor)
     );
  
  Create table importancia_Alerta (
@@ -160,11 +181,19 @@ update nivelAcesso set fkPermicoes = 3 where nivel_acesso = 1;
     
     select dadoscapturados, dataHora from RegistrosTRUSTED join Servidor on fkIpservidor = 'coloque_o_IP';
     
-    SELECT dadoscapturados, dataHora
+SELECT dadoscapturados, dataHora
 FROM RegistrosTRUSTED
 JOIN Servidor ON RegistrosTRUSTED.fkIpservidor = Servidor.enderecoIP
 JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-WHERE Servidor.enderecoIP = '26.74.155.225' AND Componente.modelo = 'CPU';
+WHERE Servidor.enderecoIP = '1' AND Componente.modelo = 'CPU';
+
+SELECT dadoscapturados, dataHora
+FROM RegistrosTRUSTED
+JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+WHERE Servidor.idServidor = '1' AND Componente.modelo = 'CPU';
+
+select dadoscapturados, dataHora from RegistrosTRUSTED JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente where Componente.modelo = 'CPU';
 
 INSERT INTO importancia_Alerta (apelido)
 VALUES

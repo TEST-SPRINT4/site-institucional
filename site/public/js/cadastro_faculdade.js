@@ -295,8 +295,8 @@ function formatarTELEFONE(input) {
         if (value.length > 3) {
             value = value.substring(0, 3) + ')' + value.substring(3);
         }
-        if (value.length > 8) {
-            value = value.substring(0, 8) + '-' + value.substring(8);
+        if (value.length > 9) {
+            value = value.substring(0, 9) + '-' + value.substring(9);
         }
     }
 
