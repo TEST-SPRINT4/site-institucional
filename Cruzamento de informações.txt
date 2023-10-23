@@ -1,0 +1,35 @@
+
+Uso de Memória e Swap: Monitore o uso de memória RAM e a utilização da área de swap para garantir que o sistema não esteja ficando sem recursos de memória. -Aeris
+
+
+Espaço em Disco e Utilização: Acompanhe o espaço em disco disponível e a utilização do disco para evitar problemas de armazenamento insuficiente. -Danilo
+
+Uso de CPU e Temperatura: Acompanhe o uso da CPU e a temperatura para identificar potenciais problemas de superaquecimento ou sobrecarga de CPU. - Simone
+
+Largura de Banda de Rede e Pacotes: Verifique a largura de banda da rede, os pacotes transmitidos e recebidos para garantir a conectividade e o desempenho da rede. -G5 projeto geral R sprint 2
+
+Histórico de Uso de Recursos: Mantenha registros históricos do uso de recursos para identificar padrões de uso de hardware ao longo do tempo.- inovação (Brudney?)
+
+Monitoramento de Energia: Se for relevante, monitore o consumo de energia para otimizar a eficiência energética e identificar problemas de alimentação.
+
+Uso da CPU e I/O de Disco: Cruzar informações sobre o uso da CPU com as operações de I/O de disco (leituras e gravações) pode ajudar a identificar se um alto uso da CPU está relacionado a operações intensivas de disco, o que pode indicar a necessidade de otimização de armazenamento.
+
+Uso de Memória e Taxa de Páginação: Cruzar o uso de memória com a taxa de paginação (quantidade de dados transferidos entre a RAM e a memória de troca) pode ajudar a determinar se a memória disponível é suficiente e se é necessária mais memória RAM.
+
+Uso da CPU e Uso da GPU: Em servidores que utilizam aceleração por GPU (Unidade de Processamento Gráfico), cruzar o uso da CPU com o uso da GPU é importante para identificar gargalos de desempenho relacionados ao processamento gráfico.
+
+Largura de Banda de Rede e Conexões por IP: Monitorar a largura de banda da rede e o número de conexões por endereço IP pode ajudar a identificar tráfego excessivo de um único endereço IP ou potenciais ameaças de segurança.
+
+Taxa de Erros de Hardware e Eventos de Log: Cruzar informações sobre a taxa de erros de hardware (por exemplo, erros de ECC na memória) com eventos de log do sistema pode ajudar a diagnosticar problemas de hardware.
+
+Uso de Energia e Temperatura Ambiente: Monitorar o uso de energia dos servidores e a temperatura ambiente do data center pode ajudar a otimizar a refrigeração e reduzir o consumo de energia.
+
+Taxa de Erros de Disco e Espaço em Disco Disponível: Cruzar informações sobre a taxa de erros de disco com o espaço em disco disponível pode ajudar a prevenir falhas de disco e problemas de armazenamento.
+
+Uso da CPU e Uso de Memória Swap: Cruzar informações de uso da CPU com o uso de memória swap pode indicar que o servidor está começando a usar a memória virtual devido à falta de RAM, o que pode afetar o desempenho.
+
+Uso da CPU por Processo e Uso da Rede por Aplicativo: Monitorar o uso da CPU por processo e o uso da rede por aplicativo pode ajudar a identificar quais aplicativos ou processos consomem mais recursos e largura de banda de rede.
+
+Uso de Energia e Carga do Sistema: Cruzar informações sobre o uso de energia com a carga do sistema pode ajudar a otimizar a alocação de recursos para equilibrar o desempenho e a eficiência energética.
+
+Análise de anomalias: pega o histórico de alertas e busca compreender o motivo XXXXXXX
