@@ -18,7 +18,7 @@ requests.post(webhook, data=json.dumps(mensagem))
 connection = mysql.connector.connect(
     host='localhost',
     user='root',
-    password='0212',
+    password='sarabi3011',
     database='test'
 )
 
@@ -79,13 +79,13 @@ while True:
 #-------------------------------------------------------------------------------------
 
     #Parte do código responsável por capturar a latência da internet que a maquina/servidor está conectado
-    st = speedtest.Speedtest()
+    # st = speedtest.Speedtest()
 
     # Medir a latência (ping)
-    ping_result = st.get_best_server()
-    ping_latency = ping_result["latency"]
+    # ping_result = st.get_best_server()
+    # ping_latency = ping_result["latency"]
 
-    print(f"Latência da Internet: {ping_latency} ms")
+  #  print(f"Latência da Internet: {ping_latency} ms")
 
 # -------------------------------------------------------------------------------------
 
@@ -157,12 +157,12 @@ while True:
     sql44 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
     values44 = (armazenamento_arredondado, dia.strftime('%Y-%m-%d %H:%M:%S'), 3, ip)
 
-    sql55 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
-    values55 = (round(ping_latency, 2), dia.strftime('%Y-%m-%d %H:%M:%S'), 4, ip)
+   # sql55 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
+    # values55 = (round(ping_latency, 2), dia.strftime('%Y-%m-%d %H:%M:%S'), 4, ip)
 
     # SQL para inserir na tabela RegistrosRAW (CPU)
-    sql2 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
-    values2 = (ping_latency, dia.strftime('%Y-%m-%d %H:%M:%S'), 4, ip)
+   # sql2 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
+   # values2 = (ping_latency, dia.strftime('%Y-%m-%d %H:%M:%S'), 4, ip)
 
     sql3 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
     values3 = (disco_em_uso, dia.strftime('%Y-%m-%d %H:%M:%S'), 3, ip)
@@ -170,12 +170,12 @@ while True:
 #Aqui, independente do valor e dos alertas os dados serão inseridos
     try:
         # Executa a inserção
-        cursor.execute(sql2, values2)
+       # cursor.execute(sql2, values2)
         cursor.execute(sql3, values3)
         cursor.execute(sql22, values22)
         cursor.execute(sql33, values33)
         cursor.execute(sql44, values44)
-        cursor.execute(sql55, values55)
+       # cursor.execute(sql55, values55)
 
         # Confirma as alterações no banco de dados
         connection.commit()
