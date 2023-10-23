@@ -9,7 +9,7 @@
     <title>TEST | Dashboard</title>
 
     <link rel="stylesheet" href="../css/dashboard.css">
-    <script src="../js/funcoes.js"></script>
+    <!-- <script src="../js/funcoes.js"></script> -->
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
@@ -378,7 +378,7 @@
         obterDadosGrafico_rede(4)
     }
 
-    verificar_autenticacao();
+    //verificar_autenticacao();
 
     function alterarTitulo(idServidor) {
         var tituloServidor_cpu = document.getElementById(`tituloServidor_cpu${idServidor}`)
@@ -436,7 +436,7 @@
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimas/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/ultimasCPU/${idServidor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -520,7 +520,7 @@
 
     function atualizarGrafico_cpu(idServidor, dados, myChart) {
 
-        fetch(`/medidas/tempo-real/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/tempo-realCPU/${idServidor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
@@ -528,7 +528,7 @@
                     console.log(`Dados atuais do gráfico:`);
                     console.log(dados);
 
-                    let avisoCaptura = document.getElementById(`avisoCaptura${idServidor}`)
+                    let avisoCaptura_cpu = document.getElementById(`avisoCaptura_cpu${idServidor}`)
                     avisoCaptura.innerHTML = ""
 
 
@@ -580,7 +580,7 @@
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimas/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/ultimasRAM/${idServidor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -664,7 +664,7 @@
 
     function atualizarGrafico_ram(idServidor, dados, myChart) {
 
-        fetch(`/medidas/tempo-real/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/tempo-realRAM/${idServidor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
@@ -724,7 +724,7 @@
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimas/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/ultimasDISCO/${idServidor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -808,7 +808,7 @@
 
     function atualizarGrafico_disco(idServidor, dados, myChart) {
 
-        fetch(`/medidas/tempo-real/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/tempo-realDISCO/${idServidor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
@@ -867,7 +867,7 @@
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimas/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/ultimasREDE/${idServidor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -951,7 +951,7 @@
 
     function atualizarGrafico_rede(idServidor, dados, myChart) {
 
-        fetch(`/medidas/tempo-real/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/tempo-realREDE/${idServidor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
