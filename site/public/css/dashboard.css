@@ -258,7 +258,7 @@ body {
 }
 
 .display-block {
-  display: flex;
+  display: block;
   width: 100%;
 }
 
@@ -266,6 +266,10 @@ canvas {
   width: 30vw !important;
   height: 30vh !important;
   margin: 5%;
+}
+
+.parteGrafico{
+  display: flex;
 }
 
 
