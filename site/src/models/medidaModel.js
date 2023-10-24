@@ -92,7 +92,7 @@ function buscarUltimasMedidasREDE(idServidor, limite_linhas) {
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "LATÊNCIA-REDE"
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "PACOTES - RECEBIDOS"
         order by idRegistros desc limit ${limite_linhas}`;
 
     } else {
@@ -115,7 +115,6 @@ function buscarMedidasEmTempoRealCPU(idServidor) {
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
         dadoscapturados, 
-        dataHora,
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
@@ -198,7 +197,7 @@ function buscarMedidasEmTempoRealREDE(idServidor) {
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "LATÊNCIA-REDE"
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "PACOTES - RECEBIDOS"
         order by idRegistros desc limit 1`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
