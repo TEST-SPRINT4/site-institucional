@@ -895,7 +895,7 @@
         let dados = {
             labels: labels,
             datasets: [{
-                label: 'CPU',
+                label: 'REDE',
                 data: [],
                 fill: false,
                 borderColor: '#075cab',
@@ -946,7 +946,7 @@
             config
         );
 
-        setTimeout(() => atualizarGrafico_disco(idServidor, dados, myChart), 2000);
+        setTimeout(() => atualizarGrafico_rede(idServidor, dados, myChart), 2000);
     }
 
     function atualizarGrafico_rede(idServidor, dados, myChart) {

@@ -166,7 +166,7 @@ module.exports = {
     buscarUltimasMedidasCPU,
     buscarUltimasMedidasRAM,
     buscarUltimasMedidasDISCO,
-    buscarMedidasEmTempoRealREDE,
+    buscarUltimasMedidasREDE,
     buscarMedidasEmTempoRealCPU,
     buscarMedidasEmTempoRealRAM,
     buscarMedidasEmTempoRealDISCO,
