@@ -1,0 +1,23 @@
+contexto/desafio/problema/solucas
+SWOT
+casos de uso
+product backlog
+diagrama de negócios
+
+site + cadastro + 
+estrutura do cadastro do back node funcioando
+protótipo da dashboard + mvp do dashboard (e node da dash)
+definição de alertas e métricas
+grafico/dashboard
+wireframe
+
+jar inicial do projeto console conectado no DB
+Captura de processos ETL
+Mineração de dados
+
+VM na nuvem
+script de instalação do cliente
+listar processos NMON 
+
+
+conclusão/ próximos passos/ agradecimentos=
