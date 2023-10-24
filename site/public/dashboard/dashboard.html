@@ -426,7 +426,7 @@
         btnExibir.classList.add("btn-server-select")
     }
 
-    // --------------------------------------------------------------------------------------------
+    // GRÁFICOS CPU --------------------------------------------------------------------------------------------
 
     function obterDadosGrafico_cpu(idServidor) {
 
@@ -466,7 +466,24 @@
             datasets: [{
                 label: 'CPU',
                 data: [],
-                fill: false,
+                borderWidth: 1,
+                backgroundColor: (context) => {
+                    const background = [
+                        "#075cab33",
+                        "#D4A4FF52"
+                    ]
+                    if (!context.chart.chartArea) {
+                        return;
+                    }
+
+                    const { ctx, data, chartArea: { top, bottom } } = context.chart;
+                    const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
+                    gradientBackground.addColorStop(.5, background[0]);
+                    gradientBackground.addColorStop(1, background[1]);
+
+                    return gradientBackground;
+                },
+                fill: true,
                 borderColor: '#075cab',
                 tension: 0.1
             },
@@ -570,7 +587,7 @@
 
     }
 
-    //---------------------------------------------------------------------------------------------
+    // GRÁFICOS RAM ---------------------------------------------------------------------------------------------
 
     function obterDadosGrafico_ram(idServidor) {
 
@@ -610,9 +627,26 @@
             datasets: [{
                 label: 'RAM',
                 data: [],
-                fill: false,
+                borderWidth: 1,
+                backgroundColor: (context) => {
+                    const background = [
+                        "#075cab33",
+                        "#D4A4FF52"
+                    ]
+                    if (!context.chart.chartArea) {
+                        return;
+                    }
+
+                    const { ctx, data, chartArea: { top, bottom } } = context.chart;
+                    const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
+                    gradientBackground.addColorStop(.5, background[0]);
+                    gradientBackground.addColorStop(1, background[1]);
+
+                    return gradientBackground;
+                },
+                fill: true,
                 borderColor: '#075cab',
-                tension: 0.1
+                tension: 0.1,
             },
                 // {
                 //     label: 'Temperatura',
@@ -714,7 +748,7 @@
 
     }
 
-    //----------------------------------------------------------------------------------------------
+    // GRÁFICOS DISCO ----------------------------------------------------------------------------------------------
 
     function obterDadosGrafico_disco(idServidor) {
 
@@ -752,9 +786,26 @@
         let dados = {
             labels: labels,
             datasets: [{
-                label: 'CPU',
+                label: 'DISCO',
                 data: [],
-                fill: false,
+                borderWidth: 1,
+                backgroundColor: (context) => {
+                    const background = [
+                        "#075cab33",
+                        "#D4A4FF52"
+                    ]
+                    if (!context.chart.chartArea) {
+                        return;
+                    }
+
+                    const { ctx, data, chartArea: { top, bottom } } = context.chart;
+                    const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
+                    gradientBackground.addColorStop(.5, background[0]);
+                    gradientBackground.addColorStop(1, background[1]);
+
+                    return gradientBackground;
+                },
+                fill: true,
                 borderColor: '#075cab',
                 tension: 0.1
             },
@@ -857,7 +908,7 @@
             });
 
     }
-    //--------------------------------------------------------------------------------------------
+    // GRÁFICOS REDE --------------------------------------------------------------------------------------------
 
     function obterDadosGrafico_rede(idServidor) {
 
@@ -897,7 +948,24 @@
             datasets: [{
                 label: 'REDE',
                 data: [],
-                fill: false,
+                borderWidth: 1,
+                backgroundColor: (context) => {
+                    const background = [
+                        "#075cab33",
+                        "#D4A4FF52"
+                    ]
+                    if (!context.chart.chartArea) {
+                        return;
+                    }
+
+                    const { ctx, data, chartArea: { top, bottom } } = context.chart;
+                    const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
+                    gradientBackground.addColorStop(.5, background[0]);
+                    gradientBackground.addColorStop(1, background[1]);
+
+                    return gradientBackground;
+                },
+                fill: true,
                 borderColor: '#075cab',
                 tension: 0.1
             },

@@ -12,7 +12,6 @@ router.get("/tempo-realCPU/:idServidor", function (req, res) {
 
 //--------------------------------------------------------------
 
-//var medidaControllerRAM = require("../controllers/medidaController");
 
 router.get("/ultimasRAM/:idServidor", function (req, res) {
     medidaController.buscarUltimasMedidasRAM(req, res);
@@ -24,7 +23,6 @@ router.get("/tempo-realRAM/:idServidor", function (req, res) {
 
 //--------------------------------------------------------------
 
-//var medidaControllerDISCO = require("../controllers/medidaController");
 
 router.get("/ultimasDISCO/:idServidor", function (req, res) {
     medidaController.buscarUltimasMedidasDISCO(req, res);
