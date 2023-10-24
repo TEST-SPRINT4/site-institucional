@@ -5,7 +5,7 @@ from datetime import datetime
 import socket #Biblioteca responsável pela captura do ip da maquina
 import requests #Biblioteca responsável por conectar o SLACK com o pyhton
 import json #Slack também.
-import speedtest #Biblioteca responsável pela captura da latência
+import speedtest
 import hashlib #Biblioteca responsável por criptografar o ip
 
 mensagem = {"text": "Olá, bem vindo. O sistema da TEST foi iniciado!"}
@@ -18,7 +18,7 @@ requests.post(webhook, data=json.dumps(mensagem))
 connection = mysql.connector.connect(
     host='localhost',
     user='root',
-    password='sarabi3011',
+    password='0212',
     database='test'
 )
 
@@ -47,19 +47,19 @@ if __name__ == "__main__":
     ip = get_ip()
     print(ip)
 
-    sql1 = "INSERT INTO Servidor (enderecoIP, fkInstituicao) VALUES (%s, %s)"
-    values1 = (ip, 1)
+    # sql1 = "INSERT INTO Servidor (enderecoIP, fkInstituicao) VALUES (%s, %s)"
+    # values1 = (ip, 1)
 
-    try:
-        # Executa a inserção
-        cursor.execute(sql1, values1)
-
-        # Confirma as alterações no banco de dados
-        connection.commit()
-        print("Inserção do SERVIDOR realizada com sucesso!")
-
-    except mysql.connector.Error as err:
-        print("Erro ao inserir na tabela Servidor:", err)
+    # try:
+    #     # Executa a inserção
+    #     cursor.execute(sql1, values1)
+    #
+    #     # Confirma as alterações no banco de dados
+    #     connection.commit()
+    #     print("Inserção do SERVIDOR realizada com sucesso!")
+    #
+    # except mysql.connector.Error as err:
+    #     print("Erro ao inserir na tabela Servidor:", err)
 
 #Criando a estrutura de repetição para que os valores dos componentes se atualizam
 while True:
@@ -80,12 +80,13 @@ while True:
 
     #Parte do código responsável por capturar a latência da internet que a maquina/servidor está conectado
     # st = speedtest.Speedtest()
-
-    # Medir a latência (ping)
+    #
+    #
+    # # Medir a latência (ping)
     # ping_result = st.get_best_server()
     # ping_latency = ping_result["latency"]
-
-  #  print(f"Latência da Internet: {ping_latency} ms")
+    #
+    # print(f"Latência da Internet: {ping_latency} ms")
 
 # -------------------------------------------------------------------------------------
 
@@ -148,24 +149,24 @@ while True:
     processador_arredondo = round(float(processador), 2)
 
     # SQL para inserir na tabela RegistrosTRUSTED (CPU)
-    sql22 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
-    values22 = (processador_arredondo, dia.strftime('%Y-%m-%d %H:%M:%S'), 1, ip)
+    sql22 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
+    values22 = (processador_arredondo, dia.strftime('%Y-%m-%d %H:%M:%S'), 1, 1)
 
-    sql33 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
-    values33 = (memoriaRAM_arredondado, dia.strftime('%Y-%m-%d %H:%M:%S'), 2, ip)
+    sql33 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
+    values33 = (memoriaRAM_arredondado, dia.strftime('%Y-%m-%d %H:%M:%S'), 2, 1)
 
-    sql44 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
-    values44 = (armazenamento_arredondado, dia.strftime('%Y-%m-%d %H:%M:%S'), 3, ip)
+    sql44 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
+    values44 = (armazenamento_arredondado, dia.strftime('%Y-%m-%d %H:%M:%S'), 3, 1)
 
-   # sql55 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
+   # sql55 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
     # values55 = (round(ping_latency, 2), dia.strftime('%Y-%m-%d %H:%M:%S'), 4, ip)
 
     # SQL para inserir na tabela RegistrosRAW (CPU)
-   # sql2 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
+   # sql2 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
    # values2 = (ping_latency, dia.strftime('%Y-%m-%d %H:%M:%S'), 4, ip)
 
-    sql3 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIpservidor) VALUES (%s, %s, %s, %s)"
-    values3 = (disco_em_uso, dia.strftime('%Y-%m-%d %H:%M:%S'), 3, ip)
+    sql3 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
+    values3 = (disco_em_uso, dia.strftime('%Y-%m-%d %H:%M:%S'), 3, 1)
 
 #Aqui, independente do valor e dos alertas os dados serão inseridos
     try:

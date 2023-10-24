@@ -7,15 +7,27 @@ fun main() {
     while (true){
         val looca = LoocaAPI()
 
-        repository.RegistroREDEUPLOAD(looca)
-        repository.RegistroREDEDOWNLOAD(looca)
-        repository.RegistroREDEDOWNLOADRAW(looca)
-        repository.RegistroREDEUPLOADRAW(looca)
-        println("rede Upload S/ TRATAMENTO: ${looca.redeUploadRAW}")
-        println("rede Upload TRATADO: ${looca.redeUpload}")
-        println("rede Download S/ TRATAMENTO: ${looca.redeDownloadRAW}")
-        println("rede Download TRATADO: ${looca.redeDownload}")
+        repository.RegistrocpuRaw(looca)
+        repository.RegistroramRaw(looca)
+        repository.RegistroPacEnviados(looca)
+        repository.RegistroPacEnviadosRAW(looca)
+        repository.RegistroPacoRecebidos(looca)
+        repository.RegistroPacoRecebidosRAW(looca)
+
+
+        println("""
+        Pacotes enviados S/ TRATAMENTO: ${looca.PacEnviadosRAW}
+        Pacotes enviados TRATADO: ${looca.PacEnviados}
+        -------------------------------------------------------
+        Pacotes recebidos S/ TRATAMENTO: ${looca.PacoRecebidosRAW}
+        Pacotes recebidos TRATADO: ${looca.PacoRecebidos}
+        -------------------------------------------------------
         println("data Hora: ${looca.dataHora}")
+        --------------------------------------------------------
+        Uso do processador S/ TRATAMENTO: ${looca.cpuRaw}
+        Uso da memória Ram S/ TRATAMENTO: ${looca.ramRaw}
+          
+        """.trimIndent())
         Thread.sleep(5000) // milissegundos
     }
 
