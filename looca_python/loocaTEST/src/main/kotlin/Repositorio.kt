@@ -9,36 +9,52 @@ class repository {
         jdbcTemplate = Conexao().conectar()
     }
 
-    fun RegistroREDEUPLOAD(novoComponente: LoocaAPI) {
+    fun RegistroPacoRecebidos(novoComponente: LoocaAPI) {
         jdbcTemplate.update("""
-        insert into RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIpservidor)
+        insert into RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor)
         values
-        (${novoComponente.redeUpload}, '${novoComponente.dataHora}', 4, '${novoComponente.ip}')
+        (${novoComponente.PacoRecebidos}, '${novoComponente.dataHora}', 4, 1)
         """)
     }
 
-    fun RegistroREDEUPLOADRAW(novoComponente: LoocaAPI) {
+    fun RegistroPacoRecebidosRAW(novoComponente: LoocaAPI) {
         jdbcTemplate.update("""
-        insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIpservidor)
+        insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor)
         values
-        (${novoComponente.redeUploadRAW}, '${novoComponente.dataHora}', 4, '${novoComponente.ip}')
+        (${novoComponente.PacoRecebidosRAW}, '${novoComponente.dataHora}', 4, 1)
         """)
     }
 
-    fun RegistroREDEDOWNLOAD(novoComponente: LoocaAPI) {
+    fun RegistroPacEnviados(novoComponente: LoocaAPI) {
         jdbcTemplate.update("""
-        insert into RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIpservidor)
+        insert into RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor)
         values
-        (${novoComponente.redeDownload}, '${novoComponente.dataHora}', 5, '${novoComponente.ip}')
+        (${novoComponente.PacEnviados}, '${novoComponente.dataHora}', 5, 1)
         """)
     }
 
-    fun RegistroREDEDOWNLOADRAW(novoComponente: LoocaAPI) {
+    fun RegistroPacEnviadosRAW(novoComponente: LoocaAPI) {
         jdbcTemplate.update("""
-        insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIpservidor)
+        insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor)
         values
-        (${novoComponente.redeDownloadRAW}, '${novoComponente.dataHora}', 5, '${novoComponente.ip}')
+        (${novoComponente.PacEnviadosRAW}, '${novoComponente.dataHora}', 5, 1)
         """)
+    }
+
+    fun RegistrocpuRaw(novoComponente: LoocaAPI) {
+        jdbcTemplate.update("""
+            insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor)
+            values
+            (${novoComponente.cpuRaw}, '${novoComponente.dataHora}', 1, 1)
+        """.trimIndent())
+    }
+
+    fun RegistroramRaw(novoComponente: LoocaAPI) {
+        jdbcTemplate.update("""
+            insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor)
+            values
+            (${novoComponente.ramRaw}, '${novoComponente.dataHora}', 2, 1)
+        """.trimIndent())
     }
 
 }

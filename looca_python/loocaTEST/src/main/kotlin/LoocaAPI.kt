@@ -7,20 +7,19 @@ class LoocaAPI {
 
     val looca = Looca()
 
-    // Atribuindo o getLocalHost() para o InetAddress
-    val inetAddress = InetAddress.getLocalHost()
-
-
     // IP (id do servidor)
-
         //Comando responsável pela captura de dados no KOTLIN/JAVA
-    val ip = inetAddress.hostAddress
+//    val ip = inetAddress.hostAddress
+
+    val cpuRaw = looca.processador.uso
+    val ramRaw = looca.memoria.emUso
 
     // Rede
-    var redeDownload = looca.rede.grupoDeInterfaces.interfaces[0].bytesRecebidos/1000000  // Transformando o valor "CRU" do dado em megabytes (TRATADO)
-    var redeDownloadRAW = looca.rede.grupoDeInterfaces.interfaces[0].bytesRecebidos
-    var redeUpload = looca.rede.grupoDeInterfaces.interfaces[0].bytesEnviados/1000000
-    var redeUploadRAW = looca.rede.grupoDeInterfaces.interfaces[0].bytesEnviados
+
+    var PacoRecebidos = looca.rede.grupoDeInterfaces.interfaces[0].bytesRecebidos/1000000  // Transformando o valor "CRU" do dado em megabytes (TRATADO)
+    var PacoRecebidosRAW = looca.rede.grupoDeInterfaces.interfaces[0].bytesRecebidos
+    var PacEnviados = looca.rede.grupoDeInterfaces.interfaces[0].bytesEnviados/1000000
+    var PacEnviadosRAW = looca.rede.grupoDeInterfaces.interfaces[0].bytesEnviados
     val dataHora = LocalDateTime.now()
 
 
