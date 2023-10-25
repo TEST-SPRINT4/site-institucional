@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/LogoSemFundo.png" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST | Dashboard</title>
+
+    <link rel="stylesheet" href="../css/homeDashboard.css">
+    <!-- <script src="../js/funcoes.js"></script> -->
+    <!-- <script src="../js/cadastro_funcionario.js"></script> -->
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- scripts do Chart.js - 2022-1 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!--FONT AWESOME-->
+    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- INICIANDO NAVBAR SUPERIOR -->
+    <div class="nav-bar">
+        <div class="container-nav-bar">
+            <img src="../assets/icon/LogoSemFundo.png" alt="">
+
+            <ul class="navbar">
+                <li class="agora">
+                    <a href="index.html">DASHBOARD</a>
+                </li>
+                <li>
+                    <div class="">
+                        <a href="../index.html">SAIR</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="janela">
+
+        <!-- INICIANDO NAV-BAR LATERAL -->
+        <div class="header-left">
+
+            <!-- DADOS DO USUÁRIO -->
+            <div class="hello">
+                <img src="../Imagens/icon_user.png" alt="">
+                <div class="text-hello">
+                    <h3><span id="b_usuario">usuário</span>!</h3>
+                    <h4><span id="c_usuario">Nível de permissão</span></h4>
+                </div>
+            </div>
+
+            <div class="container-server">
+                <!-- botão home -->
+                <a href="./homeDashboard.html">
+                    <div class="btn-nav-current">
+                        <img class="img_icon" src="../Imagens/icon-casa-preto.png" alt="">
+                        <h3 style="margin-bottom: 11px;">Home</h3>
+                    </div>
+                </a>
+                <br>
+
+                <div class="btn-nav-server">
+                    <img class="img_icon" src="../Imagens/icon-lupa-cinza.png" alt="">
+                    <a href="./dashboard.html">
+                        <h3>Monitorando</h3>
+                    </a>
+                </div>
+                <br>
+            </div>
+
+            <!-- botão equipe -->
+            <a href="./equipe.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../Imagens/icon-equipe-cinza.png" alt="">
+                    <h3>Equipe</h3>
+                </div>
+            </a>
+
+            <!-- Botão servidores -->
+            <a href="./servidores.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../Imagens/icon-servidor-cinza.png" alt="">
+
+                    <h3>Servidores</h3>
+                </div>
+            </a>
+
+            <!-- botão suporte -->
+            <a href="#">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../Imagens/icon-suporte-cinza.png" alt="">
+                    <h3>Suporte</h3>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- INICIANDO CADASRO DE EQUIPE -->
+
+        <div class="dash">
+
+            <!-- REGUA DE MÉTRICAS -->
+            <div class="regua">
+
+                <div class="item-regua ideal">
+                    <h1>Ideal</h1>
+                    <h4>CPU - < 50% </h4>
+                    <h4>RAM - < 60% </h4>
+                    <h4>Disco - < 60%</h4>
+                </div>
+
+                <div class="item-regua alerta">
+                    <h1>Alerta</h1>
+                    <h4>CPU - 50% a 80%</h4>
+                    <h4>RAM - 60% a 80%</h4>
+                    <h4>Disco - 60% a 80%</h4>
+                </div>
+
+                <div class="item-regua perigo">
+                    <h1>Perigo</h1>
+                    <h4>CPU - > 80%</h4>
+                    <h4>RAM - > 80%</h4>
+                    <h4>Disco - > 80%</h4>
+                </div>
+
+            </div>
+
+            <div class="card-geral">
+
+                <!-- VISÃO GERAL 01 -->
+                <div class="visaoGeral" id="visaoGeral(1)">
+                    <h2>
+                    🟢 Servidor 01
+                    </h2>
+                    <div class="container-card">
+                        <div class="card-media" style=" background-color: #075cab;">
+                            <h4>CPU</h4>
+                            <h2><span id="kpiCPU">0</span>%</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #3280c9;">
+                            <h4>RAM</h4>
+                            <h2><span id="kpiRam">0</span>Gb</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #4d92d3;">
+                            <h4>DISCO</h4>
+                            <h2><span id="kpiDisco">0</span>mb</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #7fbcf5;">
+                            <h4>PACOTES ENVIADOS</h4>
+                            <h2><span id="kpiPacotesEnviados">0</span>mb</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #b7dcff;">
+                            <h4>PACOTES RECEBIDOS</h4>
+                            <h2><span id="kpiPacotesRecebidos">0</span>mb</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VISÃO GERAL 02 -->
+                <div class="visaoGeral" id="visaoGeral(2)">
+                    <h2>
+                        🟢Servidor 02
+                    </h2>
+                    <div class="container-card">
+                        <div class="card-media" style=" background-color: #075cab;">
+                            <h4>CPU</h4>
+                            <h2><span id="kpiCPU">0</span>%</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #3280c9;">
+                            <h4>RAM</h4>
+                            <h2><span id="kpiRam">0</span>Gb</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #4d92d3;">
+                            <h4>DISCO</h4>
+                            <h2><span id="kpiDisco">0</span>mb</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #7fbcf5;">
+                            <h4>PACOTES ENVIADOS</h4>
+                            <h2><span id="kpiPacotesEnviados">0</span>mb</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #b7dcff;">
+                            <h4>PACOTES RECEBIDOS</h4>
+                            <h2><span id="kpiPacotesRecebidos">0</span>mb</h2>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- VISÃO GERAL 03 -->
+                <div class="visaoGeral" id="visaoGeral(3)">
+                    <h2>
+                    🟢 Servidor 03
+                    </h2>
+                    <div class="container-card">
+                        <div class="card-media" style=" background-color: #075cab;">
+                            <h4>CPU</h4>
+                            <h2><span id="kpiCPU">0</span>%</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #3280c9;">
+                            <h4>RAM</h4>
+                            <h2><span id="kpiRam">0</span>Gb</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #4d92d3;">
+                            <h4>DISCO</h4>
+                            <h2><span id="kpiDisco">0</span>mb</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #7fbcf5;">
+                            <h4>PACOTES ENVIADOS</h4>
+                            <h2><span id="kpiPacotesEnviados">0</span>mb</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #b7dcff;">
+                            <h4>PACOTES RECEBIDOS</h4>
+                            <h2><span id="kpiPacotesRecebidos">0</span>mb</h2>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- VISÃO GERAL 04 -->
+                <div class="visaoGeral" id="visaoGeral(4)">
+                    <h2>
+                        🟢 Servidor 04
+                    </h2>
+                    <div class="container-card">
+                        <div class="card-media" style=" background-color: #075cab;">
+                            <h4>CPU</h4>
+                            <h2><span id="kpiCPU">0</span>%</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #3280c9;">
+                            <h4>RAM</h4>
+                            <h2><span id="kpiRam">0</span>Gb</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #4d92d3;">
+                            <h4>DISCO</h4>
+                            <h2><span id="kpiDisco">0</span>mb</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #7fbcf5;">
+                            <h4>PACOTES ENVIADOS</h4>
+                            <h2><span id="kpiPacotesEnviados">0</span>mb</h2>
+                        </div>
+
+                        <div class="card-media" style=" background-color: #b7dcff;">
+                            <h4>PACOTES RECEBIDOS</h4>
+                            <h2><span id="kpiPacotesRecebidos">0</span>mb</h2>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+        </div>
+
+
+</body>
+
+</html>
+
+<script>
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    var nivel_acesso = sessionStorage.NIVEL_ACESSO;
+
+    if (nivel_acesso = 3) {
+        c_usuario.innerHTML = "Administrador"
+    }
+    else if (nivel_acesso = 2) {
+        c_usuario.innerHTML = "Visualizador e Editor"
+    }
+    else if (nivel_acesso = 1) {
+        c_usuario.innerHTML = "Visualizador"
+    }
+
+</script>

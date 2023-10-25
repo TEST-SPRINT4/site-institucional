@@ -1,0 +1,28 @@
+contexto/desafio/problema ~ Danilo
+Protopersona ~Kaick
+casos de uso ~ Kaick Senes
+product backlog ~ Aeris
+diagrama de negócios ~ Simone
+Arquitetura tecnica ~ Kaick
+modelagem ~ Brudney
+
+site + cadastro + ~ Danilo
+estrutura do cadastro do back node funcioando ~ Danilo
+protótipo da dashboard ~ Brudney
+mvp do dashboard (e node da dash) ~ Simone
+telas da dash ~ Yan
+definição de alertas e métricas ~ Yan   
+
+
+jar inicial do projeto console conectado no DB ~ Yan
+Captura de processos ETL ~ Kaick
+Mineração de dados ~ Brudney
+
+VM na nuvem ~ Aeris
+script de instalação do cliente ~ Aeris
+listar processos NMON ~ Aeris
+
+
+conclusão/ próximos passos / wireframe = Danilo
+
+agradecimentos= Simone Lopes

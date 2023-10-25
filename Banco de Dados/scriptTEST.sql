@@ -1,7 +1,7 @@
-create database test;
-use test;
 
 -- drop database test;
+create database test;
+use test;
 
 CREATE TABLE instituicao (
 	idinstituicao INT PRIMARY KEY AUTO_INCREMENT,
@@ -11,9 +11,6 @@ CREATE TABLE instituicao (
     CNPJ char(18),
     telefone char(14)
 );
-
--- insert into instituicao values
-	-- (null, 'sptech', 'Simone', 's@gmail.com', '123456789123456789', 12345678912345);
 
 CREATE TABLE enderecoInstituicao (
 	idEndereco int primary key auto_increment,
@@ -56,8 +53,6 @@ CREATE TABLE funcionario (
 	REFERENCES instituicao(idinstituicao)
     );
     
-    select * from funcionario;
-    
 CREATE TABLE Servidor (
 	idServidor int primary key auto_increment,
 	enderecoIP varchar(15),
@@ -68,10 +63,6 @@ CREATE TABLE Servidor (
     references instituicao (idInstituicao)
     );
     
-   insert into Servidor values
-(null, '12345', 'linux', '5° andar sala 12', 1);
-    
-    
 CREATE TABLE Componente (
 	idComponente int primary key auto_increment,
     modelo varchar(45)
@@ -81,8 +72,8 @@ insert into Componente values
 	(null, "CPU"),
     (null, "RAM"),
     (null, "DISCO"),
-    (null, "PACOTES - RECEBIDOS"),
-    (null, "PACOTES - ENVIADOS");
+    (null, "PACOTES - ENVIADOS"),
+    (null, "PACOTES - RECEBIDOS");
     
     
 Create table Parametros_Alertas (
@@ -107,12 +98,6 @@ Create table RegistrosTRUSTED (
     references Servidor (idServidor)
     );
     
-   --     insert into RegistrosTRUSTED values
-   -- (null, 22.5, '2023-10-11 23:23:23', 1, 2),
-	-- (null, 25.5, '2023-10-11 23:26:23', 1, 2),
-	-- (null, 23.5, '2023-10-11 23:29:23', 1, 2),
-	-- (null, 20.5, '2023-10-11 23:32:23', 1, 2),
-	-- (null, 28.5, '2023-10-11 23:35:23', 1, 2);
     
     Create table RegistrosRAW (
 	idRegistrosRAW int primary key auto_increment,
@@ -168,29 +153,46 @@ update nivelAcesso set fkPermicoes = 3 where nivel_acesso = 1;
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 1; -- CPU
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 2; -- RAM
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 3; -- DISCO
-    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 4; -- PACOTES - RECEBIDOS
-    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 5; -- PACOTES - ENVIADOS
+    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 4; -- LATÊNCIA
     
     select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 1; -- CPU
     select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 2; -- RAM
     select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 3; -- DISCO
-    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 4; -- PACOTES - RECEBIDOS
-    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 5; -- PACOTES - ENVIADOS
-
+    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 4; -- LATÊNCIA
     
     select dadoscapturados, dataHora from RegistrosTRUSTED join Servidor on fkIpservidor = 'coloque_o_IP';
     
-SELECT dadoscapturados, dataHora
-FROM RegistrosTRUSTED
-JOIN Servidor ON RegistrosTRUSTED.fkIpservidor = Servidor.enderecoIP
-JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-WHERE Servidor.enderecoIP = '1' AND Componente.modelo = 'CPU';
+-- SELECT dadoscapturados, dataHora
+-- FROM RegistrosTRUSTED
+-- JOIN Servidor ON RegistrosTRUSTED.fkIpservidor = Servidor.enderecoIP
+-- JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+-- WHERE Servidor.enderecoIP = '1' AND Componente.modelo = 'CPU';
 
 SELECT dadoscapturados, dataHora
 FROM RegistrosTRUSTED
 JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
 JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
 WHERE Servidor.idServidor = '1' AND Componente.modelo = 'CPU';
+
+	insert into Servidor values
+    (null, '12345', 'linux', '5° andar sala 12', 1);
+    
+    insert into instituicao values
+	(null, 'sptech', 'Simone', 's@gmail.com', '123456789123456789', 12345678912345);
+    
+    insert into RegistrosTRUSTED values
+    (null, 2.5,  '2023-10-11 23:23:23', 3, 1),
+	(null, 2.5, '2023-10-11 23:26:23', 3, 1),
+	(null, 3.5, '2023-10-11 23:29:23', 3, 1),
+	(null, 0.5, '2023-10-11 23:32:23', 3, 1),
+	(null, 6.5, '2023-10-11 23:35:23', 3, 1);
+    
+        insert into RegistrosTRUSTED values
+    (null, 22.5, '2023-10-11 23:23:23', 1, 2),
+	(null, 25.5, '2023-10-11 23:26:23', 1, 2),
+	(null, 23.5, '2023-10-11 23:29:23', 1, 2),
+	(null, 20.5, '2023-10-11 23:32:23', 1, 2),
+	(null, 28.5, '2023-10-11 23:35:23', 1, 2);
 
 select dadoscapturados, dataHora from RegistrosTRUSTED JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente where Componente.modelo = 'CPU';
 
