@@ -11,7 +11,7 @@ class repository {
 
     fun RegistroPacoRecebidos(novoComponente: LoocaAPI) {
         jdbcTemplate.update("""
-        insert into RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor)
+        insert into RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdServidor)
         values
         (${novoComponente.PacoRecebidos}, '${novoComponente.dataHora}', 4, 1)
         """)
@@ -19,7 +19,7 @@ class repository {
 
     fun RegistroPacoRecebidosRAW(novoComponente: LoocaAPI) {
         jdbcTemplate.update("""
-        insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor)
+        insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdServidor)
         values
         (${novoComponente.PacoRecebidosRAW}, '${novoComponente.dataHora}', 4, 1)
         """)
@@ -27,7 +27,7 @@ class repository {
 
     fun RegistroPacEnviados(novoComponente: LoocaAPI) {
         jdbcTemplate.update("""
-        insert into RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor)
+        insert into RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdServidor)
         values
         (${novoComponente.PacEnviados}, '${novoComponente.dataHora}', 5, 1)
         """)
@@ -35,7 +35,7 @@ class repository {
 
     fun RegistroPacEnviadosRAW(novoComponente: LoocaAPI) {
         jdbcTemplate.update("""
-        insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor)
+        insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdServidor)
         values
         (${novoComponente.PacEnviadosRAW}, '${novoComponente.dataHora}', 5, 1)
         """)
@@ -43,7 +43,7 @@ class repository {
 
     fun RegistrocpuRaw(novoComponente: LoocaAPI) {
         jdbcTemplate.update("""
-            insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor)
+            insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdServidor)
             values
             (${novoComponente.cpuRaw}, '${novoComponente.dataHora}', 1, 1)
         """.trimIndent())
@@ -51,7 +51,7 @@ class repository {
 
     fun RegistroramRaw(novoComponente: LoocaAPI) {
         jdbcTemplate.update("""
-            insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor)
+            insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdServidor)
             values
             (${novoComponente.ramRaw}, '${novoComponente.dataHora}', 2, 1)
         """.trimIndent())
