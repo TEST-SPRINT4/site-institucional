@@ -1,3 +1,4 @@
+
 -- drop database test;
 create database test;
 use test;
@@ -127,9 +128,9 @@ create table Alertas (
     );
     
 	INSERT INTO nivelAcesso (descricao) VALUES
-('Acesso somente leitura para visualizar informaÃ§Ãµes monitoradas.'),
-('Acesso para gerenciar recursos e relatÃ³rios.'),
-('Acesso total ao sistema, incluindo administraÃ§Ã£o de usuÃ¡rios e configuraÃ§Ãµes de monitoramento.');
+('Acesso somente leitura para visualizar informações monitoradas.'),
+('Acesso para gerenciar recursos e relatórios.'),
+('Acesso total ao sistema, incluindo administração de usuários e configurações de monitoramento.');
 
 insert into permicoes values
 	(null, 1,1,1,1),
@@ -152,12 +153,12 @@ update nivelAcesso set fkPermicoes = 3 where nivel_acesso = 1;
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 1; -- CPU
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 2; -- RAM
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 3; -- DISCO
-    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 4; -- LATÃŠNCIA
+    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 4; -- LATÊNCIA
     
     select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 1; -- CPU
     select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 2; -- RAM
     select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 3; -- DISCO
-    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 4; -- LATÃŠNCIA
+    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 4; -- LATÊNCIA
     
     select dadoscapturados, dataHora from RegistrosTRUSTED join Servidor on fkIpservidor = 'coloque_o_IP';
     
@@ -174,7 +175,7 @@ JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
 WHERE Servidor.idServidor = '1' AND Componente.modelo = 'CPU';
 
 	insert into Servidor values
-    (null, '12345', 'linux', '5Â° andar sala 12', 1);
+    (null, '12345', 'linux', '5° andar sala 12', 1);
     
     insert into instituicao values
 	(null, 'sptech', 'Simone', 's@gmail.com', '123456789123456789', 12345678912345);
@@ -197,15 +198,18 @@ select dadoscapturados, dataHora from RegistrosTRUSTED JOIN Componente ON Regist
 
 INSERT INTO importancia_Alerta (apelido)
 VALUES
-('CrÃ­tico'),
+('Crítico'),
 ('Grave'),
 ('Leve');
 
--- ALERTAS (NORMALIZADO, ATENÃ‡ÃƒO E CRÃTICO)
+-- Ideia para calendário de histórico
+ select count(idAlertas) as critico from Alertas join importancia_Alerta on fkImportancia = idImportancia_Alerta where importancia_Alerta.apelido = "Crítico";
+
+-- ALERTAS (NORMALIZADO, ATENÇÃO E CRÍTICO)
 
 -- INSERT INTO Alertas (descricao, fkImportancia, fkRegistros)
 -- VALUES
 -- ('CPU atingiu 95% de uso', 1, 1),
 -- ('RAM atingiu 80% de uso', 2, 2),
--- ('Disco rÃ­gido atingiu 90% de uso', 2, 3),
+-- ('Disco rígido atingiu 90% de uso', 2, 3),
 -- ('Rede atingiu 100% de uso', 3, 4);
