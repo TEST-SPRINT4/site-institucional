@@ -136,6 +136,13 @@ body {
   transition-duration: 0.5s;
 }
 
+.card-conteudo p{
+  margin-top: 12%;
+  text-align: justify;
+  font-size: 20px;
+  /* font-weight: 500; */
+}
+
 .card-conteudo:hover {
   -xpedu-transform: scale(1.1);
   -ms-transform: scale(1.1);
