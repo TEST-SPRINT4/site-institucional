@@ -94,7 +94,7 @@ function atualizar_servidor(req, res) {
 }
 
 function excluir_servidor(req, res) {
-
+  // :)
   //                 input_ipServer:input_ipVAR,
 
 
