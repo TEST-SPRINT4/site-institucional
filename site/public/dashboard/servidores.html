@@ -52,7 +52,7 @@
             <div class="hello">
                 <img src="../Imagens/icon_user.png" alt="">
                 <div class="text-hello">
-                    <h3><span id="b_usuario">usuário</span>!</h3>
+                    <h3><span id="b_usuario">usuário</span></h3>
                     <h4><span id="c_usuario">Nível de permissão</span></h4>
                 </div>
             </div>
@@ -275,20 +275,19 @@
 </html>
 
 <script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-    sessionStorage.FK_INSTITUICAO
-
     var nivel_acesso = sessionStorage.NIVEL_ACESSO;
 
-    if (nivel_acesso = 3) {
-        c_usuario.innerHTML = "Administrador"
-    }
-    else if (nivel_acesso = 2) {
-        c_usuario.innerHTML = "Visualizador e Editor"
-    }
-    else if (nivel_acesso = 1) {
-        c_usuario.innerHTML = "Visualizador"
-    }
+b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+if (nivel_acesso == 3) {
+c_usuario.innerHTML = "Administrador"
+}
+if (nivel_acesso == 2) {
+c_usuario.innerHTML = "Visualizador e Editor"
+}
+if (nivel_acesso == 1) {
+c_usuario.innerHTML = "Visualizador"
+}
 
     function cadastrarServidor() {
         cadastrarSer.style.display = 'flex';

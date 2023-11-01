@@ -16,8 +16,13 @@ router.post("/cadastrar", function (req, res) {
     funcionarioController.cadastrar(req, res);
 })
 
-// router.post("/autenticar", function (req, res) {
-//     funcionarioController.entrar(req, res);
-// });
+router.post("/cadastrar_equipe", function (req, res) {
+    funcionarioController.cadastrar_equipe(req, res);
+})
+
+router.post("/atualizar_equipe", function (req, res) {
+    funcionarioController.atualizar_equipe(req, res);
+})
+
 
 module.exports = router;

@@ -31,8 +31,37 @@ function cadastrar(nome, permissao, email, senha) {
     return database.executar(instrucao);
 }
 
+function cadastrar_equipe(nome, permissao, email, senha, fk_instituicao) {
+    console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar_equipe():", nome, permissao, email, senha, fk_instituicao);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO funcionario (nome_funcionario, email, senha, fk_nivelAcesso, fk_instituicao) VALUES ('${nome}', '${email}', '${senha}', ${permissao}, ${fk_instituicao});
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function atualizar_equipe(email_atualizar, permissao_atualizar) {
+    console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizar_equipe():", email_atualizar, permissao_atualizar);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao2 = `
+    UPDATE funcionario
+	SET fk_nivelAcesso = ${permissao_atualizar}
+	WHERE email = '${email_atualizar}'
+	LIMIT 1;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao2);
+    return database.executar(instrucao2);
+}
+
 module.exports = {
     //entrar,
     cadastrar,
     listar,
+    cadastrar_equipe,
+    atualizar_equipe,
 };

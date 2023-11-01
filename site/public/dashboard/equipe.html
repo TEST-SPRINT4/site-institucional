@@ -53,7 +53,7 @@
             <div class="hello">
                 <img src="../Imagens/icon_user.png" alt="">
                 <div class="text-hello">
-                    <h3><span id="b_usuario">usuário</span>!</h3>
+                    <h3><span id="b_usuario">usuário</span></h3>
                     <h4><span id="c_usuario">Nível de permissão</span></h4>
                 </div>
             </div>
@@ -117,6 +117,13 @@
         <!-- INICIANDO CADASRO DE EQUIPE -->
 
         <div class="dash">
+
+            <div class="alerta_erro">
+                <div class="card_erro" id="cardErro">
+                  <span id="mensagem_erro"></span>
+                </div>
+              </div>
+
             <!-- INICIANDO CARDS FORMULARIO -->
             <div class="card-cadastro-equipe" id="cadastrarFun">
 
@@ -124,12 +131,11 @@
                 <div class="card-form">
                     <!-- INICIANDO CAMPOS DO FORMULARIO -->
                     <div class="text-field">
-
                         <label class="label" for="nome">NOME</label><br>
-                        <input type="text" id="input_nome" placeholder=" Digite o nome do funcionário"><br>
+                        <input type="text" id="input_nome_cadastro" placeholder=" Digite o nome do funcionário"><br>
 
                         <label class="label" for="permissão">PERMISSÃO</label><br>
-                        <select id="input_permissao">
+                        <select id="input_permissao_cadastro">
                             <option value="" disabled selected>Selecione...</option>
                             <option value=1>Visualizar</option>
                             <option value=2>Visualizar e editar</option>
@@ -137,19 +143,19 @@
                         </select><br>
 
                         <label class="label" for="email">E-MAIL</label><br>
-                        <input type="email" id="input_email" placeholder=" Digite o e-mail do funcionário"><br>
+                        <input type="email" id="input_email_cadastro" placeholder=" Digite o e-mail do funcionário"><br>
 
                         <label for="senha">SENHA</label><br>
-                        <input type="password" id="input_senha" placeholder=" Digite uma senha para o funcionário"><br>
+                        <input type="password" id="input_senha_cadastro" placeholder=" Digite uma senha para o funcionário"><br>
 
 
                         <label for="senha">CONFIRMAR SENHA</label><br>
-                        <input type="password" id="input_confirmar_senha" placeholder=" Digite a senha novamente"><br>
+                        <input type="password" id="input_confirmar_senha_cadastro" placeholder=" Digite a senha novamente"><br>
                     </div>
 
 
                     <div class="container-button">
-                        <button onclick="cadastrar()" class="botao-login">CADASTRAR <span class="seta">→</span></button>
+                        <button onclick="cadastrar_equipe()" class="botao-login">CADASTRAR <span class="seta">→</span></button>
                     </div>
                     <div class="cardErro"></div>
                 </div>
@@ -174,14 +180,14 @@
                     <div class="text-field">
 
                         <label class="label" for="email">E-MAIL DO FUNCIONÁRIO</label><br>
-                        <input type="text" id="input_email"
+                        <input type="text" id="input_email_atualizar"
                             placeholder="Digite o e-mail do funcionário que terá alteração"><br>
 
                         <!-- <label class="label" for="nome">NOME</label><br>
                         <input type="text" id="input_email" placeholder=" Digite o nome do funcionário"><br> -->
 
                         <label class="label" for="nome">NOVA PERMISSÃO</label><br>
-                        <select id="input_permissao">
+                        <select id="input_permissao_atualizar">
                             <option value="" disabled selected>Selecione...</option>
                             <option value=1>Visualizar</option>
                             <option value=2>Visualizar e editar</option>
@@ -192,7 +198,7 @@
 
 
                     <div class="container-button">
-                        <button onclick="entrar()" class="botao-login">ATUALIZAR <span class="seta">→</span></button>
+                        <button onclick="atualizar_equipe()" class="botao-login">ATUALIZAR <span class="seta">→</span></button>
                     </div>
                 </div>
 
@@ -246,24 +252,132 @@
 </html>
 
 <script>
-    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
     var nivel_acesso = sessionStorage.NIVEL_ACESSO;
 
-    if (nivel_acesso = 3) {
-        c_usuario.innerHTML = "Administrador"
-    }
-    else if (nivel_acesso = 2) {
-        c_usuario.innerHTML = "Visualizador e Editor"
-    }
-    else if (nivel_acesso = 1) {
-        c_usuario.innerHTML = "Visualizador"
-    }
+b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+if (nivel_acesso == 3) {
+c_usuario.innerHTML = "Administrador"
+}
+if (nivel_acesso == 2) {
+c_usuario.innerHTML = "Visualizador e Editor"
+}
+if (nivel_acesso == 1) {
+c_usuario.innerHTML = "Visualizador"
+}
 
     function cadastrarFuncionario() {
         cadastrarFun.style.display = 'flex';
         editarFun.style.display = 'none';
         excluirFun.style.display = 'none';
+    }
+
+    function cadastrar_equipe() {
+        var nome_cadastroVAR = input_nome_cadastro.value;
+        var permissao_cadastroVAR = input_permissao_cadastro.value;
+        var email_cadastroVAR = input_email_cadastro.value;
+        var senha_cadastroVAR =  input_senha_cadastro.value;
+        var confirmar_senha_cadastroVAR = input_confirmar_senha_cadastro.value;
+        var fk_instituicaoVAR = sessionStorage.FK_INSTITUICAO;
+
+        if (nome_cadastroVAR == "" || permissao_cadastroVAR == "" || email_cadastroVAR == "" || senha_cadastroVAR
+            == "" || confirmar_senha_cadastroVAR == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Todos os campos são obrigatórios";
+            setTimeout(function () {
+                cardErro.style.display = "none";
+                    }, 3000);
+            
+            return false;
+        }
+        else if (email_cadastroVAR.indexOf("@") == -1 || email_cadastroVAR.indexOf(".") == -1) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Email inválido, insira um email válido!";
+            setTimeout(function () {
+                cardErro.style.display = "none";
+                    }, 4000);
+            finalizarAguardar();
+            return false;
+
+        } 
+        
+        else if (!/[!@#\$%\^&\*\(\)\-_\+=\[\]{};':"\\|,.<>\/?]/.test(senha_cadastroVAR)) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "A senha deve conter 8 caracteres e 1 especial (ex: @ ! %)";
+            setTimeout(function () {
+                cardErro.style.display = "none";
+                    }, 4000);
+            finalizarAguardar();
+            return false;
+        } 
+        
+        else if (senha_cadastroVAR.length < 8) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "A senha deve conter 8 caracteres e 1 especial (ex: @ ! %)";
+            setTimeout(function () {
+                cardErro.style.display = "none";
+                    }, 4000);
+            finalizarAguardar();
+            return false;
+        } 
+        
+        else if (confirmar_senha_cadastroVAR != senha_cadastroVAR) {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Senhas não se coincidem";
+            setTimeout(function () {
+                cardErro.style.display = "none";
+                    }, 4000);
+            finalizarAguardar();
+            return false;
+                }
+        // Enviando o valor da nova input
+        fetch("/funcionario/cadastrar_equipe/", {
+            
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/funcionario.js
+                nome_cadastroServer:nome_cadastroVAR,
+                permissao_cadastroServer:permissao_cadastroVAR,
+                email_cadastroServer:email_cadastroVAR,
+                senha_cadastroServer:senha_cadastroVAR,
+                fk_instituicaoServer:fk_instituicaoVAR,
+
+            })
+           
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+            
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = `Cadastro do Funcionario: <b>${nome_cadastroVAR}</b> realizado com sucesso`;
+                cardErro.style.borderColor = "green";
+                setTimeout(function () {
+                location.reload()
+                    }, 3000);
+
+                limparFormulario();
+                
+            } else {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = `Não foi possivel realizar o cadastro`;
+                setTimeout(function () {
+                location.reload()
+                    }, 3000);
+                finalizarAguardar();
+                throw ("Houve um erro ao tentar realizar o cadastro do funcionario!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+        return false;
     }
 
     function editarFuncionario() {
@@ -272,78 +386,70 @@
         excluirFun.style.display = 'none';
     }
 
+    function atualizar_equipe() {
+        var email_atualizarVAR = input_email_atualizar.value;
+        var permissao_atualizarVAR = input_permissao_atualizar.value;
+
+        if (email_atualizarVAR == "" || permissao_atualizarVAR == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Todos os campos são obrigatórios";
+            setTimeout(function () {
+                cardErro.style.display = "none";
+                    }, 3000);
+            
+            return false;
+        }
+
+        fetch("/funcionario/atualizar_equipe/", {
+            
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/funcionario.js
+                email_atualizarServer:email_atualizarVAR,
+                permissao_atualizarServer:permissao_atualizarVAR,
+
+            })
+           
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+            
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = `Atualização da permissão do funcionário realizada com sucesso`;
+                cardErro.style.borderColor = "green";
+                setTimeout(function () {
+                location.reload()
+                    }, 3000);
+
+                limparFormulario();
+                
+            } else {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = `Não foi possivel realizar a atualização do funcionário`;
+                setTimeout(function () {
+                location.reload()
+                    }, 3000);
+                finalizarAguardar();
+                throw ("Houve um erro ao tentar realizar a atualização do funcionário!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+        return false;
+    }
+
     function excluirFuncionario() {
         excluirFun.style.display = 'flex';
         cadastrarFun.style.display = 'none';
         editarFun.style.display = 'none';
 
     }
-
-    function cadastrar() {
-
-        // Agora vá para o método fetch logo abaixo
-        var nomeVar = input_nome.value;
-        var permissaoVar = input_permissao.value;
-        var emailVar = input_email.value;
-        var senhaVar = input_senha.value;
-        var confirmacaoSenhaVar = input_confirmar_senha.value;
-
-        //var validacao = emailVar.endsWith(".com");
-        //var validacao2 = emailVar.indexOf("@");
-
-        if (nomeVar == "" || permissaoVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
-            cardErro.style.display = "block"
-            alert("ERRO: Algum campo está em branco...");
-
-            finalizarAguardar();
-            return false;
-            // }
-            // else if(validacao == false || senhaVar != confirmacaoSenhaVar){
-            //     alert("ERRO: Senha ou email inválidos.");
-            //     finalizarAguardar();
-            //     return false;
-        }
-        // }else{
-        //     setInterval(sumirMensagem, 5000)
-        // }
-
-        // Enviando o valor da nova input
-        fetch("/funcionario/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                nomeServer: nomeVar,
-                permissaoServer: permissaoVar,
-                emailServer: emailVar,
-                senhaServer: senhaVar
-            })
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                cardErro.style.color = "green";
-
-                mensagem_erro.innerHTML = "Cadastro realizado com sucesso!";
-
-                //limparFormulario();
-                //finalizarAguardar();
-            } else {
-                throw ("Houve um erro ao tentar realizar o cadastro!");
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
-        });
-
-        return false;
-    }
-
-    // function sumirMensagem() {
-    //     cardErro.style.display = "none"
-    // }
 </script>
