@@ -17,25 +17,39 @@ function buscarServidorPorEmpresa(req, res) {
 }
 
 
-function cadastrar(req, res) {
-  var descricao = req.body.descricao;
-  var idUsuario = req.body.idUsuario;
+function cadastrarSv(req, res) {
 
-  if (descricao == undefined) {
-    res.status(400).send("descricao está undefined!");
-  } else if (idUsuario == undefined) {
-    res.status(400).send("idUsuario está undefined!");
-  } else {
+  // ip_cadastroServer: ip_cadastroVAR,
+  // so_servidor_cadastroServer: so_servidor_cadastroVAR,
+  // localizacao_cadastroServer: localizacao_cadastroVAR,
+  // fk_instituicaoServer: fk_instituicaoVAR,
+
+  var ip_cadastro = req.body.ip_cadastroServer;
+  var so_cadastro = req.body.so_servidor_cadastroServer;
+  var localizacao_cadastro = req.body.localizacao_cadastroServer;
+  var fk_instituicao = req.body.fk_instituicaoServer;
 
 
-    servidorModel.cadastrar(descricao, idUsuario)
+  if (ip_cadastro == undefined) {
+    res.status(400).send("ip_cadastro está undefined!");
+  } else if (so_cadastro == undefined) {
+    res.status(400).send("so_cadastro está undefined!");
+  } else if (localizacao_cadastro == undefined) {
+    res.status(400).send("localizacao_cadastro está undefined!");
+  } else if (fk_instituicao == undefined) {
+    res.status(400).send("fk_instituicao está undefined!");
+  }
+  else {
+
+
+    servidorModel.cadastrarSv(ip_cadastro, so_cadastro, localizacao_cadastro, fk_instituicao)
       .then((resultado) => {
         res.status(201).json(resultado);
       }
       ).catch((erro) => {
         console.log(erro);
         console.log(
-          "\nHouve um erro ao realizar o cadastro! Erro: ",
+          "\nHouve um erro ao realizar o cadastro do Servidor! Erro: ",
           erro.sqlMessage
         );
         res.status(500).json(erro.sqlMessage);
@@ -43,7 +57,74 @@ function cadastrar(req, res) {
   }
 }
 
+function atualizar_servidor(req, res) {
+
+                // input_ip_novoServer:input_ip_novoVAR,
+                // input_so_novoServer:input_so_novoVAR,
+                // input_localizacao_novaServer:input_localizacao_novaVAR,
+
+  var ip_atualizar = req.body.input_ip_novoServer;
+  var so_atualizar = req.body.input_so_novoServer;
+  var localizacao_atualizar = req.body.input_localizacao_novaServer;
+
+
+  if (ip_atualizar == undefined) {
+    res.status(400).send("ip_atualizar está undefined!");
+  } else if (so_atualizar == undefined) {
+    res.status(400).send("so_atualizar está undefined!");
+  } else if (localizacao_atualizar == undefined) {
+    res.status(400).send("localizacao_atualizar está undefined!");
+  } 
+  else {
+
+
+    servidorModel.atualizar_servidor(ip_atualizar, so_atualizar, localizacao_atualizar)
+      .then((resultado) => {
+        res.status(201).json(resultado);
+      }
+      ).catch((erro) => {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao realizar ao atualizar o Servidor! Erro: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
+}
+
+function excluir_servidor(req, res) {
+
+  //                 input_ipServer:input_ipVAR,
+
+
+var ip_excluir = req.body.input_ipServer;
+
+
+if (ip_excluir == undefined) {
+res.status(400).send("ip_atualizar está undefined!");
+} 
+else {
+
+
+servidorModel.excluir_servidor(ip_excluir)
+.then((resultado) => {
+res.status(201).json(resultado);
+}
+).catch((erro) => {
+console.log(erro);
+console.log(
+"\nHouve um erro ao realizar ao excluir o Servidor! Erro: ",
+erro.sqlMessage
+);
+res.status(500).json(erro.sqlMessage);
+});
+}
+}
+
 module.exports = {
   buscarServidorPorEmpresa,
-  cadastrar
+  cadastrarSv,
+  atualizar_servidor,
+  excluir_servidor
 }

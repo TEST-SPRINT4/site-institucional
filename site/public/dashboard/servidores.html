@@ -117,6 +117,13 @@
 
         <div class="dash">
             <!-- INICIANDO CARDS FORMULARIO -->
+
+            <div class="alerta_erro">
+                <div class="card_erro" id="cardErro">
+                  <span id="mensagem_erro"></span>
+                </div>
+              </div>
+
             <div class="card-cadastro-servidor" id="cadastrarSer">
 
 
@@ -125,10 +132,10 @@
                     <div class="text-field">
 
                         <label class="label" for="ip">IP DO SERVIDOR</label><br>
-                        <input type="text" id="input_ip" placeholder=" Digite o endereço de IP do servidor"><br>
+                        <input type="text" id="input_ip_cadastro" placeholder=" Digite o endereço de IP do servidor"><br>
 
                         <label class="label" for="nome">SISTEMA OPERACIONAL</label><br>
-                        <select id="input_permissao">
+                        <select id="input_so_cadastro">
                             <option value="" disabled selected>Selecione...</option>
                             <option value="Windows Server">Windows Server</option>
                             <option value="Ubuntu Server">Ubuntu Server</option>
@@ -149,14 +156,14 @@
                         </select><br>
 
                         <label class="label" for="localização">LOCALIZAÇÃO </label><br>
-                        <input type="text" id="input_localizacao"
+                        <input type="text" id="input_localizacao_cadastro"
                             placeholder=" Digite uma breve localização (prédio, andar, sala...)"><br>
 
                     </div>
 
 
                     <div class="container-button">
-                        <button onclick="cadastrar()" class="botao-login">CADASTRAR <span class="seta">→</span></button>
+                        <button onclick="cadastrarSv()" class="botao-login">CADASTRAR <span class="seta">→</span></button>
                     </div>
                 </div>
 
@@ -180,11 +187,11 @@
                     <div class="text-field">
 
                         <label class="label" for="nome">IP DO SERVIDOR</label><br>
-                        <input type="text" id="input_email" placeholder="Digite o IP do servidor"><br>
+                        <input type="text" id="input_ip_novo" placeholder="Digite o IP do servidor"><br>
 
                         <!-- a -->
                         <label class="label" for="nome">NOVO SISTEMA OPERACIONAL</label><br>
-                        <select id="input_permissao">
+                        <select id="input_so_novo">
                             <option value="" disabled selected>Selecione...</option>
                             <option value="Windows Server">Windows Server</option>
                             <option value="Ubuntu Server">Ubuntu Server</option>
@@ -205,13 +212,13 @@
                         </select><br>
 
                         <label class="label" for="nome">NOVA LOCALIZAÇÃO</label><br>
-                        <input type="text" id="input_email" placeholder=" Digite a nova localização"><br>
+                        <input type="text" id="input_localizacao_nova" placeholder=" Digite a nova localização"><br>
 
                     </div>
 
 
                     <div class="container-button">
-                        <button onclick="entrar()" class="botao-login">ATUALIZAR <span class="seta">→</span></button>
+                        <button onclick="atualizar_servidor()" class="botao-login">ATUALIZAR <span class="seta">→</span></button>
                     </div>
                 </div>
 
@@ -241,7 +248,7 @@
 
 
                     <div class="container-button">
-                        <button onclick="entrar()" class="botao-login">EXCLUIR <span class="seta">→</span></button>
+                        <button onclick="excluir_servidor()" class="botao-login">EXCLUIR <span class="seta">→</span></button>
                     </div>
                 </div>
 
@@ -269,6 +276,7 @@
 
 <script>
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    sessionStorage.FK_INSTITUICAO
 
     var nivel_acesso = sessionStorage.NIVEL_ACESSO;
 
@@ -288,16 +296,205 @@
         excluirSer.style.display = 'none';
     }
 
+    function cadastrarSv() {
+            var ip_cadastroVAR = input_ip_cadastro.value;
+            var so_servidor_cadastroVAR = input_so_cadastro.value;
+            var localizacao_cadastroVAR = input_localizacao_cadastro.value;
+            var fk_instituicaoVAR = sessionStorage.FK_INSTITUICAO;
+
+
+        if (ip_cadastroVAR == "" || so_servidor_cadastroVAR == "" || localizacao_cadastroVAR == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Todos os campos são obrigatórios";
+            setTimeout(function () {
+                cardErro.style.display = "none";
+                    }, 3000);
+            
+            return false;
+        }
+        // Enviando o valor da nova input
+        fetch("/servidor/cadastrarSv/", {
+            
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                ip_cadastroServer:ip_cadastroVAR,
+                so_servidor_cadastroServer:so_servidor_cadastroVAR,
+                localizacao_cadastroServer:localizacao_cadastroVAR,
+                fk_instituicaoServer:fk_instituicaoVAR,
+                 
+
+            })
+           
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+            
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = `Cadastro do servidor: ${ip_cadastroVAR} realizado`;
+                cardErro.style.borderColor = "green";
+                setTimeout(function () {
+                location.reload()
+                    }, 3000);
+
+                limparFormulario();
+                
+            } else {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = `Não foi possível realizar o cadastro do servidor. <b>Servidor já existente</b>`;
+                setTimeout(function () {
+                location.reload()
+                    }, 3000);
+                finalizarAguardar();
+                throw ("Houve um erro ao tentar realizar o cadastro do servidor!");
+            }
+        }).catch(function (resposta) {
+            // FALTA COLOCAR A MENSAGEM DE ERRO INNERHTML
+            console.log(`#ERRO: ${resposta}`);
+        });
+        return false;
+    }
+        
+
     function editarServidor() {
         cadastrarSer.style.display = 'none';
         editarSer.style.display = 'flex';
         excluirSer.style.display = 'none';
     }
 
+    function atualizar_servidor() {
+            var input_ip_novoVAR = input_ip_novo.value;
+            var input_so_novoVAR = input_so_novo.value;
+            var input_localizacao_novaVAR = input_localizacao_nova.value;
+
+        if (input_ip_novoVAR == "" || input_so_novoVAR == "" || input_localizacao_novaVAR == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Todos os campos são obrigatórios";
+            setTimeout(function () {
+                cardErro.style.display = "none";
+                    }, 3000);
+            
+            return false;
+        }
+        // Enviando o valor da nova input
+        fetch("/servidor/atualizar_servidor/", {
+            
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                input_ip_novoServer:input_ip_novoVAR,
+                input_so_novoServer:input_so_novoVAR,
+                input_localizacao_novaServer:input_localizacao_novaVAR,
+
+            })
+           
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+            
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = `Atualização de servidor realizada com sucesso`;
+                cardErro.style.borderColor = "green";
+                setTimeout(function () {
+                location.reload()
+                    }, 3000);
+
+                limparFormulario();
+                
+            } else {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = `Não foi possível atualizar o servidor`;
+                setTimeout(function () {
+                location.reload()
+                    }, 3000);
+                finalizarAguardar();
+                throw ("Houve um erro ao tentar realizar a atualização do servidor!");
+            }
+        }).catch(function (resposta) {
+            // FALTA COLOCAR A MENSAGEM DE ERRO INNERHTML
+            console.log(`#ERRO: ${resposta}`);
+        });
+        return false;
+    }
+
     function excluirServidor() {
         excluirSer.style.display = 'flex';
         cadastrarSer.style.display = 'none';
         editarSer.style.display = 'none';
-
     }
+
+        function excluir_servidor() {
+            var input_ipVAR = input_ip.value;
+    
+        if (input_ipVAR == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "O IP do servidor é necessário para <b>exclusão</b>";
+            setTimeout(function () {
+                cardErro.style.display = "none";
+                    }, 3000);
+            
+            return false;
+        }
+        // Enviando o valor da nova input
+        fetch("/servidor/excluir_servidor/", {
+            
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                input_ipServer:input_ipVAR,
+            })
+           
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+            
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = `Exclusão do servidor <b>${input_ipVAR}</b> realizada com sucesso`;
+                cardErro.style.borderColor = "green";
+                setTimeout(function () {
+                location.reload()
+                    }, 3000);
+
+                limparFormulario();
+                
+            } else {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = `Não foi possível excluir o servidor`;
+                setTimeout(function () {
+                location.reload()
+                    }, 3000);
+                finalizarAguardar();
+                throw ("Houve um erro ao tentar realizar a exclusão do servidor!");
+            }
+        }).catch(function (resposta) {
+            // FALTA COLOCAR A MENSAGEM DE ERRO INNERHTML
+            console.log(`#ERRO: ${resposta}`);
+        });
+        return false;
+    }
+
 </script>
