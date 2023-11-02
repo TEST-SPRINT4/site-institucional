@@ -365,10 +365,28 @@ if (nivel_acesso == 3) {
 c_usuario.innerHTML = "Administrador"
 }
 if (nivel_acesso == 2) {
-c_usuario.innerHTML = "Visualizador e Editor"
+    c_usuario.innerHTML = "Visualizador e Editor";
+
+    var equipeDiv = document.querySelector(".btn-nav img[src*='icon-equipe-cinza.png']").parentElement;
+    if (equipeDiv) {
+        equipeDiv.style.display = "none";
+    }
 }
+
 if (nivel_acesso == 1) {
-c_usuario.innerHTML = "Visualizador"
+    c_usuario.innerHTML = "Visualizador";
+
+    // Ocultar a div do botão "Equipe"
+    var equipeDiv = document.querySelector(".btn-nav img[src*='icon-equipe-cinza.png']").parentElement;
+    if (equipeDiv) {
+        equipeDiv.style.display = "none";
+    }
+
+    // Ocultar a div do botão "Servidores"
+    var servidoresDiv = document.querySelector(".btn-nav img[src*='icon-servidor-cinza.png']").parentElement;
+    if (servidoresDiv) {
+        servidoresDiv.style.display = "none";
+    }
 }
 
     let proximaAtualizacao;
