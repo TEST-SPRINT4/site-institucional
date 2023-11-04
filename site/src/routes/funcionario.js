@@ -24,5 +24,9 @@ router.post("/atualizar_equipe", function (req, res) {
     funcionarioController.atualizar_equipe(req, res);
 })
 
+router.post("/desativarFuncionario", function (req, res) {
+    funcionarioController.desativarFuncionario(req, res);
+})
+
 
 module.exports = router;

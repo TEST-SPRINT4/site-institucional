@@ -12,7 +12,7 @@ function cadastrarSv(ip_cadastro, so_cadastro, localizacao_cadastro, fk_institui
   console.log("ACESSEI O SERVIDOR MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSv():", ip_cadastro, so_cadastro, localizacao_cadastro, fk_instituicao);
 
   var instrucao1 = `
-      INSERT INTO Servidor (enderecoIP, sistemaOperacional, localizacao, fkInstituicao) VALUES ('${ip_cadastro}', '${so_cadastro}', '${localizacao_cadastro}', '${fk_instituicao}');
+      INSERT INTO Servidor (enderecoIP, sistemaOperacional, localizacao, status_servidor, fkInstituicao) VALUES ('${ip_cadastro}', '${so_cadastro}', '${localizacao_cadastro}', 1, '${fk_instituicao}');
   `;
   console.log("Executando a instrução1 SQL: \n" + instrucao1);
   return database.executar(instrucao1);
@@ -35,8 +35,10 @@ function excluir_servidor(ip_excluir) {
   console.log("ACESSEI O SERVIDOR MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function excluir_servidor():", ip_excluir);
 
   var instrucao3 = `
-  DELETE FROM Servidor
-	WHERE enderecoIP = '${ip_excluir}';
+  UPDATE Servidor
+	SET status_servidor = 0
+	WHERE enderecoIP = '${ip_excluir}'
+	LIMIT 1;
   `;
   console.log("Executando a instrução1 SQL: \n" + instrucao3);
   return database.executar(instrucao3);

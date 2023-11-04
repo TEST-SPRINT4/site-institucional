@@ -2,16 +2,14 @@ import mysql.connector #biblioteca responsável pela conexão com o mysql
 import psutil
 import time
 from datetime import datetime
-import socket #Biblioteca responsável pela captura do ip da maquina
 import requests #Biblioteca responsável por conectar o SLACK com o pyhton
 import json #Slack também.
 import speedtest
-import hashlib #Biblioteca responsável por criptografar o ip
 
 mensagem = {"text": "Olá, bem vindo. O sistema da TEST foi iniciado!"}
 webhook = "https://hooks.slack.com/services/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"
 
-print(mensagem)
+print("Olá, bem vindo. O sistema da TEST foi iniciado!")
 
 requests.post(webhook, data=json.dumps(mensagem))
 
@@ -23,43 +21,6 @@ connection = mysql.connector.connect(
 )
 
 cursor = connection.cursor()
-
-# Pegando o IP da maquina (servidor) e inserindo no banco de dados.
-def get_ip(): # Função responsável por capturar o ip da maquina
-    hostname = socket.gethostname() #socket é o nome da biblioteca usada para a captura do IP
-    ip = socket.gethostbyname(hostname) #O método gethostbyname() é uma função útil para obter o endereço IP de um host, seja um host remoto ou o host local.
-    return ip
-
-# O idioma de nome principal é um truque que permite executar um código específico apenas se o código for executado como um programa.
-
-# Isso significa que, se você copiar e colar o código em um editor de texto e executá-lo,
-# o código específico será executado. No entanto, se você importar o código como um módulo
-# em outro programa Python, o código específico não será executado.
-
-def hash_ip(ip):
-    sha256 = hashlib.sha256()
-    sha256.update(ip.encode('utf-8'))
-    return sha256.hexdigest()
-
-
-
-if __name__ == "__main__":
-    ip = get_ip()
-    print(ip)
-
-    # sql1 = "INSERT INTO Servidor (enderecoIP, fkInstituicao) VALUES (%s, %s)"
-    # values1 = (ip, 1)
-
-    # try:
-    #     # Executa a inserção
-    #     cursor.execute(sql1, values1)
-    #
-    #     # Confirma as alterações no banco de dados
-    #     connection.commit()
-    #     print("Inserção do SERVIDOR realizada com sucesso!")
-    #
-    # except mysql.connector.Error as err:
-    #     print("Erro ao inserir na tabela Servidor:", err)
 
 #Criando a estrutura de repetição para que os valores dos componentes se atualizam
 while True:
@@ -79,14 +40,14 @@ while True:
 #-------------------------------------------------------------------------------------
 
     #Parte do código responsável por capturar a latência da internet que a maquina/servidor está conectado
-    # st = speedtest.Speedtest()
-    #
-    #
-    # # Medir a latência (ping)
-    # ping_result = st.get_best_server()
-    # ping_latency = ping_result["latency"]
-    #
-    # print(f"Latência da Internet: {ping_latency} ms")
+    st = speedtest.Speedtest()
+
+
+    # Medir a latência (ping)
+    ping_result = st.get_best_server()
+    ping_latency = ping_result["latency"]
+
+    print(f"Latência da Internet: {ping_latency} ms")
 
 # -------------------------------------------------------------------------------------
 
@@ -158,12 +119,12 @@ while True:
     sql44 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
     values44 = (armazenamento_arredondado, dia.strftime('%Y-%m-%d %H:%M:%S'), 3, 1)
 
-   # sql55 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
-    # values55 = (round(ping_latency, 2), dia.strftime('%Y-%m-%d %H:%M:%S'), 4, ip)
+    sql55 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
+    values55 = (round(ping_latency, 2), dia.strftime('%Y-%m-%d %H:%M:%S'), 4, 1)
 
-    # SQL para inserir na tabela RegistrosRAW (CPU)
-   # sql2 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
-   # values2 = (ping_latency, dia.strftime('%Y-%m-%d %H:%M:%S'), 4, ip)
+    # # SQL para inserir na tabela RegistrosRAW (CPU)
+    sql2 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
+    values2 = (ping_latency, dia.strftime('%Y-%m-%d %H:%M:%S'), 4, 1)
 
     sql3 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
     values3 = (disco_em_uso, dia.strftime('%Y-%m-%d %H:%M:%S'), 3, 1)
@@ -171,12 +132,12 @@ while True:
 #Aqui, independente do valor e dos alertas os dados serão inseridos
     try:
         # Executa a inserção
-       # cursor.execute(sql2, values2)
+        cursor.execute(sql2, values2)
         cursor.execute(sql3, values3)
         cursor.execute(sql22, values22)
         cursor.execute(sql33, values33)
         cursor.execute(sql44, values44)
-       # cursor.execute(sql55, values55)
+        cursor.execute(sql55, values55)
 
         # Confirma as alterações no banco de dados
         connection.commit()

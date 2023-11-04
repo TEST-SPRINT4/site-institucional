@@ -222,12 +222,12 @@
                     <div class="text-field">
 
                         <label class="label" for="email">E-MAIL DO FUNCIONÁRIO</label><br>
-                        <input type="text" id="input_email"
+                        <input type="text" id="input_email_desativar"
                             placeholder=" Digite o e-mail do funcionário que será excluido"><br>
                     </div>
 
                     <div class="container-button">
-                        <button onclick="entrar()" class="botao-login">EXCLUIR <span class="seta">→</span></button>
+                        <button onclick="desativarFuncionario()" class="botao-login">EXCLUIR <span class="seta">→</span></button>
                     </div>
                 </div>
 
@@ -468,6 +468,65 @@ if (nivel_acesso == 1) {
         excluirFun.style.display = 'flex';
         cadastrarFun.style.display = 'none';
         editarFun.style.display = 'none';
-
     }
+
+    function desativarFuncionario() {
+        var email_desativarVAR = input_email_desativar.value; 
+
+
+        if (email_desativarVAR == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "Insira um email para exclusão";
+            setTimeout(function () {
+                cardErro.style.display = "none";
+                    }, 3000);
+            
+            return false;
+        }
+
+        fetch("/funcionario/desativarFuncionario/", {
+            
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/funcionario.js
+                email_desativarServer:email_desativarVAR,
+
+            })
+           
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+            
+            if (resposta.ok) {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = `Exclusão do funcionário realizada com sucesso`;
+                cardErro.style.borderColor = "green";
+                setTimeout(function () {
+                location.reload()
+                    }, 3000);
+
+                limparFormulario();
+                
+            } else {
+                cardErro.style.display = "block";
+
+                mensagem_erro.innerHTML = `Não foi possivel realizar a exclusão do funcionário`;
+                setTimeout(function () {
+                location.reload()
+                    }, 3000);
+                finalizarAguardar();
+                throw ("Houve um erro ao tentar realizar a exclusão do funcionário!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+        return false;
+    }
+
 </script>

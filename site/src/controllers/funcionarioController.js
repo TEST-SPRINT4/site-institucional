@@ -144,11 +144,43 @@ function atualizar_equipe(req, res) {
     }
 }
 
+function desativarFuncionario(req, res) {
+    // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
+
+    //             email_desativarServer:email_desativarVAR,
+
+    var email_desativar = req.body.email_desativarServer;
+
+    // Faça as validações dos valores
+    if (email_desativar == undefined) {
+        res.status(400).send("O email está está undefined!");
+    } else {
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        funcionarioModel.desativarFuncionario(email_desativar)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar a exlusão do funcionário! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
     //entrar,
     cadastrar,
     //listar,
     testar,
     cadastrar_equipe,
-    atualizar_equipe
+    atualizar_equipe,
+    desativarFuncionario,
 }

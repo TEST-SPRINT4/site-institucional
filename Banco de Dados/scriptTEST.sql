@@ -45,6 +45,7 @@ CREATE TABLE funcionario (
     nome_funcionario VARCHAR(45),
     email VARCHAR(45),
 	senha VARCHAR(45),
+    status_funcionario tinyint,
     fk_nivelAcesso INT,
 	CONSTRAINT fknivelAcesso FOREIGN KEY (fk_nivelAcesso)
 	REFERENCES nivelAcesso(nivel_acesso),
@@ -58,6 +59,7 @@ CREATE TABLE Servidor (
 	enderecoIP varchar(15),
     sistemaOperacional varchar(45),
     localizacao varchar(45),
+    status_servidor tinyint,
     fkInstituicao int,
     constraint fkInstituicao_servidor foreign key (fkInstituicao)
     references instituicao (idInstituicao)
@@ -72,6 +74,7 @@ insert into Componente values
 	(null, "CPU"),
     (null, "RAM"),
     (null, "DISCO"),
+    (null, "LATÊNCIA"),
     (null, "PACOTES - ENVIADOS"),
     (null, "PACOTES - RECEBIDOS");
     
@@ -154,11 +157,15 @@ update nivelAcesso set fkPermicoes = 3 where nivel_acesso = 1;
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 2; -- RAM
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 3; -- DISCO
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 4; -- LATÊNCIA
+    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 5; -- PACOTES - ENVIADOS
+    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 6; -- PACOTES - RECEBIDOS
     
     select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 1; -- CPU
     select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 2; -- RAM
     select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 3; -- DISCO
     select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 4; -- LATÊNCIA
+    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 5; -- PACOTES - ENVIADOS
+    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 6; -- PACOTES - RECEBIDOS
     
     select dadoscapturados, dataHora from RegistrosTRUSTED join Servidor on fkIpservidor = 'coloque_o_IP';
     
@@ -173,26 +180,6 @@ FROM RegistrosTRUSTED
 JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
 JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
 WHERE Servidor.idServidor = '1' AND Componente.modelo = 'CPU';
-
-	insert into Servidor values
-    (null, '12345', 'linux', '5° andar sala 12', 1);
-    
-    insert into instituicao values
-	(null, 'sptech', 'Simone', 's@gmail.com', '123456789123456789', 12345678912345);
-    
-    insert into RegistrosTRUSTED values
-    (null, 2.5,  '2023-10-11 23:23:23', 3, 1),
-	(null, 2.5, '2023-10-11 23:26:23', 3, 1),
-	(null, 3.5, '2023-10-11 23:29:23', 3, 1),
-	(null, 0.5, '2023-10-11 23:32:23', 3, 1),
-	(null, 6.5, '2023-10-11 23:35:23', 3, 1);
-    
-        insert into RegistrosTRUSTED values
-    (null, 22.5, '2023-10-11 23:23:23', 1, 2),
-	(null, 25.5, '2023-10-11 23:26:23', 1, 2),
-	(null, 23.5, '2023-10-11 23:29:23', 1, 2),
-	(null, 20.5, '2023-10-11 23:32:23', 1, 2),
-	(null, 28.5, '2023-10-11 23:35:23', 1, 2);
 
 select dadoscapturados, dataHora from RegistrosTRUSTED JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente where Componente.modelo = 'CPU';
 
