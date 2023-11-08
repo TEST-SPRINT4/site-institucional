@@ -1,0 +1,181 @@
+/* PAGINA DOS GRÁFICOS */
+
+* {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #f2f2f2;
+}
+
+.text {
+  font-size: 18px;
+}
+
+.janela {
+  display: flex;
+  width: 100%;
+  background-color: #f2f2f2;
+  justify-content: space-between;
+  padding-top: 15px;
+}
+
+/* ----------------------------------------------------------------------- */
+
+/* NAV BAR SUPERIOR */
+
+.nav-bar {
+  width: 100%;
+  height: 12vh;
+  display: flex;
+  justify-content: center;
+}
+
+.container-nav-bar {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container-nav-bar img {
+  width: 100px;
+  height: 50px;
+}
+
+.container-nav-bar a {
+  text-decoration: none;
+  color: #000000;
+  cursor: pointer;
+}
+
+.container-nav-bar a:hover {
+  color: #000000;
+}
+
+.container-nav-bar ul {
+  width: 20%;
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+}
+
+.agora {
+  font-weight: 600;
+}
+
+/* ----------------------------------------------------------------------- */
+
+/* NAV BAR LATERAL */
+
+.header-left {
+  height: 90vh;
+  width: 23%;
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+  box-shadow: 1px 1px 15px rgba(91, 91, 91, 0.77);
+  margin-right: 2%;
+}
+
+/* Informações usuário */
+.hello {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-top: 20%;
+}
+
+.hello img {
+  width: 4vw;
+  margin-left: 10%;
+  margin-right: 5%;
+
+}
+
+.text-hello h3 {
+  color: #000000;
+  font-weight: 800;
+  font-size: 1.2rem;
+  margin: 0%;
+}
+
+.text-hello h4 {
+  color: #808080;
+  margin: 0%;
+}
+
+/* Botões principais */
+
+/* botão não selecionado */
+.btn-nav {
+  display: flex;
+  align-items: center ;
+  width: 100%;
+  height: 10vh;
+  color: #808080;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 2%;
+}
+
+/* botão selecionado */
+/* .btn-nav-current{
+  display: flex;
+  align-items: center ;
+  width: 100%;
+  height: 10vh;
+  color: #212124;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 2%;
+} */
+
+
+/* Botões servidores selecionados */
+.btn-nav-server h3 {
+  width: 100%;
+  color: #808080;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+} 
+
+.btn-nav-server{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* icon dos botões principais */
+.img_icon{
+  width: 30px;
+  height: 30px;
+  margin-left: 10%;
+  margin-right: 5%;
+}
+.container-server{
+  margin-top: 15%;
+}
+
+.header-left a {
+  text-decoration: none;
+  color: white;
+}
+
+/* ----------------------------------------------------------------------- */
+
+/* DASHBOARD */
+
+.dash{
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
