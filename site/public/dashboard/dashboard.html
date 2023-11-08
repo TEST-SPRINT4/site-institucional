@@ -75,16 +75,9 @@
                     </a>
                 </div>
 
-                <div class="btns-dash">
+                <div class="btns-dash" id="btns_dash">
                     <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
-                    <button class="btn-chart btn-server-select" onclick="exibirServidor(1)" id="btnServidor1">Servidor
-                        1</button>
-                    <button class="btn-chart btn-server" onclick="exibirServidor(2)" id="btnServidor2">Servidor
-                        2</button>
-                    <button class="btn-chart btn-server" onclick="exibirServidor(3)" id="btnServidor3">Servidor
-                        3</button>
-                    <button class="btn-chart btn-server" onclick="exibirServidor(4)" id="btnServidor4">Servidor
-                        4</button>
+       
                 </div>
             </div>
 
@@ -393,6 +386,7 @@ if (nivel_acesso == 1) {
 
     window.onload = obterDadosGraficos();
     window.onload = exibirServidor(1);
+    window.onload = listar();
 
     function obterDadosGraficos() {
         obterDadosGrafico_cpu(1)
@@ -435,6 +429,7 @@ if (nivel_acesso == 1) {
 
 
     function exibirServidor(idServidor) {
+
         let todosOsGraficos = document.getElementById("graficos")
 
         for (i = 1; i <= todosOsGraficos.childElementCount; i++) {
@@ -446,11 +441,11 @@ if (nivel_acesso == 1) {
             elementoAtual.classList.add("display-none")
 
             // alterando estilo do botão
-            let btnAtual = document.getElementById(`btnServidor${i}`)
-            if (btnAtual.classList.contains("btn-server-select")) {
-                btnAtual.classList.remove("btn-server-select")
-            }
-            btnAtual.classList.add("btn-server")
+            // let btnAtual = document.getElementById(`btnServidor${i}`)
+            // if (btnAtual.classList.contains("btn-server-select")) {
+            //     btnAtual.classList.remove("btn-server-select")
+            // }
+            // btnAtual.classList.add("btn-server")
         }
 
         // exibindo - ou não - o gráfico
@@ -459,9 +454,9 @@ if (nivel_acesso == 1) {
         graficoExibir.classList.add("display-block")
 
         // alterando estilo do botão
-        let btnExibir = document.getElementById(`btnServidor${idServidor}`)
-        btnExibir.classList.remove("btn-server")
-        btnExibir.classList.add("btn-server-select")
+        // let btnExibir = document.getElementById(`btnServidor${idServidor}`)
+        // btnExibir.classList.remove("btn-server")
+        // btnExibir.classList.add("btn-server-select")
     }
 
     // GRÁFICOS CPU --------------------------------------------------------------------------------------------
@@ -1116,4 +1111,38 @@ if (nivel_acesso == 1) {
             });
 
     }
+ 
+    //---------------------------------------------------------------
+    
+  //Chamando o arquivo listar
+
+  function listar(){
+    fetch("../servidor/listar", {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then((resposta) => {
+    console.log(resposta);
+    return resposta.json();
+
+  }).then((data) => {
+    console.log(data);
+
+    //Puxamos a quantidade de registros no BD
+    for (var i = 0; i < data.length; i++) {
+      const element = data[i];
+      btns_dash.innerHTML += `
+        <span class="btn-chart btn-server" onclick="exibirServidor(${element.idServidor})">Servidor ${element.idServidor}</span>
+          `;
+    }
+
+    var teste = data.length;
+    console.log(teste);
+    })
+  }
+  
+
+
+
 </script>
