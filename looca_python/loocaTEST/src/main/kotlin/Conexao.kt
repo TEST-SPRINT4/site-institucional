@@ -8,7 +8,7 @@ class Conexao {
         dataSource.driverClassName = "com.mysql.cj.jdbc.Driver"
         dataSource.url = "jdbc:mysql://localhost:3306/test?useSSL=false"
         dataSource.username = "root"
-        dataSource.password = "0212"
+        dataSource.password = "sarabi3011"
         return JdbcTemplate(dataSource)
     }
 

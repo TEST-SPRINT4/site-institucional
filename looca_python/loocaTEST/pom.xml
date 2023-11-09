@@ -26,7 +26,7 @@
 
     <build>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
-        <testSourceDirectory>src/test/kotlin</testSourceDirectory>
+<!--                <testSourceDirectory>src/test/kotlin</testSourceDirectory>-->
         <plugins>
             <plugin>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -60,11 +60,38 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
                 <configuration>
                     <source>8</source>
                     <target>8</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.6.0</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <mainClass>app.Main</mainClass>
+                                </manifest>
+                            </archive>
+                            <descriptorRefs>
+                                <descriptorRef>jar-with-dependencies</descriptorRef>
+                            </descriptorRefs>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+
         </plugins>
     </build>
 
@@ -111,16 +138,16 @@
             <artifactId>NetworkUtils</artifactId>
             <version>2.19.1</version>
         </dependency>
-        <dependency>
-            <groupId>com.pddstudio</groupId>
-            <artifactId>networkutils</artifactId>
-            <version>1.0.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.github.britooo.speedtest</groupId>
-            <artifactId>kt</artifactId>
-            <version>0.0.4</version>
-        </dependency>
+        <!--        <dependency>-->
+        <!--            <groupId>com.pddstudio</groupId>-->
+        <!--            <artifactId>networkutils</artifactId>-->
+        <!--            <version>1.0.2</version>-->
+        <!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.github.britooo.speedtest</groupId>-->
+        <!--            <artifactId>kt</artifactId>-->
+        <!--            <version>0.0.4</version>-->
+        <!--        </dependency>-->
     </dependencies>
 
 </project>

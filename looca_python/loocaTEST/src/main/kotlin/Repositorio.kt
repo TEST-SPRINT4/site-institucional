@@ -1,5 +1,6 @@
 import org.springframework.jdbc.core.BeanPropertyRowMapper
 import org.springframework.jdbc.core.JdbcTemplate
+import java.time.LocalDateTime
 
 class repository {
 
@@ -13,7 +14,7 @@ class repository {
         jdbcTemplate.update("""
         insert into RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor)
         values
-        (${novoComponente.PacoRecebidos}, '${novoComponente.dataHora}', 4, 1)
+        (${novoComponente.PacoRecebidos}, '${LocalDateTime.now()}', 4, 1)
         """)
     }
 
@@ -21,7 +22,7 @@ class repository {
         jdbcTemplate.update("""
         insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor)
         values
-        (${novoComponente.PacoRecebidosRAW}, '${novoComponente.dataHora}', 4, 1)
+        (${novoComponente.PacoRecebidosRAW}, '${LocalDateTime.now()}', 4, 1)
         """)
     }
 
@@ -29,7 +30,7 @@ class repository {
         jdbcTemplate.update("""
         insert into RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor)
         values
-        (${novoComponente.PacEnviados}, '${novoComponente.dataHora}', 5, 1)
+        (${novoComponente.PacEnviados}, '${LocalDateTime.now()}', 5, 1)
         """)
     }
 
@@ -37,7 +38,7 @@ class repository {
         jdbcTemplate.update("""
         insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor)
         values
-        (${novoComponente.PacEnviadosRAW}, '${novoComponente.dataHora}', 5, 1)
+        (${novoComponente.PacEnviadosRAW}, '${LocalDateTime.now()}', 5, 1)
         """)
     }
 
@@ -45,7 +46,7 @@ class repository {
         jdbcTemplate.update("""
             insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor)
             values
-            (${novoComponente.cpuRaw}, '${novoComponente.dataHora}', 1, 1)
+            (${novoComponente.cpuRaw}, '${LocalDateTime.now()}', 1, 1)
         """.trimIndent())
     }
 
@@ -53,7 +54,7 @@ class repository {
         jdbcTemplate.update("""
             insert into RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor)
             values
-            (${novoComponente.ramRaw}, '${novoComponente.dataHora}', 2, 1)
+            (${novoComponente.ramRaw}, '${LocalDateTime.now()}', 2, 1)
         """.trimIndent())
     }
 
