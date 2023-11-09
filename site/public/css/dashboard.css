@@ -66,7 +66,7 @@ body {
 
 /* NAV BAR LATERAL */
 .header-left {
-  height: 160vh;
+  height: 225vh;
   width: 23%;
   display: flex;
   flex-direction: column;
@@ -196,8 +196,9 @@ body {
   height: 150px;
   box-shadow: 1px 1px 15px rgba(91, 91, 91, 0.77);
   border-radius: 15px;
-  margin: 2%;
+  margin: 8px;
   margin-top: 0%;
+  margin-bottom: 2%;
 }
 
 .card-media h3{
@@ -209,7 +210,7 @@ body {
 .card-media h1{
   color: #ffffff;
   text-align: center;
-  font-size: 60px;
+  font-size: 45px;
   margin: 0%;
 }
 

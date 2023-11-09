@@ -34,14 +34,36 @@ router.get("/tempo-realDISCO/:idServidor", function (req, res) {
 
 //--------------------------------------------------------------
 
-//var medidaControllerREDE = require("../controllers/medidaController");
 
-router.get("/ultimasREDE/:idServidor", function (req, res) {
-    medidaController.buscarUltimasMedidasREDE(req, res);
+router.get("/ultimasENVIADOS/:idServidor", function (req, res) {
+    medidaController.buscarUltimasMedidasENVIADOS(req, res);
 });
 
-router.get("/tempo-realREDE/:idServidor", function (req, res) {
-    medidaController.buscarMedidasEmTempoRealREDE(req, res);
+router.get("/tempo-realENVIADOS/:idServidor", function (req, res) {
+    medidaController.buscarMedidasEmTempoRealENVIADOS(req, res);
 })
+
+//--------------------------------------------------------------
+
+
+router.get("/ultimasRECEBIDOS/:idServidor", function (req, res) {
+    medidaController.buscarUltimasMedidasRECEBIDOS(req, res);
+});
+
+router.get("/tempo-realRECEBIDOS/:idServidor", function (req, res) {
+    medidaController.buscarMedidasEmTempoRealRECEBIDOS(req, res);
+})
+
+//--------------------------------------------------------------
+
+
+router.get("/ultimasLATENCIA/:idServidor", function (req, res) {
+    medidaController.buscarUltimasMedidasLATENCIA(req, res);
+});
+
+router.get("/tempo-realLATENCIA/:idServidor", function (req, res) {
+    medidaController.buscarMedidasEmTempoRealLATENCIA(req, res);
+})
+
 
 module.exports = router;

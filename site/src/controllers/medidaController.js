@@ -42,7 +42,6 @@ function buscarUltimasMedidasRAM(req, res) {
     });
 }
 
-//var medidaModelDISCO = require("../models/medidaModel");
 function buscarUltimasMedidasDISCO(req, res) {
 
     const limite_linhas = 7;
@@ -59,13 +58,12 @@ function buscarUltimasMedidasDISCO(req, res) {
         }
     }).catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas de REDE", erro.sqlMessage);
+        console.log("Houve um erro ao buscar as ultimas medidas de DISCO", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
 
-//var medidaModelREDE = require("../models/medidaModel");
-function buscarUltimasMedidasREDE(req, res) {
+function buscarUltimasMedidasENVIADOS(req, res) {
 
     const limite_linhas = 7;
 
@@ -73,7 +71,7 @@ function buscarUltimasMedidasREDE(req, res) {
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarUltimasMedidasREDE(idServidor, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidasENVIADOS(idServidor, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -85,6 +83,50 @@ function buscarUltimasMedidasREDE(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+
+function buscarUltimasMedidasRECEBIDOS(req, res) {
+
+    const limite_linhas = 7;
+
+    var idServidor = req.params.idServidor;
+
+    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
+
+    medidaModel.buscarUltimasMedidasRECEBIDOS(idServidor, limite_linhas).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarUltimasMedidasLATENCIA(req, res) {
+
+    const limite_linhas = 7;
+
+    var idServidor = req.params.idServidor;
+
+    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
+
+    medidaModel.buscarUltimasMedidasLATENCIA(idServidor, limite_linhas).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+//-------------------------------------------------------------------------------------------
 
 
 function buscarMedidasEmTempoRealCPU(req, res) {
@@ -144,21 +186,59 @@ function buscarMedidasEmTempoRealDISCO(req, res) {
     });
 }
 
-function buscarMedidasEmTempoRealREDE(req, res) {
+function buscarMedidasEmTempoRealENVIADOS(req, res) {
 
     var idServidor = req.params.idServidor;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoRealREDE(idServidor).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoRealENVIADOS(idServidor).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
-            res.status(204).send("Nenhum resultado encontrado na REDE!")
+            res.status(204).send("Nenhum resultado encontrado na PACOTES ENVIADOS!")
         }
     }).catch(function (erro) {
         console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas de REDE", erro.sqlMessage);
+        console.log("Houve um erro ao buscar as ultimas medidas de PACOTES ENVIADOS", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarMedidasEmTempoRealRECEBIDOS(req, res) {
+
+    var idServidor = req.params.idServidor;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarMedidasEmTempoRealRECEBIDOS(idServidor).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado na PACOTES RECEBIDOS!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas de PACOTES RECEBIDOS", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarMedidasEmTempoRealLATENCIA(req, res) {
+
+    var idServidor = req.params.idServidor;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarMedidasEmTempoRealLATENCIA(idServidor).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado na LATENCIA!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas de LATENCIA", erro.sqlMessage);
         res.status(500).json(erro.sqlMessage);
     });
 }
@@ -166,9 +246,14 @@ module.exports = {
     buscarUltimasMedidasCPU,
     buscarUltimasMedidasRAM,
     buscarUltimasMedidasDISCO,
-    buscarUltimasMedidasREDE,
+    buscarUltimasMedidasRECEBIDOS,
+    buscarUltimasMedidasENVIADOS,
+    buscarUltimasMedidasLATENCIA,
+
     buscarMedidasEmTempoRealCPU,
     buscarMedidasEmTempoRealRAM,
     buscarMedidasEmTempoRealDISCO,
-    buscarMedidasEmTempoRealREDE
+    buscarMedidasEmTempoRealENVIADOS,
+    buscarMedidasEmTempoRealRECEBIDOS,
+    buscarUltimasMedidasLATENCIA,
 }

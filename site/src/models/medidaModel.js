@@ -78,7 +78,33 @@ function buscarUltimasMedidasDISCO(idServidor, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
-function buscarUltimasMedidasREDE(idServidor, limite_linhas) {
+function buscarUltimasMedidasENVIADOS(idServidor, limite_linhas) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = ``;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT 
+        dadoscapturados, 
+        dataHora,
+        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "PACOTES - ENVIADOS"
+        order by idRegistros desc limit ${limite_linhas}`;
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarUltimasMedidasRECEBIDOS(idServidor, limite_linhas) {
 
     instrucaoSql = ''
 
@@ -93,6 +119,32 @@ function buscarUltimasMedidasREDE(idServidor, limite_linhas) {
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
         WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "PACOTES - RECEBIDOS"
+        order by idRegistros desc limit ${limite_linhas}`;
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarUltimasMedidasLATENCIA(idServidor, limite_linhas) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = ``;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT 
+        dadoscapturados, 
+        dataHora,
+        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "LATÊNCIA"
         order by idRegistros desc limit ${limite_linhas}`;
 
     } else {
@@ -182,7 +234,7 @@ function buscarMedidasEmTempoRealDISCO(idServidor) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoRealREDE(idServidor) {
+function buscarMedidasEmTempoRealENVIADOS(idServidor) {
 
     instrucaoSql = ''
 
@@ -197,8 +249,60 @@ function buscarMedidasEmTempoRealREDE(idServidor) {
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "PACOTES - RECEBIDOS"
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "PACOTES - ENVIADOS"
         order by idRegistros desc limit 1`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarMedidasEmTempoRealRECEBIDOS(idServidor, limite_linhas) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = ``;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT 
+        dadoscapturados, 
+        dataHora,
+        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "PACOTES - RECEBIDOS"
+        order by idRegistros desc limit ${limite_linhas}`;
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarMedidasEmTempoRealLATENCIA(idServidor, limite_linhas) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = ``;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT 
+        dadoscapturados, 
+        dataHora,
+        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "LATÊNCIA"
+        order by idRegistros desc limit ${limite_linhas}`;
+
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -213,9 +317,14 @@ module.exports = {
     buscarUltimasMedidasCPU,
     buscarUltimasMedidasRAM,
     buscarUltimasMedidasDISCO,
-    buscarUltimasMedidasREDE,
+    buscarUltimasMedidasENVIADOS,
+    buscarUltimasMedidasRECEBIDOS,
+    buscarUltimasMedidasLATENCIA,
+
     buscarMedidasEmTempoRealCPU,
     buscarMedidasEmTempoRealRAM,
     buscarMedidasEmTempoRealDISCO,
-    buscarMedidasEmTempoRealREDE
+    buscarMedidasEmTempoRealENVIADOS,
+    buscarMedidasEmTempoRealRECEBIDOS,
+    buscarMedidasEmTempoRealLATENCIA,
 }
