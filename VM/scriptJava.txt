@@ -16,4 +16,13 @@ then
 
 fi
 
+ sudo apt install docker.io
+
+ docker --version
+
+sudo systemctl start docker
+
+sudo systemctl enable docker
+
+
 
