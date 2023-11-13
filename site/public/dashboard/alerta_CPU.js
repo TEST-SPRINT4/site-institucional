@@ -29,62 +29,46 @@ function obterDadosGrafico_cpu(idServidor) {
 function alertar(resposta, idServidor) {
     var temp = resposta[0].temperatura;
 
-    console.log(idServidor === resposta[0].fk_aquario)
+    console.log(idServidor === resposta[0].fkIdServidor)
    
     var grauDeAviso ='';
 
 
     var limites = {
-        muito_quente: 23,
-        quente: 22,
-        ideal: 20,
-        frio: 10,
-        muito_frio: 5
+        perigo: 90,
+        alerta: 22,
+        ideal: 50,
+    
     };
 
     var classe_temperatura = 'cor-alerta';
 
-    if (temp >= limites.muito_quente) {
+    if (temp >= limites.perigo) {
         classe_temperatura = 'cor-alerta perigo-quente';
         grauDeAviso = 'perigo quente'
         grauDeAvisoCor = 'cor-alerta perigo-quente'
-        exibirAlerta(temp, idAquario, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(temp, idServidor, grauDeAviso, grauDeAvisoCor)
     }
-    else if (temp < limites.muito_quente && temp >= limites.quente) {
+    else if (temp < limites.perigo && temp >= limites.alerta) {
         classe_temperatura = 'cor-alerta alerta-quente';
         grauDeAviso = 'alerta quente'
         grauDeAvisoCor = 'cor-alerta alerta-quente'
-        exibirAlerta(temp, idAquario, grauDeAviso, grauDeAvisoCor)
+        exibirAlerta(temp, idServidor, grauDeAviso, grauDeAvisoCor)
     }
-    else if (temp < limites.quente && temp > limites.frio) {
-        classe_temperatura = 'cor-alerta ideal';
-        removerAlerta(idAquario);
-    }
-    else if (temp <= limites.frio && temp > limites.muito_frio) {
-        classe_temperatura = 'cor-alerta alerta-frio';
-        grauDeAviso = 'alerta frio'
-        grauDeAvisoCor = 'cor-alerta alerta-frio'
-        exibirAlerta(temp, idAquario, grauDeAviso, grauDeAvisoCor)
-    }
-    else if (temp <= limites.muito_frio) {
-        classe_temperatura = 'cor-alerta perigo-frio';
-        grauDeAviso = 'perigo frio'
-        grauDeAvisoCor = 'cor-alerta perigo-frio'
-        exibirAlerta(temp, idAquario, grauDeAviso, grauDeAvisoCor)
-    }
+   
 
     var card;
 
-    if (idAquario == 1) {
+    if (idServidor == 1) {
         temp_sens_1.innerHTML = temp + "°C";
         card = card_1
-    } else if (idAquario == 2) {
+    } else if (idServidor == 2) {
         temp_sens_2.innerHTML = temp + "°C";
         card = card_2
-    } else if (idAquario == 3) {
+    } else if (idServidor == 3) {
         temp_sens_3.innerHTML = temp + "°C";
         card = card_3
-    } else if (idAquario == 4) {
+    } else if (idServidor == 4) {
         temp_sens_4.innerHTML = temp + "°C";
         card = card_4
     }
@@ -92,13 +76,13 @@ function alertar(resposta, idServidor) {
     card.className = classe_temperatura;
 }
 
-function exibirAlerta(temp, idAquario, grauDeAviso, grauDeAvisoCor) {
-    var indice = alertas.findIndex(item => item.idAquario == idAquario);
+function exibirAlerta(temp, idServidor, grauDeAviso, grauDeAvisoCor) {
+    var indice = alertas.findIndex(item => item.idServidor == idServidor);
 
     if (indice >= 0) {
-        alertas[indice] = { idAquario, temp, grauDeAviso, grauDeAvisoCor }
+        alertas[indice] = { idServidor, temp, grauDeAviso, grauDeAvisoCor }
     } else {
-        alertas.push({ idAquario, temp, grauDeAviso, grauDeAvisoCor });
+        alertas.push({ idServidor, temp, grauDeAviso, grauDeAvisoCor });
     }
 
     exibirCards();
@@ -107,8 +91,8 @@ function exibirAlerta(temp, idAquario, grauDeAviso, grauDeAvisoCor) {
 // que pode ser inserido clicando com o seu teclado em alt+255 ou pelo código adicionado acima.
 }
 
-function removerAlerta(idAquario) {
-    alertas = alertas.filter(item => item.idAquario != idAquario);
+function removerAlerta(idServidor) {
+    alertas = alertas.filter(item => item.idServidor != idServidor);
     exibirCards();
 }
  
@@ -121,12 +105,12 @@ function exibirCards() {
     }
 }
 
-function transformarEmDiv({ idAquario, temp, grauDeAviso, grauDeAvisoCor }) {
+function transformarEmDiv({ idServidor, temp, grauDeAviso, grauDeAvisoCor }) {
     return `<div class="mensagem-alarme">
     <div class="informacao">
     <div class="${grauDeAvisoCor}">&#12644;</div>
-     <h3>Aquário ${idAquario} está em estado de ${grauDeAviso}!</h3>
-    <small>Temperatura ${temp}.</small>  
+     <h3>Servidor ${idServidor} está em estado de ${grauDeAviso}!</h3>
+    <small>Porcentagem ${temp}.</small>  
     </div>
     <div class="alarme-sino"></div>
     </div>`;
