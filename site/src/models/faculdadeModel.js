@@ -48,7 +48,7 @@ function cadastrarFuncionario(responsavel, emailInstituicao, senha, fkInstituica
 
     var instrucao4 = `
     INSERT INTO funcionario (nome_funcionario, email, senha, status_funcionario, fk_nivelAcesso, fk_instituicao) 
-    VALUES ('${responsavel}', '${emailInstituicao}', '${senha}', 1, '${fk_nivelAcesso}', '${fkInstituicao}')`;
+    VALUES ('${responsavel}', '${emailInstituicao}', '${senha}', 1, 3, '${fkInstituicao}')`;
     console.log("Executando a instrução3 SQL: \n" + instrucao4);
     return database.executar(instrucao4);
 }
