@@ -17,7 +17,7 @@ function cadastrarInstituicao(nomeInstituicao, responsavel, emailInstituicao, cn
         INSERT INTO instituicao (nome_instituicao, responsavel, email_instituicao, CNPJ, telefone) 
         VALUES ('${nomeInstituicao}', '${responsavel}', '${emailInstituicao}', '${cnpj}', '${telefone}');
     `;
-    
+
     console.log("Executando a instrução1 SQL: \n" + instrucao1);
     return database.executar(instrucao1);
 }
