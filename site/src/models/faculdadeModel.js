@@ -37,7 +37,7 @@ function cadastrarEndereco(cep, estado, cidade, bairro, rua, numero, fkInstituic
 
 function buscarFk(cnpj) {
 
-    nstrucao3 = `SELECT idinstituicao as fkInstituicao FROM instituicao WHERE CNPJ = '${cnpj}'`;
+    instrucao3 = `SELECT idinstituicao as fkInstituicao FROM instituicao WHERE CNPJ = '${cnpj}'`;
 
     console.log("Executando a instrução SQL: \n" + instrucao3);
     return database.executar(instrucao3);
