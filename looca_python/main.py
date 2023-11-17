@@ -4,10 +4,10 @@ import time
 from datetime import datetime
 import requests #Biblioteca responsável por conectar o SLACK com o pyhton
 import json #Slack também.
-import speedtest
+# import speedtest --> UTILIZADA NO ARQUIVO 2
 
 mensagem = {"text": "Olá, bem vindo. O sistema da TEST foi iniciado!"}
-webhook = "https://hooks.slack.com/services/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"
+webhook = "https://hooks.slack.com/services/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"
 
 print("Olá, bem vindo. O sistema da TEST foi iniciado!")
 
@@ -16,7 +16,7 @@ requests.post(webhook, data=json.dumps(mensagem))
 connection = mysql.connector.connect(
     host='localhost',
     user='root',
-    password='atauine1',
+    password='0212',
     database='test'
 )
 
@@ -36,20 +36,6 @@ while True:
     mem = psutil.virtual_memory()
     mem_used = mem.used
     uso_memoria_gb = round(mem.used / (1024 ** 3), 2)
-
-#-------------------------------------------------------------------------------------
-
-    #Parte do código responsável por capturar a latência da internet que a maquina/servidor está conectado
-    st = speedtest.Speedtest()
-
-
-    # Medir a latência (ping)
-    ping_result = st.get_best_server()
-    ping_latency = ping_result["latency"]
-
-    print(f"Latência da Internet: {ping_latency} ms")
-
-# -------------------------------------------------------------------------------------
 
     #---------------------------------------------------------------
 
@@ -71,18 +57,36 @@ while True:
     dataHora = 'Um dispositivo de dado foi conectado as ' + dia.strftime('%d/%m/%Y %H:%M:%S')
     info = psutil.disk_partitions()
 
-    if (uso_da_cpu >= 90):
+    uso_da_cpu_int = int(uso_da_cpu)
+    if 50 <= uso_da_cpu_int <= 80:
         uso_da_cpu_formatado = "{:.2f}".format(uso_da_cpu)
-        mensagem = {"text": f"O uso da CPU está em {uso_da_cpu_formatado}% (CRÍTICO)"}
+        mensagem = {"text": f"O uso da CPU está em {uso_da_cpu_formatado}% (ALERTA)"}
         requests.post(webhook, data=json.dumps(mensagem))
 
-    if (uso_do_disco >= 90):
-        mensagem = {"text": f"O uso do DISCO está em {uso_do_disco}% (CRÍTICO)"}
+    uso_do_disco_int = int(uso_do_disco)
+    if  60 <= uso_do_disco_int <= 80:
+        mensagem = {"text": f"O uso do DISCO está em {uso_do_disco}% (ALERTA)"}
         requests.post(webhook, data=json.dumps(mensagem))
 
-    if (memory_usage_percent >= 90):
+    memory_usage_percent_int = int(memory_usage_percent)
+    if  60 <= memory_usage_percent_int <= 80:
         memoria_formatado = "{:.2f}".format(memory_usage_percent)
-        mensagem = {"text": f"O uso da MEMÓRIA RAM está em {memoria_formatado}% (CRÍTICO)"}
+        mensagem = {"text": f"O uso da MEMÓRIA RAM está em {memoria_formatado}% (ALERTA)"}
+        requests.post(webhook, data=json.dumps(mensagem))
+
+
+    if (uso_da_cpu_int >= 80):
+        uso_da_cpu_formatado = "{:.2f}".format(uso_da_cpu)
+        mensagem = {"text": f"O uso da CPU está em {uso_da_cpu_formatado}% (PERIGO)"}
+        requests.post(webhook, data=json.dumps(mensagem))
+
+    if (uso_do_disco_int >= 80):
+        mensagem = {"text": f"O uso do DISCO está em {uso_do_disco}% (PERIGO)"}
+        requests.post(webhook, data=json.dumps(mensagem))
+
+    if (memory_usage_percent_int >= 80):
+        memoria_formatado = "{:.2f}".format(memory_usage_percent)
+        mensagem = {"text": f"O uso da MEMÓRIA RAM está em {memoria_formatado}% (PERIGO)"}
         requests.post(webhook, data=json.dumps(mensagem))
 
 
@@ -119,12 +123,12 @@ while True:
     sql44 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
     values44 = (armazenamento_arredondado, dia.strftime('%Y-%m-%d %H:%M:%S'), 3, 1)
 
-    sql55 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
-    values55 = (round(ping_latency, 2), dia.strftime('%Y-%m-%d %H:%M:%S'), 4, 1)
-
-    # # SQL para inserir na tabela RegistrosRAW (CPU)
-    sql2 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
-    values2 = (ping_latency, dia.strftime('%Y-%m-%d %H:%M:%S'), 4, 1)
+    # sql55 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
+    # values55 = (round(ping_latency, 2), dia.strftime('%Y-%m-%d %H:%M:%S'), 4, 1)
+    #
+    # # # SQL para inserir na tabela RegistrosRAW (CPU)
+    # sql2 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
+    # values2 = (ping_latency, dia.strftime('%Y-%m-%d %H:%M:%S'), 4, 1)
 
     sql3 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
     values3 = (disco_em_uso, dia.strftime('%Y-%m-%d %H:%M:%S'), 3, 1)
@@ -132,12 +136,12 @@ while True:
 #Aqui, independente do valor e dos alertas os dados serão inseridos
     try:
         # Executa a inserção
-        cursor.execute(sql2, values2)
+        # cursor.execute(sql2, values2)
         cursor.execute(sql3, values3)
         cursor.execute(sql22, values22)
         cursor.execute(sql33, values33)
         cursor.execute(sql44, values44)
-        cursor.execute(sql55, values55)
+        # cursor.execute(sql55, values55)
 
         # Confirma as alterações no banco de dados
         connection.commit()
