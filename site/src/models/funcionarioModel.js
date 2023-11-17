@@ -73,11 +73,24 @@ function desativarFuncionario(email_desativar) {
     return database.executar(instrucao3);
 }
 
+function pesquisarFuncionario(caractere, fk_instituicao) {
+    console.log("ACESSEI O FUNCIONARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function desativarFuncionario():");
+    
+    var instrucao = `
+    select idfuncionario, nome_funcionario, email, fk_nivelAcesso 
+    from funcionario 
+    where (UPPER(nome_funcionario) like '%${caractere}%' or UPPER(email) like '%${caractere}%') and fk_instituicao = ${fk_instituicao} and status_funcionario = 1;;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     //entrar,
     cadastrar,
     listar,
-    cadastrar_equipe,
+    cadastrar_equipe,   
     atualizar_equipe,
     desativarFuncionario,
+    pesquisarFuncionario,
 };

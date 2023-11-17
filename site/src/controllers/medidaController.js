@@ -326,6 +326,30 @@ function buscarMedidasEmTempoReal_RAM_Aeris(req, res) {
 }
 
 
+function buscarCapturas(req, res) {
+
+    var periodo1 = req.body.periodo1Server
+    console.log(periodo1)
+    var periodo2 = req.body.periodo2Server;
+    console.log(periodo1)
+    var fk_instituicao = req.body.fk_instituicaoServer
+    console.log(periodo2)
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    medidaModel.buscarCapturas(periodo1, periodo2, fk_instituicao).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+
+}
 module.exports = {
     buscarUltimasMedidasCPU,
     buscarUltimasMedidasRAM,
@@ -335,6 +359,7 @@ module.exports = {
     buscarUltimasMedidasLATENCIA,
     buscarUltimasMedidas_CPU_Aeris,
     buscarUltimasMedidas_RAM_Aeris,
+    buscarCapturas,
 
     buscarMedidasEmTempoRealCPU,
     buscarMedidasEmTempoRealRAM,

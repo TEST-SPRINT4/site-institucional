@@ -219,4 +219,35 @@ from RegistrosTRUSTED
 join Servidor on RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
 join Componente on RegistrosTRUSTED.fkComponente = Componente.idComponente
 Where Servidor.idServidor = 1 and Componente.modelo = "RAM"
-order by idRegistros desc limit 7 
+order by idRegistros desc limit 7;
+
+-- select da pesquisa funcionario
+select * from servidor;
+
+    select idfuncionario, nome_funcionario, email, fk_nivelAcesso 
+    from funcionario 
+    where (nome_funcionario like '%alisson%' or email like '%alisson%') and fk_instituicao = 3 and status_funcionario = 1;
+
+insert into funcionario values
+(null, 'Bruno', 'alisson_bruno@gmail.com', '%bananinha123', '1', '3', '3');
+
+select idfuncionario, nome_funcionario, email, fk_nivelAcesso from funcionario where nome_funcionario like '%' or email like '%';
+
+SELECT
+    DATE_FORMAT(RegistrosTRUSTED.dataHora, "%Y-%m-%d %H:%i:%s") as dataHora,
+    MAX(CASE WHEN RegistrosTRUSTED.fkComponente = 1 THEN RegistrosTRUSTED.dadosCapturados END) AS 'CPU',
+    MAX(CASE WHEN RegistrosTRUSTED.fkComponente = 2 THEN RegistrosTRUSTED.dadosCapturados END) AS 'RAM',
+    MAX(CASE WHEN RegistrosTRUSTED.fkComponente = 3 THEN RegistrosTRUSTED.dadosCapturados END) AS 'DISCO',
+    MAX(CASE WHEN RegistrosTRUSTED.fkComponente = 4 THEN RegistrosTRUSTED.dadosCapturados END) AS 'PACOTES_ENVIADOS',
+    MAX(CASE WHEN RegistrosTRUSTED.fkComponente = 5 THEN RegistrosTRUSTED.dadosCapturados END) AS 'PACOTES_RECEBIDOS',
+    MAX(Servidor.idServidor) AS idServidor,
+    MAX(instituicao.nome_instituicao) AS nome_instituicao
+FROM
+    RegistrosTRUSTED
+JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+JOIN instituicao ON Servidor.fkInstituicao = instituicao.idinstituicao
+GROUP BY
+    DATE_FORMAT(RegistrosTRUSTED.dataHora, "%Y-%m-%d %H:%i:%s"), Servidor.idServidor;
+    
+    SELECT * FROM HISTORICO;

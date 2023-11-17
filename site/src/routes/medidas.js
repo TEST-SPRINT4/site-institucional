@@ -67,7 +67,9 @@ router.get("/tempo-realLATENCIA/:idServidor", function (req, res) {
 
 //--------------------------------------------------------------
 
-
+router.post("/buscarCapturas/", function (req, res) {
+    medidaController.buscarCapturas(req, res);
+});
 
 router.get("/ultimas_CPU_Aeris/:idServidor", function (req, res) {
     medidaController.buscarUltimasMedidas_CPU_Aeris(req, res);

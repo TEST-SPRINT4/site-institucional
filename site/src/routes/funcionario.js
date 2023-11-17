@@ -28,5 +28,8 @@ router.post("/desativarFuncionario", function (req, res) {
     funcionarioController.desativarFuncionario(req, res);
 })
 
+router.post("/pesquisarFuncionario", function (req, res) {
+    funcionarioController.pesquisarFuncionario(req, res);
+});
 
 module.exports = router;
