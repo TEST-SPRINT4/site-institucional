@@ -16,7 +16,7 @@ requests.post(webhook, data=json.dumps(mensagem))
 connection = mysql.connector.connect(
     host='localhost',
     user='root',
-    password='atauine1',
+    password='sarabi3011',
     database='test'
 )
 

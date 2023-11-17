@@ -155,6 +155,60 @@ function buscarUltimasMedidasLATENCIA(idServidor, limite_linhas) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+
+function buscarUltimasMedidas_CPU_Aeris(idServidor, limite_linhas) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = ``;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `select 
+        dadoscapturados as CPU,
+        DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
+        from RegistrosTRUSTED
+        join Servidor on RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        join Componente on RegistrosTRUSTED.fkComponente = Componente.idComponente
+        Where Servidor.idServidor = ${idServidor} and Componente.modelo = "CPU"
+        order by idRegistros desc limit ${limite_linhas}`;
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
+
+function buscarUltimasMedidas_RAM_Aeris(idServidor, limite_linhas) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = ``;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `select 
+        dadoscapturados as RAM,
+        DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
+        from RegistrosTRUSTED
+        join Servidor on RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        join Componente on RegistrosTRUSTED.fkComponente = Componente.idComponente
+        Where Servidor.idServidor = ${idServidor} and Componente.modelo = "RAM"
+        order by idRegistros desc limit ${limite_linhas} `;
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 //------------------------------------------------------------------------------------
 
 function buscarMedidasEmTempoRealCPU(idServidor) {
@@ -313,6 +367,58 @@ function buscarMedidasEmTempoRealLATENCIA(idServidor, limite_linhas) {
 }
 
 
+
+function buscarMedidasEmTempoReal_CPU_Aeris(idServidor) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = ``;
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `select 
+        dadoscapturados as CPU,
+        DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
+        from RegistrosTRUSTED
+        join Servidor on RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        join Componente on RegistrosTRUSTED.fkComponente = Componente.idComponente
+        Where Servidor.idServidor = ${idServidor} and Componente.modelo = "CPU"
+        order by idRegistros desc limit 1`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarMedidasEmTempoReal_RAM_Aeris(idServidor) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = ``;
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `select 
+        dadoscapturados as RAM,
+        DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
+        from RegistrosTRUSTED
+        join Servidor on RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        join Componente on RegistrosTRUSTED.fkComponente = Componente.idComponente
+        Where Servidor.idServidor = ${idServidor} and Componente.modelo = "RAM"
+        order by idRegistros desc limit 1`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+
 module.exports = {
     buscarUltimasMedidasCPU,
     buscarUltimasMedidasRAM,
@@ -320,6 +426,8 @@ module.exports = {
     buscarUltimasMedidasENVIADOS,
     buscarUltimasMedidasRECEBIDOS,
     buscarUltimasMedidasLATENCIA,
+    buscarUltimasMedidas_CPU_Aeris,
+    buscarUltimasMedidas_RAM_Aeris,
 
     buscarMedidasEmTempoRealCPU,
     buscarMedidasEmTempoRealRAM,
@@ -327,4 +435,6 @@ module.exports = {
     buscarMedidasEmTempoRealENVIADOS,
     buscarMedidasEmTempoRealRECEBIDOS,
     buscarMedidasEmTempoRealLATENCIA,
+    buscarMedidasEmTempoReal_CPU_Aeris,
+    buscarMedidasEmTempoReal_RAM_Aeris,
 }

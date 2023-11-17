@@ -200,3 +200,23 @@ VALUES
 -- ('RAM atingiu 80% de uso', 2, 2),
 -- ('Disco rígido atingiu 90% de uso', 2, 3),
 -- ('Rede atingiu 100% de uso', 3, 4);
+
+
+-- selects aeris
+select 
+dadoscapturados as CPU,
+DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
+from RegistrosTRUSTED
+join Servidor on RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+join Componente on RegistrosTRUSTED.fkComponente = Componente.idComponente
+Where Servidor.idServidor = 1 and Componente.modelo = "CPU"
+order by idRegistros desc limit 7;
+
+select 
+dadoscapturados as RAM,
+DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
+from RegistrosTRUSTED
+join Servidor on RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+join Componente on RegistrosTRUSTED.fkComponente = Componente.idComponente
+Where Servidor.idServidor = 1 and Componente.modelo = "RAM"
+order by idRegistros desc limit 7 
