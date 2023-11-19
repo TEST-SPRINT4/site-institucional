@@ -51,8 +51,7 @@ function atualizar_equipe(email_atualizar, permissao_atualizar) {
     var instrucao2 = `
     UPDATE funcionario
 	SET fk_nivelAcesso = ${permissao_atualizar}
-	WHERE email = '${email_atualizar}'
-	LIMIT 1;
+	WHERE email = '${email_atualizar}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao2);
     return database.executar(instrucao2);
@@ -66,8 +65,7 @@ function desativarFuncionario(email_desativar) {
     var instrucao3 = `
     UPDATE funcionario
 	SET status_funcionario = 0
-	WHERE email = '${email_desativar}'
-	LIMIT 1;
+	WHERE email = '${email_desativar}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao3);
     return database.executar(instrucao3);

@@ -37,8 +37,7 @@ function excluir_servidor(ip_excluir) {
   var instrucao3 = `
   UPDATE Servidor
 	SET status_servidor = 0
-	WHERE enderecoIP = '${ip_excluir}'
-	LIMIT 1;
+	WHERE enderecoIP = '${ip_excluir}';
   `;
   console.log("Executando a instrução1 SQL: \n" + instrucao3);
   return database.executar(instrucao3);
