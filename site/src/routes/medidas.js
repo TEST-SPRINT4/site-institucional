@@ -65,5 +65,27 @@ router.get("/tempo-realLATENCIA/:idServidor", function (req, res) {
     medidaController.buscarMedidasEmTempoRealLATENCIA(req, res);
 })
 
+//--------------------------------------------------------------
+
+router.post("/buscarCapturas/", function (req, res) {
+    medidaController.buscarCapturas(req, res);
+});
+
+router.get("/ultimas_CPU_Aeris/:idServidor", function (req, res) {
+    medidaController.buscarUltimasMedidas_CPU_Aeris(req, res);
+});
+
+router.get("/tempo-real_CPU_Aeris/:idServidor", function (req, res) {
+    medidaController.buscarMedidasEmTempoReal_CPU_Aeris(req, res);
+})
+
+router.get("/ultimas_RAM_Aeris/:idServidor", function (req, res) {
+    medidaController.buscarUltimasMedidas_RAM_Aeris(req, res);
+});
+
+router.get("/tempo-real_RAM_Aeris/:idServidor", function (req, res) {
+    medidaController.buscarMedidasEmTempoReal_RAM_Aeris(req, res);
+})
+
 
 module.exports = router;

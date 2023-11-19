@@ -175,6 +175,38 @@ function desativarFuncionario(req, res) {
     }
 }
 
+function pesquisarFuncionario(req, res) {
+   
+    var caractere = req.body.caractereServer;
+    var fk_instituicao = req.body.fk_instituicaoServer;
+
+    // Faça as validações dos valores
+    if (caractere == undefined) {
+        res.status(400).send("A pesquisa está está undefined!");
+    } else if (fk_instituicao == undefined) {
+        res.status(400).send("A pesquisa está está undefined!");
+    } else {
+        
+        // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
+        funcionarioModel.pesquisarFuncionario(caractere, fk_instituicao)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log(
+                        "\nHouve um erro ao realizar a pesquisa do funcionário! Erro: ",
+                        erro.sqlMessage
+                    );
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+
+}
+
 module.exports = {
     //entrar,
     cadastrar,
@@ -183,4 +215,5 @@ module.exports = {
     cadastrar_equipe,
     atualizar_equipe,
     desativarFuncionario,
+    pesquisarFuncionario
 }

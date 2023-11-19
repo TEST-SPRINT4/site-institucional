@@ -10,9 +10,12 @@
 
     <!-- link do CSS -->
     <link rel="stylesheet" href="./CSS/aeris.css">
+    <link rel="stylesheet" href="../css/dashboard.css">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     <!-- scripts do Chart.js - 2022-1 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -103,10 +106,194 @@
                 ESCREVA SEU CÓDIGO AQUI!!!!!!!
              -->
 
+
+            <h1>Gráfico Dinâmico</h1>
+
+            <canvas id="myChart" width="400" height="400"></canvas>
+            
+
+            <div id="graficos">
+
+                <div id="grafico1" class="display-block">
+
+                    <div class="parteGrafico">
+                        <div class="graph">
+                            <h3 class="tituloGraficos">
+                                <span id="tituloServidor_cpu1">Erro</span>
+                            </h3>
+                            <canvas id="myChart_cpu1"></canvas>
+                            <div class="label-captura">
+                                <p id="avisoCaptura1" style="color: rgb(206, 206, 206); text-align: center;"></p>
+                            </div>
+                        </div>
+
+                </div>
+
+            </div>
+
+
         </div>
 
 
     </div>
 </body>
+<script>
+
+
+let proximaAtualizacao;
+
+window.onload = obterDadosGraficos();
+window.onload = exibirServidor(1);
+window.onload = listar();
+
+
+function obterDadosGraficos() {
+
+obterDadosGrafico_cpu(1)
+obterDadosGrafico_ram(1)
+}
+
+function alterarTitulo(idServidor) {
+        var tituloServidor_cpu = document.getElementById(`tituloServidor_cpu${idServidor}`)
+        tituloServidor_cpu.innerHTML = "Últimas medidas de <span style='color: #075cab'> CPU </span> do <span style='color: #075cab'>servidor " + idServidor + "</span>"
+
+        var tituloServidor_ram = document.getElementById(`tituloServidor_ram${idServidor}`)
+        tituloServidor_ram.innerHTML = "Últimas medidas de <span style='color: #075cab'> RAM </span> do <span style='color: #075cab'>servidor " + idServidor + "</span>"
+}
+
+function exibirServidor(idServidor) {
+
+
+    ///???
+
+let todosOsGraficos = document.getElementById("graficos")
+
+for (i = 1; i <= todosOsGraficos.childElementCount; i++) {
+    // exibindo - ou não - o gráfico
+    let elementoAtual = document.getElementById(`grafico${i}`)
+    if (elementoAtual.classList.contains("display-block")) {
+        elementoAtual.classList.remove("display-block")
+    }
+    elementoAtual.classList.add("display-none")
+}
+
+// exibindo - ou não - o gráfico
+let graficoExibir = document.getElementById(`grafico${idServidor}`)
+graficoExibir.classList.remove("display-none")
+graficoExibir.classList.add("display-block")
+
+}
+    
+
+
+//...
+
+function obterDadosGrafico_cpu(idServidor) {
+
+alterarTitulo(idServidor)
+
+if (proximaAtualizacao != undefined) {
+    clearTimeout(proximaAtualizacao);
+}
+
+fetch(`/medidas/ultimas_CPU_Aeris/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+        response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+
+            plotarGrafico_cpu(resposta, idServidor);
+        });
+    } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+    }
+})
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+}
+
+function plotarGrafico_cpu(resposta, idServidor) {
+
+// Criando estrutura para plotar gráfico - labels
+let labels = [];
+
+// Criando estrutura para plotar gráfico - dados
+let dados = {
+    labels: labels,
+    datasets: [{
+        label: 'CPU',
+        data: [],
+        borderWidth: 1,
+        backgroundColor: (context) => {
+            const background = [
+                "#075cab33",
+                "#D4A4FF52"
+            ]
+            if (!context.chart.chartArea) {
+                return;
+            }
+
+            const { ctx, data, chartArea: { top, bottom } } = context.chart;
+            const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
+            gradientBackground.addColorStop(.5, background[0]);
+            gradientBackground.addColorStop(1, background[1]);
+
+            return gradientBackground;
+        },
+        fill: true,
+        borderColor: '#075cab',
+        tension: 0.1
+    },
+        {
+             label: 'RAM',
+            data: [],
+             fill: false,
+             borderColor: '#D4A4FF',
+             tension: 0.1
+            }
+    ]
+};
+
+     // Inserindo valores recebidos em estrutura para plotar o gráfico
+     for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.dataHora);
+            dados.datasets[0].data.push(registro.dadoscapturados);
+            console.log(registro.dadoscapturados)
+            // dados.datasets[1].data.push(registro.temperatura);
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+        console.log('registro: ')
+        console.log(registro)
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`myChart_cpu${idServidor}`),
+            config
+        );
+
+        setTimeout(() => atualizarGrafico_cpu(idServidor, dados, myChart), 2000);
+    }
+
+
+
+
+
+    
+
+
+</script>
 
 </html>

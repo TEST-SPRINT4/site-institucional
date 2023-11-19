@@ -114,8 +114,8 @@
                 <div class="item-regua ideal">
                     <h1>Ideal</h1>
                     <h4>CPU - < 50% </h4>
-                    <h4>RAM - < 60% </h4>
-                    <h4>Disco - < 60%</h4>
+                            <h4>RAM - < 60% </h4>
+                                    <h4>Disco - < 60%</h4>
                 </div>
 
                 <div class="item-regua alerta">
@@ -136,144 +136,26 @@
 
             <div class="card-geral">
 
-                <!-- VISÃO GERAL 01 -->
-                <div class="visaoGeral" id="visaoGeral(1)">
-                    <h2>
-                    🟢 Servidor 01
-                    </h2>
-                    <div class="container-card">
-                        <div class="card-media" style=" background-color: #075cab;">
-                            <h4>CPU</h4>
-                            <h2><span id="kpiCPU">0</span>%</h2>
-                        </div>
+                <input id="input_periodo1" type="datetime-local">
+                <input id="input_periodo2" type="datetime-local">
+                <button onclick="buscarCapturas()">Buscar capturas</button>
 
-                        <div class="card-media" style=" background-color: #3280c9;">
-                            <h4>RAM</h4>
-                            <h2><span id="kpiRam">0</span>Gb</h2>
-                        </div>
+                <table style="width:100%">
 
-                        <div class="card-media" style=" background-color: #4d92d3;">
-                            <h4>DISCO</h4>
-                            <h2><span id="kpiDisco">0</span>mb</h2>
-                        </div>
-
-                        <div class="card-media" style=" background-color: #7fbcf5;">
-                            <h4>PACOTES ENVIADOS</h4>
-                            <h2><span id="kpiPacotesEnviados">0</span>mb</h2>
-                        </div>
-
-                        <div class="card-media" style=" background-color: #b7dcff;">
-                            <h4>PACOTES RECEBIDOS</h4>
-                            <h2><span id="kpiPacotesRecebidos">0</span>mb</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- VISÃO GERAL 02 -->
-                <div class="visaoGeral" id="visaoGeral(2)">
-                    <h2>
-                        🟢Servidor 02
-                    </h2>
-                    <div class="container-card">
-                        <div class="card-media" style=" background-color: #075cab;">
-                            <h4>CPU</h4>
-                            <h2><span id="kpiCPU">0</span>%</h2>
-                        </div>
-
-                        <div class="card-media" style=" background-color: #3280c9;">
-                            <h4>RAM</h4>
-                            <h2><span id="kpiRam">0</span>Gb</h2>
-                        </div>
-
-                        <div class="card-media" style=" background-color: #4d92d3;">
-                            <h4>DISCO</h4>
-                            <h2><span id="kpiDisco">0</span>mb</h2>
-                        </div>
-
-                        <div class="card-media" style=" background-color: #7fbcf5;">
-                            <h4>PACOTES ENVIADOS</h4>
-                            <h2><span id="kpiPacotesEnviados">0</span>mb</h2>
-                        </div>
-
-                        <div class="card-media" style=" background-color: #b7dcff;">
-                            <h4>PACOTES RECEBIDOS</h4>
-                            <h2><span id="kpiPacotesRecebidos">0</span>mb</h2>
-                        </div>
-                    </div>
-                </div>
-
-
-                <!-- VISÃO GERAL 03 -->
-                <div class="visaoGeral" id="visaoGeral(3)">
-                    <h2>
-                    🟢 Servidor 03
-                    </h2>
-                    <div class="container-card">
-                        <div class="card-media" style=" background-color: #075cab;">
-                            <h4>CPU</h4>
-                            <h2><span id="kpiCPU">0</span>%</h2>
-                        </div>
-
-                        <div class="card-media" style=" background-color: #3280c9;">
-                            <h4>RAM</h4>
-                            <h2><span id="kpiRam">0</span>Gb</h2>
-                        </div>
-
-                        <div class="card-media" style=" background-color: #4d92d3;">
-                            <h4>DISCO</h4>
-                            <h2><span id="kpiDisco">0</span>mb</h2>
-                        </div>
-
-                        <div class="card-media" style=" background-color: #7fbcf5;">
-                            <h4>PACOTES ENVIADOS</h4>
-                            <h2><span id="kpiPacotesEnviados">0</span>mb</h2>
-                        </div>
-
-                        <div class="card-media" style=" background-color: #b7dcff;">
-                            <h4>PACOTES RECEBIDOS</h4>
-                            <h2><span id="kpiPacotesRecebidos">0</span>mb</h2>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- VISÃO GERAL 04 -->
-                <div class="visaoGeral" id="visaoGeral(4)">
-                    <h2>
-                        🟢 Servidor 04
-                    </h2>
-                    <div class="container-card">
-                        <div class="card-media" style=" background-color: #075cab;">
-                            <h4>CPU</h4>
-                            <h2><span id="kpiCPU">0</span>%</h2>
-                        </div>
-
-                        <div class="card-media" style=" background-color: #3280c9;">
-                            <h4>RAM</h4>
-                            <h2><span id="kpiRam">0</span>Gb</h2>
-                        </div>
-
-                        <div class="card-media" style=" background-color: #4d92d3;">
-                            <h4>DISCO</h4>
-                            <h2><span id="kpiDisco">0</span>mb</h2>
-                        </div>
-
-                        <div class="card-media" style=" background-color: #7fbcf5;">
-                            <h4>PACOTES ENVIADOS</h4>
-                            <h2><span id="kpiPacotesEnviados">0</span>mb</h2>
-                        </div>
-
-                        <div class="card-media" style=" background-color: #b7dcff;">
-                            <h4>PACOTES RECEBIDOS</h4>
-                            <h2><span id="kpiPacotesRecebidos">0</span>mb</h2>
-                        </div>
-                    </div>
-                </div>
-
-
+                    <thead>
+                        <tr>
+                            <th>ID Servidor</th>
+                            <th>CPU</th>
+                            <th>RAM</th>
+                            <th>DISCO</th>
+                            <th>Pacotes Enviados</th>
+                            <th>Pacotes Recebidos</th>
+                            <th>Data Hora</th>
+                        </tr>
+                    <tbody id="body_historico">
+                    </tbody>
+                </table>
             </div>
-
-
-
 
         </div>
 
@@ -285,34 +167,143 @@
 <script>
     var nivel_acesso = sessionStorage.NIVEL_ACESSO;
 
-b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-if (nivel_acesso == 3) {
-c_usuario.innerHTML = "Administrador"
-}
-if (nivel_acesso == 2) {
-    c_usuario.innerHTML = "Visualizador e Editor";
-
-    var equipeDiv = document.querySelector(".btn-nav img[src*='icon-equipe-cinza.png']").parentElement;
-    if (equipeDiv) {
-        equipeDiv.style.display = "none";
+    if (nivel_acesso == 3) {
+        c_usuario.innerHTML = "Administrador"
     }
-}
+    if (nivel_acesso == 2) {
+        c_usuario.innerHTML = "Visualizador e Editor";
 
-if (nivel_acesso == 1) {
-    c_usuario.innerHTML = "Visualizador";
-
-    // Ocultar a div do botão "Equipe"
-    var equipeDiv = document.querySelector(".btn-nav img[src*='icon-equipe-cinza.png']").parentElement;
-    if (equipeDiv) {
-        equipeDiv.style.display = "none";
+        var equipeDiv = document.querySelector(".btn-nav img[src*='icon-equipe-cinza.png']").parentElement;
+        if (equipeDiv) {
+            equipeDiv.style.display = "none";
+        }
     }
 
-    // Ocultar a div do botão "Servidores"
-    var servidoresDiv = document.querySelector(".btn-nav img[src*='icon-servidor-cinza.png']").parentElement;
-    if (servidoresDiv) {
-        servidoresDiv.style.display = "none";
+    if (nivel_acesso == 1) {
+        c_usuario.innerHTML = "Visualizador";
+
+        // Ocultar a div do botão "Equipe"
+        var equipeDiv = document.querySelector(".btn-nav img[src*='icon-equipe-cinza.png']").parentElement;
+        if (equipeDiv) {
+            equipeDiv.style.display = "none";
+        }
+
+        // Ocultar a div do botão "Servidores"
+        var servidoresDiv = document.querySelector(".btn-nav img[src*='icon-servidor-cinza.png']").parentElement;
+        if (servidoresDiv) {
+            servidoresDiv.style.display = "none";
+        }
     }
-}
+
+    function buscarCapturas() {
+        var feed = document.getElementById("body_historico");
+        feed.innerHTML = ""
+
+        var periodo1 = input_periodo1.value
+        console.log(periodo1)
+        var periodo2 = input_periodo2.value
+        console.log(periodo2)
+        var fk_instituicao = sessionStorage.FK_INSTITUICAO
+
+        fetch(`/medidas/buscarCapturas/`, {
+
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                periodo1Server: periodo1,
+                periodo2Server: periodo2,
+                fk_instituicaoServer: fk_instituicao
+
+            })
+
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("body_historico");
+                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    feed.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("body_historico");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var dado = resposta[i];
+
+                        // Cria uma nova linha na tabela
+                        var novaLinha = feed.insertRow();
+
+                        // <th>ID Servidor</th>
+                        //     <th>CPU</th>
+                        //     <th>RAM</th>
+                        //     <th>DISCO</th>
+                        //     <th>Pacotes Enviados</th>
+                        //     <th>Pacotes Recebidos</th>
+                        //     <th>Data Hora</th>
+
+                        // Cria células para cada coluna
+                        var id_servidor = novaLinha.insertCell(0);
+                        var CPU = novaLinha.insertCell(1);
+                        var RAM = novaLinha.insertCell(2);
+                        var DISCO = novaLinha.insertCell(3);
+                        var pacote_env = novaLinha.insertCell(4);
+                        var pacote_rec = novaLinha.insertCell(5);
+                        var data_hora = novaLinha.insertCell(6);
+                        
+                        if(dado.CPU == null){
+                            CPU.innerHTML = "Não há dados para esse momento"
+                        } else{
+                            CPU.innerHTML = dado.CPU
+                        } 
+                        
+                        if(dado.RAM == null){
+                            RAM.innerHTML = "Não há dados para esse momento"
+                        } else{
+                            RAM.innerHTML = dado.RAM
+                        } 
+                        
+                        if(dado.DISCO == null){
+                            DISCO.innerHTML = "Não há dados para esse momento"
+                        } else{
+                            DISCO.innerHTML = dado.DISCO
+                        }
+                        
+                        if(dado.PACOTES_ENVIADOS == null){
+                            pacote_env.innerHTML = "Não há dados para esse momento"
+                        } else{
+                            pacote_env.innerHTML = dado.PACOTES_ENVIADOS
+                        }
+                        
+                        if(dado.PACOTES_RECEBIDOS == null){
+                            pacote_rec.innerHTML = "Não há dados para esse momento"
+                        } else{
+                            pacote_rec.innerHTML = dado.PACOTES_RECEBIDOS
+                        }
+
+                        id_servidor.innerHTML = dado.idServidor;
+                        data_hora.innerHTML = dado.dataHora;
+
+                    }
+
+                    // finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            // finalizarAguardar();
+        });
+    }
 
 </script>
