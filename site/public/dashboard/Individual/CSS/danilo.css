@@ -170,12 +170,59 @@ body {
 
 /* DASHBOARD */
 
-.dash{
+.dash {
   width: 100%;
-  height: fit-content;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
+/* fundo transparente de gráficos */
+#graficos{
+  width: 100%;
+  display: block;
+}
+
+/* card de gráficos */
+.graph {
+  width: 45%;
+  height: 60vh;
+  padding-top: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 15px rgba(91, 91, 91, 0.77);
+  margin: 2%;
+  margin-top: 0%;
+}
+
+.tituloGraficos {
+  color: rgb(172, 172, 172);
+  display: flex;
+  justify-content: center;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.display-block {
+  display: block;
+  width: 100%;
+}
+
+canvas {
+  width: 30vw !important;
+  height: 30vh !important;
+  margin: 5%;
+}
+
+.parteGrafico{
+  display: flex;}
