@@ -4,9 +4,9 @@ function buscarUltimasMedidasCPU(idServidor, limite_linhas) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT 
         dadoscapturados, 
         dataHora,
@@ -18,7 +18,7 @@ function buscarUltimasMedidasCPU(idServidor, limite_linhas) {
         order by idRegistros desc limit ${limite_linhas}`;
 
     } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
 
@@ -30,9 +30,9 @@ function buscarUltimasMedidasRAM(idServidor, limite_linhas) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT 
         dadoscapturados, 
         dataHora,
@@ -44,7 +44,7 @@ function buscarUltimasMedidasRAM(idServidor, limite_linhas) {
         order by idRegistros desc limit ${limite_linhas}`;
 
     } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        console.log("\nO AMBIENTE (desenvolvimento OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
 
@@ -56,9 +56,9 @@ function buscarUltimasMedidasDISCO(idServidor, limite_linhas) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT 
         dadoscapturados, 
         dataHora,
@@ -70,7 +70,7 @@ function buscarUltimasMedidasDISCO(idServidor, limite_linhas) {
         order by idRegistros desc limit ${limite_linhas}`;
 
     } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        console.log("\nO AMBIENTE (desenvolvimento OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
 
@@ -82,9 +82,9 @@ function buscarUltimasMedidasENVIADOS(idServidor, limite_linhas) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT 
         dadoscapturados, 
         dataHora,
@@ -96,7 +96,7 @@ function buscarUltimasMedidasENVIADOS(idServidor, limite_linhas) {
         order by idRegistros desc limit ${limite_linhas}`;
 
     } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
 
@@ -108,9 +108,9 @@ function buscarUltimasMedidasRECEBIDOS(idServidor, limite_linhas) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT 
         dadoscapturados, 
         dataHora,
@@ -134,9 +134,9 @@ function buscarUltimasMedidasLATENCIA(idServidor, limite_linhas) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT 
         dadoscapturados, 
         dataHora,
@@ -161,9 +161,9 @@ function buscarUltimasMedidas_CPU_Aeris(idServidor, limite_linhas) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `select 
         dadoscapturados as CPU,
         DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
@@ -188,9 +188,9 @@ function buscarUltimasMedidas_RAM_Aeris(idServidor, limite_linhas) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `select 
         dadoscapturados as RAM,
         DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
@@ -201,7 +201,7 @@ function buscarUltimasMedidas_RAM_Aeris(idServidor, limite_linhas) {
         order by idRegistros desc limit ${limite_linhas} `;
 
     } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
 
@@ -215,10 +215,10 @@ function buscarMedidasEmTempoRealCPU(idServidor) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
 
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT 
         dadoscapturados, 
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
@@ -228,7 +228,7 @@ function buscarMedidasEmTempoRealCPU(idServidor) {
         WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "CPU"
         order by idRegistros desc limit 1`;
     } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
 
@@ -240,10 +240,10 @@ function buscarMedidasEmTempoRealRAM(idServidor) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
 
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT 
         dadoscapturados, 
         dataHora,
@@ -254,7 +254,7 @@ function buscarMedidasEmTempoRealRAM(idServidor) {
         WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "RAM"
         order by idRegistros desc limit 1`;
     } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
 
@@ -266,10 +266,10 @@ function buscarMedidasEmTempoRealDISCO(idServidor) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
 
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT 
         dadoscapturados, 
         dataHora,
@@ -280,7 +280,7 @@ function buscarMedidasEmTempoRealDISCO(idServidor) {
         WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "DISCO"
         order by idRegistros desc limit 1`;
     } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
 
@@ -292,10 +292,10 @@ function buscarMedidasEmTempoRealENVIADOS(idServidor) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
 
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT 
         dadoscapturados, 
         dataHora,
@@ -306,7 +306,7 @@ function buscarMedidasEmTempoRealENVIADOS(idServidor) {
         WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "PACOTES - ENVIADOS"
         order by idRegistros desc limit 1`;
     } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
 
@@ -318,9 +318,9 @@ function buscarMedidasEmTempoRealRECEBIDOS(idServidor, limite_linhas) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT 
         dadoscapturados, 
         dataHora,
@@ -332,7 +332,7 @@ function buscarMedidasEmTempoRealRECEBIDOS(idServidor, limite_linhas) {
         order by idRegistros desc limit ${limite_linhas}`;
 
     } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
 
@@ -344,9 +344,9 @@ function buscarMedidasEmTempoRealLATENCIA(idServidor, limite_linhas) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT 
         dadoscapturados, 
         dataHora,
@@ -358,7 +358,7 @@ function buscarMedidasEmTempoRealLATENCIA(idServidor, limite_linhas) {
         order by idRegistros desc limit ${limite_linhas}`;
 
     } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
 
@@ -372,10 +372,10 @@ function buscarMedidasEmTempoReal_CPU_Aeris(idServidor) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
 
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `select 
         dadoscapturados as CPU,
         DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
@@ -385,7 +385,7 @@ function buscarMedidasEmTempoReal_CPU_Aeris(idServidor) {
         Where Servidor.idServidor = ${idServidor} and Componente.modelo = "CPU"
         order by idRegistros desc limit 1`;
     } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
 
@@ -397,10 +397,10 @@ function buscarMedidasEmTempoReal_RAM_Aeris(idServidor) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
 
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `select 
         dadoscapturados as RAM,
         DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
@@ -410,7 +410,7 @@ function buscarMedidasEmTempoReal_RAM_Aeris(idServidor) {
         Where Servidor.idServidor = ${idServidor} and Componente.modelo = "RAM"
         order by idRegistros desc limit 1`;
     } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
 
@@ -423,10 +423,10 @@ function buscarCapturas(periodo1, periodo2, fk_instituicao) {
 
     instrucaoSql = ''
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = ``;
 
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `
         SELECT
         DATE_FORMAT(RegistrosTRUSTED.dataHora, "%Y-%m-%d %H:%i:%s") as dataHora,
@@ -449,7 +449,7 @@ function buscarCapturas(periodo1, periodo2, fk_instituicao) {
     
         `;
     } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
 
