@@ -350,6 +350,26 @@ function buscarCapturas(req, res) {
     });
 
 }
+//individual danilaum
+
+function tamanhoDisco(req, res) {
+
+    var idServidor = req.params.idServidor;
+
+    console.log(`Recuperando a ultima medidas do tamanho do disco`);
+
+    medidaModel.tamanhoDisco(idServidor).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar tamanho disco.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
 module.exports = {
     buscarUltimasMedidasCPU,
     buscarUltimasMedidasRAM,
@@ -360,6 +380,7 @@ module.exports = {
     buscarUltimasMedidas_CPU_Aeris,
     buscarUltimasMedidas_RAM_Aeris,
     buscarCapturas,
+    tamanhoDisco,
 
     buscarMedidasEmTempoRealCPU,
     buscarMedidasEmTempoRealRAM,
@@ -369,4 +390,5 @@ module.exports = {
     buscarUltimasMedidasLATENCIA,
     buscarMedidasEmTempoReal_CPU_Aeris,
     buscarMedidasEmTempoReal_RAM_Aeris,
+    tamanhoDisco,
 }

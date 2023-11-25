@@ -57,7 +57,15 @@ function buscarUltimasMedidasDISCO(idServidor, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = ``;
+        instrucaoSql = `SELECT 
+        dadoscapturados, 
+        dataHora,
+        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "DISCO"
+        order by idRegistros desc limit ${limite_linhas}`;
     } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT 
         dadoscapturados, 
@@ -456,6 +464,23 @@ function buscarCapturas(periodo1, periodo2, fk_instituicao) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+function tamanhoDisco() {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT dadosCapturados FROM RegistrosTRUSTED WHERE fkComponente = 7 and fkIdServior = 1 limit 1;`;
+
+    } else if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `SELECT dadosCapturados FROM RegistrosTRUSTED WHERE fkComponente = 7 and fkIdServior = 1 limit 1;`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
 
 
 module.exports = {
@@ -468,6 +493,7 @@ module.exports = {
     buscarUltimasMedidas_CPU_Aeris,
     buscarUltimasMedidas_RAM_Aeris,
     buscarCapturas,
+    tamanhoDisco,
 
     buscarMedidasEmTempoRealCPU,
     buscarMedidasEmTempoRealRAM,
@@ -477,4 +503,5 @@ module.exports = {
     buscarMedidasEmTempoRealLATENCIA,
     buscarMedidasEmTempoReal_CPU_Aeris,
     buscarMedidasEmTempoReal_RAM_Aeris,
+    tamanhoDisco,
 }

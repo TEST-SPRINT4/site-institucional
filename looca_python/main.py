@@ -133,6 +133,10 @@ while True:
     sql3 = "INSERT INTO RegistrosRAW (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
     values3 = (disco_em_uso, dia.strftime('%Y-%m-%d %H:%M:%S'), 3, 1)
 
+    sql88 = "INSERT INTO RegistrosTRUSTED (dadosCapturados, dataHora, fkComponente, fkIdservidor) VALUES (%s, %s, %s, %s)"
+    values88 = (tamanho_disco_GB, data_hora, 7, 1)  # Ajuste os valores de fkComponente e fkIdservidor conforme sua tabela
+
+
 #Aqui, independente do valor e dos alertas os dados serão inseridos
     try:
         # Executa a inserção
@@ -142,7 +146,7 @@ while True:
         cursor.execute(sql33, values33)
         cursor.execute(sql44, values44)
         # cursor.execute(sql55, values55)
-
+        cursor.execute(sql88, values88)
         # Confirma as alterações no banco de dados
         connection.commit()
         print("Inserção de dados realizada com sucesso!")
