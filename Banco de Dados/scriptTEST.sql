@@ -3,6 +3,7 @@
 create database test;
 use test;
 
+
 CREATE TABLE instituicao (
 	idinstituicao INT PRIMARY KEY AUTO_INCREMENT,
 	nome_instituicao VARCHAR(45),
@@ -65,6 +66,12 @@ CREATE TABLE Servidor (
     references instituicao (idInstituicao)
     );
     
+    insert into instituicao values
+    (null, 'simone', 'simone', 's@gmail.com', '123', '123');
+    
+    insert into Servidor values
+    (null, '123', 'Windows', 'sala 08', 1, 1);
+    
 CREATE TABLE Componente (
 	idComponente int primary key auto_increment,
     modelo varchar(45)
@@ -76,7 +83,14 @@ insert into Componente values
     (null, "DISCO"),
     (null, "LATÊNCIA"),
     (null, "PACOTES - ENVIADOS"),
-    (null, "PACOTES - RECEBIDOS");
+    (null, "PACOTES - RECEBIDOS"),
+    -- Captura do individual da Simone
+    (null, "NOME DO PROCESSADOR"),
+    (null, "ARQUITETURA DO PROCESSADOR"),
+    (null, "NÚCLEOS FÍSICOS"),
+    (null, "NÚCLEOS LÓGICOS"),
+    (null, "FREQUÊNCIA"),
+    (null, "TEMPERATURA");
     
     
 Create table Parametros_Alertas (
@@ -92,6 +106,7 @@ Create table Parametros_Alertas (
 Create table RegistrosTRUSTED (
 	idRegistros int primary key auto_increment,
     dadosCapturados double,
+    textosCapturados varchar(100),
     dataHora datetime,
     fkComponente int,
     constraint fkComponente_RegistrosTRUSTED foreign key (fkComponente)
@@ -100,7 +115,6 @@ Create table RegistrosTRUSTED (
     constraint fkIdServidor_Registros foreign key (fkIdServidor)
     references Servidor (idServidor)
     );
-    
     
     Create table RegistrosRAW (
 	idRegistrosRAW int primary key auto_increment,
@@ -159,15 +173,15 @@ update nivelAcesso set fkPermicoes = 3 where nivel_acesso = 1;
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 4; -- LATÊNCIA
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 5; -- PACOTES - ENVIADOS
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 6; -- PACOTES - RECEBIDOS
+    -- CAPTURAS INDIVIDUAL DA SIMONE
+	select textosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 7; -- NOME DO PROCESSADOR
+    select textosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 8; -- ARQUITETURA DO PROCESSADOR
+    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 9; -- NÚLEOS FISICOS
+    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 10; -- NÚCLEOS LÓGICOS
+    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 11; -- FREQUENCIA
+    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 11; -- TEMPERATURA
     
-    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 1; -- CPU
-    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 2; -- RAM
-    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 3; -- DISCO
-    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 4; -- LATÊNCIA
-    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 5; -- PACOTES - ENVIADOS
-    select dadosCapturados, dataHora from RegistrosRAW where fkComponente = 6; -- PACOTES - RECEBIDOS
     
-    select dadoscapturados, dataHora from RegistrosTRUSTED join Servidor on fkIpservidor = 'coloque_o_IP';
     
 -- SELECT dadoscapturados, dataHora
 -- FROM RegistrosTRUSTED
@@ -200,7 +214,6 @@ VALUES
 -- ('RAM atingiu 80% de uso', 2, 2),
 -- ('Disco rígido atingiu 90% de uso', 2, 3),
 -- ('Rede atingiu 100% de uso', 3, 4);
-
 
 -- selects aeris
 select 
@@ -251,3 +264,4 @@ GROUP BY
     DATE_FORMAT(RegistrosTRUSTED.dataHora, "%Y-%m-%d %H:%i:%s"), Servidor.idServidor;
     
     SELECT * FROM HISTORICO;
+    
