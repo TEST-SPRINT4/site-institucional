@@ -469,13 +469,13 @@ function tamanhoDisco() {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT dadosCapturados FROM RegistrosTRUSTED WHERE fkComponente = 7 and fkIdServior = 1 limit 1;`;
+        instrucaoSql = `SELECT dadosCapturados FROM RegistrosTRUSTED WHERE fkComponente = 7 and fkIdServidor = 1 limit 1;`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT dadosCapturados FROM RegistrosTRUSTED WHERE fkComponente = 7 and fkIdServior = 1 limit 1;`;
     } else {
         console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
-        return
+        return      
     }
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

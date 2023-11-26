@@ -24,7 +24,7 @@
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body onload="Buscar123()">
 
     <!-- INICIANDO NAVBAR SUPERIOR (logo e botão de sair) -->
     <div class="nav-bar">
@@ -119,7 +119,11 @@
                         </div>
 
                         <div class="size_disco">
-
+                            <div class="campo_selecao_servidor">
+                                <button
+                                    onclick="Buscar123(), buscar_tamanho_disco()">BUSCAR</button>
+                            </div>
+                            <span>Tamanho total do disco: <span id="tamanho_disco">00</span>gb</span>
                         </div>
                         <!-- ---------------------------------------------------------------------- -->
                     </div>
@@ -187,6 +191,11 @@
 
 </html>
 <script>
+
+    function Buscar123() {
+    }
+
+var dados_tamanho_disco = []
 
     var nivel_acesso = sessionStorage.NIVEL_ACESSO;
 
@@ -412,7 +421,7 @@
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico_(idServidor, dados, myChart), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico_disco(idServidor, dados, myChart), 2000);
             }
         })
             .catch(function (error) {
@@ -420,41 +429,60 @@
             });
 
     }
-    function obterTamanhoDisco(idServidor) {
-    alterarTitulo(idServidor);
 
-    if (proximaAtualizacao != undefined) {
-        clearTimeout(proximaAtualizacao);
-    }
 
-    fetch(`/medidas/ultimasDISCO/${idServidor}`, { cache: 'no-store' })
-        .then(function (response) {
+    function buscar_tamanho_disco() {
+        alert(`entrou na função`)
+        var fkEmpresa = sessionStorage.FK_INSTITUICAO;
+        var ipServidor =  1                        // sessionStorage.IP_ESCOLHIDO;
+
+        alert(`${fkEmpresa}, ${ipServidor}`)
+        fetch("/disco/buscar_tamanho_disco/", {
+
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/funcionario.js
+                fkEmpresaServer: fkEmpresa,
+                ipServidor: ipServidor,
+
+            })
+
+        }).then(function (response) {
+            alert("Entrei no primeiro .then")
+
             if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
+            alert("Entrei no primeiro .then (1° if)")
 
-                    const divDados = document.querySelector('.size_disco');
-
-                    // Exibindo o primeiro dado na div
-                    if (resposta.length > 0) {
-                        const primeiroDado = resposta[0].dadosCapturados; // Altere conforme a estrutura do objeto retornado
-                        console.log('Primeiro dado:', primeiroDado);
-
-                        // Atualiza o conteúdo da div com o dado recebido
-                        divDados.textContent = `Tamanho do disco: ${primeiroDado}`;
-                    } else {
-                        divDados.textContent = 'Nenhum dado encontrado';
-                    }
-                });
+                return response.json();
             } else {
-                console.error('Nenhum dado encontrado ou erro na API');
+            alert("Entrei no primeiro .then (1° else)")
+                throw new Error('Erro na requisição.');
             }
         })
-        .catch(function (error) {
-            console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-        });
-}
+
+            .then(function (resposta) {
+                console.log("resposta tamanho do disco: ", resposta);
+
+                if (resposta.length > 0) {
+                    var ultimo_tamanho_disco = resposta[resposta.length - 1].dadosCapturados;
+                    tamanho_disco.innerHTML = ultimo_tamanho_disco;
+                    // atualizarGrafico_latencia();
+                } else {
+                    console.log("Nenhum dado tamanho_disco recebido na resposta.");
+                }
+
+                // Agende a próxima chamada após 4000 milissegundos (4 segundos)
+                setTimeout(buscar_tamanho_disco, 4000);
+            }).catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+        return false;
+    }
 
 
 </script>
