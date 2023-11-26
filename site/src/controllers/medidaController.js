@@ -350,10 +350,6 @@ function buscarCapturas(req, res) {
     });
 
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> 7d60fb2c98a12dfb2a6ae18f88dc5c6e61187a58
 module.exports = {
     buscarUltimasMedidasCPU,
     buscarUltimasMedidasRAM,
@@ -364,10 +360,6 @@ module.exports = {
     buscarUltimasMedidas_CPU_Aeris,
     buscarUltimasMedidas_RAM_Aeris,
     buscarCapturas,
-<<<<<<< HEAD
-    
-=======
->>>>>>> 7d60fb2c98a12dfb2a6ae18f88dc5c6e61187a58
 
     buscarMedidasEmTempoRealCPU,
     buscarMedidasEmTempoRealRAM,
@@ -377,8 +369,4 @@ module.exports = {
     buscarUltimasMedidasLATENCIA,
     buscarMedidasEmTempoReal_CPU_Aeris,
     buscarMedidasEmTempoReal_RAM_Aeris,
-<<<<<<< HEAD
-    
-=======
->>>>>>> 7d60fb2c98a12dfb2a6ae18f88dc5c6e61187a58
 }
