@@ -16,6 +16,11 @@ function buscarServidorPorEmpresa(req, res) {
   });
 }
 
+function listar(req, res) {
+  servidorModel.listar().then((resultado) => {
+    res.status(200).json(resultado);
+  });
+}
 
 function cadastrarSv(req, res) {
 
@@ -122,21 +127,22 @@ res.status(500).json(erro.sqlMessage);
 }
 }
 
-function listar(req, res) {
-  servidorModel.listar()
-      .then(function (resultado) {
-          if (resultado.length > 0) {
-              res.status(200).json(resultado);
-          } else {
-              res.status(204).send("Nenhum resultado encontrado!")
-          }
-      }).catch(
-          function (erro) {
-              console.log(erro);
-              console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-              res.status(500).json(erro.sqlMessage);
-          }
-      );
+function BuscarServidor(req, res) {
+  var id = req.params.id;
+   
+  servidorModel.BuscarServidor(id)
+            .then(
+                function (resultado) {
+                    console.log(`\n Resultados encontrados: ${resultado.length}`);
+                    console.log(`Resultados: ${JSON.stringify(resultado)}`) //transforma JSON em string
+                    if (resultado.length >= 1) {
+                        console.log(resultado);
+                        res.json(resultado);
+                    } else {
+                        res.status(403).send("historico não existe!")
+                    }
+                }
+            )
 }
 
 module.exports = {
@@ -144,5 +150,5 @@ module.exports = {
   cadastrarSv,
   atualizar_servidor,
   excluir_servidor,
-  listar
+  BuscarServidor
 }

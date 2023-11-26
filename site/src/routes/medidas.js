@@ -92,7 +92,11 @@ router.get("tamanho-disco/:idServidor", function (req, res) {
     medidaController.tamanhoDisco(req, res);
 })
 
+<<<<<<< HEAD
 module.exports = router;
 
 
 
+=======
+module.exports = router;
+>>>>>>> 7d60fb2c98a12dfb2a6ae18f88dc5c6e61187a58

@@ -44,11 +44,15 @@ function excluir_servidor(ip_excluir) {
 }
 
 
-function listar() {
+function BuscarServidor(id) {
   console.log("ACESSEI O SERVIDOR MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
   var instrucao = `
 
-  select * from Servidor join instituicao on Servidor.fkInstituicao = instituicao.idInstituicao WHERE status_servidor = 1;
+  SELECT * 
+FROM Servidor 
+JOIN instituicao ON Servidor.fkInstituicao = instituicao.idInstituicao 
+WHERE status_servidor = 1 
+  AND instituicao.idInstituicao = (SELECT fkInstituicao FROM funcionario WHERE idFuncionario = ${id});
   
   `;
   console.log("Executando a instrução SQL: \n" + instrucao);
@@ -56,10 +60,12 @@ function listar() {
 }
 
 
+
+
 module.exports = {
   buscarServidorPorEmpresa,
   cadastrarSv,
   atualizar_servidor,
   excluir_servidor,
-  listar
+  BuscarServidor
 }

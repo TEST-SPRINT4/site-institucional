@@ -21,8 +21,6 @@ body {
   padding-top: 15px;
 }
 
-/* ----------------------------------------------------------------------- */
-
 /* NAV BAR SUPERIOR */
 
 .nav-bar {
@@ -65,12 +63,10 @@ body {
   font-weight: 600;
 }
 
-/* ----------------------------------------------------------------------- */
 
 /* NAV BAR LATERAL */
-
 .header-left {
-  height: 90vh;
+  height: 225vh;
   width: 23%;
   display: flex;
   flex-direction: column;
@@ -109,8 +105,6 @@ body {
 }
 
 /* Botões principais */
-
-/* botão não selecionado */
 .btn-nav {
   display: flex;
   align-items: center ;
@@ -122,23 +116,10 @@ body {
   margin-top: 2%;
 }
 
-/* botão selecionado */
-/* .btn-nav-current{
-  display: flex;
-  align-items: center ;
-  width: 100%;
-  height: 10vh;
-  color: #212124;
-  cursor: pointer;
-  padding: 0;
-  margin-top: 2%;
-} */
-
-
-/* Botões servidores selecionados */
+/* Botões principais selecionados */
 .btn-nav-server h3 {
   width: 100%;
-  color: #808080;
+  color: #212124;
   padding: 0;
   margin: 0;
   cursor: pointer;
@@ -161,21 +142,441 @@ body {
   margin-top: 15%;
 }
 
+/*botões dos servidores monitorados */
+.btn-chart {
+  font-family: "Exo 2", sans-serif;
+  border: 0;
+  font-weight: 600;
+  font-size: 16px;
+  margin: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-left: 25%;
+}
+
+/* servidores selecionados */
+.btn-server-select {
+  color: #075cab;
+  background-color: white;
+  cursor: pointer;
+  border-bottom: 2px solid #075CAB;
+}
+
+/* servidores não selecionados */
+.btn-server {
+  color: #808080;
+  background-color: white;
+  cursor: pointer;
+}
+
+.btn-server:hover{
+  color: #075cab
+}
+
+.btn-nav:hover {
+  color: #212124;
+}
+
 .header-left a {
   text-decoration: none;
   color: white;
 }
 
-/* ----------------------------------------------------------------------- */
-
 /* DASHBOARD */
 
-.dash{
+/* cards de médias */
+.container-card{
   width: 100%;
-  height: fit-content;
+  display: flex;
+}
+
+.card-media{
+  width: 25%;
+  height: 150px;
+  box-shadow: 1px 1px 15px rgba(91, 91, 91, 0.77);
+  border-radius: 15px;
+  margin: 8px;
+  margin-top: 0%;
+  margin-bottom: 2%;
+}
+
+.card-media h3{
+  color: #ffffff;
+  margin-left: 5%;
+  margin-bottom: 0%;
+}
+
+.card-media h1{
+  color: #ffffff;
+  text-align: center;
+  font-size: 45px;
+  margin: 0%;
+}
+
+/* fundo transparente de organização */
+.dash {
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
+
+/* fundo transparente de gráficos */
+#graficos{
+  width: 100%;
+  display: block;
+}
+
+/* card de gráficos */
+.graph {
+  width: 45%;
+  height: 60vh;
+  padding-top: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 15px rgba(91, 91, 91, 0.77);
+  margin: 2%;
+  margin-top: 0%;
+}
+
+.tituloGraficos {
+  color: rgb(172, 172, 172);
+  display: flex;
+  justify-content: center;
+}
+
+.display-none {
+  display: none;
+}
+
+.display-flex {
+  display: flex;
+}
+
+.display-block {
+  display: block;
+  width: 100%;
+}
+
+canvas {
+  width: 30vw !important;
+  height: 30vh !important;
+  margin: 5%;
+}
+
+.parteGrafico{
+  display: flex;
+}
+
+
+/* pagina extra - simulador */
+
+/* .simulador {
+  color: white;
+
+}
+
+.simulador .container {
+  flex-direction: column
+} */
+
+/* Alarme */
+/* #alerta {
+  position: absolute;
+  right: 0px;
+}
+
+.mensagem-alarme {
+  background-color: white;
+  border-radius: 5px;
+  width: 300px;
+  height: 80px;
+  margin: 10px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.mensagem-alarme h3 {
+  font-size: 14px;
+  margin: 0;
+}
+
+.mensagem-alarme .informacao {
+  margin: 10px;
+}
+
+.alarme-sino {
+  width: 48px;
+  height: 48px;
+  animation-name: bell;
+  animation-duration: 4s;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
+  background-size: cover;
+  animation-iteration-count: infinite;
+}
+
+@keyframes bell {
+  0% {
+    transform: rotate(25deg)
+  }
+
+  25% {
+    transform: rotate(-25deg)
+  }
+
+  50% {
+    transform: rotate(25deg)
+  }
+
+  75% {
+    transform: rotate(-25deg)
+  }
+
+  100% {
+    transform: rotate(25deg)
+  }
+} */
+
+/* TELA DE CARDS
+Simone: Provavelmente não vamos utiliza-la, mas mant */
+.regua {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.perigo-frio {
+  background-color: #5c6bc0;
+}
+
+.perigo-quente {
+  background-color: #ff7043;
+}
+
+.alerta-frio {
+  background-color: #42a5f5;
+}
+
+.alerta-quente {
+  background-color: #ffee58;
+}
+
+.ideal {
+  background-color: #9ccc65;
+}
+
+.item-regua {
+  padding: 5px;
+  width: 15%;
+  margin: 5px;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  height: 450px;
+  width: 100%;
+  align-items: center;
+  color: white;
+}
+
+.card {
+  margin: 2%;
+  width: 40%;
+  flex-wrap: wrap;
+  display: flex;
+  text-align: center;
+  height: 180px;
+  justify-content: right;
+  background-color: #212124;
+  font-size: 20px;
+}
+
+.card p {
+  margin: 0;
+  font-size: 50px;
+  font-weight: lighter;
+  text-align: left;
+}
+
+.cards h1 {
+  font-size: 22px;
+  width: 100%;
+  border-bottom: solid white 1px;
+  text-align: left;
+  font-weight: lighter;
+  margin: 20px;
+}
+
+.temperatura,
+.umidade {
+  margin: 5px;
+  margin-left: 20px;
+  width: 75%;
+}
+
+.cor-alerta {
+  width: 13%;
+  height: 30%;
+  border-radius: 50px;
+  margin-top: 6%;
+  /* background-color: #c7c7c7; */
+}
+
+.campo_selecao_servidor {
+  width: 25vh;
+  height: 20vh;
+  padding-top: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 15px rgba(91, 91, 91, 0.77);
+  margin: 2%;
+  margin-top: 0%;
+}
+
+.graph2 {
+  width: 45%;
+  height: 60vh;
+  padding-top: 10px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 15px rgba(91, 91, 91, 0.77);
+  margin: 2%;
+  margin-top: 0%;
+}
+
+.campo_detalhes_rede {
+  width: 30vh;
+}
+
+.campo_selecao_servidor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 300px; 
+  margin: 0 auto; 
+  padding: 20px; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.campo_selecao_servidor span {
+  margin-bottom: 10px; 
+}
+
+select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px; 
+  box-sizing: border-box; 
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4CAF50; 
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+button:hover {
+  background-color: #45a049;
+}
+
+.campo_selecao_servidor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 300px; 
+  margin: 0 auto; 
+  padding: 20px; 
+  text-align: center; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.campo_selecao_servidor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  max-width: 300px; 
+  margin: 0 auto 20px; 
+  padding: 20px; 
+  text-align: center; 
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.campo_selecao_servidor span {
+  margin-bottom: 15%; 
+}
+
+h1 {
+  color: #4CAF50; 
+  font-size: 40px; 
+  margin: 0; 
+}
+
+.graph2 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 300px; 
+  margin: 0 auto; 
+  text-align: center; 
+}
+
+.graph2 img {
+  width: 100px; 
+  height: auto; 
+}
+
+.campo_detalhes_rede {
+  margin-top: 20px; 
+}
+
+.campo_detalhes_rede span {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 16px; 
+}
+
+.campo_detalhes_rede span b {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 18px; 
+}
+
+.campo_detalhes_rede span span {
+  color: #4CAF50; 
+  font-weight: bold; 
+  font-size: 20px; 
+}
+
+
+
+
 
