@@ -29,10 +29,21 @@ router.get("/ultimasFREQUENCIA/:idServidor", function (req, res) {
     simoneController.buscarUltimasMedidasFREQUENCIA(req, res);
 });
 
-router.get("/listarNUCLEOSFISICOS", function (req, res) {
-    simoneController.listarNUCLEOSFISICOS(req, res);
-  });
+router.get("/tempo-realNUCLEOF/:idServidor", function (req, res) {
+    simoneController.buscarMedidasEmTempoRealNUCLEOF(req, res);
+})
 
+router.get("/ultimasNUCLEOF/:idServidor", function (req, res) {
+    simoneController.buscarUltimasMedidasNUCLEOF(req, res);
+});
+
+router.get("/tempo-realNUCLEOL/:idServidor", function (req, res) {
+    simoneController.buscarMedidasEmTempoRealNUCLEOL(req, res);
+})
+
+router.get("/ultimasNUCLEOL/:idServidor", function (req, res) {
+    simoneController.buscarUltimasMedidasNUCLEOL(req, res);
+});
 
 
 module.exports = router;

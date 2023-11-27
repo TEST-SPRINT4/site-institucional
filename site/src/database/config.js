@@ -24,7 +24,6 @@ var mySqlConfig = {
     database: "test",
     user: "root",
     password: "APUXxx2707",
-
 };  
 
 function executar(instrucao) {
