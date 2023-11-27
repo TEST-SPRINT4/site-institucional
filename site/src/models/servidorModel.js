@@ -91,9 +91,6 @@ module.exports = {
   atualizar_servidor,
   excluir_servidor,
   BuscarServidor,
-<<<<<<< HEAD
-  pesquisarServidor
-=======
+  pesquisarServidor,
   listar
->>>>>>> c7c330bfd933c9ca7ee092e48942d2f0bad9cb1e
 }
