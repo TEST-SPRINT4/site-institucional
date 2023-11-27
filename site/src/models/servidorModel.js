@@ -73,7 +73,17 @@ JOIN instituicao ON Servidor.fkInstituicao = instituicao.idInstituicao;
 
 
 
-
+function pesquisarServidor(caractere, fk_instituicao) {
+  console.log("ACESSEI O SERVIDOR MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pesquisarServidor():", caractere, fk_instituicao);
+  
+  var instrucao = `
+  select idServidor, enderecoIP, sistemaOperacional, localizacao
+  from Servidor 
+  where (UPPER(enderecoIP) like '%${caractere}%' or UPPER(idServidor) like '%${caractere}%') and fkInstituicao = ${fk_instituicao} and status_servidor = 1;
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
 
 module.exports = {
   buscarServidorPorEmpresa,
@@ -81,5 +91,6 @@ module.exports = {
   atualizar_servidor,
   excluir_servidor,
   BuscarServidor,
+  pesquisarServidor,
   listar
 }

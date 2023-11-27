@@ -79,7 +79,7 @@ function pesquisarFuncionario(caractere, fk_instituicao) {
     var instrucao = `
     select idfuncionario, nome_funcionario, email, fk_nivelAcesso 
     from funcionario 
-    where (UPPER(nome_funcionario) like '%${caractere}%' or UPPER(email) like '%${caractere}%') and fk_instituicao = ${fk_instituicao} and status_funcionario = 1;;
+    where (UPPER(nome_funcionario) like '%${caractere}%' or UPPER(email) like '%${caractere}%') and fk_instituicao = ${fk_instituicao} and status_funcionario = 1;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -92,5 +92,5 @@ module.exports = {
     cadastrar_equipe,   
     atualizar_equipe,
     desativarFuncionario,
-    pesquisarFuncionario,
+    pesquisarFuncionario
 };

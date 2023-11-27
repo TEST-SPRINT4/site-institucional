@@ -323,7 +323,6 @@ body {
   display: none;
   border-radius: 15px;
   box-shadow: 1px 1px 15px rgb(143, 143, 143);
-  
 }
 
 /* EXCLUIR SERVIDOR */
@@ -339,4 +338,25 @@ body {
   
 }
 
+.card-buscar-servidor{
+  width: 70vw;
+  height: 80vh;
+  background: rgba(212, 164, 255, 0.40);
+  margin-bottom: 5%;
+  border-radius: 15px;
+  box-shadow: 1px 1px 15px rgb(143, 143, 143);
+}
 
+table, th, td {
+  border:1px solid black;
+}
+
+/* .card-buscar-servidor .card-form{
+  width: 100%;
+  height: auto;
+  display: block;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1%;
+} */

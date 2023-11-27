@@ -198,6 +198,7 @@
         obterDadosGrafico_cpu(1)
         obterDadosGrafico_temperatura(1)
         obterDadosGrafico_frequencia(1)
+        listarNucleosFisicos(1)
 
     }
 
@@ -683,33 +684,9 @@
 
     // LISTAR NUCLEOS FISICOS
 
-    function listarNucleosFisicos() {
+        //fetch("../simone/listarNUCLEOSFISICOS", {
+    
 
-        fetch("../simone/listarNUCLEOSFISICOS", {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        }).then((resposta) => {
-            console.log(resposta);
-            return resposta.json();
-
-        }).then((data) => {
-            console.log(data);
-
-            //Puxamos a quantidade de registros no BD
-            for (var i = 0; i < data.length; i++) {
-                const element = data[i];
-                kpiNucleosFisicos.innerHTML += `<h1>${element.dadoscapturados}</h1>
-                
-          `;
-            }
-
-            
-
-        })
-        console.log("TESTEEEEEEEEEEEEEEEEEE")
-    }
 
 
 </script>

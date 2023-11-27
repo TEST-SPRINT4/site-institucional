@@ -25,5 +25,9 @@ router.post("/excluir_servidor", function (req, res) {
   servidorController.excluir_servidor(req, res);
 })
 
+router.post("/pesquisarServidor/", function (req, res) {
+  servidorController.pesquisarServidor(req, res);
+});
+
 
 module.exports = router;
