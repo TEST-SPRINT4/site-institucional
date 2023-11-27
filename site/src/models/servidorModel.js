@@ -43,9 +43,8 @@ function excluir_servidor(ip_excluir) {
   return database.executar(instrucao3);
 }
 
-
 function BuscarServidor(id) {
-  console.log("ACESSEI O SERVIDOR MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
+  console.log("O SERVIDOR MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function buscarServidor()");
   var instrucao = `
 
   SELECT * 
@@ -58,6 +57,20 @@ WHERE status_servidor = 1
   console.log("Executando a instrução SQL: \n" + instrucao);
   return database.executar(instrucao);
 }
+
+function listar() {
+  console.log("ACESSEI O SERVIDOR MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function LISTAR");
+  var instrucao = `
+
+  SELECT * 
+FROM Servidor 
+JOIN instituicao ON Servidor.fkInstituicao = instituicao.idInstituicao;
+  
+  `;
+  console.log("Executando a instrução SQL: \n" + instrucao);
+  return database.executar(instrucao);
+}
+
 
 
 function pesquisarServidor(caractere, fk_instituicao) {
@@ -78,5 +91,9 @@ module.exports = {
   atualizar_servidor,
   excluir_servidor,
   BuscarServidor,
+<<<<<<< HEAD
   pesquisarServidor
+=======
+  listar
+>>>>>>> c7c330bfd933c9ca7ee092e48942d2f0bad9cb1e
 }

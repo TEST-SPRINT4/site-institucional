@@ -64,9 +64,9 @@ function cadastrarSv(req, res) {
 
 function atualizar_servidor(req, res) {
 
-                // input_ip_novoServer:input_ip_novoVAR,
-                // input_so_novoServer:input_so_novoVAR,
-                // input_localizacao_novaServer:input_localizacao_novaVAR,
+  // input_ip_novoServer:input_ip_novoVAR,
+  // input_so_novoServer:input_so_novoVAR,
+  // input_localizacao_novaServer:input_localizacao_novaVAR,
 
   var ip_atualizar = req.body.input_ip_novoServer;
   var so_atualizar = req.body.input_so_novoServer;
@@ -79,7 +79,7 @@ function atualizar_servidor(req, res) {
     res.status(400).send("so_atualizar está undefined!");
   } else if (localizacao_atualizar == undefined) {
     res.status(400).send("localizacao_atualizar está undefined!");
-  } 
+  }
   else {
 
 
@@ -103,46 +103,46 @@ function excluir_servidor(req, res) {
   //                 input_ipServer:input_ipVAR,
 
 
-var ip_excluir = req.body.input_ipServer;
+  var ip_excluir = req.body.input_ipServer;
 
 
-if (ip_excluir == undefined) {
-res.status(400).send("ip_atualizar está undefined!");
-} 
-else {
+  if (ip_excluir == undefined) {
+    res.status(400).send("ip_atualizar está undefined!");
+  }
+  else {
 
 
-servidorModel.excluir_servidor(ip_excluir)
-.then((resultado) => {
-res.status(201).json(resultado);
-}
-).catch((erro) => {
-console.log(erro);
-console.log(
-"\nHouve um erro ao realizar ao excluir o Servidor! Erro: ",
-erro.sqlMessage
-);
-res.status(500).json(erro.sqlMessage);
-});
-}
+    servidorModel.excluir_servidor(ip_excluir)
+      .then((resultado) => {
+        res.status(201).json(resultado);
+      }
+      ).catch((erro) => {
+        console.log(erro);
+        console.log(
+          "\nHouve um erro ao realizar ao excluir o Servidor! Erro: ",
+          erro.sqlMessage
+        );
+        res.status(500).json(erro.sqlMessage);
+      });
+  }
 }
 
 function BuscarServidor(req, res) {
   var id = req.params.id;
-   
+
   servidorModel.BuscarServidor(id)
-            .then(
-                function (resultado) {
-                    console.log(`\n Resultados encontrados: ${resultado.length}`);
-                    console.log(`Resultados: ${JSON.stringify(resultado)}`) //transforma JSON em string
-                    if (resultado.length >= 1) {
-                        console.log(resultado);
-                        res.json(resultado);
-                    } else {
-                        res.status(403).send("historico não existe!")
-                    }
-                }
-            )
+    .then(
+      function (resultado) {
+        console.log(`\n Resultados encontrados: ${resultado.length}`);
+        console.log(`Resultados: ${JSON.stringify(resultado)}`) //transforma JSON em string
+        if (resultado.length >= 1) {
+          console.log(resultado);
+          res.json(resultado);
+        } else {
+          res.status(403).send("historico não existe!")
+        }
+      }
+    )
 }
 
 
@@ -185,5 +185,9 @@ module.exports = {
   atualizar_servidor,
   excluir_servidor,
   BuscarServidor,
+<<<<<<< HEAD
   pesquisarServidor
+=======
+  listar
+>>>>>>> c7c330bfd933c9ca7ee092e48942d2f0bad9cb1e
 }

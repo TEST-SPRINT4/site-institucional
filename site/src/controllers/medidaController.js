@@ -126,6 +126,7 @@ function buscarUltimasMedidasLATENCIA(req, res) {
     });
 }
 
+// INDIVIDUAL AERIS ----------------------------------------------------------------
 
 function buscarUltimasMedidas_CPU_Aeris(req, res) {
 
@@ -169,8 +170,7 @@ function buscarUltimasMedidas_RAM_Aeris(req, res) {
     });
 }
 
-//-------------------------------------------------------------------------------------------
-
+// -------------------------------------------------------------------------------------
 
 function buscarMedidasEmTempoRealCPU(req, res) {
 
@@ -360,7 +360,10 @@ module.exports = {
     buscarUltimasMedidas_CPU_Aeris,
     buscarUltimasMedidas_RAM_Aeris,
     buscarCapturas,
+<<<<<<< HEAD
     
+=======
+>>>>>>> c7c330bfd933c9ca7ee092e48942d2f0bad9cb1e
 
     buscarMedidasEmTempoRealCPU,
     buscarMedidasEmTempoRealRAM,
@@ -370,5 +373,9 @@ module.exports = {
     buscarUltimasMedidasLATENCIA,
     buscarMedidasEmTempoReal_CPU_Aeris,
     buscarMedidasEmTempoReal_RAM_Aeris,
+<<<<<<< HEAD
     
+=======
+    buscarMedidasEmTempoRealLATENCIA
+>>>>>>> c7c330bfd933c9ca7ee092e48942d2f0bad9cb1e
 }
