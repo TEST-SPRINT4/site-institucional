@@ -101,6 +101,9 @@
 
         <div class="dash">
 
+            <div id="kpiFrequencia">Frequência: </div>
+            <div id="kpiNucleosFisicos">Núcleos Físicos:</div>
+
             <div id="graficos">
 
                 <div id="grafico1" class="display-block">
@@ -122,6 +125,19 @@
                                 <span id="tituloServidor_temperatura1">Erro</span>
                             </h3>
                             <canvas id="myChart_temperatura1"></canvas>
+                            <div class="label-captura">
+                                <p id="avisoCaptura1" style="color: rgb(206, 206, 206); text-align: center;"></p>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="parteGrafico">
+                        <div class="graph">
+                            <h3 class="tituloGraficos">
+                                <span id="tituloServidor_frequencia1">Erro</span>
+                            </h3>
+                            <canvas id="myChart_frequencia1"></canvas>
                             <div class="label-captura">
                                 <p id="avisoCaptura1" style="color: rgb(206, 206, 206); text-align: center;"></p>
                             </div>
@@ -175,37 +191,14 @@
 
     window.onload = obterDadosGraficos();
     window.onload = exibirServidor(1);
-    window.onload = listar();
+    //window.onload = listar();
 
     function obterDadosGraficos() {
 
         obterDadosGrafico_cpu(1)
         obterDadosGrafico_temperatura(1)
-        // obterDadosGrafico_disco(1)
-        // obterDadosGrafico_enviados(1)
-        // obterDadosGrafico_recebidos(1)
-        // obterDadosGrafico_latencia(1)
+        obterDadosGrafico_frequencia(1)
 
-        // obterDadosGrafico_cpu(2)
-        // obterDadosGrafico_ram(2)
-        // obterDadosGrafico_disco(2)
-        // obterDadosGrafico_enviados(2)
-        // obterDadosGrafico_recebidos(2)
-        // obterDadosGrafico_latencia(2)
-
-        // obterDadosGrafico_cpu(3)
-        // obterDadosGrafico_ram(3)
-        // obterDadosGrafico_disco(3)
-        // obterDadosGrafico_enviados(3)
-        // obterDadosGrafico_recebidos(3)
-        // obterDadosGrafico_latencia(3)
-
-        // obterDadosGrafico_cpu(4)
-        // obterDadosGrafico_ram(4)
-        // obterDadosGrafico_disco(4)
-        // obterDadosGrafico_enviados(4)
-        // obterDadosGrafico_recebidos(4)
-        // obterDadosGrafico_latencia(4)
     }
 
     //verificar_autenticacao();
@@ -215,7 +208,10 @@
         tituloServidor_cpu.innerHTML = "Últimas medidas de <span style='color: #075cab'> CPU </span> do <span style='color: #075cab'>servidor " + idServidor + "</span>"
 
         var tituloServidor_temperatura = document.getElementById(`tituloServidor_temperatura${idServidor}`)
-        tituloServidor_temperatura.innerHTML = "Últimas medidas de <span style='color: #075cab'> TEMPERATURA CPU </span> do <span style='color: #075cab'> do servidor " + idServidor + "</span>"
+        tituloServidor_temperatura.innerHTML = "Últimas medidas de <span style='color: #075cab'> TEMPERATURA DA CPU </span> do <span style='color: #075cab'>servidor " + idServidor + "</span>"
+
+        var tituloServidor_frequencia = document.getElementById(`tituloServidor_frequencia${idServidor}`)
+        tituloServidor_frequencia.innerHTML = "Últimas medidas de <span style='color: #075cab'> FREQUÊNCIA DA CPU </span> do <span style='color: #075cab'>servidor " + idServidor + "</span>"
     }
 
 
@@ -249,7 +245,7 @@
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimasCPU/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/simone/ultimasCPU/${idServidor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -308,9 +304,9 @@
             ]
         };
 
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
+        // console.log('----------------------------------------------')
+        // console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        // console.log(resposta)
 
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
@@ -321,13 +317,13 @@
             // dados.datasets[1].data.push(registro.temperatura);
         }
 
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
-        console.log('registro: ')
-        console.log(registro)
+        // console.log('----------------------------------------------')
+        // console.log('O gráfico será plotado com os respectivos valores:')
+        // console.log('Dados:')
+        // console.log(dados.datasets)
+        // console.log('----------------------------------------------')
+        // console.log('registro: ')
+        // console.log(registro)
 
         // Criando estrutura para plotar gráfico - config
         const config = {
@@ -346,7 +342,7 @@
 
     function atualizarGrafico_cpu(idServidor, dados, myChart) {
 
-        fetch(`/medidas/tempo-realCPU/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/simone/tempo-realCPU/${idServidor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
@@ -359,12 +355,12 @@
                     if (novoRegistro[0].dataHora == dados.labels[dados.labels.length - 1]) {
                         console.log("---------------------------------------------------------------")
                         console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        //avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Último dado capturado está inserido.<br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].dataHora)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
+                        // //avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Último dado capturado está inserido.<br> Como não há dados novos a exibir, o gráfico não atualizará."
+                        // console.log("Horário do novo dado capturado:")
+                        // console.log(novoRegistro[0].dataHora)
+                        // console.log("Horário do último dado capturado:")
+                        // console.log(dados.labels[dados.labels.length - 1])
+                        // console.log("---------------------------------------------------------------")
                     } else {
                         // tirando e colocando valores no gráfico
                         dados.labels.shift(); // apagar o primeiro
@@ -407,7 +403,7 @@
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimasTEMPERATURA/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/simone/ultimasTEMPERATURA/${idServidor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
@@ -459,9 +455,9 @@
             ]
         };
 
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
+        // console.log('----------------------------------------------')
+        // console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        // console.log(resposta)
 
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
@@ -471,13 +467,13 @@
             console.log(registro.dadoscapturados)
         }
 
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
-        console.log('registro: ')
-        console.log(registro)
+        // console.log('----------------------------------------------')
+        // console.log('O gráfico será plotado com os respectivos valores:')
+        // console.log('Dados:')
+        // console.log(dados.datasets)
+        // console.log('----------------------------------------------')
+        // console.log('registro: ')
+        // console.log(registro)
 
         // Criando estrutura para plotar gráfico - config
         const config = {
@@ -496,11 +492,11 @@
 
     function atualizarGrafico_temperatura(idServidor, dados, myChart) {
 
-        fetch(`/medidas/tempo-realTEMPERATURA/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/simone/tempo-realTEMPERATURA/${idServidor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (novoRegistro) {
 
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+                    // console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
 
                     // let avisoCaptura_cpu = document.getElementById(`avisoCaptura_cpu${idServidor}`)
                     // avisoCaptura.innerHTML = "" ****
@@ -510,11 +506,11 @@
                         console.log("---------------------------------------------------------------")
                         console.log("Como não há dados novos para captura, o gráfico não atualizará.")
                         //avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Último dado capturado está inserido.<br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].dataHora)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
+                        // console.log("Horário do novo dado capturado:")
+                        // console.log(novoRegistro[0].dataHora)
+                        // console.log("Horário do último dado capturado:")
+                        // console.log(dados.labels[dados.labels.length - 1])
+                        // console.log("---------------------------------------------------------------")
                     } else {
                         // tirando e colocando valores no gráfico
                         dados.labels.shift(); // apagar o primeiro
@@ -545,4 +541,175 @@
             });
 
     }
+
+    // GRÁFICO FREQUÊNCIA --------------------------------------------------------------------------------------------
+
+    function obterDadosGrafico_frequencia(idServidor) {
+
+        alterarTitulo(idServidor)
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/simone/ultimasFREQUENCIA/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico_frequencia(resposta, idServidor);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGrafico_frequencia(resposta, idServidor) {
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'CPU',
+                data: [],
+                borderWidth: 1,
+                backgroundColor: (context) => {
+                    const background = [
+                        "#075cab33",
+                        "#D4A4FF52"
+                    ]
+                    if (!context.chart.chartArea) {
+                        return;
+                    }
+
+                    const { ctx, data, chartArea: { top, bottom } } = context.chart;
+                    const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
+                    gradientBackground.addColorStop(.5, background[0]);
+                    gradientBackground.addColorStop(1, background[1]);
+
+                    return gradientBackground;
+                },
+                fill: true,
+                borderColor: '#075cab',
+                tension: 0.1
+            },
+            ]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.dataHora);
+            dados.datasets[0].data.push(registro.dadoscapturados);
+        }
+
+        // console.log('----------------------------------------------')
+        // console.log('O gráfico será plotado com os respectivos valores:')
+        // console.log('Dados:')
+        // console.log(dados.datasets)
+
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'line',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById(`myChart_frequencia${idServidor}`),
+            config
+        );
+
+        setTimeout(() => atualizarGrafico_frequencia(idServidor, dados, myChart), 2000);
+    }
+
+    function atualizarGrafico_frequencia(idServidor, dados, myChart) {
+
+        fetch(`/simone/tempo-realFREQUENCIA/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+
+                    if (novoRegistro[0].dataHora == dados.labels[dados.labels.length - 1]) {
+                        console.log("---------------------------------------------------------------")
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                        //avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Último dado capturado está inserido.<br> Como não há dados novos a exibir, o gráfico não atualizará."
+                        // console.log("Horário do novo dado capturado:")
+                        // console.log(novoRegistro[0].dataHora)
+                        // console.log("Dado de frequencia capturado:")
+                        // console.log(novoRegistro[0].dadoscapturados)
+                        // console.log("---------------------------------------------------------------")
+                    } else {
+                        // tirando e colocando valores no gráfico
+                        dados.labels.shift(); // apagar o primeiro
+                        dados.labels.push(novoRegistro[0].dataHora); // incluir um novo momento
+
+                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[0].data.push(novoRegistro[0].dadoscapturados); // incluir uma nova medida de umidade
+
+                        kpiFrequencia.innerHTML = novoRegistro[0].dadoscapturados
+
+                        myChart.update();
+                    }
+
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico_frequencia(idServidor, dados, myChart), 2000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico_frequencia(idServidor, dados, myChart), 2000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    // LISTAR NUCLEOS FISICOS
+
+    function listarNucleosFisicos() {
+
+        fetch("../simone/listarNUCLEOSFISICOS", {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((resposta) => {
+            console.log(resposta);
+            return resposta.json();
+
+        }).then((data) => {
+            console.log(data);
+
+            //Puxamos a quantidade de registros no BD
+            for (var i = 0; i < data.length; i++) {
+                const element = data[i];
+                kpiNucleosFisicos.innerHTML += `<h1>${element.dadoscapturados}</h1>
+                
+          `;
+            }
+
+            
+
+        })
+        console.log("TESTEEEEEEEEEEEEEEEEEE")
+    }
+
+
 </script>

@@ -93,16 +93,6 @@ router.get("tamanho-disco/:idServidor", function (req, res) {
 })
 
 
-//SIMONE INDIVIDUAL------------------------------------
-
-router.get("/tempo-realTEMPERATURA/:idServidor", function (req, res) {
-    medidaController.buscarMedidasEmTempoRealTEMPERATURA(req, res);
-})
-
-router.get("/ultimasTEMPERATURA/:idServidor", function (req, res) {
-    medidaController.buscarUltimasMedidasTEMPERATURA(req, res);
-});
-
 module.exports = router;
 
 

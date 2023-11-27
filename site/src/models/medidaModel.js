@@ -537,7 +537,6 @@ module.exports = {
     buscarUltimasMedidasLATENCIA,
     buscarUltimasMedidas_CPU_Aeris,
     buscarUltimasMedidas_RAM_Aeris,
-    buscarUltimasMedidasTEMPERATURA,
     buscarCapturas,
 
     buscarMedidasEmTempoRealCPU,
@@ -548,5 +547,4 @@ module.exports = {
     buscarMedidasEmTempoRealLATENCIA,
     buscarMedidasEmTempoReal_CPU_Aeris,
     buscarMedidasEmTempoReal_RAM_Aeris,
-    buscarMedidasEmTempoRealTEMPERATURA
 }

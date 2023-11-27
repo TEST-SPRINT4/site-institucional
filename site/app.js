@@ -18,6 +18,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var funcionarioRouter = require("./src/routes/funcionario");
 var discoRouter = require("./src/routes/disco");
 var redeRouter = require("./src/routes/rede");
+var simoneRouter = require("./src/routes/simone");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,6 +36,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/funcionario", funcionarioRouter);
 app.use("/disco", discoRouter);
 app.use("/rede", redeRouter);
+app.use("/simone", simoneRouter);
 
 
 app.listen(PORTA, function () {
