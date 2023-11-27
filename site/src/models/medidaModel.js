@@ -156,6 +156,7 @@ function buscarUltimasMedidasLATENCIA(idServidor, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
+// INDIVIDUAL AERIS -------------------------------------------------------
 
 function buscarUltimasMedidas_CPU_Aeris(idServidor, limite_linhas) {
 
@@ -183,7 +184,6 @@ function buscarUltimasMedidas_CPU_Aeris(idServidor, limite_linhas) {
 }
 
 
-
 function buscarUltimasMedidas_RAM_Aeris(idServidor, limite_linhas) {
 
     instrucaoSql = ''
@@ -200,6 +200,59 @@ function buscarUltimasMedidas_RAM_Aeris(idServidor, limite_linhas) {
         Where Servidor.idServidor = ${idServidor} and Componente.modelo = "RAM"
         order by idRegistros desc limit ${limite_linhas} `;
 
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+// INDIVIDUAL SIMONE -------------------------------------------------------
+
+function buscarUltimasMedidasTEMPERATURA(idServidor, limite_linhas) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = ``;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT 
+        dadoscapturados, 
+        dataHora,
+        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "TEMPERATURA"
+        order by idRegistros desc limit ${limite_linhas}`;
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarMedidasEmTempoRealTEMPERATURA(idServidor) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = ``;
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT 
+        dadoscapturados, 
+        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "TEMPERATURA"
+        order by idRegistros desc limit 1`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -484,6 +537,7 @@ module.exports = {
     buscarUltimasMedidasLATENCIA,
     buscarUltimasMedidas_CPU_Aeris,
     buscarUltimasMedidas_RAM_Aeris,
+    buscarUltimasMedidasTEMPERATURA,
     buscarCapturas,
 
     buscarMedidasEmTempoRealCPU,
@@ -494,4 +548,5 @@ module.exports = {
     buscarMedidasEmTempoRealLATENCIA,
     buscarMedidasEmTempoReal_CPU_Aeris,
     buscarMedidasEmTempoReal_RAM_Aeris,
+    buscarMedidasEmTempoRealTEMPERATURA
 }

@@ -65,7 +65,7 @@ router.get("/tempo-realLATENCIA/:idServidor", function (req, res) {
     medidaController.buscarMedidasEmTempoRealLATENCIA(req, res);
 })
 
-//--------------------------------------------------------------
+// AERIS INDIVIDUAL --------------------------------------------------------------
 
 router.post("/buscarCapturas/", function (req, res) {
     medidaController.buscarCapturas(req, res);
@@ -91,6 +91,17 @@ router.get("/tempo-real_RAM_Aeris/:idServidor", function (req, res) {
 router.get("tamanho-disco/:idServidor", function (req, res) {
     medidaController.tamanhoDisco(req, res);
 })
+
+
+//SIMONE INDIVIDUAL------------------------------------
+
+router.get("/tempo-realTEMPERATURA/:idServidor", function (req, res) {
+    medidaController.buscarMedidasEmTempoRealTEMPERATURA(req, res);
+})
+
+router.get("/ultimasTEMPERATURA/:idServidor", function (req, res) {
+    medidaController.buscarUltimasMedidasTEMPERATURA(req, res);
+});
 
 module.exports = router;
 
