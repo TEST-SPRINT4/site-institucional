@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="./CSS/yan.css">
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
 
     <!-- scripts do Chart.js - 2022-1 -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -95,18 +97,128 @@
 
         </div>
 
+
+    <!-- CONTAINER PARA AS DIVS DAS MÉTRICAS -->
+
+            <div id="containerMetricas">
+
+            </div>
+
+
+
+
+            </div>
+
+    <!-- FIM DA DIV -->
         <!-- INICIANDO TELA DASHBOARD -->
+        <div id="container">
+            <div id="divHistorico">
 
-        <div class="dash">
+            </div>
+            <div class="dash">
 
-            <!-- 
-                ESCREVA SEU CÓDIGO AQUI!!!!!!!
-             -->
+                <!--  ESCREVA SEU CÓDIGO AQUI!!!!!!! -->
+                <div id="dashTemperatura">
+
+
+
+
+                </div>
+                <div id="dashCPU">
+
+
+                </div>
+                <div id="dashRAM">
+
+
+                </div>
+                <div id="dashDisco">
+
+
+                </div>
+
+
+
+            </div>
+
 
         </div>
-
-
     </div>
 </body>
 
 </html>
+
+<script>
+    function obterDadosGrafico_cpu(idServidor) {
+
+        alterarTitulo(idServidor)
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/ultimasCPU/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico_cpu(resposta, idServidor);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+
+    function plotarGrafico_cpu(resposta, idServidor) {
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'CPU',
+                data: [],
+                borderWidth: 1,
+                backgroundColor: (context) => {
+                    const background = [
+                        "#075cab33",
+                        "#D4A4FF52"
+                    ]
+                    if (!context.chart.chartArea) {
+                        return;
+                    }
+
+                    const { ctx, data, chartArea: { top, bottom } } = context.chart;
+                    const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
+                    gradientBackground.addColorStop(.5, background[0]);
+                    gradientBackground.addColorStop(1, background[1]);
+
+                    return gradientBackground;
+                },
+                fill: true,
+                borderColor: '#075cab',
+                tension: 0.1
+            },
+                // {
+                //     label: 'Temperatura',
+                //     data: [],
+                //     fill: false,
+                //     borderColor: '#D4A4FF',
+                //     tension: 0.1
+                // }
+            ]
+        };
+    }
+
+
+
+
+</script>
