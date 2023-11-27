@@ -13,7 +13,6 @@ open class Main {
         fun main(args: Array<String>) {
 
 
-
             val repository = Repository()
             repository.iniciar()
 
@@ -26,25 +25,37 @@ open class Main {
                 """.trimIndent()
             ).toString()
 
+            var serverIP: String = servidor_capt
+            var idServidor: Int = repository.BuscarServidor(serverIP)
+            while (idServidor == 0) {
+                JOptionPane.showMessageDialog(null, "Id não reconhecido")
+                var serverIP = JOptionPane.showInputDialog(
+                    """ 
+                            Olá, seja bem vindo! 
+                        Por favor insira o servidor para
+                         iniciar sistema de captura.
+                """.trimIndent()
+                ).toString()
+                idServidor = repository.BuscarServidor(serverIP)
+            }
+                val leituraSOThread = LeituraSOThread(repository, servidor_capt, idServidor)
+                leituraSOThread.start()
 
-            val leituraSOThread = LeituraSOThread(repository, servidor_capt)
-            leituraSOThread.start()
 
-
-            Thread.sleep(1000)
-            while (true) {
-                val parar = JOptionPane.showInputDialog(
-                    """
+                Thread.sleep(1000)
+                while (true) {
+                    val parar = JOptionPane.showInputDialog(
+                        """
                     Para PARAR a captura digite '1' 
                 """.trimIndent()
-                )
-                if (parar == "1") {
-                    System.exit(0)
+                    )
+                    if (parar == "1") {
+                        System.exit(0)
+                    }
                 }
+
+
             }
 
-
         }
-
     }
-}
