@@ -17,8 +17,11 @@ var empresasRouter = require("./src/routes/empresas");
 var usuarioRouter = require("./src/routes/usuarios");
 var funcionarioRouter = require("./src/routes/funcionario");
 var discoRouter = require("./src/routes/disco");
+<<<<<<< HEAD
+=======
 var redeRouter = require("./src/routes/rede");
 var simoneRouter = require("./src/routes/simone");
+>>>>>>> c7c330bfd933c9ca7ee092e48942d2f0bad9cb1e
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -35,9 +38,12 @@ app.use("/empresas", empresasRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/funcionario", funcionarioRouter);
 app.use("/disco", discoRouter);
+<<<<<<< HEAD
+=======
 app.use("/rede", redeRouter);
 app.use("/simone", simoneRouter);
 
+>>>>>>> c7c330bfd933c9ca7ee092e48942d2f0bad9cb1e
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n
