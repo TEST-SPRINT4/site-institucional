@@ -449,7 +449,6 @@ function buscarCapturas(periodo1, periodo2, fk_instituicao) {
     
         `;
     } else {
-<<<<<<< HEAD
         console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return
     }
@@ -469,10 +468,6 @@ function tamanhoDisco() {
     } else {
         console.log("\nO AMBIENTE (produção OU producao) NÃO FOI DEFINIDO EM app.js\n");
         return      
-=======
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-        return
->>>>>>> 7d60fb2c98a12dfb2a6ae18f88dc5c6e61187a58
     }
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql);

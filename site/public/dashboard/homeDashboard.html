@@ -173,6 +173,7 @@
 </html>
 
 <script>
+
     var nivel_acesso = sessionStorage.NIVEL_ACESSO;
 
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
@@ -214,6 +215,7 @@
         var periodo2 = input_periodo2.value
         console.log(periodo2)
         var fk_instituicao = sessionStorage.FK_INSTITUICAO
+        console.log(fk_instituicao)
 
         fetch(`/medidas/buscarCapturas/`, {
 
