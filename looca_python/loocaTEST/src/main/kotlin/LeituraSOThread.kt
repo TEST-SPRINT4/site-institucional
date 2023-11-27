@@ -1,30 +1,21 @@
 import app.Main
 import javax.swing.JOptionPane
 
-class LeituraSOThread(val repository: Repository, val servidor_capt: String):Thread() {
-
+class LeituraSOThread(val repository: Repository, val servidor_capt: String, val idServidor: Int):Thread() {
     override fun run() {
         while (true) {
             val looca = LoocaAPI()
             println("lendo os dados")
+                repository.RegistrocpuRaw(looca, idServidor)
+                repository.RegistroramRaw(looca, idServidor)
+                repository.RegistroPacEnviados(looca, idServidor)
+                repository.RegistroPacEnviadosRAW(looca, idServidor)
+                repository.RegistroPacoRecebidos(looca, idServidor)
+                repository.RegistroPacoRecebidosRAW(looca, idServidor)
 
 
-
-       var serverIP: String = servidor_capt
-
-            print(serverIP)
-          var idServidor :Int =  repository.BuscarServidor(serverIP)
-
-            repository.RegistrocpuRaw(looca, idServidor)
-            repository.RegistroramRaw(looca, idServidor)
-            repository.RegistroPacEnviados(looca, idServidor)
-            repository.RegistroPacEnviadosRAW(looca, idServidor)
-            repository.RegistroPacoRecebidos(looca, idServidor)
-            repository.RegistroPacoRecebidosRAW(looca, idServidor)
-
-
-            println(
-                """
+                println(
+                    """
         Pacotes enviados S/ TRATAMENTO: ${looca.PacEnviadosRAW}
         Pacotes enviados TRATADO: ${looca.PacEnviados}
         -------------------------------------------------------
@@ -37,8 +28,8 @@ class LeituraSOThread(val repository: Repository, val servidor_capt: String):Thr
         Uso da memória Ram S/ TRATAMENTO: ${looca.ramRaw}
           
         """.trimIndent()
-            )
-            sleep(1000) // milissegundos
+                )
+                sleep(1000) // milissegundos
+            }
         }
     }
-}
