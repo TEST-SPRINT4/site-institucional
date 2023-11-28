@@ -87,12 +87,6 @@ router.get("/tempo-real_RAM_Aeris/:idServidor", function (req, res) {
     medidaController.buscarMedidasEmTempoReal_RAM_Aeris(req, res);
 })
 
-//----------DANILAUM INDIVIDUAL------------------
-router.get("tamanho-disco/:idServidor", function (req, res) {
-    medidaController.tamanhoDisco(req, res);
-})
-
-
 module.exports = router;
 
 
