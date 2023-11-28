@@ -157,13 +157,10 @@ create table Listagem_Processos (
 );
 
 select * from Listagem_Processos;
-insert into Listagem_Processos values
-	(null, now(), 3, 1, 1)
-;
     
 create table Processos (
 	idProcesso int primary key auto_increment,
-    nome_processo varchar(12),
+    nome_processo varchar(45),
     PID double,
     usoCPU double,
     usoRAM double,
@@ -173,11 +170,6 @@ create table Processos (
 );
 
 select * from Processos;
-insert into Processos values
-	(null, 'processo1', 232, 9.00, 2.00, 1),
-    (null, 'processo2', 4586, 2.00, 9.00, 1),
-    (null, 'processo3', 23909, 1.00, 6.00, 1)
-;
     
 	INSERT INTO nivelAcesso (descricao) VALUES
 ('Acesso somente leitura para visualizar informações monitoradas.'),
