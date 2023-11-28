@@ -72,6 +72,13 @@
                 <div class="btns-dash"></div>
             </div>
 
+            <a href="./aeris.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../../Imagens/icon-ram.png" alt="">
+                    <h3>Swap</h3>
+                </div>
+            </a>
+
             <!-- botão equipe -->
             <a href="../equipe.html">
                 <div class="btn-nav">
@@ -109,10 +116,23 @@
 
             <h1>Gráfico Dinâmico</h1>
 
-            <canvas id="myChart" width="400" height="400"></canvas>
-            
+            <div class="campo_selecao_servidor">
+                <span>Servidor:</span>
+                <select name="empresas" id="lista_servidor">
+                    <option selected>Selecione um Servidor</option>
+                </select>
+                <button onclick="BuscarServidor()">BUSCAR</button>
+            </div>
 
-            <div id="graficos">
+            <div class="container-graficos" style="background-color:green">
+
+
+                <!-- grafico de cpu e ram -->
+
+                <canvas id="myChart" width="400" height="400" style="background-color:red"></canvas>
+
+
+
 
                 <div id="grafico1" class="display-block">
 
@@ -121,142 +141,152 @@
                             <h3 class="tituloGraficos">
                                 <span id="tituloServidor_cpu1">Erro</span>
                             </h3>
-                            <canvas id="myChart_cpu1"></canvas>
+                            <canvas id="myChart_cpu1" style="background-color:blue"></canvas>
                             <div class="label-captura">
                                 <p id="avisoCaptura1" style="color: rgb(206, 206, 206); text-align: center;"></p>
                             </div>
                         </div>
 
+                    </div>
+
                 </div>
+
+
+
+                <!-- grafico SWAP -->
+
+
 
             </div>
 
 
         </div>
-
-
-    </div>
 </body>
 <script>
 
 
-let proximaAtualizacao;
+    let proximaAtualizacao;
 
-window.onload = obterDadosGraficos();
-window.onload = exibirServidor(1);
-window.onload = listar();
+    window.onload = obterDadosGraficos();
+    window.onload = exibirServidor(1);
+    window.onload = listar();
 
 
-function obterDadosGraficos() {
+    function obterDadosGraficos() {
 
-obterDadosGrafico_cpu(1)
-obterDadosGrafico_ram(1)
-}
+        obterDadosGrafico_cpu(1)
+        obterDadosGrafico_ram(1)
+    }
 
-function alterarTitulo(idServidor) {
+    function alterarTitulo(idServidor) {
         var tituloServidor_cpu = document.getElementById(`tituloServidor_cpu${idServidor}`)
         tituloServidor_cpu.innerHTML = "Últimas medidas de <span style='color: #075cab'> CPU </span> do <span style='color: #075cab'>servidor " + idServidor + "</span>"
 
         var tituloServidor_ram = document.getElementById(`tituloServidor_ram${idServidor}`)
         tituloServidor_ram.innerHTML = "Últimas medidas de <span style='color: #075cab'> RAM </span> do <span style='color: #075cab'>servidor " + idServidor + "</span>"
-}
-
-function exibirServidor(idServidor) {
-
-
-    ///???
-
-let todosOsGraficos = document.getElementById("graficos")
-
-for (i = 1; i <= todosOsGraficos.childElementCount; i++) {
-    // exibindo - ou não - o gráfico
-    let elementoAtual = document.getElementById(`grafico${i}`)
-    if (elementoAtual.classList.contains("display-block")) {
-        elementoAtual.classList.remove("display-block")
     }
-    elementoAtual.classList.add("display-none")
-}
 
-// exibindo - ou não - o gráfico
-let graficoExibir = document.getElementById(`grafico${idServidor}`)
-graficoExibir.classList.remove("display-none")
-graficoExibir.classList.add("display-block")
-
-}
-    
+    function exibirServidor(idServidor) {
 
 
-//...
+        ///???
 
-function obterDadosGrafico_cpu(idServidor) {
+        let todosOsGraficos = document.getElementById("graficos")
 
-alterarTitulo(idServidor)
+        for (i = 1; i <= todosOsGraficos.childElementCount; i++) {
+            // exibindo - ou não - o gráfico
+            let elementoAtual = document.getElementById(`grafico${i}`)
+            if (elementoAtual.classList.contains("display-block")) {
+                elementoAtual.classList.remove("display-block")
+            }
+            elementoAtual.classList.add("display-none")
+        }
 
-if (proximaAtualizacao != undefined) {
-    clearTimeout(proximaAtualizacao);
-}
+        // exibindo - ou não - o gráfico
+        let graficoExibir = document.getElementById(`grafico${idServidor}`)
+        graficoExibir.classList.remove("display-none")
+        graficoExibir.classList.add("display-block")
 
-fetch(`/medidas/ultimas_CPU_Aeris/${idServidor}`, { cache: 'no-store' }).then(function (response) {
-    if (response.ok) {
-        response.json().then(function (resposta) {
-            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-            resposta.reverse();
-
-            plotarGrafico_cpu(resposta, idServidor);
-        });
-    } else {
-        console.error('Nenhum dado encontrado ou erro na API');
     }
-})
-    .catch(function (error) {
-        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    });
-}
 
-function plotarGrafico_cpu(resposta, idServidor) {
 
-// Criando estrutura para plotar gráfico - labels
-let labels = [];
 
-// Criando estrutura para plotar gráfico - dados
-let dados = {
-    labels: labels,
-    datasets: [{
-        label: 'CPU',
-        data: [],
-        borderWidth: 1,
-        backgroundColor: (context) => {
-            const background = [
-                "#075cab33",
-                "#D4A4FF52"
+
+
+
+    function obterDadosGrafico_cpu(idServidor) {
+
+        alterarTitulo(idServidor)
+
+        if (proximaAtualizacao != undefined) {
+            clearTimeout(proximaAtualizacao);
+        }
+
+        fetch(`/medidas/ultimasCPU/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico_cpu(resposta, idServidor);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGrafico_cpu(resposta, idServidor) {
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'CPU',
+                data: [],
+                borderWidth: 1,
+                backgroundColor: (context) => {
+                    const background = [
+                        "#075cab33",
+                        "#D4A4FF52"
+                    ]
+                    if (!context.chart.chartArea) {
+                        return;
+                    }
+
+                    const { ctx, data, chartArea: { top, bottom } } = context.chart;
+                    const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
+                    gradientBackground.addColorStop(.5, background[0]);
+                    gradientBackground.addColorStop(1, background[1]);
+
+                    return gradientBackground;
+                },
+                fill: true,
+                borderColor: '#075cab',
+                tension: 0.1
+            },
+                // {
+                //     label: 'Temperatura',
+                //     data: [],
+                //     fill: false,
+                //     borderColor: '#D4A4FF',
+                //     tension: 0.1
+                // }
             ]
-            if (!context.chart.chartArea) {
-                return;
-            }
+        };
 
-            const { ctx, data, chartArea: { top, bottom } } = context.chart;
-            const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
-            gradientBackground.addColorStop(.5, background[0]);
-            gradientBackground.addColorStop(1, background[1]);
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
 
-            return gradientBackground;
-        },
-        fill: true,
-        borderColor: '#075cab',
-        tension: 0.1
-    },
-        {
-             label: 'RAM',
-            data: [],
-             fill: false,
-             borderColor: '#D4A4FF',
-             tension: 0.1
-            }
-    ]
-};
-
-     // Inserindo valores recebidos em estrutura para plotar o gráfico
-     for (i = 0; i < resposta.length; i++) {
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+        for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             labels.push(registro.dataHora);
             dados.datasets[0].data.push(registro.dadoscapturados);
@@ -287,11 +317,172 @@ let dados = {
         setTimeout(() => atualizarGrafico_cpu(idServidor, dados, myChart), 2000);
     }
 
+    function atualizarGrafico_cpu(idServidor, dados, myChart) {
+
+        fetch(`/medidas/tempo-realCPU/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (novoRegistro) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+
+                    // let avisoCaptura_cpu = document.getElementById(`avisoCaptura_cpu${idServidor}`)
+                    // avisoCaptura.innerHTML = "" ****
+
+
+                    if (novoRegistro[0].dataHora == dados.labels[dados.labels.length - 1]) {
+                        console.log("---------------------------------------------------------------")
+                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+                        //avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Último dado capturado está inserido.<br> Como não há dados novos a exibir, o gráfico não atualizará."
+                        console.log("Horário do novo dado capturado:")
+                        console.log(novoRegistro[0].dataHora)
+                        console.log("Horário do último dado capturado:")
+                        console.log(dados.labels[dados.labels.length - 1])
+                        console.log("---------------------------------------------------------------")
+                    } else {
+                        // tirando e colocando valores no gráfico
+                        dados.labels.shift(); // apagar o primeiro
+                        dados.labels.push(novoRegistro[0].dataHora); // incluir um novo momento
+
+                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                        dados.datasets[0].data.push(novoRegistro[0].dadoscapturados); // incluir uma nova medida de umidade
+
+                        kpiCPU.innerHTML = novoRegistro[0].dadoscapturados
+
+                        // dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
+                        // dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
+
+                        myChart.update();
+                    }
+
+                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico_cpu(idServidor, dados, myChart), 2000);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                proximaAtualizacao = setTimeout(() => atualizarGrafico_cpu(idServidor, dados, myChart), 2000);
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+    }
 
 
 
 
-    
+
+
+
+
+
+    //...
+
+    // function obterDadosGrafico_cpu(idServidor) {
+
+    //     alterarTitulo(idServidor)
+
+    //     if (proximaAtualizacao != undefined) {
+    //         clearTimeout(proximaAtualizacao);
+    //     }
+
+    //     fetch(`/medidas/ultimas_CPU_Aeris/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+    //         if (response.ok) {
+    //             response.json().then(function (resposta) {
+    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    //                 resposta.reverse();
+
+    //                 plotarGrafico_cpu(resposta, idServidor);
+    //             });
+    //         } else {
+    //             console.error('Nenhum dado encontrado ou erro na API');
+    //         }
+    //     })
+    //         .catch(function (error) {
+    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    //         });
+    // }
+
+    // function plotarGrafico_cpu(resposta, idServidor) {
+
+    //     // Criando estrutura para plotar gráfico - labels
+    //     let labels = [];
+
+    //     // Criando estrutura para plotar gráfico - dados
+    //     let dados = {
+    //         labels: labels,
+    //         datasets: [{
+    //             label: 'CPU',
+    //             data: [],
+    //             borderWidth: 1,
+    //             backgroundColor: (context) => {
+    //                 const background = [
+    //                     "#075cab33",
+    //                     "#D4A4FF52"
+    //                 ]
+    //                 if (!context.chart.chartArea) {
+    //                     return;
+    //                 }
+
+    //                 const { ctx, data, chartArea: { top, bottom } } = context.chart;
+    //                 const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
+    //                 gradientBackground.addColorStop(.5, background[0]);
+    //                 gradientBackground.addColorStop(1, background[1]);
+
+    //                 return gradientBackground;
+    //             },
+    //             fill: true,
+    //             borderColor: '#075cab',
+    //             tension: 0.1
+    //         },
+    //         {
+    //             label: 'RAM',
+    //             data: [],
+    //             fill: false,
+    //             borderColor: '#D4A4FF',
+    //             tension: 0.1
+    //         }
+    //         ]
+    //     };
+
+    //     // Inserindo valores recebidos em estrutura para plotar o gráfico
+    //     for (i = 0; i < resposta.length; i++) {
+    //         var registro = resposta[i];
+    //         labels.push(registro.dataHora);
+    //         dados.datasets[0].data.push(registro.dadoscapturados);
+    //         console.log(registro.dadoscapturados)
+    //         // dados.datasets[1].data.push(registro.temperatura);
+    //     }
+
+    //     console.log('----------------------------------------------')
+    //     console.log('O gráfico será plotado com os respectivos valores:')
+    //     console.log('Dados:')
+    //     console.log(dados.datasets)
+    //     console.log('----------------------------------------------')
+    //     console.log('registro: ')
+    //     console.log(registro)
+
+    //     // Criando estrutura para plotar gráfico - config
+    //     const config = {
+    //         type: 'line',
+    //         data: dados,
+    //     };
+
+    //     // Adicionando gráfico criado em div na tela
+    //     let myChart = new Chart(
+    //         document.getElementById(`myChart_cpu${idServidor}`),
+    //         config
+    //     );
+
+    //     setTimeout(() => atualizarGrafico_cpu(idServidor, dados, myChart), 2000);
+    // }
+
+
+
+
+
+
 
 
 </script>
