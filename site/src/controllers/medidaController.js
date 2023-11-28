@@ -88,11 +88,11 @@ function buscarUltimasMedidasRECEBIDOS(req, res) {
 
     const limite_linhas = 7;
 
-    var idServidor = req.params.idServidor;
+    var idServidor_real = req.params.idServidor;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarUltimasMedidasRECEBIDOS(idServidor, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidasRECEBIDOS(idServidor_real, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -255,7 +255,7 @@ function buscarMedidasEmTempoRealRECEBIDOS(req, res) {
     console.log(`Recuperando medidas em tempo real`);
 
     medidaModel.buscarMedidasEmTempoRealRECEBIDOS(idServidor).then(function (resultado) {
-        if (resultado.length > 0) {
+        if (resultado.length >= 0) {
             res.status(200).json(resultado);
         } else {
             res.status(204).send("Nenhum resultado encontrado na PACOTES RECEBIDOS!")
