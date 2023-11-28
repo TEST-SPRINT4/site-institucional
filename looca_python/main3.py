@@ -18,6 +18,7 @@ connection = mysql.connector.connect(
     database='test'
 )
 
+
 cursor = connection.cursor()
 
 while True:
