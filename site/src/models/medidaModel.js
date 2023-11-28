@@ -207,7 +207,6 @@ function buscarUltimasMedidas_CPU_RAM_Aeris(idServidor) {
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `select idRegistros, dadosCapturados, dataHora, fkComponente, fkIdServidor from RegistrosTRUSTED where fkIdServidor = '${idServidor}' order by idRegistros desc`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-<<<<<<< HEAD
         instrucaoSql = `select 
         dadosCapturados as CPU,
         DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
@@ -217,9 +216,7 @@ function buscarUltimasMedidas_CPU_RAM_Aeris(idServidor) {
         Where Servidor.idServidor = ${idServidor} and Componente.modelo = "CPU"
         order by idRegistros desc limit ${limite_linhas}`;
 
-=======
         instrucaoSql = `select idRegistros, dadosCapturados, DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora, fkComponente, fkIdServidor from RegistrosTRUSTED where fkIdServidor = '${idServidor}' order by idRegistros desc`;
->>>>>>> a08fdbf8cb08c36fd63e7f3c882602413f853275
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
