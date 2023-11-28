@@ -200,13 +200,14 @@ function buscarUltimasMedidasLATENCIA(idServidor, limite_linhas) {
 
 // INDIVIDUAL AERIS -------------------------------------------------------
 
-function buscarUltimasMedidas_CPU_Aeris(idServidor, limite_linhas) {
+function buscarUltimasMedidas_CPU_RAM_Aeris(idServidor) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = ``;
+        instrucaoSql = `select idRegistros, dadosCapturados, dataHora, fkComponente, fkIdServidor from RegistrosTRUSTED where fkIdServidor = '${idServidor}' order by idRegistros desc`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+<<<<<<< HEAD
         instrucaoSql = `select 
         dadosCapturados as CPU,
         DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
@@ -216,6 +217,9 @@ function buscarUltimasMedidas_CPU_Aeris(idServidor, limite_linhas) {
         Where Servidor.idServidor = ${idServidor} and Componente.modelo = "CPU"
         order by idRegistros desc limit ${limite_linhas}`;
 
+=======
+        instrucaoSql = `select idRegistros, dadosCapturados, DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora, fkComponente, fkIdServidor from RegistrosTRUSTED where fkIdServidor = '${idServidor}' order by idRegistros desc`;
+>>>>>>> a08fdbf8cb08c36fd63e7f3c882602413f853275
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -279,7 +283,7 @@ function buscarUltimasMedidasTEMPERATURA(idServidor, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoRealTEMPERATURA(idServidor) {
+function buscarMedidasEmTempoReal_Aeris(idServidor) {
 
     instrucaoSql = ''
 
@@ -293,7 +297,7 @@ function buscarMedidasEmTempoRealTEMPERATURA(idServidor) {
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "TEMPERATURA"
+        WHERE Servidor.idServidor = ${idServidor}
         order by idRegistros desc limit 1`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -596,8 +600,8 @@ module.exports = {
     buscarUltimasMedidasENVIADOS,
     buscarUltimasMedidasRECEBIDOS,
     buscarUltimasMedidasLATENCIA,
-    buscarUltimasMedidas_CPU_Aeris,
     buscarUltimasMedidas_RAM_Aeris,
+    buscarUltimasMedidas_CPU_RAM_Aeris,
     buscarCapturas,
 
     buscarMedidasEmTempoRealCPU,
@@ -608,4 +612,5 @@ module.exports = {
     buscarMedidasEmTempoRealLATENCIA,
     buscarMedidasEmTempoReal_CPU_Aeris,
     buscarMedidasEmTempoReal_RAM_Aeris,
+    buscarMedidasEmTempoReal_Aeris
 }

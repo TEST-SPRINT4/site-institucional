@@ -136,7 +136,7 @@ function buscarUltimasMedidas_CPU_Aeris(req, res) {
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarUltimasMedidas_CPU_Aeris(idServidor, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidas_CPU_RAM_Aeris(idServidor, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -149,15 +149,11 @@ function buscarUltimasMedidas_CPU_Aeris(req, res) {
     });
 }
 
-function buscarUltimasMedidas_RAM_Aeris(req, res) {
-
-    const limite_linhas = 7;
+function buscarUltimasMedidas_CPU_RAM_Aeris(req, res) {
 
     var idServidor = req.params.idServidor;
 
-    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
-
-    medidaModel.buscarUltimasMedidas_RAM_Aeris(idServidor, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidas_CPU_RAM_Aeris(idServidor).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -287,13 +283,13 @@ function buscarMedidasEmTempoRealLATENCIA(req, res) {
 }
 
 
-function buscarMedidasEmTempoReal_CPU_Aeris(req, res) {
+function buscarMedidasEmTempoReal_Aeris(req, res) {
 
     var idServidor = req.params.idServidor;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoReal_CPU_Aeris(idServidor).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoReal_Aeris(idServidor).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -357,8 +353,7 @@ module.exports = {
     buscarUltimasMedidasRECEBIDOS,
     buscarUltimasMedidasENVIADOS,
     buscarUltimasMedidasLATENCIA,
-    buscarUltimasMedidas_CPU_Aeris,
-    buscarUltimasMedidas_RAM_Aeris,
+    buscarUltimasMedidas_CPU_RAM_Aeris,
     buscarCapturas,
     
 
@@ -368,8 +363,7 @@ module.exports = {
     buscarMedidasEmTempoRealENVIADOS,
     buscarMedidasEmTempoRealRECEBIDOS,
     buscarUltimasMedidasLATENCIA,
-    buscarMedidasEmTempoReal_CPU_Aeris,
-    buscarMedidasEmTempoReal_RAM_Aeris,
-    
+    buscarMedidasEmTempoReal_Aeris,
+    buscarMedidasEmTempoReal_RAM_Aeris,  
     buscarMedidasEmTempoRealLATENCIA
 }

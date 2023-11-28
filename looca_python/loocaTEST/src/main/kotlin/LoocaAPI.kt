@@ -7,10 +7,6 @@ class LoocaAPI {
 
     val looca = Looca()
 
-    // IP (id do servidor)
-        //Comando responsável pela captura de dados no KOTLIN/JAVA
-//    val ip = inetAddress.hostAddress
-
     val cpuRaw = looca.processador.uso
     val ramRaw = looca.memoria.emUso
 
