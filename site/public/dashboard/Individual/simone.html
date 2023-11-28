@@ -108,9 +108,6 @@
 
         <div class="dash">
 
-            <div id="kpiFrequencia">Frequência: </div>
-            <div id="kpiNucleoF">Núcleos Físicos:</div>
-            <div id="kpiNucleoL">Núcleos Lógicos:</div>
 
             <div id="graficos">
 
@@ -150,6 +147,15 @@
                                 <p id="avisoCaptura1" style="color: rgb(206, 206, 206); text-align: center;"></p>
                             </div>
                         </div>
+
+                        <div class="listakpi">
+                            <div class="kpi" id="kpiNome">Nome do processador:</div>
+                            <div class="kpi" id="kpiArquitetura">Arquitetura do processador:</div>
+                            <div class="kpi" id="kpiFrequencia">Frequência do processador: </div>
+                            <div class="kpi" id="kpiNucleoF">Núcleos Físicos:</div>
+                            <div class="kpi" id="kpiNucleoL">Núcleos Lógicos:</div>
+                        </div>
+
                     </div>
                 </div>
 
@@ -209,6 +215,11 @@
         obterDados_nucleoF(1)
         obterDados_nucleosL(1)
 
+        obterDadosGrafico_cpu(2)
+        obterDadosGrafico_temperatura(2)
+        obterDadosGrafico_frequencia(2)
+        obterDados_nucleoF(2)
+        obterDados_nucleosL(2)
 
     }
 
@@ -928,6 +939,124 @@
 
     }
 
+    // LISTAR NOME 
 
+     // LISTAR NUCLEOS FISICOS
+
+     function obterDados_nucleoF(idServidor) {
+
+
+if (proximaAtualizacao != undefined) {
+    clearTimeout(proximaAtualizacao);
+}
+
+fetch(`/simone/ultimasNUCLEOF/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+        response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+
+            plotar_nucleoF(resposta, idServidor);
+        });
+    } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+    }
+})
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ KPI: ${error.message}`);
+    });
+}
+
+function plotar_nucleoF(resposta, idServidor) {
+// Criando estrutura para plotar gráfico - labels
+let labels = [];
+
+// Criando estrutura para plotar gráfico - dados
+let dados = {
+    labels: labels,
+    datasets: [{
+        label: 'CPU',
+        data: [],
+        borderWidth: 1,
+        backgroundColor: (context) => {
+            const background = [
+                "#075cab33",
+                "#D4A4FF52"
+            ]
+            if (!context.chart.chartArea) {
+                return;
+            }
+
+            const { ctx, data, chartArea: { top, bottom } } = context.chart;
+            const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
+            gradientBackground.addColorStop(.5, background[0]);
+            gradientBackground.addColorStop(1, background[1]);
+
+            return gradientBackground;
+        },
+        fill: true,
+        borderColor: '#075cab',
+        tension: 0.1
+    },
+    ]
+};
+
+console.log('----------------------------------------------')
+console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+console.log(resposta)
+
+// Inserindo valores recebidos em estrutura para plotar o gráfico
+for (i = 0; i < resposta.length; i++) {
+    var registro = resposta[i];
+    labels.push(registro.dataHora);
+    dados.datasets[0].data.push(registro.dadoscapturados);
+}
+
+// Criando estrutura para plotar gráfico - config
+const config = {
+    type: 'line',
+    data: dados,
+};
+
+setTimeout(() => atualizar_nucleoF(idServidor, dados), 2000);
+
+}
+
+function atualizar_nucleoF(idServidor, dados, myChart) {
+
+fetch(`/simone/tempo-realNUCLEOF/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+    if (response.ok) {
+        response.json().then(function (novoRegistro) {
+
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+
+            if (novoRegistro[0].dataHora == dados.labels[dados.labels.length - 1]) {
+                console.log("---------------------------------------------------------------")
+                console.log("Como não há dados novos para captura, o gráfico não atualizará.")
+            } else {
+                dados.labels.shift(); // apagar o primeiro
+                dados.labels.push(novoRegistro[0].dataHora); // incluir um novo momento
+
+                dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+                dados.datasets[0].data.push(novoRegistro[0].dadoscapturados); // incluir uma nova medida de umidade
+
+                kpiNucleoF.innerHTML = `Núcleos Físicos: ${novoRegistro[0].dadoscapturados}`
+
+            }
+
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(() => atualizar_nucleoF(idServidor, dados, myChart), 2000);
+        });
+    } else {
+        console.error('Nenhum dado encontrado ou erro na API');
+        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+        proximaAtualizacao = setTimeout(() => atualizar_nucleoF(idServidor, dados, myChart), 2000);
+    }
+})
+    .catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+
+}
 
 </script>

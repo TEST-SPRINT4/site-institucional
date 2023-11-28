@@ -218,3 +218,23 @@ body {
 .parteGrafico{
   display: flex;
 }
+
+.listakpi{
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.kpi{
+  width: 100%;
+  height: 10%;
+  background-color: #3280c9;
+  margin-bottom: 5%;
+  border-radius: 15px;
+  color: white;
+  font-size: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

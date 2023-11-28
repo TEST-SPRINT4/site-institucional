@@ -150,13 +150,20 @@
             </div>
 
             <div class="card-geral">
-
+                <h1>Filtro de histórico</h1>
                 <div class="card-form">
-
-                    <input class="input-periodo" id="input_periodo1" type="datetime-local" placeholder="Data de Inicio">
-                    <input class="input-periodo" id="input_periodo2" type="datetime-local">
-                    <button class="button-periodo" onclick="buscarCapturas()">Buscar capturas</button>
-
+                    <div class="legendas">
+                        <p>Inicio da captura</p>
+                        <input class="input-periodo" id="input_periodo1" type="datetime-local">
+                    </div>
+                    <div class="legendas">
+                        <p>Final da captura</p>
+                        <input class="input-periodo" id="input_periodo2" type="datetime-local">
+                    </div>
+                    <div class="legendas">
+                        <p class="secret">Pesquisar</p>
+                        <button class="button-periodo" onclick="buscarCapturas()">Buscar capturas</button>
+                    </div>
                 </div>
 
                 <table style="width: 100%;">
@@ -281,31 +288,31 @@
                         var data_hora = novaLinha.insertCell(6);
 
                         if (dado.CPU == null) {
-                            CPU.innerHTML = "Não há dados para esse momento"
+                            CPU.innerHTML = "Não há dados"
                         } else {
                             CPU.innerHTML = dado.CPU
                         }
 
                         if (dado.RAM == null) {
-                            RAM.innerHTML = "Não há dados para esse momento"
+                            RAM.innerHTML = "Não há dados"
                         } else {
                             RAM.innerHTML = dado.RAM
                         }
 
                         if (dado.DISCO == null) {
-                            DISCO.innerHTML = "Não há dados para esse momento"
+                            DISCO.innerHTML = "Não há dados"
                         } else {
                             DISCO.innerHTML = dado.DISCO
                         }
 
                         if (dado.PACOTES_ENVIADOS == null) {
-                            pacote_env.innerHTML = "Não há dados para esse momento"
+                            pacote_env.innerHTML = "Não há dados"
                         } else {
                             pacote_env.innerHTML = dado.PACOTES_ENVIADOS
                         }
 
                         if (dado.PACOTES_RECEBIDOS == null) {
-                            pacote_rec.innerHTML = "Não há dados para esse momento"
+                            pacote_rec.innerHTML = "Não há dados"
                         } else {
                             pacote_rec.innerHTML = dado.PACOTES_RECEBIDOS
                         }
