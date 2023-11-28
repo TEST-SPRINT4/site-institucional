@@ -85,6 +85,13 @@
                 </div>
             </a>
 
+            <a href="./Individual/aeris.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../../Imagens/icon-ram.png" alt="">
+                    <h3>Swap</h3>
+                </div>
+            </a>
+
             <!-- botão equipe -->
             <a href="./equipe.html">
                 <div class="btn-nav">
@@ -144,12 +151,15 @@
 
             <div class="card-geral">
 
-                <input id="input_periodo1" type="datetime-local">
-                <input id="input_periodo2" type="datetime-local">
-                <button onclick="buscarCapturas()">Buscar capturas</button>
+                <div class="card-form">
 
-                <table style="width:100%">
+                    <input class="input-periodo" id="input_periodo1" type="datetime-local" placeholder="Data de Inicio">
+                    <input class="input-periodo" id="input_periodo2" type="datetime-local">
+                    <button class="button-periodo" onclick="buscarCapturas()">Buscar capturas</button>
 
+                </div>
+
+                <table style="width: 100%;">
                     <thead>
                         <tr>
                             <th>ID Servidor</th>
@@ -269,34 +279,34 @@
                         var pacote_env = novaLinha.insertCell(4);
                         var pacote_rec = novaLinha.insertCell(5);
                         var data_hora = novaLinha.insertCell(6);
-                        
-                        if(dado.CPU == null){
+
+                        if (dado.CPU == null) {
                             CPU.innerHTML = "Não há dados para esse momento"
-                        } else{
+                        } else {
                             CPU.innerHTML = dado.CPU
-                        } 
-                        
-                        if(dado.RAM == null){
+                        }
+
+                        if (dado.RAM == null) {
                             RAM.innerHTML = "Não há dados para esse momento"
-                        } else{
+                        } else {
                             RAM.innerHTML = dado.RAM
-                        } 
-                        
-                        if(dado.DISCO == null){
+                        }
+
+                        if (dado.DISCO == null) {
                             DISCO.innerHTML = "Não há dados para esse momento"
-                        } else{
+                        } else {
                             DISCO.innerHTML = dado.DISCO
                         }
-                        
-                        if(dado.PACOTES_ENVIADOS == null){
+
+                        if (dado.PACOTES_ENVIADOS == null) {
                             pacote_env.innerHTML = "Não há dados para esse momento"
-                        } else{
+                        } else {
                             pacote_env.innerHTML = dado.PACOTES_ENVIADOS
                         }
-                        
-                        if(dado.PACOTES_RECEBIDOS == null){
+
+                        if (dado.PACOTES_RECEBIDOS == null) {
                             pacote_rec.innerHTML = "Não há dados para esse momento"
-                        } else{
+                        } else {
                             pacote_rec.innerHTML = dado.PACOTES_RECEBIDOS
                         }
 
@@ -314,6 +324,7 @@
             console.error(resposta);
             // finalizarAguardar();
         });
+
     }
 
 </script>

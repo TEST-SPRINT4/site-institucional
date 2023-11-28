@@ -41,6 +41,7 @@ CREATE TABLE nivelAcesso (
     references permicoes (idPermicoes)
 	);
     
+    
 CREATE TABLE funcionario (
 	idfuncionario INT PRIMARY KEY AUTO_INCREMENT,
     nome_funcionario VARCHAR(45),
@@ -66,11 +67,14 @@ CREATE TABLE Servidor (
     references instituicao (idInstituicao)
     );
     
-    insert into instituicao values
-    (null, 'simone', 'simone', 's@gmail.com', '123', '123');
-    
-    insert into Servidor values
-    (null, '123', 'Windows', 'sala 08', 1, 1);
+CREATE TABLE detalhe (
+	idDetalhe int primary key auto_increment,
+    IPV4 varchar(45),
+    IPpublico varchar(45),
+    fkServidor int,
+    constraint fkServidor_detalhe foreign key (fkServidor)
+    references Servidor (idServidor)
+    );
     
 CREATE TABLE Componente (
 	idComponente int primary key auto_increment,
@@ -116,6 +120,9 @@ Create table RegistrosTRUSTED (
     references Servidor (idServidor)
     );
     
+    insert into RegistrosTRUSTED values
+    (null, 1, null, '2023-11-11 11:23:23', 12, 1);
+    
     Create table RegistrosRAW (
 	idRegistrosRAW int primary key auto_increment,
     dadosCapturados double,
@@ -133,6 +140,7 @@ Create table RegistrosTRUSTED (
     apelido varchar(45)
     );
     
+    
 create table Alertas (
 	idAlertas int primary key auto_increment,
     descricao varchar(45),
@@ -143,41 +151,6 @@ create table Alertas (
     constraint fkRegistros_Alertas foreign key (fkRegistros)
     references RegistrosTRUSTED (idRegistros)
     );
-    
-create table Listagem_Processos (
-	idListagem int primary key auto_increment,
-    dataHora datetime,
-    total_processos int,
-    fkIdServidor int,
-    constraint fkIdServidor foreign key (fkIdServidor)
-    references Servidor (idServidor),
-    fkServInstituicao int,
-    constraint fkServInstituicao foreign key (fkServInstituicao)
-    references Servidor (fkInstituicao)
-);
-
-select * from Listagem_Processos;
-insert into Listagem_Processos values
-	(null, now(), 3, 1, 1)
-;
-    
-create table Processos (
-	idProcesso int primary key auto_increment,
-    nome_processo varchar(12),
-    PID double,
-    usoCPU double,
-    usoRAM double,
-    fkListagem int,
-    constraint fkListagem foreign key (fkListagem)
-    references Listagem_Processos (idListagem)
-);
-
-select * from Processos;
-insert into Processos values
-	(null, 'processo1', 232, 9.00, 2.00, 1),
-    (null, 'processo2', 4586, 2.00, 9.00, 1),
-    (null, 'processo3', 23909, 1.00, 6.00, 1)
-;
     
 	INSERT INTO nivelAcesso (descricao) VALUES
 ('Acesso somente leitura para visualizar informações monitoradas.'),
@@ -214,9 +187,7 @@ update nivelAcesso set fkPermicoes = 3 where nivel_acesso = 1;
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 9; -- NÚLEOS FISICOS
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 10; -- NÚCLEOS LÓGICOS
     select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 11; -- FREQUENCIA
-    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 11; -- TEMPERATURA
-    
-    
+    select dadosCapturados, dataHora from RegistrosTRUSTED where fkComponente = 12; -- TEMPERATURA
     
 -- SELECT dadoscapturados, dataHora
 -- FROM RegistrosTRUSTED
@@ -299,4 +270,3 @@ GROUP BY
     DATE_FORMAT(RegistrosTRUSTED.dataHora, "%Y-%m-%d %H:%i:%s"), Servidor.idServidor;
     
     SELECT * FROM HISTORICO;
-    

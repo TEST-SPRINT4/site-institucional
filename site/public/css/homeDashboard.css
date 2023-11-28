@@ -264,6 +264,7 @@ body {
   padding: 1%;
   background-color: #ffffff;
   display: flex;
+  flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   width: 96%;
@@ -273,7 +274,38 @@ body {
   border-radius: 15px;
 }
 
+.card-form{
+  width: 100%;
+  display: flex;
+  margin-bottom: 2%;
+  justify-content: center;
+}
 
+.input-periodo{
+  width: 30%;
+  height: 5%;
+  margin: 2%;
+  background-color: #3280c9;
+  padding: 15px;
+  font-family: "Roboto Mono",monospace;
+  color: #ffffff;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
 
+}
 
+.button-periodo{
+  width: 15%;
+  height: 5%;
+  margin: 2%;
+  background-color: #8ac6ff;
+  padding: 15px;
+  font-family: "Roboto Mono",monospace;
+  color: #ffffff;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+
+}
 
