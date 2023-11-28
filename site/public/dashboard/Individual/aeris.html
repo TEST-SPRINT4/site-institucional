@@ -24,7 +24,7 @@
     <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body onload="BuscarServidor()">
 
     <!-- INICIANDO NAVBAR SUPERIOR (logo e botão de sair) -->
     <div class="nav-bar">
@@ -129,7 +129,8 @@
 
                 <!-- grafico de cpu e ram -->
 
-                <canvas id="myChart" width="400" height="400" style="background-color:red"></canvas>
+                <!-- <canvas id="myChart_cpu" width="400" height="400" style="background-color:red"></canvas> -->
+
 
 
 
@@ -141,7 +142,29 @@
                             <h3 class="tituloGraficos">
                                 <span id="tituloServidor_cpu1">Erro</span>
                             </h3>
-                            <canvas id="myChart_cpu1" style="background-color:blue"></canvas>
+                            <canvas id="myChart_cpu" width="400" height="400"
+                                style="background-color:rgb(244, 185, 185)"></canvas>
+                            <div class="label-captura">
+                                <p id="avisoCaptura1" style="color: rgb(206, 206, 206); text-align: center;"></p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+
+                <div id="grafico1" class="display-block">
+
+                    <div class="parteGrafico">
+                        <div class="graph">
+                            <h3 class="tituloGraficos">
+                                <span id="tituloServidor_cpu1">Erro</span>
+                            </h3>
+                            <canvas id="myChart_swap" width="400" height="400"
+                                style="background-color:rgb(212, 212, 242)"></canvas>
                             <div class="label-captura">
                                 <p id="avisoCaptura1" style="color: rgb(206, 206, 206); text-align: center;"></p>
                             </div>
@@ -163,72 +186,96 @@
         </div>
 </body>
 <script>
+    var nivel_acesso = sessionStorage.NIVEL_ACESSO;
 
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+    if (nivel_acesso == 3) {
+        c_usuario.innerHTML = "Administrador"
+    }
+    if (nivel_acesso == 2) {
+        c_usuario.innerHTML = "Visualizador e Editor";
+
+        var equipeDiv = document.querySelector(".btn-nav img[src*='icon-equipe-cinza.png']").parentElement;
+        if (equipeDiv) {
+            equipeDiv.style.display = "none";
+        }
+    }
+
+    if (nivel_acesso == 1) {
+        c_usuario.innerHTML = "Visualizador";
+
+        // Ocultar a div do botão "Equipe"
+        var equipeDiv = document.querySelector(".btn-nav img[src*='icon-equipe-cinza.png']").parentElement;
+        if (equipeDiv) {
+            equipeDiv.style.display = "none";
+        }
+
+        // Ocultar a div do botão "Servidores"
+        var servidoresDiv = document.querySelector(".btn-nav img[src*='icon-servidor-cinza.png']").parentElement;
+        if (servidoresDiv) {
+            servidoresDiv.style.display = "none";
+        }
+    }
+
+    function BuscarServidor() {
+        var idVar = sessionStorage.ID_USUARIO;
+
+        sessionStorage.IP_ESCOLHIDO = lista_servidor.value;
+
+        var servidorSelecionado = lista_servidor.options[lista_servidor.selectedIndex].text;
+
+        fetch(`/servidor/BuscarServidor/${idVar}`)
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(function (resposta) {
+                        console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                        // Limpar as opções existentes
+                        lista_servidor.innerHTML = '<option selected>Selecione um Servidor</option>';
+
+                        // Iterar sobre os resultados e adicionar opções ao select
+                        resposta.forEach(function (servidor) {
+                            lista_servidor.innerHTML += `<option value="${servidor.idServidor}">${servidor.enderecoIP}</option>`;
+                        });
+                        obterDadosGraficos()
+                    });
+                } else {
+                    console.log("Houve um erro ao tentar realizar o listar!");
+
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+            })
+            .catch(function (erro) {
+                console.log(erro);
+            });
+
+        return false;
+    }
 
     let proximaAtualizacao;
 
-    window.onload = obterDadosGraficos();
-    window.onload = exibirServidor(1);
-    window.onload = listar();
-
 
     function obterDadosGraficos() {
-
-        obterDadosGrafico_cpu(1)
-        obterDadosGrafico_ram(1)
+        obterDadosGrafico_cpu_ram()
     }
 
-    function alterarTitulo(idServidor) {
-        var tituloServidor_cpu = document.getElementById(`tituloServidor_cpu${idServidor}`)
-        tituloServidor_cpu.innerHTML = "Últimas medidas de <span style='color: #075cab'> CPU </span> do <span style='color: #075cab'>servidor " + idServidor + "</span>"
-
-        var tituloServidor_ram = document.getElementById(`tituloServidor_ram${idServidor}`)
-        tituloServidor_ram.innerHTML = "Últimas medidas de <span style='color: #075cab'> RAM </span> do <span style='color: #075cab'>servidor " + idServidor + "</span>"
-    }
-
-    function exibirServidor(idServidor) {
-
-
-        ///???
-
-        let todosOsGraficos = document.getElementById("graficos")
-
-        for (i = 1; i <= todosOsGraficos.childElementCount; i++) {
-            // exibindo - ou não - o gráfico
-            let elementoAtual = document.getElementById(`grafico${i}`)
-            if (elementoAtual.classList.contains("display-block")) {
-                elementoAtual.classList.remove("display-block")
-            }
-            elementoAtual.classList.add("display-none")
-        }
-
-        // exibindo - ou não - o gráfico
-        let graficoExibir = document.getElementById(`grafico${idServidor}`)
-        graficoExibir.classList.remove("display-none")
-        graficoExibir.classList.add("display-block")
-
-    }
-
-
-
-
-
-
-    function obterDadosGrafico_cpu(idServidor) {
-
-        alterarTitulo(idServidor)
+    function obterDadosGrafico_cpu_ram(idServidor) {
+        var idServidor = sessionStorage.IP_ESCOLHIDO;
 
         if (proximaAtualizacao != undefined) {
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimasCPU/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+        fetch(`/medidas/ultimas_CPU_RAM_Aeris/${idServidor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    plotarGrafico_cpu(resposta, idServidor);
+                    plotarGrafico(resposta, idServidor);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -239,251 +286,327 @@
             });
     }
 
-    function plotarGrafico_cpu(resposta, idServidor) {
+    function plotarGrafico(resposta, idServidor) {
+        // CRIANDO GRÁFICO CPU
+        let label = [];
 
-        // Criando estrutura para plotar gráfico - labels
-        let labels = [];
-
-        // Criando estrutura para plotar gráfico - dados
-        let dados = {
-            labels: labels,
-            datasets: [{
-                label: 'CPU',
-                data: [],
-                borderWidth: 1,
-                backgroundColor: (context) => {
-                    const background = [
-                        "#075cab33",
-                        "#D4A4FF52"
-                    ]
-                    if (!context.chart.chartArea) {
-                        return;
-                    }
-
-                    const { ctx, data, chartArea: { top, bottom } } = context.chart;
-                    const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
-                    gradientBackground.addColorStop(.5, background[0]);
-                    gradientBackground.addColorStop(1, background[1]);
-
-                    return gradientBackground;
+        let dadosCpu = {
+            labels: label,
+            datasets: [
+                {
+                    label: ["CPU"],
+                    data: [],
+                    fill: true,
+                    borderColor: "rgb(75, 192, 192)",
+                    backgroundColor: "rgb(75, 192, 192, 0.400)",
+                    tension: 0.1,
                 },
-                fill: true,
-                borderColor: '#075cab',
-                tension: 0.1
-            },
-                // {
-                //     label: 'Temperatura',
-                //     data: [],
-                //     fill: false,
-                //     borderColor: '#D4A4FF',
-                //     tension: 0.1
-                // }
-            ]
+                {
+                    label: ["RAM"],
+                    data: [],
+                    fill: true,
+                    borderColor: "rgb(192, 75, 192)",
+                    backgroundColor: "rgb(192, 75, 192, 0.400)",
+                    tension: 0.1,
+                }
+            ],
         };
 
-        console.log('----------------------------------------------')
-        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
-        console.log(resposta)
+        resposta.forEach((resposta) => {
 
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
-        for (i = 0; i < resposta.length; i++) {
-            var registro = resposta[i];
-            labels.push(registro.dataHora);
-            dados.datasets[0].data.push(registro.dadoscapturados);
-            console.log(registro.dadoscapturados)
-            // dados.datasets[1].data.push(registro.temperatura);
-        }
+            if (resposta.fkComponente == '1') {
+                console.log("SOU UMA CPU")
+                dadosCpu.datasets[0].data.push(resposta.dadosCapturados);
+                label.push(resposta.dataHora);
+            } else if (resposta.fkComponente == '2') {
+                console.log("SOU UMA RAM")
+                dadosCpu.datasets[1].data.push(resposta.dadosCapturados);
+                label.push(resposta.dataHora);
+            }
+        });
 
-        console.log('----------------------------------------------')
-        console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Dados:')
-        console.log(dados.datasets)
-        console.log('----------------------------------------------')
-        console.log('registro: ')
-        console.log(registro)
+
+        console.log("----------------------------------------------");
+        console.log("O gráfico de CPU será plotado com os respectivos valores:");
+        console.log("Labels:");
+        console.log(label);
+        console.log("Dados:");
+        console.log(dadosCpu);
+        console.log("----------------------------------------------");
 
         // Criando estrutura para plotar gráfico - config
-        const config = {
-            type: 'line',
-            data: dados,
+        const configCpu = {
+            type: "line",
+            data: dadosCpu,
         };
+
+        var grafico1 = document.getElementById(`myChart_cpu`);
+
+        if (Chart.getChart(grafico1)) {
+            Chart.getChart(grafico1).destroy();
+        }
 
         // Adicionando gráfico criado em div na tela
         let myChart = new Chart(
-            document.getElementById(`myChart_cpu${idServidor}`),
-            config
+            document.getElementById(`myChart_cpu`),
+            configCpu
         );
 
-        setTimeout(() => atualizarGrafico_cpu(idServidor, dados, myChart), 2000);
-    }
+        // CRIANDO GRÁFICO SWAP
+        let labelSwap = [];
 
-    function atualizarGrafico_cpu(idServidor, dados, myChart) {
+        // Criando estrutura para plotar gráfico - dados
+        let dadosSwap = {
+            labels: labelSwap,
+            datasets: [
+                {
+                    label: "Swap",  // Removendo array desnecessário
+                    data: [],
+                    fill: true,
+                    borderColor: "rgb(75, 192, 192)",
+                    backgroundColor: "rgb(75, 192, 192, 0.400)",
+                    tension: 0.1,
+                },
+            ],
+        };
 
-        fetch(`/medidas/tempo-realCPU/${idServidor}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
-
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-
-                    // let avisoCaptura_cpu = document.getElementById(`avisoCaptura_cpu${idServidor}`)
-                    // avisoCaptura.innerHTML = "" ****
-
-
-                    if (novoRegistro[0].dataHora == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        //avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Último dado capturado está inserido.<br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].dataHora)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
-                    } else {
-                        // tirando e colocando valores no gráfico
-                        dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].dataHora); // incluir um novo momento
-
-                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].dadoscapturados); // incluir uma nova medida de umidade
-
-                        kpiCPU.innerHTML = novoRegistro[0].dadoscapturados
-
-                        // dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                        // dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-                        myChart.update();
-                    }
-
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico_cpu(idServidor, dados, myChart), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico_cpu(idServidor, dados, myChart), 2000);
+        resposta.forEach((resposta) => {
+            if (resposta.fkComponente == '6') {
+                dadosSwap.datasets[0].data.push(resposta.dadosCapturados);
+                labelSwap.push(resposta.dataHora);
             }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
+        });
 
+        // Criando estrutura para plotar gráfico - config
+        const configSwap = {
+            type: "line",
+            data: dadosSwap,
+        };
+
+        var grafico2 = document.getElementById(`myChart_swap`);
+
+        if (Chart.getChart(grafico2)) {
+            Chart.getChart(grafico2).destroy();
+        }
+
+        // Adicionando gráfico criado em div na tela
+        let myChart2 = new Chart(
+            document.getElementById(`myChart_swap`),
+            configSwap
+        );
+
+
+        setTimeout(() => atualizarGrafico_cpu(idServidor, dadosCpu, dadosSwap, myChart, myChart2), 2000);
     }
 
+    function atualizarGrafico_cpu(idServidor, dadosCpu, dadosSwap, myChart, myChart2) {
+    fetch(`/medidas/tempo-realAeris/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+        if (response.ok) {
+            response.json().then(function (novoRegistro) {
+                console.log(`Dados atuais do gráfico:`);
+                console.log(novoRegistro);
+
+                novoRegistro.forEach((registro) => {
+                    if (registro.fkComponente == '1' || registro.fkComponente == '2') {
+                        if (
+                            (dadosCpu.dataHora && dadosCpu.fkComponente == 1) ==
+                            (novoRegistro.dataHora && novoRegistro.fkComponente == 1)
+                        ) {
+                            console.log(
+                                "Como não há dados novos para captura de cpu, o gráfico não atualizará."
+                            );
+                        } else {
+                            if (registro.fkComponente == '1') {
+                                // tirando e colocando valores no gráfico
+                                dadosCpu.labels.shift(); // apagar o primeiro
+                                dadosCpu.labels.push(registro.dataHora); // incluir um novo momento
+
+                                dadosCpu.datasets[0].data.shift(); // apagar o primeiro de umidade
+                                dadosCpu.datasets[0].data.push(registro.dadosCapturados); // incluir uma nova medida de umidade
+                                console.log("SOU UMA CPU");
+
+                            } else if (registro.fkComponente == '2') {
+                                console.log("SOU UMA RAM");
+                                // tirando e colocando valores no gráfico
+                                dadosCpu.labels.shift(); // apagar o primeiro
+                                dadosCpu.labels.push(registro.dataHora); // incluir um novo momento
+
+                                dadosCpu.datasets[1].data.shift(); // apagar o primeiro de umidade
+                                dadosCpu.datasets[1].data.push(registro.dadosCapturados); // incluir uma nova medida de umidade
+                            }
+                            myChart.update();
+                        }
+                    } else if (registro.fkComponente == '6') {
+                        if (
+                            registro.dataHora ==
+                            novoRegistro.dataHora
+                        ) {
+                            console.log(
+                                "Como não há dados novos para captura de memória, o gráfico não atualizará."
+                            );
+                        } else {
+                            if (registro.fkComponente == '6') {
+                                // tirando e colocando valores no gráfico
+                                dadosSwap.labels.shift(); // apagar o primeiro
+                                dadosSwap.labels.push(registro.dataHora); // incluir um novo momento
+
+                                dadosSwap.datasets[0].data.shift(); // apagar o primeiro de umidade
+                                dadosSwap.datasets[0].data.push(registro.dadosCapturados); // incluir uma nova medida de umidade
+                                console.log("SOU UMA SWAP");
+
+                            }
+                            myChart2.update();
+                        }
+                    }
+                });
+
+                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                setTimeout(
+                    () =>
+                    atualizarGrafico_cpu(idServidor, dadosCpu, dadosSwap, myChart, myChart2),
+                    10000
+                );
+            });
+        } else {
+            console.error("Nenhum dado encontrado ou erro na API");
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            setTimeout(
+                () =>
+                atualizarGrafico_cpu(idServidor, dadosCpu, dadosSwap, myChart, myChart2),
+                10000
+            );
+        }
+    }).catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+    });
+}
 
 
 
 
 
-
-
-
-    //...
-
-    // function obterDadosGrafico_cpu(idServidor) {
-
-    //     alterarTitulo(idServidor)
-
-    //     if (proximaAtualizacao != undefined) {
-    //         clearTimeout(proximaAtualizacao);
-    //     }
-
-    //     fetch(`/medidas/ultimas_CPU_Aeris/${idServidor}`, { cache: 'no-store' }).then(function (response) {
-    //         if (response.ok) {
-    //             response.json().then(function (resposta) {
-    //                 console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-    //                 resposta.reverse();
-
-    //                 plotarGrafico_cpu(resposta, idServidor);
-    //             });
-    //         } else {
-    //             console.error('Nenhum dado encontrado ou erro na API');
-    //         }
-    //     })
-    //         .catch(function (error) {
-    //             console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-    //         });
-    // }
-
-    // function plotarGrafico_cpu(resposta, idServidor) {
-
-    //     // Criando estrutura para plotar gráfico - labels
-    //     let labels = [];
-
-    //     // Criando estrutura para plotar gráfico - dados
-    //     let dados = {
-    //         labels: labels,
-    //         datasets: [{
-    //             label: 'CPU',
-    //             data: [],
-    //             borderWidth: 1,
-    //             backgroundColor: (context) => {
-    //                 const background = [
-    //                     "#075cab33",
-    //                     "#D4A4FF52"
-    //                 ]
-    //                 if (!context.chart.chartArea) {
-    //                     return;
-    //                 }
-
-    //                 const { ctx, data, chartArea: { top, bottom } } = context.chart;
-    //                 const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
-    //                 gradientBackground.addColorStop(.5, background[0]);
-    //                 gradientBackground.addColorStop(1, background[1]);
-
-    //                 return gradientBackground;
-    //             },
-    //             fill: true,
-    //             borderColor: '#075cab',
-    //             tension: 0.1
-    //         },
-    //         {
-    //             label: 'RAM',
-    //             data: [],
-    //             fill: false,
-    //             borderColor: '#D4A4FF',
-    //             tension: 0.1
-    //         }
-    //         ]
-    //     };
-
-    //     // Inserindo valores recebidos em estrutura para plotar o gráfico
-    //     for (i = 0; i < resposta.length; i++) {
-    //         var registro = resposta[i];
-    //         labels.push(registro.dataHora);
-    //         dados.datasets[0].data.push(registro.dadoscapturados);
-    //         console.log(registro.dadoscapturados)
-    //         // dados.datasets[1].data.push(registro.temperatura);
-    //     }
-
-    //     console.log('----------------------------------------------')
-    //     console.log('O gráfico será plotado com os respectivos valores:')
-    //     console.log('Dados:')
-    //     console.log(dados.datasets)
-    //     console.log('----------------------------------------------')
-    //     console.log('registro: ')
-    //     console.log(registro)
-
-    //     // Criando estrutura para plotar gráfico - config
-    //     const config = {
-    //         type: 'line',
-    //         data: dados,
-    //     };
-
-    //     // Adicionando gráfico criado em div na tela
-    //     let myChart = new Chart(
-    //         document.getElementById(`myChart_cpu${idServidor}`),
-    //         config
-    //     );
-
-    //     setTimeout(() => atualizarGrafico_cpu(idServidor, dados, myChart), 2000);
-    // }
-
-
-
-
-
-
-
+    /*
+    function atualizarGrafico(
+        fkRobo,
+        dadosCpu,
+        dadosMemoria,
+        dadosProcesso,
+        myChart,
+        myChart2,
+        myChart3
+    ) {
+    
+        if(tempoHistorico == "atual"){
+            fetch(`/componentes/medidas/${fkRobo}/${tempoHistorico}/1`, {
+                cache: "no-store",
+            })
+                .then(function (response) {
+                    if (response.ok) {
+                        response.json().then(function (novoRegistro) {
+                            console.log(`Dados atuais do gráfico:`);
+                            console.log(novoRegistro);
+                            novoRegistro.forEach((registro) => {
+                                if (registro.nomeComponente == "Porcentagem da CPU") {
+                                    if (
+                                        registro.HorarioFormatado ==
+                                        dadosCpu.labels[dadosCpu.labels.length - 1]
+                                    ) {
+                                        console.log(
+                                            "Como não há dados novos para captura de cpu, o gráfico não atualizará."
+                                        );
+                                    } else {
+                                        // tirando e colocando valores no gráfico
+                                        dadosCpu.labels.shift(); // apagar o primeiro
+                                        dadosCpu.labels.push(registro.HorarioFormatado); // incluir um novo momento
+        
+                                        dadosCpu.datasets[0].data.shift(); // apagar o primeiro de umidade
+                                        dadosCpu.datasets[0].data.push(registro.dado); // incluir uma nova medida de umidade
+        
+                                        myChart.update();
+                                    }
+                                } else if (registro.nomeComponente == "Porcentagem da Memoria") {
+                                    if (
+                                        registro.HorarioFormatado ==
+                                        dadosMemoria.labels[dadosMemoria.labels.length - 1]
+                                    ) {
+                                        console.log(
+                                            "Como não há dados novos para captura de memória, o gráfico não atualizará."
+                                        );
+                                    } else {
+                                        // tirando e colocando valores no gráfico
+                                        dadosMemoria.labels.shift(); // apagar o primeiro
+                                        dadosMemoria.labels.push(registro.HorarioFormatado); // incluir um novo momento
+        
+                                        dadosMemoria.datasets[0].data.shift(); // apagar o primeiro de umidade
+                                        dadosMemoria.datasets[0].data.push(registro.dado); // incluir uma nova medida de umidade
+        
+                                        myChart2.update();
+                                    }
+                                } 
+                                else if (registro.nomeComponente == "Processos da CPU") {
+                                    if (
+                                        registro.HorarioFormatado ==
+                                        dadosProcesso.labels[dadosProcesso.labels.length - 1]
+                                    ) {
+                                        console.log(
+                                            "Como não há dados novos para captura de memória, o gráfico não atualizará."
+                                        );
+                                    } else {
+                                        // tirando e colocando valores no gráfico
+                                        dadosProcesso.labels.shift(); // apagar o primeiro
+                                        dadosProcesso.labels.push(registro.HorarioFormatado); // incluir um novo momento
+        
+                                        dadosProcesso.datasets[0].data.shift(); // apagar o primeiro de umidade
+                                        dadosProcesso.datasets[0].data.push(registro.dado); // incluir uma nova medida de umidade
+        
+                                        myChart3.update();
+                                    }
+                                } 
+                            });
+        
+                            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                            setTimeout(
+                                () =>
+                                    atualizarGrafico(
+                                        fkRobo,
+                                        dadosCpu,
+                                        dadosMemoria,
+                                        dadosProcesso,
+                                        myChart,
+                                        myChart2,
+                                        myChart3
+                                    ),
+                                10000
+                            );
+                        });
+                    } else {
+                        console.error("Nenhum dado encontrado ou erro na API");
+                        // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+                        setTimeout(
+                            () =>
+                                atualizarGrafico(
+                                    fkRobo,
+                                    dadosCpu,
+                                    dadosMemoria,
+                                    dadosProcesso,
+                                    myChart,
+                                    myChart2,
+                                    myChart3,
+                                    myChart4
+                                ),
+                            10000
+                        );
+                    }
+                })
+                .catch(function (error) {
+                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                });
+        } else{
+            obterDadosGrafico()
+        }
+        
+    }
+    */
 
 </script>
 
