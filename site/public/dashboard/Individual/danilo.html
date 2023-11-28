@@ -71,6 +71,19 @@
                 <div class="btns-dash"></div>
             </div>
 
+            <a href="./brudney.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../../Imagens/icons8-wi-fi-26.png" alt="">
+                    <h3>Rede</h3>
+                </div>
+            </a>
+            <a href="./danilo.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../../Imagens/icon_disk.png" alt="">
+                    <h3>Disco</h3>
+                </div>
+            </a>
+
             <a href="./aeris.html">
                 <div class="btn-nav">
                     <img class="img_icon" src="../../Imagens/icon-ram.png" alt="">
@@ -122,14 +135,24 @@
                         <p id="avisoCaptura1" style="color: rgb(206, 206, 206); text-align: center;"></p>
                     </div>
                 </div>
+                <div class="parteGrafico2">
                    <div class="graph2">
                     <h3 class="tituloGraficos2" >
                         <img src="https://png.pngtree.com/png-vector/20191003/ourlarge/pngtree-hdd-icon-outline-style-png-image_1786531.jpg" alt="">
-                        <h2>138.48gb</h2>
+                        <h2 class="tamanhoDISCO"></h2>
+                        <span>Gb</span>
                         <h1>Tamanho total do DISCO</h1>
                     </h3>
-                   
-                <!-- ---------------------------------------------------------------------- -->
+                </div>
+                <div class="graph2">
+                    <h3 class="tituloGraficos2" >
+                        <img src="https://www.svgrepo.com//show/8293/ram-memory.svg
+                        " alt="">
+                        <h2 class="tamanhoDISCO" id="tamanhoRAM"></h2>
+                        <span>Gb</span>
+                        <h1>Uso memória RAM</h1>
+                    </h3>
+                </div>
             </div>
              
                 <!-- ---------------------------------------------------------------------- -->
@@ -186,7 +209,19 @@ if (nivel_acesso == 1) {
 let proximaAtualizacao;
 
 window.onload = function() {
-    obterDadosGraficos2()
+    obterDadosGraficos2(),
+    atualizarDISCOeRAM()
+}
+
+function atualizarDISCOeRAM() {
+    obterDadosDISCO()
+    setInterval(function() {
+        obterDadosDISCO();
+    }, 1000);
+    obterDadosRAM()
+    setInterval(function() {
+        obterDadosRAM();
+    }, 1000);
 }
 
 function obterDadosGraficos2() {
@@ -197,6 +232,7 @@ function obterDadosGraficos2() {
     }, 1000);
  
 }
+
 
 function alterarTitulo2(idServidor) {
    
@@ -389,5 +425,50 @@ fetch(`/danilo/tempo-realDISCO/${idServidor}`, { cache: 'no-store' }).then(funct
 
 }
 
+function obterDadosDISCO() {
+        fetch(`/usuarios/obterDISCO`, { cache: 'no-store' })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    console.error('Erro ao obter dados do sistema');
+                    return {};
+                }
+            })
+            .then(function (dados) {
+                atualizarValorDOM('pingPercentage', dados.DISCO);
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção de DISCO do sistema: ${error.message}`);
+            });
+        // Adicione mais chamadas para as outras métricas (disco e CPU) se necessário
+    }
+
+    function atualizarValorDOM(elementID, valor) {
+        document.getElementById(elementID).textContent = valor;
+    }
+
+    function obterDadosRAM() {
+        fetch(`/usuarios/obterRAM`, { cache: 'no-store' })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    console.error('Erro ao obter dados do sistema');
+                    return {};
+                }
+            })
+            .then(function (dados) {
+                atualizarValorDOM2('pingPercentage', dados.RAM);
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção de RAM do sistema: ${error.message}`);
+            });
+        // Adicione mais chamadas para as outras métricas (disco e CPU) se necessário
+    }
+    
+    function atualizarValorDOM2(elementID, valor) {
+        document.getElementById(elementID).textContent = valor;
+    }
 
 </script>

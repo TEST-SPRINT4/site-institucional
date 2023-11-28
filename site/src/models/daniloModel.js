@@ -65,7 +65,57 @@ function buscarMedidasEmTempoRealDISCO2(idServidor) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+async function obterDISCO(idATM) {
+    const discoQuery = `
+    SELECT top 1
+        dadosCapturados
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = 2 AND Componente.modelo = 'TOTAL - DISCO'
+        order by idRegistros desc;`;
+
+    console.log("Executando a instrução SQL: \n" + discoQuery);
+    try {
+        const discoResult = await database.executar(discoQuery);
+            return {
+                DISCO: (discoResult && discoResult[0] && discoResult[0].atividade) || 'N/A',
+            }; 
+    } catch (error) {
+        console.error(`Erro na obtenção de Tempo de Atividade: ${error.message}`);
+        return {
+            DISCO: 'N/A',
+        };
+    }
+}
+
+async function obterRAM(idATM) {
+    const ramQuery = `
+    SELECT top 1
+        dadosCapturados
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = 2 AND Componente.modelo = 'RAM'
+        order by idRegistros desc;`;
+
+    console.log("Executando a instrução SQL: \n" + ramQuery);
+    try {
+        const ramResult = await database.executar(ramQuery);
+            return {
+                RAM: (ramResult && ramResult[0] && ramResult[0].atividade) || 'N/A',
+            }; 
+    } catch (error) {
+        console.error(`Erro na obtenção de Tempo de Atividade: ${error.message}`);
+        return {
+            RAM: 'N/A',
+        };
+    }
+}
 module.exports = {
     buscarUltimasMedidasDISCO2,
-    buscarMedidasEmTempoRealDISCO2
+    buscarMedidasEmTempoRealDISCO2,
+    obterDISCO,
+    obterRAM
 }

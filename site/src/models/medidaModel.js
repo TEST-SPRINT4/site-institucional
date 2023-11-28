@@ -5,10 +5,18 @@ function buscarUltimasMedidasCPU(idServidor, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = ``;
+        instrucaoSql = `SELECT top ${limite_linhas}
+        dadosCapturados, 
+        FORMAT(dataHora,'%H:%m:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = 'CPU'
+        order by idRegistros desc;
+`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
-        dadoscapturados, 
+        dadosCapturados, 
         dataHora,
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
@@ -31,10 +39,17 @@ function buscarUltimasMedidasRAM(idServidor, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = ``;
+        instrucaoSql = `SELECT top ${limite_linhas}
+        dadosCapturados, 
+        FORMAT(dataHora,'%H:%m:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = 'RAM'
+        order by idRegistros desc`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
-        dadoscapturados, 
+        dadosCapturados, 
         dataHora,
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
@@ -57,18 +72,17 @@ function buscarUltimasMedidasDISCO(idServidor, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `SELECT 
-        dadoscapturados, 
-        dataHora,
-        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        instrucaoSql = `SELECT top ${limite_linhas}
+        dadosCapturados, 
+        FORMAT(dataHora,'%H:%m:%s') as dataHora
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "DISCO"
-        order by idRegistros desc limit ${limite_linhas}`;
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = 'DISCO'
+        order by idRegistros desc`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
-        dadoscapturados, 
+        dadosCapturados, 
         dataHora,
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
@@ -91,10 +105,17 @@ function buscarUltimasMedidasENVIADOS(idServidor, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = ``;
+        instrucaoSql = `SELECT top ${limite_linhas}
+        dadosCapturados, 
+        FORMAT(dataHora,'%H:%m:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = 'PACOTES - ENVIADOS'
+        order by idRegistros desc`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
-        dadoscapturados, 
+        dadosCapturados, 
         dataHora,
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
@@ -114,13 +135,19 @@ function buscarUltimasMedidasENVIADOS(idServidor, limite_linhas) {
 
 function buscarUltimasMedidasRECEBIDOS(idServidor, limite_linhas) {
 
-    instrucaoSql = ''
-
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = ``;
+        instrucaoSql = `
+        SELECT top ${limite_linhas}
+        dadosCapturados, 
+        FORMAT(dataHora,'%H:%m:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = 'PACOTES - RECEBIDOS'
+        order by idRegistros desc;`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
-        dadoscapturados, 
+        dadosCapturados, 
         dataHora,
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
@@ -143,10 +170,17 @@ function buscarUltimasMedidasLATENCIA(idServidor, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = ``;
+        instrucaoSql = `SELECT top ${limite_linhas}
+        dadosCapturados, 
+        FORMAT(dataHora,'%H:%m:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = 'LATÊNCIA'
+        order by idRegistros desc`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
-        dadoscapturados, 
+        dadosCapturados, 
         dataHora,
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
@@ -166,15 +200,15 @@ function buscarUltimasMedidasLATENCIA(idServidor, limite_linhas) {
 
 // INDIVIDUAL AERIS -------------------------------------------------------
 
-function buscarUltimasMedidas_CPU_Aeris(idServidor, limite_linhas) {
+function buscarUltimasMedidas_CPU_RAM_Aeris(idServidor) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = ``;
+        instrucaoSql = `select idRegistros, dadosCapturados, dataHora, fkComponente, fkIdServidor from RegistrosTRUSTED where fkIdServidor = '${idServidor}' order by idRegistros desc`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
-        dadoscapturados as CPU,
+        dadosCapturados as CPU,
         DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
         from RegistrosTRUSTED
         join Servidor on RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
@@ -182,6 +216,7 @@ function buscarUltimasMedidas_CPU_Aeris(idServidor, limite_linhas) {
         Where Servidor.idServidor = ${idServidor} and Componente.modelo = "CPU"
         order by idRegistros desc limit ${limite_linhas}`;
 
+        instrucaoSql = `select idRegistros, dadosCapturados, DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora, fkComponente, fkIdServidor from RegistrosTRUSTED where fkIdServidor = '${idServidor}' order by idRegistros desc`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -200,7 +235,7 @@ function buscarUltimasMedidas_RAM_Aeris(idServidor, limite_linhas) {
         instrucaoSql = ``;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
-        dadoscapturados as RAM,
+        dadosCapturados as RAM,
         DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
         from RegistrosTRUSTED
         join Servidor on RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
@@ -227,7 +262,7 @@ function buscarUltimasMedidasTEMPERATURA(idServidor, limite_linhas) {
         instrucaoSql = ``;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
-        dadoscapturados, 
+        dadosCapturados, 
         dataHora,
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
@@ -245,7 +280,7 @@ function buscarUltimasMedidasTEMPERATURA(idServidor, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoRealTEMPERATURA(idServidor) {
+function buscarMedidasEmTempoReal_Aeris(idServidor) {
 
     instrucaoSql = ''
 
@@ -254,12 +289,12 @@ function buscarMedidasEmTempoRealTEMPERATURA(idServidor) {
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
-        dadoscapturados, 
+        dadosCapturados, 
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "TEMPERATURA"
+        WHERE Servidor.idServidor = ${idServidor}
         order by idRegistros desc limit 1`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -277,11 +312,18 @@ function buscarMedidasEmTempoRealCPU(idServidor) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = ``;
+        instrucaoSql = `SELECT top 1
+        dadosCapturados, 
+        FORMAT(dataHora,'%H:%m:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = 'CPU'
+        order by idRegistros desc;`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
-        dadoscapturados, 
+        dadosCapturados, 
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
@@ -302,11 +344,18 @@ function buscarMedidasEmTempoRealRAM(idServidor) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = ``;
+        instrucaoSql = `SELECT top 1
+        dadosCapturados, 
+        FORMAT(dataHora,'%H:%m:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = 'RAM'
+        order by idRegistros desc;`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
-        dadoscapturados, 
+        dadosCapturados, 
         dataHora,
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
@@ -328,11 +377,18 @@ function buscarMedidasEmTempoRealDISCO(idServidor) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = ``;
+        instrucaoSql = `SELECT top 1
+        dadosCapturados, 
+        FORMAT(dataHora,'%H:%m:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = 'DISCO'
+        order by idRegistros desc;`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
-        dadoscapturados, 
+        dadosCapturados, 
         dataHora,
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
@@ -354,11 +410,18 @@ function buscarMedidasEmTempoRealENVIADOS(idServidor) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = ``;
+        instrucaoSql = `SELECT top 1
+        dadosCapturados, 
+        FORMAT(dataHora,'%H:%m:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = 'PACOTES - ENVIADOS'
+        order by idRegistros desc;`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
-        dadoscapturados, 
+        dadosCapturados, 
         dataHora,
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
@@ -377,13 +440,20 @@ function buscarMedidasEmTempoRealENVIADOS(idServidor) {
 
 function buscarMedidasEmTempoRealRECEBIDOS(idServidor, limite_linhas) {
 
-    instrucaoSql = ''
+    instrucaoSql = ``;
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = ``;
+        instrucaoSql = `SELECT top 1
+        dadosCapturados, 
+        FORMAT(dataHora,'%H:%m:%s') as dataHora
+        FROM RegistrosTRUSTED
+        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = 'PACOTES - RECEBIDOS'
+        order by idRegistros desc;`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
-        dadoscapturados, 
+        dadosCapturados, 
         dataHora,
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
@@ -409,7 +479,7 @@ function buscarMedidasEmTempoRealLATENCIA(idServidor, limite_linhas) {
         instrucaoSql = ``;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
-        dadoscapturados, 
+        dadosCapturados, 
         dataHora,
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
@@ -438,7 +508,7 @@ function buscarMedidasEmTempoReal_CPU_Aeris(idServidor) {
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
-        dadoscapturados as CPU,
+        dadosCapturados as CPU,
         DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
         from RegistrosTRUSTED
         join Servidor on RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
@@ -463,7 +533,7 @@ function buscarMedidasEmTempoReal_RAM_Aeris(idServidor) {
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
-        dadoscapturados as RAM,
+        dadosCapturados as RAM,
         DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
         from RegistrosTRUSTED
         join Servidor on RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
@@ -527,8 +597,8 @@ module.exports = {
     buscarUltimasMedidasENVIADOS,
     buscarUltimasMedidasRECEBIDOS,
     buscarUltimasMedidasLATENCIA,
-    buscarUltimasMedidas_CPU_Aeris,
     buscarUltimasMedidas_RAM_Aeris,
+    buscarUltimasMedidas_CPU_RAM_Aeris,
     buscarCapturas,
 
     buscarMedidasEmTempoRealCPU,
@@ -539,4 +609,5 @@ module.exports = {
     buscarMedidasEmTempoRealLATENCIA,
     buscarMedidasEmTempoReal_CPU_Aeris,
     buscarMedidasEmTempoReal_RAM_Aeris,
+    buscarMedidasEmTempoReal_Aeris
 }

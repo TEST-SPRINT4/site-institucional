@@ -39,7 +39,31 @@ function buscarMedidasEmTempoRealDISCO2(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+
+async function obterDISCO(req, res) {
+    const idATM = req.params.idATM;
+    try {
+        const dados = await usuarioModel.obterDISCO();
+        res.json(dados);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
+async function obterRAM(req, res) {
+    const idATM = req.params.idATM;
+    try {
+        const dados = await usuarioModel.obterRAM();
+        res.json(dados);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
+
 module.exports = {
     buscarUltimasMedidasDISCO2,
-    buscarMedidasEmTempoRealDISCO2
+    buscarMedidasEmTempoRealDISCO2,
+    obterDISCO,
+    obterRAM
+  
 }
