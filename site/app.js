@@ -1,24 +1,24 @@
 process.env.AMBIENTE_PROCESSO = "desenvolvimento";
 //process.env.AMBIENTE_PROCESSO = "producao";
 
-var express = require("express");
-var cors = require("cors");
-var path = require("path");
-var PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3333 : 80;
+const express = require("express");
+const cors = require("cors");
+const path = require("path");
+const PORTA = process.env.AMBIENTE_PROCESSO == "desenvolvimento" ? 3333 : 80;
 
-var app = express();
+const app = express();
 
-var indexRouter = require("./src/routes/index");
-var faculdadeRouter = require("./src/routes/faculdade");
-var avisosRouter = require("./src/routes/avisos");
-var medidasRouter = require("./src/routes/medidas");
-var servidorRouter = require("./src/routes/servidor");
-var empresasRouter = require("./src/routes/empresas");
-var usuarioRouter = require("./src/routes/usuarios");
-var funcionarioRouter = require("./src/routes/funcionario");
-var discoRouter = require("./src/routes/disco");
-var redeRouter = require("./src/routes/rede");
-var simoneRouter = require("./src/routes/simone");
+const indexRouter = require("./src/routes/index");
+const faculdadeRouter = require("./src/routes/faculdade");
+const avisosRouter = require("./src/routes/avisos");
+const medidasRouter = require("./src/routes/medidas");
+const servidorRouter = require("./src/routes/servidor");
+const empresasRouter = require("./src/routes/empresas");
+const usuarioRouter = require("./src/routes/usuarios");
+const funcionarioRouter = require("./src/routes/funcionario");
+const redeRouter = require("./src/routes/rede");
+const simoneRouter = require("./src/routes/simone");
+const daniloRouter = require("./src/routes/danilo");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -34,10 +34,9 @@ app.use("/servidor", servidorRouter);
 app.use("/empresas", empresasRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/funcionario", funcionarioRouter);
-app.use("/disco", discoRouter);
 app.use("/rede", redeRouter);
 app.use("/simone", simoneRouter);
-
+app.use("/danilo", daniloRouter);
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

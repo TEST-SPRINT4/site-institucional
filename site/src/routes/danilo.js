@@ -1,0 +1,13 @@
+var express = require("express");
+var router = express.Router();
+
+var daniloController = require("../controllers/daniloController");
+router.get("/ultimasDISCO/:idServidor", function (req, res) {
+    daniloController.buscarUltimasMedidasDISCO2(req, res);
+});
+
+router.get("/tempo-realDISCO/:idServidor", function (req, res) {
+    daniloController.buscarMedidasEmTempoRealDISCO2(req, res);
+})
+
+module.exports = router;

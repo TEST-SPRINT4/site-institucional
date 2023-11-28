@@ -144,6 +144,33 @@ create table Alertas (
     references RegistrosTRUSTED (idRegistros)
     );
     
+create table Listagem_Processos (
+	idListagem int primary key auto_increment,
+    dataHora datetime,
+    total_processos int,
+    fkIdServidor int,
+    constraint fkIdServidor foreign key (fkIdServidor)
+    references Servidor (idServidor),
+    fkServInstituicao int,
+    constraint fkServInstituicao foreign key (fkServInstituicao)
+    references Servidor (fkInstituicao)
+);
+
+select * from Listagem_Processos;
+    
+create table Processos (
+	idProcesso int primary key auto_increment,
+    nome_processo varchar(45),
+    PID double,
+    usoCPU double,
+    usoRAM double,
+    fkListagem int,
+    constraint fkListagem foreign key (fkListagem)
+    references Listagem_Processos (idListagem)
+);
+
+select * from Processos;
+    
 	INSERT INTO nivelAcesso (descricao) VALUES
 ('Acesso somente leitura para visualizar informações monitoradas.'),
 ('Acesso para gerenciar recursos e relatórios.'),
