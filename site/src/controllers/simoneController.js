@@ -49,7 +49,7 @@ function buscarUltimasMedidasCPU(req, res) {
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    simoneModel.buscarUltimasMedidasTEMPERATURA(idServidor, limite_linhas).then(function (resultado) {
+    simoneModel.buscarUltimasMedidasCPU(idServidor, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -68,7 +68,7 @@ function buscarMedidasEmTempoRealCPU(req, res) {
 
     console.log(`Recuperando medidas em tempo real`);
 
-    simoneModel.buscarMedidasEmTempoRealTEMPERATURA(idServidor).then(function (resultado) {
+    simoneModel.buscarMedidasEmTempoRealCPU(idServidor).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

@@ -261,10 +261,10 @@ body {
 }
 
 .card-geral{
-  padding: 1%;
   background-color: #ffffff;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
   width: 96%;
   box-shadow: 1px 1px 15px rgba(91, 91, 91, 0.77);
@@ -273,7 +273,52 @@ body {
   border-radius: 15px;
 }
 
+.card-geral h1{
+  color: #808080;
+}
+.legendas{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: 5%;
+}
 
+.card-form{
+  width: 100%;
+  display: flex;
+  margin-bottom: 2%;
+  justify-content: center;
+  align-items: center;
+}
 
+.input-periodo{
+  width: 75%;
+  height: 5%;
+  background-color: #3280c9;
+  padding: 15px;
+  font-family: "Roboto Mono",monospace;
+  color: #ffffff;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+  margin-top: 0%;
+  margin-bottom: 10%;
 
+}
 
+.button-periodo{
+  width: 60%;
+  height: 5%;
+  background-color: #001a33;
+  padding: 15px;
+  font-family: "Roboto Mono",monospace;
+  color: #ffffff;
+  font-size: 18px;
+  border: none;
+  border-radius: 25px;
+  margin-bottom: 10%;
+}
+
+.secret{
+  color: white;
+}

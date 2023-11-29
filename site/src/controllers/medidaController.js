@@ -88,11 +88,11 @@ function buscarUltimasMedidasRECEBIDOS(req, res) {
 
     const limite_linhas = 7;
 
-    var idServidor = req.params.idServidor;
+    var idServidor_real = req.params.idServidor;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarUltimasMedidasRECEBIDOS(idServidor, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidasRECEBIDOS(idServidor_real, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -136,7 +136,7 @@ function buscarUltimasMedidas_CPU_Aeris(req, res) {
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarUltimasMedidas_CPU_Aeris(idServidor, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidas_CPU_RAM_Aeris(idServidor, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -149,15 +149,11 @@ function buscarUltimasMedidas_CPU_Aeris(req, res) {
     });
 }
 
-function buscarUltimasMedidas_RAM_Aeris(req, res) {
-
-    const limite_linhas = 7;
+function buscarUltimasMedidas_CPU_RAM_Aeris(req, res) {
 
     var idServidor = req.params.idServidor;
 
-    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
-
-    medidaModel.buscarUltimasMedidas_RAM_Aeris(idServidor, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidas_CPU_RAM_Aeris(idServidor).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -255,7 +251,7 @@ function buscarMedidasEmTempoRealRECEBIDOS(req, res) {
     console.log(`Recuperando medidas em tempo real`);
 
     medidaModel.buscarMedidasEmTempoRealRECEBIDOS(idServidor).then(function (resultado) {
-        if (resultado.length > 0) {
+        if (resultado.length >= 0) {
             res.status(200).json(resultado);
         } else {
             res.status(204).send("Nenhum resultado encontrado na PACOTES RECEBIDOS!")
@@ -287,13 +283,13 @@ function buscarMedidasEmTempoRealLATENCIA(req, res) {
 }
 
 
-function buscarMedidasEmTempoReal_CPU_Aeris(req, res) {
+function buscarMedidasEmTempoReal_Aeris(req, res) {
 
     var idServidor = req.params.idServidor;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoReal_CPU_Aeris(idServidor).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoReal_Aeris(idServidor).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -305,14 +301,13 @@ function buscarMedidasEmTempoReal_CPU_Aeris(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
-
-function buscarMedidasEmTempoReal_RAM_Aeris(req, res) {
+function buscarMedidasEmTempoRealSwap_Aeris(req, res) {
 
     var idServidor = req.params.idServidor;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoReal_RAM_Aeris(idServidor).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoRealSwap_Aeris(idServidor).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -357,8 +352,7 @@ module.exports = {
     buscarUltimasMedidasRECEBIDOS,
     buscarUltimasMedidasENVIADOS,
     buscarUltimasMedidasLATENCIA,
-    buscarUltimasMedidas_CPU_Aeris,
-    buscarUltimasMedidas_RAM_Aeris,
+    buscarUltimasMedidas_CPU_RAM_Aeris,
     buscarCapturas,
     
 
@@ -368,8 +362,7 @@ module.exports = {
     buscarMedidasEmTempoRealENVIADOS,
     buscarMedidasEmTempoRealRECEBIDOS,
     buscarUltimasMedidasLATENCIA,
-    buscarMedidasEmTempoReal_CPU_Aeris,
-    buscarMedidasEmTempoReal_RAM_Aeris,
-    
+    buscarMedidasEmTempoReal_Aeris,
+    buscarMedidasEmTempoRealSwap_Aeris,  
     buscarMedidasEmTempoRealLATENCIA
 }
