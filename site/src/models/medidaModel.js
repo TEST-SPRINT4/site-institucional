@@ -172,7 +172,7 @@ function buscarUltimasMedidasLATENCIA(idServidor, limite_linhas) {
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT top ${limite_linhas}
         dadosCapturados, 
-        FORMAT(dataHora,'%H:%m:%s') as dataHora
+        FORMAT(dataHora,'%h:%m:%s') as dataHora
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
@@ -182,7 +182,7 @@ function buscarUltimasMedidasLATENCIA(idServidor, limite_linhas) {
         instrucaoSql = `SELECT 
         dadosCapturados, 
         dataHora,
-        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        DATE_FORMAT(dataHora,'%h:%m:%s') as dataHora
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
@@ -224,7 +224,7 @@ function buscarUltimasMedidas_CPU_RAM_Aeris(idServidor) {
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select
         dadosCapturados,
-        DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora,
+        DATE_FORMAT(dataHora, '%h:%m:%s') as dataHora,
         RegistrosTRUSTED.fkComponente
         from RegistrosTRUSTED
         join Servidor on RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
@@ -493,7 +493,7 @@ function buscarMedidasEmTempoReal_Aeris(idServidor) {
         dataHora,
         idComponente,
         dadosCapturados,
-        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        DATE_FORMAT(dataHora,'%h:%m:%s') as dataHora
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
@@ -530,7 +530,7 @@ function buscarMedidasEmTempoRealSwap_Aeris(idServidor) {
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
         dadosCapturados as RAM,
-        DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
+        DATE_FORMAT(dataHora, '%h:%m:%s') as dataHora
         from RegistrosTRUSTED
         join Servidor on RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         join Componente on RegistrosTRUSTED.fkComponente = Componente.idComponente
