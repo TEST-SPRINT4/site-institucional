@@ -247,12 +247,14 @@ function buscarMedidasEmTempoReal_Aeris(idServidor) {
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT 
         dadoscapturados, 
+        dataHora,
+        idComponente,
         DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor}
-        order by idRegistros desc limit 1`;
+        WHERE Servidor.idServidor = ${idServidor} AND (Componente.modelo = "RAM" OR Componente.modelo = "CPU") 
+        order by idRegistros desc limit 2;`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -446,8 +448,7 @@ function buscarMedidasEmTempoReal_CPU_Aeris(idServidor) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal_RAM_Aeris(idServidor) {
-
+function buscarMedidasEmTempoRealSwap_Aeris(idServidor) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
@@ -455,12 +456,12 @@ function buscarMedidasEmTempoReal_RAM_Aeris(idServidor) {
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
-        dadoscapturados as RAM,
+        dadoscapturados as CPU,
         DATE_FORMAT(dataHora, '%H:%i:%s') as dataHora
         from RegistrosTRUSTED
         join Servidor on RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         join Componente on RegistrosTRUSTED.fkComponente = Componente.idComponente
-        Where Servidor.idServidor = ${idServidor} and Componente.modelo = "RAM"
+        Where Servidor.idServidor = ${idServidor} and Componente.modelo = "SWAP"
         order by idRegistros desc limit 1`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -530,6 +531,6 @@ module.exports = {
     buscarMedidasEmTempoRealRECEBIDOS,
     buscarMedidasEmTempoRealLATENCIA,
     buscarMedidasEmTempoReal_CPU_Aeris,
-    buscarMedidasEmTempoReal_RAM_Aeris,
+    buscarMedidasEmTempoRealSwap_Aeris,
     buscarMedidasEmTempoReal_Aeris
 }

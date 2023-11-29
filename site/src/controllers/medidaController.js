@@ -301,14 +301,13 @@ function buscarMedidasEmTempoReal_Aeris(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
-
-function buscarMedidasEmTempoReal_RAM_Aeris(req, res) {
+function buscarMedidasEmTempoRealSwap_Aeris(req, res) {
 
     var idServidor = req.params.idServidor;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoReal_RAM_Aeris(idServidor).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoRealSwap_Aeris(idServidor).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -364,6 +363,6 @@ module.exports = {
     buscarMedidasEmTempoRealRECEBIDOS,
     buscarUltimasMedidasLATENCIA,
     buscarMedidasEmTempoReal_Aeris,
-    buscarMedidasEmTempoReal_RAM_Aeris,  
+    buscarMedidasEmTempoRealSwap_Aeris,  
     buscarMedidasEmTempoRealLATENCIA
 }
