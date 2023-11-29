@@ -4,13 +4,13 @@ function BuscarDados_latencia(fkEmpresa, ipServidor) {
     console.log("ACESSEI O SERVIDOR MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function BuscarDados_latencia():", fkEmpresa, ipServidor);
 
     var instrucao1 = `
-  SELECT registros.*
-  FROM RegistrosTRUSTED registros
-  JOIN Servidor servidor ON registros.fkIdServidor = servidor.idServidor
-  WHERE servidor.idServidor = ${ipServidor}
-    AND registros.fkComponente = 4
-    AND servidor.fkInstituicao = ${fkEmpresa}
-    order by idRegistros desc limit 1;
+    SELECT TOP 1 registros.*
+    FROM RegistrosTRUSTED registros
+    JOIN Servidor servidor ON registros.fkIdServidor = servidor.idServidor
+    WHERE servidor.idServidor = ${ipServidor}
+      AND registros.fkComponente = 4
+      AND servidor.fkInstituicao = ${fkEmpresa}
+    ORDER BY idRegistros DESC;
   `;
     console.log("Executando a instrução1 SQL: \n" + instrucao1);
     return database.executar(instrucao1);
@@ -20,13 +20,14 @@ function BuscarDados_Pacotes_Recebidos(fkEmpresa, ipServidor) {
     console.log("ACESSEI O SERVIDOR MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function BuscarDados_Pacotes_Recebidos():", fkEmpresa, ipServidor);
 
     var instrucao1 = `
-    SELECT registros.*
-    FROM RegistrosTRUSTED registros
-    JOIN Servidor servidor ON registros.fkIdServidor = servidor.idServidor
-    WHERE servidor.idServidor = ${ipServidor}
-      AND registros.fkComponente = 6
-      AND servidor.fkInstituicao = ${fkEmpresa}
-      order by idRegistros desc limit 1;
+    SELECT TOP 1 registros.*
+FROM RegistrosTRUSTED registros
+JOIN Servidor servidor ON registros.fkIdServidor = servidor.idServidor
+WHERE servidor.idServidor = ${ipServidor}
+  AND registros.fkComponente = 6
+  AND servidor.fkInstituicao = ${fkEmpresa}
+ORDER BY idRegistros DESC;
+
     `;
     console.log("Executando a instrução1 SQL: \n" + instrucao1);
     return database.executar(instrucao1);
@@ -36,13 +37,13 @@ function BuscarDados_Pacotes_Enviados(fkEmpresa, ipServidor) {
     console.log("ACESSEI O SERVIDOR MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function BuscarDados_Pacotes_Enviados():", fkEmpresa, ipServidor);
 
     var instrucao1 = `
-    SELECT registros.*
+    SELECT TOP 1 registros.*
     FROM RegistrosTRUSTED registros
     JOIN Servidor servidor ON registros.fkIdServidor = servidor.idServidor
     WHERE servidor.idServidor = ${ipServidor}
       AND registros.fkComponente = 5
       AND servidor.fkInstituicao = ${fkEmpresa}
-      order by idRegistros desc limit 1;
+    ORDER BY idRegistros DESC;
     `;
     console.log("Executando a instrução1 SQL: \n" + instrucao1);
     return database.executar(instrucao1);

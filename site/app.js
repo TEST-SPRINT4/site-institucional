@@ -19,6 +19,8 @@ const funcionarioRouter = require("./src/routes/funcionario");
 const redeRouter = require("./src/routes/rede");
 const simoneRouter = require("./src/routes/simone");
 const daniloRouter = require("./src/routes/danilo");
+const kaickRouter = require("./src/routes/kaick");
+const aerisRouter = require("./src/routes/aeris");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -37,6 +39,8 @@ app.use("/funcionario", funcionarioRouter);
 app.use("/rede", redeRouter);
 app.use("/simone", simoneRouter);
 app.use("/danilo", daniloRouter);
+app.use("/kaick", kaickRouter);
+app.use("/aeris", aerisRouter);
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

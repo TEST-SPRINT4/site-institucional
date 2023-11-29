@@ -91,6 +91,21 @@
                 </div>
             </a>
 
+            <!-- individual simone -->
+            <a href="./simone.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../../Imagens/icons8-processador-cinza.png" alt="">
+                    <h3>Processador</h3>
+                </div>
+            </a>
+        
+            <a href="./kaick.html">
+                <div class="btn-nav-current">
+                    <img class="img_icon" src="../../Imagens/processo-imagem.png" alt="">
+                    <h3>Processos</h3>
+                </div>
+            </a>
+
             <!-- botão equipe -->
             <a href="../equipe.html">
                 <div class="btn-nav">
@@ -125,23 +140,23 @@
             <div class="container-card">
 
                 <div class="card-media" style=" background-color: #075cab;">
-                    <h3>Uso CPU - Geral</h3>
+                    <h3>Maior Uso - CPU</h3>
                     <h1><span id="kpiCPU">0</span>%</h1>
                 </div>
 
                 <div class="card-media" style=" background-color: #3280c9;">
-                    <h3>Uso RAM - Geral</h3>
+                    <h3>Maior Uso - RAM</h3>
                     <h1><span id="kpiRam">0</span>%</h1>
                 </div>
 
                 <div class="card-media" style=" background-color: #4d92d3;">
                     <h3>Maior Processo - CPU</h3>
-                    <h1><span id="kpiDisco">0</span>%</h1>
+                    <h1><span id="kpiDisco">0</span></h1>
                 </div>
 
                 <div class="card-media" style=" background-color: #7fbcf5;">
                     <h3>Maior Processo - RAM</h3>
-                    <h1><span id="kpiPacotesEnviados">0</span>%</h1>
+                    <h1><span id="kpiPacotesEnviados">0</span></h1>
                 </div>
             </div>
 
@@ -153,22 +168,22 @@
                     <div class="parteGrafico">
                         <div class="graph">
                             <h3 class="tituloGraficos">
-                                <span id="tituloServidor_cpu1">Erro</span>
+                                <span id="tituloServidor_cpu3">Erro</span>
                             </h3>
-                            <canvas id="myChart_cpu1"></canvas>
+                            <canvas id="myChart_cpu3"></canvas>
                             <div class="label-captura">
-                                <p id="avisoCaptura1" style="color: rgb(206, 206, 206); text-align: center;"></p>
+                                <p id="avisoCaptura3" style="color: rgb(206, 206, 206); text-align: center;"></p>
                             </div>
                         </div>
 
                         <!-- ------------------------------------------------------------------------ -->
                         <div class="graph">
                             <h3 class="tituloGraficos">
-                                <span id="tituloServidor_ram1">Erro</span>
+                                <span id="tituloServidor_ram3">Erro</span>
                             </h3>
-                            <canvas id="myChart_ram1"></canvas>
+                            <canvas id="myChart_ram3"></canvas>
                             <div class="label-captura">
-                                <p id="avisoCaptura1" style="color: rgb(206, 206, 206); text-align: center;"></p>
+                                <p id="avisoCaptura3" style="color: rgb(206, 206, 206); text-align: center;"></p>
                             </div>
                         </div>
                     </div>
@@ -221,20 +236,24 @@
     window.onload = exibirServidor(1);
     // window.onload = listar();
 
-    function obterDadosGraficos() {
+    function obterCPUeRAM() {
+        obterCPU()
+        obterRAM()
+    }
 
-        obterDadosGrafico_cpu(1)
-        obterDadosGrafico_ram(1)
+    function obterDadosGraficos() {
+        obterDadosGrafico_cpu(3,1)
+        obterDadosGrafico_ram(3,1)
     }
 
     //verificar_autenticacao();
 
     function alterarTitulo(idServidor) {
         var tituloServidor_cpu = document.getElementById(`tituloServidor_cpu${idServidor}`)
-        tituloServidor_cpu.innerHTML = "Maior uso de <span style='color: #075cab'> CPU </span> por <span style='color: #075cab'>Processo </span>"
+        tituloServidor_cpu.innerHTML = "Maiores uso de <span style='color: #075cab'> CPU </span> por <span style='color: #075cab'>Processo </span>"
 
         var tituloServidor_ram = document.getElementById(`tituloServidor_ram${idServidor}`)
-        tituloServidor_ram.innerHTML = "Maior uso de <span style='color: #075cab'> RAM </span> por <span style='color: #075cab'>Processo </span>"
+        tituloServidor_ram.innerHTML = "Maiores uso de <span style='color: #075cab'> RAM </span> por <span style='color: #075cab'>Processo </span>"
     }
 
 
@@ -260,7 +279,7 @@
 
     // GRÁFICOS CPU --------------------------------------------------------------------------------------------
 
-    function obterDadosGrafico_cpu(idServidor) {
+    function obterDadosGrafico_cpu(idServidor,idLista) {
 
         alterarTitulo(idServidor)
 
@@ -268,14 +287,26 @@
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/kaick/ultimasCPU/${idServidor}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
-
-                    plotarGrafico_cpu(resposta, idServidor);
-                });
+        fetch("/kaick/ultimasCPU", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                idServidorServer: idServidor,
+                idListaServer: idLista
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                    
+                resposta.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    
+                plotarGrafico_cpu(resposta, idServidor,idLista)
+    
+        });                    
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
@@ -285,7 +316,7 @@
             });
     }
 
-    function plotarGrafico_cpu(resposta, idServidor) {
+    function plotarGrafico_cpu(resposta, idServidor,idLista) {
 
         // Criando estrutura para plotar gráfico - labels
         let labels = [];
@@ -336,8 +367,8 @@
             var registro = resposta[i];
             var label = `${registro.nome_processo} | ${registro.PID}`
             labels.push(label);
-            dados.datasets[0].data.push(registro.dadoscapturados);
-            console.log(registro.dadoscapturados)
+            dados.datasets[0].data.push(registro.usoCpu);
+            console.log(registro.usoCpu)
             // dados.datasets[1].data.push(registro.temperatura);
         }
 
@@ -351,7 +382,7 @@
 
         // Criando estrutura para plotar gráfico - config
         const config = {
-            type: 'line',
+            type: 'bar',
             data: dados,
         };
 
@@ -360,65 +391,26 @@
             document.getElementById(`myChart_cpu${idServidor}`),
             config
         );
+        
+        kpiCPU.innerHTML = resposta[0].usoCpu.toFixed(2);
+        kpiDisco.innerHTML = `${resposta[0].nome_processo} </br> PID ${resposta[0].PID}`;
 
-        setTimeout(() => atualizarGrafico_cpu(idServidor, dados, myChart), 2000);
+        setTimeout(() => atualizarGrafico_cpu(idServidor,idLista,dados, myChart), 11000);
     }
 
-    function atualizarGrafico_cpu(idServidor, dados, myChart) {
+    function atualizarGrafico_cpu(idServidor, idLista,dados, myChart) {
 
-        fetch(`/medidas/tempo-realCPU/${idServidor}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
+        myChart.destroy();
 
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+        idLista+=1;
 
-                    // let avisoCaptura_cpu = document.getElementById(`avisoCaptura_cpu${idServidor}`)
-                    // avisoCaptura.innerHTML = "" ****
-
-
-                    if (novoRegistro[0].dataHora == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        //avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Último dado capturado está inserido.<br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].dataHora)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
-                    } else {
-                        // tirando e colocando valores no gráfico
-                        dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].dataHora); // incluir um novo momento
-
-                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].dadoscapturados); // incluir uma nova medida de umidade
-
-                        kpiCPU.innerHTML = novoRegistro[0].dadoscapturados
-
-                        // dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                        // dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-                        myChart.update();
-                    }
-
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico_cpu(idServidor, dados, myChart), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico_cpu(idServidor, dados, myChart), 2000);
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
+        obterDadosGrafico_cpu(idServidor,idLista)
 
     }
 
     // GRÁFICOS RAM ---------------------------------------------------------------------------------------------
 
-    function obterDadosGrafico_ram(idServidor) {
+    function obterDadosGrafico_ram(idServidor,idLista) {
 
         alterarTitulo(idServidor)
 
@@ -426,14 +418,26 @@
             clearTimeout(proximaAtualizacao);
         }
 
-        fetch(`/medidas/ultimasRAM/${idServidor}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
-
-                    plotarGrafico_ram(resposta, idServidor);
-                });
+        fetch("/kaick/ultimasRAM", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                idServidorServer: idServidor,
+                idListaServer: idLista
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                    
+                resposta.json().then(function (resposta) {
+                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    
+                plotarGrafico_ram(resposta, idServidor,idLista)
+    
+        });                    
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
@@ -443,9 +447,7 @@
             });
     }
 
-    function plotarGrafico_ram(resposta, idServidor) {
-
-        console.log('iniciando plotagem do gráfico...');
+    function plotarGrafico_ram(resposta, idServidor,idLista) {
 
         // Criando estrutura para plotar gráfico - labels
         let labels = [];
@@ -475,7 +477,7 @@
                 },
                 fill: true,
                 borderColor: '#075cab',
-                tension: 0.1,
+                tension: 0.1
             },
                 // {
                 //     label: 'Temperatura',
@@ -494,16 +496,15 @@
         // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
-            labels.push(registro.dataHora);
-            dados.datasets[0].data.push(registro.dadoscapturados);
-            console.log(registro.dadoscapturados)
+            var label = `${registro.nome_processo} | ${registro.PID}`
+            labels.push(label);
+            dados.datasets[0].data.push(registro.usoRam);
+            console.log(registro.usoRam)
             // dados.datasets[1].data.push(registro.temperatura);
         }
 
         console.log('----------------------------------------------')
         console.log('O gráfico será plotado com os respectivos valores:')
-        console.log('Labels:')
-        console.log(labels)
         console.log('Dados:')
         console.log(dados.datasets)
         console.log('----------------------------------------------')
@@ -512,7 +513,7 @@
 
         // Criando estrutura para plotar gráfico - config
         const config = {
-            type: 'line',
+            type: 'bar',
             data: dados,
         };
 
@@ -522,61 +523,67 @@
             config
         );
 
-        setTimeout(() => atualizarGrafico_ram(idServidor, dados, myChart), 2000);
+        kpiRam.innerHTML = resposta[0].usoRam.toFixed(2);
+        kpiPacotesEnviados.innerHTML = `${resposta[0].nome_processo} </br> PID ${resposta[0].PID}`;
+
+        setTimeout(() => atualizarGrafico_ram(idServidor,idLista,dados, myChart), 11000);
     }
 
-    function atualizarGrafico_ram(idServidor, dados, myChart) {
+    function atualizarGrafico_ram(idServidor, idLista,dados, myChart) {
 
-        fetch(`/medidas/tempo-realRAM/${idServidor}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (novoRegistro) {
+        myChart.destroy();
 
-                    console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
-                    console.log(`Dados atuais do gráfico:`);
-                    console.log(dados);
+        idLista+=1;
 
-                    let avisoCaptura = document.getElementById(`avisoCaptura${idServidor}`)
-                    avisoCaptura.innerHTML = ""
+        obterDadosGrafico_ram(idServidor,idLista)
 
+    }
 
-                    if (novoRegistro[0].dataHora == dados.labels[dados.labels.length - 1]) {
-                        console.log("---------------------------------------------------------------")
-                        console.log("Como não há dados novos para captura, o gráfico não atualizará.")
-                        avisoCaptura.innerHTML = "<i class='fa-solid fa-triangle-exclamation'></i> Último dado capturado está inserido.<br> Como não há dados novos a exibir, o gráfico não atualizará."
-                        console.log("Horário do novo dado capturado:")
-                        console.log(novoRegistro[0].dataHora)
-                        console.log("Horário do último dado capturado:")
-                        console.log(dados.labels[dados.labels.length - 1])
-                        console.log("---------------------------------------------------------------")
-                    } else {
-                        // tirando e colocando valores no gráfico
-                        dados.labels.shift(); // apagar o primeiro
-                        dados.labels.push(novoRegistro[0].dataHora); // incluir um novo momento
-
-                        dados.datasets[0].data.shift();  // apagar o primeiro de umidade
-                        dados.datasets[0].data.push(novoRegistro[0].dadoscapturados); // incluir uma nova medida de umidade
-
-                        // dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
-                        // dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-
-                        kpiRam.innerHTML = novoRegistro[0].dadoscapturados, 2
-
-                        myChart.update();
-                    }
-
-                    // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico_ram(idServidor, dados, myChart), 2000);
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-                // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico_ram(idServidor, dados, myChart), 2000);
-            }
-        })
+    function obterCPU() {
+        fetch(`/kaick/tempo-realCPU`, { cache: 'no-store' })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                    kpiCPU.innerHTML = resposta.json();
+                } else {
+                    console.error('Erro ao obter dados do sistema');
+                    return {};
+                }
+            })
+            .then(function (dados) {
+                atualizarValorDOM('CPU', dados.CPU);
+            })
             .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                console.error(`Erro na obtenção de CPU do sistema: ${error.message}`);
             });
+        // Adicione mais chamadas para as outras métricas (disco e CPU) se necessário
+    }
+    
+    function atualizarValorDOM(elementID, valor) {
+        document.getElementById(elementID).textContent = valor;
+    }
 
+    function obterDadosRAM() {
+        fetch(`/danilo/obterRAM`, { cache: 'no-store' })
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    return resposta.json();
+                } else {
+                    console.error('Erro ao obter dados do sistema');
+                    return {};
+                }
+            })
+            .then(function (dados) {
+                atualizarValorDOM2('tamanhoRAM', dados.RAM);
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção de RAM do sistema: ${error.message}`);
+            });
+        // Adicione mais chamadas para as outras métricas (disco e CPU) se necessário
+    }
+    
+    function atualizarValorDOM2(elementID, valor) {
+        document.getElementById(elementID).textContent = valor;
     }
 
 </script>

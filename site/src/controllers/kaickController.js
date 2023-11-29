@@ -4,11 +4,12 @@ function buscarUltimasMedidasCPUKaick(req, res) {
 
     const limite_linhas = 7;
 
-    var idServidor = req.params.idServidor;
+    var idServidor = req.body.idServidorServer;
+    var idListagem = req.body.idListaServer;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    kaickModel.buscarUltimasMedidasCPUKaick(idServidor, limite_linhas).then(function (resultado) {
+    kaickModel.buscarUltimasMedidasCPUKaick(idServidor,idListagem,limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -21,13 +22,13 @@ function buscarUltimasMedidasCPUKaick(req, res) {
     });
 }
 
-function buscarMedidasEmTempoRealCPUKaick(req, res) {
+function buscarCpuKaick(req, res) {
 
     var idServidor = req.params.idServidor;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    kaickModel.buscarMedidasEmTempoRealCPUKaick(idServidor).then(function (resultado) {
+    kaickModel.buscarCpuKaick(idServidor).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -44,11 +45,12 @@ function buscarUltimasMedidasRAMKaick(req, res) {
 
     const limite_linhas = 7;
 
-    var idServidor = req.params.idServidor;
+    var idServidor = req.body.idServidorServer;
+    var idListagem = req.body.idListaServer;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    kaickModel.buscarUltimasMedidasRAMKaick(idServidor, limite_linhas).then(function (resultado) {
+    kaickModel.buscarUltimasMedidasRAMKaick(idServidor,idListagem,limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -61,13 +63,13 @@ function buscarUltimasMedidasRAMKaick(req, res) {
     });
 }
 
-function buscarMedidasEmTempoRealRAMKaick(req, res) {
+function buscarRamKaick(req, res) {
 
     var idServidor = req.params.idServidor;
 
     console.log(`Recuperando medidas em tempo real`);
 
-    kaickModel.buscarMedidasEmTempoRealRAMKaick(idServidor).then(function (resultado) {
+    kaickModel.buscarRamKaick(idServidor).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -82,8 +84,7 @@ function buscarMedidasEmTempoRealRAMKaick(req, res) {
 
 module.exports = {
     buscarUltimasMedidasCPUKaick,
-    buscarMedidasEmTempoRealCPUKaick,
-    
+    buscarCpuKaick,
     buscarUltimasMedidasRAMKaick,
-    buscarMedidasEmTempoRealRAMKaick
+    buscarRamKaick
 }

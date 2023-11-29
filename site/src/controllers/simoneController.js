@@ -201,16 +201,100 @@ function buscarMedidasEmTempoRealNUCLEOL(req, res) {
     });
 }
 
+function buscarUltimasMedidasNOME(req, res) {
+
+    const limite_linhas = 7;
+
+    var idServidor = req.params.idServidor;
+
+    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
+
+    simoneModel.buscarUltimasMedidasNOME(idServidor, limite_linhas).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarMedidasEmTempoRealNOME(req, res) {
+
+    var idServidor = req.params.idServidor;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    simoneModel.buscarMedidasEmTempoRealNOME(idServidor).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarUltimasMedidasARQUITETURA(req, res) {
+
+    const limite_linhas = 7;
+
+    var idServidor = req.params.idServidor;
+
+    console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
+
+    simoneModel.buscarUltimasMedidasARQUITETURA(idServidor, limite_linhas).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function buscarMedidasEmTempoRealARQUITETURA(req, res) {
+
+    var idServidor = req.params.idServidor;
+
+    console.log(`Recuperando medidas em tempo real`);
+
+    simoneModel.buscarMedidasEmTempoRealARQUITETURA(idServidor).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
     buscarUltimasMedidasTEMPERATURA,
     buscarUltimasMedidasCPU,
     buscarUltimasMedidasFREQUENCIA,
     buscarUltimasMedidasNUCLEOF,
     buscarUltimasMedidasNUCLEOL,
+    buscarUltimasMedidasNOME,
+    buscarUltimasMedidasARQUITETURA,
 
     buscarMedidasEmTempoRealTEMPERATURA,
     buscarMedidasEmTempoRealCPU,
     buscarMedidasEmTempoRealFREQUENCIA,
     buscarMedidasEmTempoRealNUCLEOF,
     buscarMedidasEmTempoRealNUCLEOL,
+    buscarMedidasEmTempoRealNOME,
+    buscarMedidasEmTempoRealARQUITETURA,
 }

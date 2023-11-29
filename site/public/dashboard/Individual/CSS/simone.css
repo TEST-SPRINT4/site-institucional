@@ -70,7 +70,7 @@ body {
 /* NAV BAR LATERAL */
 
 .header-left {
-  height: 150vh;
+  height: 175vh;
   width: 23%;
   display: flex;
   flex-direction: column;
@@ -122,8 +122,19 @@ body {
   margin-top: 2%;
 }
 
-/* botão selecionado */
-/* .btn-nav-current{
+/* Botões principais */
+.btn-nav {
+  display: flex;
+  align-items: center ;
+  width: 100%;
+  height: 10vh;
+  color: #808080;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 2%;
+}
+
+.btn-nav-current{
   display: flex;
   align-items: center ;
   width: 100%;
@@ -132,10 +143,10 @@ body {
   cursor: pointer;
   padding: 0;
   margin-top: 2%;
-} */
+}
 
 
-/* Botões servidores selecionados */
+/* Botões principais selecionados */
 .btn-nav-server h3 {
   width: 100%;
   color: #808080;
@@ -166,6 +177,8 @@ body {
   color: white;
 }
 
+
+
 /* ----------------------------------------------------------------------- */
 
 /* DASHBOARD */
@@ -175,7 +188,6 @@ body {
   height: fit-content;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 
@@ -217,10 +229,11 @@ body {
 
 .parteGrafico{
   display: flex;
+  margin-bottom: 2%;
 }
 
 .listakpi{
-  width: 40%;
+  width: 46%;
   display: flex;
   flex-direction: column;
 
@@ -228,13 +241,56 @@ body {
 
 .kpi{
   width: 100%;
-  height: 10%;
+  height: 15%;
   background-color: #3280c9;
   margin-bottom: 5%;
   border-radius: 15px;
   color: white;
-  font-size: 20px;
+  font-size: 18px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.kpi h3, h4{
+  margin: 0%;
+}
+
+.regua {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+.perigo {
+  background-color: #ff3131;
+}
+
+.alerta {
+  background-color: #ffe600;
+}
+
+.ideal {
+  background-color: #5fb300;
+}
+
+.item-regua {
+  padding: 5px;
+  width: 30%;
+  margin-top: 0%;
+  text-align: center;
+  padding-top: 15px;
+}
+
+.item-regua h4{
+  color: #ffffff;
+  margin: 2%;
+}
+
+.item-regua h1{
+  color: #ffffff;
+  margin: 0%;
+  margin-bottom: 5%;
 }

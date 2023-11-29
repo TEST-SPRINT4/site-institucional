@@ -15,11 +15,11 @@ router.get("/atualizarDISCO/:idServidor", function (req, res) {
 })
 
 router.get('/obterDISCO/', function(req, res) {
-    usuarioController.obterDISCO(req, res)
+    daniloController.obterDISCO(req, res)
 })
 
 router.get('/obterRAM/', function(req, res) {
-    usuarioController.obterRAM(req, res)
+    daniloController.obterRAM(req, res)
 })
 
 module.exports = router;

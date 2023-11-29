@@ -94,7 +94,7 @@
                     <h3>Disco</h3>
                 </div>
             </a>
-            
+
 
             <a href="./Individual/aeris.html">
                 <div class="btn-nav">
@@ -102,10 +102,25 @@
                     <h3>Swap</h3>
                 </div>
             </a>
-            
+
 
             <div id="alerta">
             </div>
+
+            <!-- individual simone -->
+            <a href="Individual/simone.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../../Imagens/icons8-processador-cinza.png" alt="">
+                    <h3>Processador</h3>
+                </div>
+            </a>
+
+            <a href="Individual/kaick.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../../Imagens/processo-imagem.png" alt="">
+                    <h3>Processos</h3>
+                </div>
+            </a>
 
             <!-- botão equipe -->
             <a href="./equipe.html">
@@ -115,7 +130,7 @@
                 </div>
             </a>
 
-            
+
 
             <!-- Botão servidores -->
             <a href="./servidores.html">
@@ -599,8 +614,8 @@
                 </div>
             </div>
         </div>
-        </div>
-        </div>
+    </div>
+    </div>
     </div>
 
 </body>
@@ -689,7 +704,7 @@
         obterDadosGrafico_enviados(6)
         obterDadosGrafico_recebidos(6)
         obterDadosGrafico_latencia(6)
-        
+
     }
 
     //verificar_autenticacao();
@@ -719,7 +734,7 @@
 
         let todosOsGraficos = document.getElementById("graficos")
 
-        for (i = 1; i <= (todosOsGraficos.childElementCount+1); i++) {
+        for (i = 1; i <= (todosOsGraficos.childElementCount + 1); i++) {
             // exibindo - ou não - o gráfico
             let elementoAtual = document.getElementById(`grafico${i}`)
             if (elementoAtual.classList.contains("display-block")) {
@@ -1035,7 +1050,7 @@
                         // dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
                         // dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
 
-                        kpiRam.innerHTML = novoRegistro[0].dadosCapturados, 2
+                        kpiRam.innerHTML = novoRegistro[0].dadosCapturados
 
                         myChart.update();
                     }
@@ -1503,8 +1518,8 @@
                         dados.datasets[0].data.push(novoRegistro[0].dadosCapturados); // incluir uma nova medida de umidade
                         // dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
                         // dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
-                        
-                        kpiPacotesRecebidos.innerHTML = novoRegistro[0].dadosCapturados;
+
+                        kpiPacotesRecebidos.innerHTML = novoRegistro[0].dadosCapturados
 
                         myChart.update();
                     }
@@ -1535,11 +1550,12 @@
         }
 
         fetch(`/medidas/ultimasLATENCIA/${idServidor}`, { cache: 'no-store' }).then(function (response) {
+            
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
-
+                    console.log(resposta)
                     plotarGrafico_latencia(resposta, idServidor);
                 });
             } else {
@@ -1667,18 +1683,20 @@
                         // dados.datasets[1].data.shift();  // apagar o primeiro de temperatura
                         // dados.datasets[1].data.push(novoRegistro[0].temperatura); // incluir uma nova medida de temperatura
 
-                        //kpiPacotesEnviados.innerHTML = novoRegistro[0].dadosCapturados
+                        var kpi = document.getElementById("kpiPacotesLatencia")
+
+                        kpi.innerHTML = novoRegistro[0].dadosCapturados
 
                         myChart.update();
                     }
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                    proximaAtualizacao = setTimeout(() => atualizarGrafico_latencia(idServidor, dados, myChart), 2000);
+                    proximaAtualizacao = setTimeout(() => atualizarGrafico_enviados(idServidor, dados, myChart), 2000);
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
-                proximaAtualizacao = setTimeout(() => atualizarGrafico_latencia(idServidor, dados, myChart), 2000);
+                proximaAtualizacao = setTimeout(() => atualizarGrafico_enviados(idServidor, dados, myChart), 2000);
             }
         })
             .catch(function (error) {

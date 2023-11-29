@@ -98,6 +98,21 @@
                 </div>
             </a>
 
+            <!-- individual simone -->
+            <a href="Individual/simone.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../../Imagens/icons8-processador-cinza.png" alt="">
+                    <h3>Processador</h3>
+                </div>
+            </a>
+
+            <a href="Individual/kaick.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../../Imagens/processo-imagem.png" alt="">
+                    <h3>Processos</h3>
+                </div>
+            </a>
+
             <!-- botão equipe -->
             <a href="./equipe.html">
                 <div class="btn-nav">
@@ -240,6 +255,21 @@
         var fk_instituicao = sessionStorage.FK_INSTITUICAO
         console.log(fk_instituicao)
 
+        // Criar um objeto Date a partir da string
+        const dateObject1 = new Date(periodo1);
+
+        // Formatar a data no formato 'YYYY-MM-DD HH:mm:ss' que é aceito pelo SQL Server
+        const formattedDate1 = `${dateObject1.getFullYear()}-${(dateObject1.getMonth() + 1)}-${(dateObject1.getDate())} ${(dateObject1.getHours())}:${(dateObject1.getMinutes())}:${(dateObject1.getSeconds())}`;
+
+        // Criar um objeto Date a partir da string
+        const dateObject2= new Date(periodo2);
+
+        // Formatar a data no formato 'YYYY-MM-DD HH:mm:ss' que é aceito pelo SQL Server
+        const formattedDate2 = `${dateObject2.getFullYear()}-${(dateObject2.getMonth() + 1)}-${(dateObject2.getDate())} ${(dateObject2.getHours())}:${(dateObject2.getMinutes())}:${(dateObject2.getSeconds())}`;
+
+        periodo1 = formattedDate1
+        periodo2 = formattedDate2
+
         fetch(`/medidas/buscarCapturas/`, {
 
             method: "POST",
@@ -296,31 +326,31 @@
                         if (dado.CPU == null) {
                             CPU.innerHTML = "Não há dados"
                         } else {
-                            CPU.innerHTML = dado.CPU
+                            CPU.innerHTML = dado.CPU.toFixed(2);
                         }
 
                         if (dado.RAM == null) {
                             RAM.innerHTML = "Não há dados"
                         } else {
-                            RAM.innerHTML = dado.RAM
+                            RAM.innerHTML = dado.RAM.toFixed(2);
                         }
 
                         if (dado.DISCO == null) {
                             DISCO.innerHTML = "Não há dados"
                         } else {
-                            DISCO.innerHTML = dado.DISCO
+                            DISCO.innerHTML = dado.DISCO.toFixed(2);
                         }
 
                         if (dado.PACOTES_ENVIADOS == null) {
                             pacote_env.innerHTML = "Não há dados"
                         } else {
-                            pacote_env.innerHTML = dado.PACOTES_ENVIADOS
+                            pacote_env.innerHTML = dado.PACOTES_ENVIADOS.toFixed(2);
                         }
 
                         if (dado.PACOTES_RECEBIDOS == null) {
                             pacote_rec.innerHTML = "Não há dados"
                         } else {
-                            pacote_rec.innerHTML = dado.PACOTES_RECEBIDOS
+                            pacote_rec.innerHTML = dado.PACOTES_RECEBIDOS.toFixed(2);
                         }
 
                         id_servidor.innerHTML = dado.idServidor;

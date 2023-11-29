@@ -70,7 +70,7 @@ body {
 /* NAV BAR LATERAL */
 
 .header-left {
-  height: 90vh;
+  height: 130vh;
   width: 23%;
   display: flex;
   flex-direction: column;
@@ -136,6 +136,45 @@ body {
 
 
 /* Botões servidores selecionados */
+.btn-nav-server h3 {
+  width: 100%;
+  color: #808080;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+} 
+
+.btn-nav-server{
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Botões principais */
+.btn-nav {
+  display: flex;
+  align-items: center ;
+  width: 100%;
+  height: 10vh;
+  color: #808080;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 2%;
+}
+
+.btn-nav-current{
+  display: flex;
+  align-items: center ;
+  width: 100%;
+  height: 10vh;
+  color: #212124;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 2%;
+}
+
+
+/* Botões principais selecionados */
 .btn-nav-server h3 {
   width: 100%;
   color: #808080;

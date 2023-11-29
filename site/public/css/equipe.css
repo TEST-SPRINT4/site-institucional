@@ -74,7 +74,7 @@ table, th, td {
 
 /* NAV BAR LATERAL */
 .header-left {
-  height: 90vh;
+  height: 140vh;
   width: 23%;
   display: flex;
   flex-direction: column;
@@ -346,4 +346,9 @@ table, th, td {
   
 }
 
-
+.card-buscar{
+  width: 70vw;
+  height: auto;
+  background: rgba(120, 174, 255, 0.4);
+  border-radius: 15px;
+}

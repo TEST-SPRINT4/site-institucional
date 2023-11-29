@@ -68,12 +68,11 @@
                         <h3>Monitorando</h3>
                     </a>
                 </div><br>
-                <div class="btns-dash"></div>
             </div>
 
             <!-- botão Individual Brudney -->
             <a href="./brudney.html">
-                <div class="btn-nav">
+                <div class="btn-nav-current">
                     <img class="img_icon" src="../../Imagens/icons8-wi-fi-26.png" alt="">
                     <h3>Rede</h3>
                 </div>
@@ -89,6 +88,21 @@
                 <div class="btn-nav">
                     <img class="img_icon" src="../../Imagens/icon-ram.png" alt="">
                     <h3>Swap</h3>
+                </div>
+            </a>
+
+                        <!-- individual simone -->
+            <a href="./simone.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../../Imagens/icons8-processador-cinza.png" alt="">
+                    <h3>Processador</h3>
+                </div>
+            </a>
+
+            <a href="./kaick.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../../Imagens/processo-imagem.png" alt="">
+                    <h3>Processos</h3>
                 </div>
             </a>
 
@@ -157,7 +171,7 @@
                         <div class="parteGrafico">
                             <div class="graph">
                                 <h3 class="tituloGraficos">
-                                    <span id="tituloServidor_cpu1">Latência </span>
+                                    <span id="tituloServidor_cpu1">Últimas medidas de <span id="titulo_grafico">Latência</span></span>
                                 </h3>
                                 <div class="label-captura">
                                     <p id="avisoCaptura1" style="color: rgb(206, 206, 206); text-align: center;"></p>
@@ -179,7 +193,7 @@
                         <div class="parteGrafico">
                             <div class="graph">
                                 <h3 class="tituloGraficos">
-                                    <span id="tituloServidor_disco1">Pacotes - Recebidos</span>
+                                    <span id="tituloServidor_disco1">Últimas medidas de <span id="titulo_grafico">Pacotes - Recebidos</span></span>
                                 </h3>
                                 <canvas id="grafico_pacotes_recebidos"></canvas>
                                 <div class="label-captura">
@@ -189,7 +203,7 @@
                             <!-- ---------------------------------------------------------------------- -->
                             <div class="graph">
                                 <h3 class="tituloGraficos">
-                                    <span id="tituloServidor_enviados1">Pacotes - Enviados</span>
+                                    <span id="tituloServidor_enviados1">PÚltimas medidas de <span id="titulo_grafico">Pacotes - Enviados</span></span>
                                 </h3>
                                 <canvas id="grafico_pacotes_enviados"></canvas>
                                 <div class="label-captura">
@@ -317,13 +331,32 @@
     const chart = new Chart('grafico_latencia', {
         type: 'line',
         data: {
-            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            labels: ['', '', '', '', '', '', ''],
             datasets: [{
-                label: 'Teste',
+                label: 'Latência',
                 data: [],
-                backgroundColor: 'rgba(255, 99, 132)',
-                borderColor: 'rgba(255, 99, 132)',
-                borderWidth: 1
+                backgroundColor: '#B7DCFF',
+                borderColor: '#075CAB',
+                borderWidth: 1,
+                backgroundColor: (context) => {
+                    const background = [
+                        "#075cab33",
+                        "#D4A4FF52"
+                    ]
+                    if (!context.chart.chartArea) {
+                        return;
+                    }
+
+                    const { ctx, data, chartArea: { top, bottom } } = context.chart;
+                    const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
+                    gradientBackground.addColorStop(.5, background[0]);
+                    gradientBackground.addColorStop(1, background[1]);
+
+                    return gradientBackground;
+                },
+                fill: true,
+                borderColor: '#075cab',
+                tension: 0.1
             }
             ]
         }
@@ -332,13 +365,32 @@
     const chart1 = new Chart('grafico_pacotes_recebidos', {
         type: 'line',
         data: {
-            labels: [1, 2, 3, 4, 5, 6, 7],
+            labels: ['', '', '', '', '', '', ''],
             datasets: [{
-                label: 'Teste',
+                label: 'Pacotes - Recebidos',
                 data: [],
-                backgroundColor: 'rgba(255, 99, 132)',
-                borderColor: 'rgba(255, 99, 132)',
-                borderWidth: 1
+                backgroundColor: '#B7DCFF',
+                borderColor: '#4D92D3',
+                borderWidth: 1,
+                backgroundColor: (context) => {
+                    const background = [
+                        "#075cab33",
+                        "#D4A4FF52"
+                    ]
+                    if (!context.chart.chartArea) {
+                        return;
+                    }
+
+                    const { ctx, data, chartArea: { top, bottom } } = context.chart;
+                    const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
+                    gradientBackground.addColorStop(.5, background[0]);
+                    gradientBackground.addColorStop(1, background[1]);
+
+                    return gradientBackground;
+                },
+                fill: true,
+                borderColor: '#075cab',
+                tension: 0.1
             }
             ]
         }
@@ -347,13 +399,32 @@
     const chart2 = new Chart('grafico_pacotes_enviados', {
         type: 'line',
         data: {
-            labels: ['12:00', '13:00', '14:00', '15:00', '16:00', '17:00'],
+            labels: ['', '', '', '', '', '', ''],
             datasets: [{
-                label: 'Teste',
+                label: 'Pacotes - Enviados',
                 data: [],
-                backgroundColor: 'rgba(255, 99, 132)',
-                borderColor: 'rgba(255, 99, 132)',
-                borderWidth: 1
+                backgroundColor: '#B7DCFF',
+                borderColor: '#6aa0d3',
+                borderWidth: 1,
+                backgroundColor: (context) => {
+                    const background = [
+                        "#075cab33",
+                        "#D4A4FF52"
+                    ]
+                    if (!context.chart.chartArea) {
+                        return;
+                    }
+
+                    const { ctx, data, chartArea: { top, bottom } } = context.chart;
+                    const gradientBackground = ctx.createLinearGradient(0, top, 0, bottom);
+                    gradientBackground.addColorStop(.5, background[0]);
+                    gradientBackground.addColorStop(1, background[1]);
+
+                    return gradientBackground;
+                },
+                fill: true,
+                borderColor: '#075cab',
+                tension: 0.1
             }
             ]
         }

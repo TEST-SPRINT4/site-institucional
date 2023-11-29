@@ -4,25 +4,29 @@ function buscarUltimasMedidasDISCO2(idServidor, limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `SELECT 
+        instrucaoSql = `SELECT top 7
+        
         dadoscapturados, 
         dataHora,
-        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        FORMAT(dataHora,'%h:%m:%s') as dataHora
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "DISCO"
-        order by idRegistros desc limit ${limite_linhas}`;
+        WHERE Servidor.idServidor = 2 AND Componente.modelo = 'DISCO'
+        order by idRegistros ;
+     `;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT 
+        instrucaoSql = `SELECT top 7
+        
         dadoscapturados, 
         dataHora,
-        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        FORMAT(dataHora,'%h:%m:%s') as dataHora
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "DISCO"
-        order by idRegistros desc limit ${limite_linhas}`;
+        WHERE Servidor.idServidor = 2 AND Componente.modelo = 'DISCO'
+        order by idRegistros ;
+     `;
 
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -37,26 +41,26 @@ function buscarMedidasEmTempoRealDISCO2(idServidor) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `SELECT 
+        instrucaoSql = `SELECT top 7
         dadoscapturados, 
         dataHora,
-        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "DISCO"
-        order by idRegistros desc limit 1`;
+        WHERE Servidor.idServidor = 2 AND Componente.modelo = 'DISCO'
+        order by idRegistros;`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT 
+        instrucaoSql = `SELECT top 7
         dadoscapturados, 
         dataHora,
-        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        FORMAT(dataHora,'%H:%i:%s') as dataHora
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "DISCO"
-        order by idRegistros desc limit 1`;
+        WHERE Servidor.idServidor = 2 AND Componente.modelo = 'DISCO'
+        order by idRegistros;`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -69,21 +73,21 @@ function buscarMedidasEmTempoRealDISCO2(idServidor) {
 async function obterDISCO(idATM) {
     const discoQuery = `
     SELECT top 1
-        dadosCapturados
-        FROM RegistrosTRUSTED
-        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
-        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = 2 AND Componente.modelo = 'TOTAL - DISCO'
-        order by idRegistros desc;`;
+    dadosCapturados 
+    FROM RegistrosTRUSTED
+    JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
+    JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
+    WHERE Servidor.idServidor = 2 AND Componente.modelo = 'TOTAL - DISCO'
+    order by idRegistros desc;`;
 
     console.log("Executando a instrução SQL: \n" + discoQuery);
     try {
         const discoResult = await database.executar(discoQuery);
             return {
-                DISCO: (discoResult && discoResult[0] && discoResult[0].atividade) || 'N/A',
+                DISCO: (discoResult && discoResult[0] && discoResult[0].dadosCapturados) || 'N/A',
             }; 
     } catch (error) {
-        console.error(`Erro na obtenção de Tempo de Atividade: ${error.message}`);
+        console.error(`Erro na obtenção de DISCO: ${error.message}`);
         return {
             DISCO: 'N/A',
         };
@@ -104,10 +108,10 @@ async function obterRAM(idATM) {
     try {
         const ramResult = await database.executar(ramQuery);
             return {
-                RAM: (ramResult && ramResult[0] && ramResult[0].atividade) || 'N/A',
+                RAM: (ramResult && ramResult[0] && ramResult[0].dadosCapturados) || 'N/A',
             }; 
     } catch (error) {
-        console.error(`Erro na obtenção de Tempo de Atividade: ${error.message}`);
+        console.error(`Erro na obtenção de RAM : ${error.message}`);
         return {
             RAM: 'N/A',
         };

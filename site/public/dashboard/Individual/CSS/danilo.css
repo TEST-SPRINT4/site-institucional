@@ -66,7 +66,7 @@ body {
 
 /* NAV BAR LATERAL */
 .header-left {
-  height: 225vh;
+  height: 130vh;
   width: 23%;
   display: flex;
   flex-direction: column;
@@ -117,9 +117,34 @@ body {
 }
 
 /* Botões principais selecionados */
+/* Botões principais */
+.btn-nav {
+  display: flex;
+  align-items: center ;
+  width: 100%;
+  height: 10vh;
+  color: #808080;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 2%;
+}
+
+.btn-nav-current{
+  display: flex;
+  align-items: center ;
+  width: 100%;
+  height: 10vh;
+  color: #212124;
+  cursor: pointer;
+  padding: 0;
+  margin-top: 2%;
+}
+
+
+/* Botões principais selecionados */
 .btn-nav-server h3 {
   width: 100%;
-  color: #212124;
+  color: #808080;
   padding: 0;
   margin: 0;
   cursor: pointer;
@@ -185,39 +210,12 @@ body {
 
 /* DASHBOARD */
 
-/* cards de médias */
-.container-card{
-  width: 100%;
-  display: flex;
-}
 
-.card-media{
-  width: 25%;
-  height: 150px;
-  box-shadow: 1px 1px 15px rgba(91, 91, 91, 0.77);
-  border-radius: 15px;
-  margin: 8px;
-  margin-top: 0%;
-  margin-bottom: 2%;
-}
-
-.card-media h3{
-  color: #ffffff;
-  margin-left: 5%;
-  margin-bottom: 0%;
-}
-
-.card-media h1{
-  color: #ffffff;
-  text-align: center;
-  font-size: 45px;
-  margin: 0%;
-}
 
 /* fundo transparente de organização */
 .dash {
   width: 100%;
-  height: 100vh;
+  height: 23%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -225,24 +223,27 @@ body {
 
 /* fundo transparente de gráficos */
 #graficos{
-  width: 100%;
+  width: 81%;
   display: block;
-  flex-direction: cente;
+  flex-direction: center;
+ 
 }
 
 /* card de gráficos */
 .parteGrafico2{
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
+  width: 70%;
+
 }
 .graph {
-  width: 60%;
+  width:100%;
   height: 78vh;
   padding-top: 10px;
   background-color: white;
   display: flex;
-  flex-direction: column;
+  flex-direction:  column;
   align-items: center;
   justify-content: center;
   box-shadow: 1px 1px 15px rgba(91, 91, 91, 0.77);
@@ -257,8 +258,8 @@ body {
 }
 
 .graph2 {
-  width: 40%;
-  height: 37vh;
+  width: 90%;
+  height: 50vh;
   padding-top: 10px;
   background-color: white;
   display: flex;
@@ -288,18 +289,20 @@ body {
 
 .display-block {
   display: block;
-  width: 100%;
 }
 
 canvas {
-  width: 30vw !important;
+  width: 35vw !important;
   height: 30vh !important;
-  margin: 5%;
+  margin: 0%;
 }
 
 .parteGrafico{
   display: flex;
- 
+  flex-direction: row;
+  align-items: flex-start;
+  width: 60%;
+  height: 5%;
 }
 
 .regua {

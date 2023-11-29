@@ -41,9 +41,9 @@ function buscarMedidasEmTempoRealDISCO2(req, res) {
 }
 
 async function obterDISCO(req, res) {
-    const idATM = req.params.idATM;
+    
     try {
-        const dados = await usuarioModel.obterDISCO();
+        const dados = await daniloModel.obterDISCO();
         res.json(dados);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -51,9 +51,9 @@ async function obterDISCO(req, res) {
 }
 
 async function obterRAM(req, res) {
-    const idATM = req.params.idATM;
+    
     try {
-        const dados = await usuarioModel.obterRAM();
+        const dados = await daniloModel.obterRAM();
         res.json(dados);
     } catch (error) {
         res.status(500).json({ error: error.message });

@@ -78,7 +78,7 @@
                 </div>
             </a>
             <a href="./danilo.html">
-                <div class="btn-nav">
+                <div class="btn-nav-current">
                     <img class="img_icon" src="../../Imagens/icon_disk.png" alt="">
                     <h3>Disco</h3>
                 </div>
@@ -88,6 +88,21 @@
                 <div class="btn-nav">
                     <img class="img_icon" src="../../Imagens/icon-ram.png" alt="">
                     <h3>Swap</h3>
+                </div>
+            </a>
+
+            <!-- individual simone -->
+            <a href="./simone.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../../Imagens/icons8-processador-cinza.png" alt="">
+                    <h3>Processador</h3>
+                </div>
+            </a>
+
+            <a href="./kaick.html">
+                <div class="btn-nav">
+                    <img class="img_icon" src="../../Imagens/processo-imagem.png" alt="">
+                    <h3>Processos</h3>
                 </div>
             </a>
 
@@ -139,7 +154,7 @@
                    <div class="graph2">
                     <h3 class="tituloGraficos2" >
                         <img src="https://png.pngtree.com/png-vector/20191003/ourlarge/pngtree-hdd-icon-outline-style-png-image_1786531.jpg" alt="">
-                        <h2 class="tamanhoDISCO"></h2>
+                        <h2 class="tamanhoDISCO" id="tamanhoDISCO"></h2>
                         <span>Gb</span>
                         <h1>Tamanho total do DISCO</h1>
                     </h3>
@@ -148,7 +163,7 @@
                     <h3 class="tituloGraficos2" >
                         <img src="https://www.svgrepo.com//show/8293/ram-memory.svg
                         " alt="">
-                        <h2 class="tamanhoDISCO" id="tamanhoRAM"></h2>
+                        <h2 class="tamanhoRAM" id="tamanhoRAM"></h2>
                         <span>Gb</span>
                         <h1>Uso memória RAM</h1>
                     </h3>
@@ -357,7 +372,7 @@ console.log(registro)
 
 // Criando estrutura para plotar gráfico - config
 const config = {
-    type: 'bar',
+    type: 'line',
     data: dados,
 };
 
@@ -426,7 +441,7 @@ fetch(`/danilo/tempo-realDISCO/${idServidor}`, { cache: 'no-store' }).then(funct
 }
 
 function obterDadosDISCO() {
-        fetch(`/usuarios/obterDISCO`, { cache: 'no-store' })
+        fetch(`/danilo/obterDISCO`, { cache: 'no-store' })
             .then(function (resposta) {
                 if (resposta.ok) {
                     return resposta.json();
@@ -436,7 +451,7 @@ function obterDadosDISCO() {
                 }
             })
             .then(function (dados) {
-                atualizarValorDOM('pingPercentage', dados.DISCO);
+                atualizarValorDOM('tamanhoDISCO', dados.DISCO);
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção de DISCO do sistema: ${error.message}`);
@@ -449,7 +464,7 @@ function obterDadosDISCO() {
     }
 
     function obterDadosRAM() {
-        fetch(`/usuarios/obterRAM`, { cache: 'no-store' })
+        fetch(`/danilo/obterRAM`, { cache: 'no-store' })
             .then(function (resposta) {
                 if (resposta.ok) {
                     return resposta.json();
@@ -459,7 +474,7 @@ function obterDadosDISCO() {
                 }
             })
             .then(function (dados) {
-                atualizarValorDOM2('pingPercentage', dados.RAM);
+                atualizarValorDOM2('tamanhoRAM', dados.RAM);
             })
             .catch(function (error) {
                 console.error(`Erro na obtenção de RAM do sistema: ${error.message}`);

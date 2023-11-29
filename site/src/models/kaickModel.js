@@ -1,27 +1,19 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidasCPUKaick(idServidor, limite_linhas) {
+function buscarUltimasMedidasCPUKaick(idServidor,idListagem,limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select top 7 
+        instrucaoSql = `select top ${limite_linhas}
         P.nome_processo,
         P.PID,
         P.usoCpu
         from Processos as P
         join Listagem_Processos on fkListagem = idListagem
-        where idListagem = 1
+        where idListagem = ${idListagem} AND fkIdServidor = ${idServidor}
         order by usoCpu desc;`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT 
-        dadoscapturados, 
-        dataHora,
-        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
-        FROM RegistrosTRUSTED
-        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
-        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "CPU"
-        order by idRegistros desc limit ${limite_linhas}`;
+        instrucaoSql = ``;
 
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -32,29 +24,21 @@ function buscarUltimasMedidasCPUKaick(idServidor, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoRealCPUKaick(idServidor) {
+function buscarCpuKaick(idServidor) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `SELECT 
-        dadoscapturados, 
-        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        instrucaoSql = `SELECT top 1
+        dadosCapturados 
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "CPU"
-        order by idRegistros desc limit 1`;
+        WHERE Servidor.idServidor = 3 AND Componente.modelo = 'CPU'
+        order by idRegistros desc;`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT 
-        dadoscapturados, 
-        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
-        FROM RegistrosTRUSTED
-        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
-        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "CPU"
-        order by idRegistros desc limit 1`;
+        instrucaoSql = ``;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -64,31 +48,20 @@ function buscarMedidasEmTempoRealCPUKaick(idServidor) {
     return database.executar(instrucaoSql);
 }
 
-
-
-function buscarUltimasMedidasRAMKaick(idServidor, limite_linhas) {
+function buscarUltimasMedidasRAMKaick(idServidor,idListagem,limite_linhas) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `SELECT 
-        dadoscapturados, 
-        dataHora,
-        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
-        FROM RegistrosTRUSTED
-        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
-        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "RAM"
-        order by idRegistros desc limit ${limite_linhas}`;
+        instrucaoSql = `select top ${limite_linhas}
+        P.nome_processo,
+        P.PID,
+        P.usoRam
+        from Processos as P
+        join Listagem_Processos on fkListagem = idListagem
+        where idListagem = ${idListagem} AND fkIdServidor = ${idServidor}
+        order by usoRam desc;`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT 
-        dadoscapturados, 
-        dataHora,
-        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
-        FROM RegistrosTRUSTED
-        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
-        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "RAM"
-        order by idRegistros desc limit ${limite_linhas}`;
+        instrucaoSql = ``;
 
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
@@ -99,29 +72,21 @@ function buscarUltimasMedidasRAMKaick(idServidor, limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoRealRAMKaick(idServidor) {
+function buscarRamKaick(idServidor) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `SELECT 
-        dadoscapturados, 
-        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
+        instrucaoSql = `SELECT top 1
+        dadosCapturados 
         FROM RegistrosTRUSTED
         JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
         JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "RAM"
-        order by idRegistros desc limit 1`;
+        WHERE Servidor.idServidor = 3 AND Componente.modelo = 'RAM'
+        order by idRegistros desc;`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT 
-        dadoscapturados, 
-        DATE_FORMAT(dataHora,'%H:%i:%s') as dataHora
-        FROM RegistrosTRUSTED
-        JOIN Servidor ON RegistrosTRUSTED.fkIdServidor = Servidor.idServidor
-        JOIN Componente ON RegistrosTRUSTED.fkComponente = Componente.idComponente
-        WHERE Servidor.idServidor = ${idServidor} AND Componente.modelo = "RAM"
-        order by idRegistros desc limit 1`;
+        instrucaoSql = ``;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -133,8 +98,7 @@ function buscarMedidasEmTempoRealRAMKaick(idServidor) {
 
 module.exports = {
     buscarUltimasMedidasCPUKaick,
-    buscarMedidasEmTempoRealCPUKaick,
-    
+    buscarCpuKaick,
     buscarUltimasMedidasRAMKaick,
-    buscarMedidasEmTempoRealRAMKaick
+    buscarRamKaick
 }
