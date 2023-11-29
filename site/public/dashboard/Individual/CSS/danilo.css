@@ -227,13 +227,18 @@ body {
 #graficos{
   width: 100%;
   display: block;
-  flex-direction: row;
+  flex-direction: cente;
 }
 
 /* card de gráficos */
+.parteGrafico2{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 .graph {
-  width: 45%;
-  height: 60vh;
+  width: 60%;
+  height: 78vh;
   padding-top: 10px;
   background-color: white;
   display: flex;
@@ -248,12 +253,12 @@ body {
 .tituloGraficos {
   color: rgb(172, 172, 172);
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
 }
 
 .graph2 {
-  width: 35%;
-  height: 60vh;
+  width: 40%;
+  height: 37vh;
   padding-top: 10px;
   background-color: white;
   display: flex;
@@ -270,7 +275,7 @@ body {
   flex-direction: column;
   justify-content: space-evenly;
   width: 35%;
-  height: 50%;
+  height: 25%;
 }
 
 .display-none {
