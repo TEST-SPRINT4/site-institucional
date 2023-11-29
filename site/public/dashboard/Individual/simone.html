@@ -269,6 +269,16 @@
         obterDados_nome(1)
         obterDados_arquitetura(1)
 
+<<<<<<< HEAD
+=======
+        obterDadosGrafico_cpu(2)
+        obterDadosGrafico_temperatura(2)
+        obterDadosGrafico_frequencia(2)
+        obterDados_nucleoF(2)
+        obterDados_nucleosL(2)
+        obterDados_nome(2)
+        obterDados_arquitetura(2)
+>>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
 
     }
 
@@ -1054,9 +1064,13 @@
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             labels.push(registro.dataHora);
+<<<<<<< HEAD
             dados.datasets[0].data.push(registro.textoCapturado);
 
             kpiNome.innerHTML = `Nome do Processador: <br> <h4>${resposta[0].textoCapturado}</h4>`;
+=======
+            dados.datasets[0].data.push(registro.dadoscapturados);
+>>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
         }
 
         // Criando estrutura para plotar gráfico - config
@@ -1085,17 +1099,31 @@
                         dados.labels.push(novoRegistro[0].dataHora); // incluir um novo momento
 
                         dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+<<<<<<< HEAD
                         dados.datasets[0].data.push(novoRegistro[0].textoCapturado); // incluir uma nova medida de umidade
+=======
+                        dados.datasets[0].data.push(novoRegistro[0].dadoscapturados); // incluir uma nova medida de umidade
+
+                        kpiNome.innerHTML = `Nome do Processador: ${novoRegistro[0].dadoscapturados}`
+>>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
 
                     }
 
                     // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+<<<<<<< HEAD
                     proximaAtualizacao = setTimeout(() => atualizar_nome(idServidor, dados), 2000);
+=======
+                    proximaAtualizacao = setTimeout(() => atualizar_nome(idServidor, dados, myChart), 2000);
+>>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
                 // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+<<<<<<< HEAD
                 proximaAtualizacao = setTimeout(() => atualizar_nome(idServidor, dados), 2000);
+=======
+                proximaAtualizacao = setTimeout(() => atualizar_nome(idServidor, dados, myChart), 2000);
+>>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
             }
         })
             .catch(function (error) {
@@ -1173,8 +1201,11 @@
             var registro = resposta[i];
             labels.push(registro.dataHora);
             dados.datasets[0].data.push(registro.dadoscapturados);
+<<<<<<< HEAD
 
             kpiArquitetura.innerHTML = `Arquitetura: <br> <h3>${resposta[0].textoCapturado}</h3>`;
+=======
+>>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
         }
 
         // Criando estrutura para plotar gráfico - config
@@ -1187,7 +1218,11 @@
 
     }
 
+<<<<<<< HEAD
     function atualizar_arquitetura(idServidor, dados, myChart) {
+=======
+    function atualizar_nome(idServidor, dados, myChart) {
+>>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
 
         fetch(`/simone/tempo-realARQUITETURA/${idServidor}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
@@ -1203,10 +1238,16 @@
                         dados.labels.push(novoRegistro[0].dataHora); // incluir um novo momento
 
                         dados.datasets[0].data.shift();  // apagar o primeiro de umidade
+<<<<<<< HEAD
                         dados.datasets[0].data.push(novoRegistro[0].textoCapturado); // incluir uma nova medida de umidade
 
                         // kpiNome.innerHTML = `Arquitetura do Processador: ${novoRegistro[0].textoCapturado}`
                         // kpiDisco.innerHTML = `${resposta[0].nome_processo} </br> PID ${resposta[0].PID}`;
+=======
+                        dados.datasets[0].data.push(novoRegistro[0].dadoscapturados); // incluir uma nova medida de umidade
+
+                        kpiNome.innerHTML = `Nome do Processador: ${novoRegistro[0].dadoscapturados}`
+>>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
 
                     }
 

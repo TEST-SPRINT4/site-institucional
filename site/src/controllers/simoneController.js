@@ -241,6 +241,7 @@ function buscarMedidasEmTempoRealNOME(req, res) {
     });
 }
 
+<<<<<<< HEAD
 function buscarUltimasMedidasARQUITETURA(req, res) {
 
     const limite_linhas = 7;
@@ -281,6 +282,8 @@ function buscarMedidasEmTempoRealARQUITETURA(req, res) {
     });
 }
 
+=======
+>>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
 module.exports = {
     buscarUltimasMedidasTEMPERATURA,
     buscarUltimasMedidasCPU,
@@ -288,7 +291,10 @@ module.exports = {
     buscarUltimasMedidasNUCLEOF,
     buscarUltimasMedidasNUCLEOL,
     buscarUltimasMedidasNOME,
+<<<<<<< HEAD
     buscarUltimasMedidasARQUITETURA,
+=======
+>>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
 
     buscarMedidasEmTempoRealTEMPERATURA,
     buscarMedidasEmTempoRealCPU,
@@ -296,5 +302,8 @@ module.exports = {
     buscarMedidasEmTempoRealNUCLEOF,
     buscarMedidasEmTempoRealNUCLEOL,
     buscarMedidasEmTempoRealNOME,
+<<<<<<< HEAD
     buscarMedidasEmTempoRealARQUITETURA,
+=======
+>>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
 }

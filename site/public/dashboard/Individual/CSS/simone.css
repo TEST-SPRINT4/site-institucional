@@ -233,15 +233,25 @@ body {
 }
 
 .listakpi{
+<<<<<<< HEAD
   width: 46%;
+=======
+  width: 47%;
+>>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 
 }
 
 .kpi{
   width: 100%;
+<<<<<<< HEAD
   height: 15%;
+=======
+  height: 12%;
+>>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
   background-color: #3280c9;
   margin-bottom: 5%;
   border-radius: 15px;
@@ -251,6 +261,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+<<<<<<< HEAD
 }
 
 .kpi h3, h4{
@@ -294,3 +305,7 @@ body {
   margin: 0%;
   margin-bottom: 5%;
 }
+=======
+  margin-top: 3%;
+}
+>>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
