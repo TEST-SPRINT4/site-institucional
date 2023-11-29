@@ -180,9 +180,11 @@ body {
 }
 
 .campo_selecao_servidor {
-  width: 25vh;
+  width: 35vh;
   height: 20vh;
   padding-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -193,10 +195,15 @@ body {
   margin-top: 0%;
 }
 
+.campo_selecao_servidor span {
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
 button {
   width: 100%;
   padding: 10px;
-  background-color: #4CAF50; 
+  background-color: #4c7daf; 
   color: white;
   border: none;
   border-radius: 5px;
@@ -215,4 +222,8 @@ select {
   display: flex;
   flex-direction: row;
   justify-content:space-around;
+}
+
+canvas{
+  box-shadow: 1px 1px 15px rgba(91, 91, 91, 0.77);
 }

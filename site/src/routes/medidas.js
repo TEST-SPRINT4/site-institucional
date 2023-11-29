@@ -79,6 +79,10 @@ router.get("/tempo-realAeris/:idServidor", function (req, res) {
     medidaController.buscarMedidasEmTempoReal_Aeris(req, res);
 })
 
+router.get("/tempo-realSwapAeris/:idServidor", function (req, res) {
+    medidaController.buscarMedidasEmTempoRealSwap_Aeris(req, res);
+})
+
 module.exports = router;
 
 
