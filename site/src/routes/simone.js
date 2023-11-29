@@ -45,5 +45,20 @@ router.get("/ultimasNUCLEOL/:idServidor", function (req, res) {
     simoneController.buscarUltimasMedidasNUCLEOL(req, res);
 });
 
+router.get("/tempo-realNOME/:idServidor", function (req, res) {
+    simoneController.buscarMedidasEmTempoRealNOME(req, res);
+})
+
+router.get("/ultimasNOME/:idServidor", function (req, res) {
+    simoneController.buscarUltimasMedidasNOME(req, res);
+});
+
+router.get("/tempo-realARQUITETURA/:idServidor", function (req, res) {
+    simoneController.buscarMedidasEmTempoRealARQUITETURA(req, res);
+})
+
+router.get("/ultimasARQUITETURA/:idServidor", function (req, res) {
+    simoneController.buscarUltimasMedidasARQUITETURA(req, res);
+});
 
 module.exports = router;
