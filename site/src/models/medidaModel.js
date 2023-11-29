@@ -197,9 +197,6 @@ function buscarUltimasMedidasLATENCIA(idServidor, limite_linhas) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
-
-<<<<<<< HEAD
-=======
 // INDIVIDUAL AERIS -------------------------------------------------------
 
 function buscarUltimasMedidas_CPU_RAM_Aeris(idServidor) {
@@ -243,7 +240,6 @@ function buscarUltimasMedidas_CPU_RAM_Aeris(idServidor) {
     return database.executar(instrucaoSql);
 }
 
->>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
 
 // INDIVIDUAL SIMONE -------------------------------------------------------
 
@@ -467,8 +463,6 @@ function buscarMedidasEmTempoRealLATENCIA(idServidor, limite_linhas) {
 }
 
 
-<<<<<<< HEAD
-=======
 function buscarMedidasEmTempoReal_Aeris(idServidor) {
 
     instrucaoSql = ''
@@ -551,7 +545,6 @@ function buscarMedidasEmTempoRealSwap_Aeris(idServidor) {
 }
 
 
->>>>>>> 0a9cd7ae53e1c591b8e8c7f122c99cb68d528ff0
 function buscarCapturas(periodo1, periodo2, fk_instituicao) {
 
     instrucaoSql = ''
