@@ -1,0 +1,3 @@
+Arquivos Kotlin e Python de captura da aluna Bruna Bizaroli Rasmussen RA: 03231000
+Os arquivos capturam respectivamente: uso de RAM e CPU(Kotlin) e uso de memória SWAP (Python)
+Para executar o arquivo Kotlin basta clicar no .JAR e para executar a captura python é necessário o terminal Python.
